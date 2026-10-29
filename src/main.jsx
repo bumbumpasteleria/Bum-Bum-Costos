@@ -1,4 +1,7 @@
 import React,{useState} from 'react';import{createRoot}from'react-dom/client';import './style.css';
+import { useEffect } from 'react';
+import { supabase } from './supabase';
+import Login from './Login';
 const KEY='bum-bum-costos-v1',NEW='bum-bum-costos-v3';const blank=()=>({ingredients:[],recipes:[],quotes:[],sales:[],decorations:[],settings:{}});
 const load=()=>{try{const existing=JSON.parse(localStorage.getItem(NEW)||localStorage.getItem(KEY)||'null');return {...blank(),...existing}}catch{return blank()}};
 const fmt=n=>'RD$ '+Number(n||0).toLocaleString('es-DO',{minimumFractionDigits:2,maximumFractionDigits:2});const n=v=>Math.max(0,Number(v)||0);const uid=()=>crypto.randomUUID();
@@ -17,4 +20,47 @@ const tabs=['Inicio','Ingredientes','Recetas','Decoraciones','Cotizador','Ventas
 {tab==='Cotizador'&&<><h2>Cotizar pastel</h2><section><div className="grid"><label>Receta<select value={selected} onChange={e=>setSelected(e.target.value)}><option value="">Seleccionar</option>{db.recipes.map(r=><option value={r.id} key={r.id}>{r.name}</option>)}</select></label><label>Cantidad de rendimientos<input type="number" step=".001" min=".001" value={qty} onChange={e=>setQty(e.target.value)}/></label>{[['fill','Rellenos y coberturas'],['pack','Empaque'],['delivery','Entrega'],['other','Otros gastos']].map(([k,label])=><label key={k}>{label} RD$<input type="number" min="0" step=".01" value={extra[k]} onChange={e=>setExtra(v=>({...v,[k]:e.target.value}))}/></label>)}<label>Mano de obra<select value={laborMode} onChange={e=>setLaborMode(e.target.value)}><option value="fixed">Monto fijo</option><option value="hourly">Horas × tarifa</option></select></label><label>{laborMode==='hourly'?'Tarifa por hora':'Monto fijo'} RD$<input type="number" min="0" value={labor} onChange={e=>setLabor(e.target.value)}/></label>{laborMode==='hourly'&&<label>Horas<input type="number" min="0" step=".25" value={hours} onChange={e=>setHours(e.target.value)}/></label>}<label>Método<select value={method} onChange={e=>setMethod(e.target.value)}><option value="margin">Margen sobre venta</option><option value="markup">Recargo sobre costo</option></select></label><label>Porcentaje %<input type="number" min="0" max="95" value={pct} onChange={e=>setPct(e.target.value)}/></label></div><h3>Decoraciones</h3>{db.decorations.map(d=><label className="entry" key={d.id}><span>{d.name} · {fmt(d.price)}/ud.</span><input aria-label={'Cantidad '+d.name} type="number" min="0" step="1" value={decors[d.id]||0} onChange={e=>setDecors(v=>({...v,[d.id]:e.target.value}))}/></label>)}<div className="result"><small>Bizcocho {fmt(base)} · Decoraciones {fmt(decorTotal)} · Mano de obra {fmt(laborTotal)}</small><p>Costo total <b>{fmt(total)}</b></p><h2>Precio sugerido {fmt(price)}</h2><p>Ganancia estimada {fmt(price-total)}</p></div><button disabled={!recipe||!n(qty)} onClick={()=>{update(d=>{d.quotes.push({id:uid(),date:new Date().toISOString().slice(0,10),recipeName:recipe.name,qty:n(qty),totalCost:total,price,method,pct});return d});setNotice('Cotización guardada')}}>Guardar cotización</button></section><section><h3>Cotizaciones guardadas</h3>{db.quotes.slice().reverse().map(q=><div className="entry" key={q.id}><span><b>{q.recipeName}</b><small>{q.date} · Costo {fmt(q.totalCost)}</small></span><b>{fmt(q.price)}</b></div>)}</section></>}
 {tab==='Ventas'&&<><h2>Ventas</h2><section><form onSubmit={e=>{e.preventDefault();const f=new FormData(e.currentTarget);update(d=>{d.sales.push({id:uid(),date:f.get('date'),channel:f.get('channel'),description:f.get('description'),gross:n(f.get('gross')),commission:n(f.get('commission')),productionCost:n(f.get('productionCost')),extra:n(f.get('extra'))});return d});e.currentTarget.reset()}}><div className="grid"><label>Fecha<input name="date" type="date" defaultValue={new Date().toISOString().slice(0,10)} required/></label><label>Canal<select name="channel"><option>Uber Eats</option><option>PedidosYa</option><option>Directa</option></select></label><label>Descripción<input name="description" required/></label><label>Venta bruta RD$<input name="gross" type="number" min="0" step=".01" required/></label><label>Comisión %<input name="commission" type="number" min="0" max="100" step=".01" defaultValue="45" required/></label><label>Costo producción RD$<input name="productionCost" type="number" min="0" step=".01" required/></label><label>Otros gastos RD$<input name="extra" type="number" min="0" step=".01" defaultValue="0"/></label></div><button>Registrar venta</button></form></section><section>{db.sales.slice().reverse().map(s=><div className="entry" key={s.id}><span><b>{s.description}</b><small>{s.date} · {s.channel}</small></span><b>{fmt(n(s.gross)*(1-n(s.commission)/100)-n(s.productionCost)-n(s.extra))}</b></div>)}</section></>}
 {tab==='Respaldo'&&<><h2>Respaldo y migración</h2><section><p>Exporta los datos antes de actualizar o cambiar de navegador. Puedes importar un respaldo JSON del prototipo anterior.</p><div className="actions"><button onClick={exportData}>Descargar respaldo JSON</button><label>Restaurar JSON<input type="file" accept=".json,application/json" onChange={fileImport}/></label></div><p className="warning">Restaurar reemplaza los datos actuales. Supabase, importación de PDF/Word y sincronización entre dispositivos todavía no están activados.</p></section></>}</main><footer>Versión 0.3 · Datos locales · Haz respaldos periódicos</footer></>}
-createRoot(document.getElementById('root')).render(<App/>);
+
+function AppProtegida() {
+  const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+
+    supabase.auth.getSession().then(({ data, error }) => {
+      if (!active) return;
+      if (error) console.error('Error de sesión:', error);
+      setSession(data?.session ?? null);
+      setLoading(false);
+    });
+
+    const { data: listener } =
+      supabase.auth.onAuthStateChange((_event, newSession) => {
+        if (active) {
+          setSession(newSession);
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      active = false;
+      listener.subscription.unsubscribe();
+    };
+  }, []);
+
+  if (loading) {
+    return <p>Comprobando acceso a Bum Bum Costos...</p>;
+  }
+
+  if (!session) {
+    return <Login onLogin={setSession} />;
+  }
+
+  return <App />;
+}
+
+createRoot(document.getElementById('root')).render(
+  <AppProtegida />
+);
+
