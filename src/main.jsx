@@ -72,8 +72,7 @@ return (
 }
 
 
-createRoot(document.getElementById('root')).render(
+
 createRoot(document.getElementById('root')).render(
   <AppProtegida />
 );
-
