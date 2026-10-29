@@ -63,3 +63,33 @@ export function adaptarIngrediente(registro) {
       Number(registro.stock_quantity)
   };
 }
+
+export async function actualizarPrecioIngrediente({
+  id,
+  price,
+  packageQty
+}) {
+  const precio = Number(price);
+  const cantidad = Number(packageQty);
+
+  if (!Number.isFinite(precio) || precio < 0) {
+    throw new Error('El precio debe ser un número válido.');
+  }
+
+  if (!Number.isFinite(cantidad) || cantidad <= 0) {
+    throw new Error('La cantidad debe ser mayor que cero.');
+  }
+
+  const { data, error } = await supabase
+    .from('ingredients')
+    .update({
+      last_unit_cost: precio / cantidad
+    })
+    .eq('id', id)
+    .select()
+    .single();
+
+  if (error) throw error;
+
+  return data;
+}
