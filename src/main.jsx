@@ -69,8 +69,67 @@ return (
   </>
 );
 
+function PruebaSupabase() {
+  const [mensaje, setMensaje] = useState(
+    'Comprobando conexión con Supabase...'
+  );
+  const [guardando, setGuardando] = useState(false);
+
+  useEffect(() => {
+    obtenerIngredientes()
+      .then(datos => {
+        setMensaje(
+          `Conexión exitosa. Ingredientes en la nube: ${datos.length}`
+        );
+      })
+      .catch(error => {
+        setMensaje(`Error de conexión: ${error.message}`);
+      });
+  }, []);
+
+  async function probarGuardado() {
+    if (guardando) return;
+
+    setGuardando(true);
+    setMensaje('Guardando ingrediente de prueba...');
+
+    try {
+      await guardarIngrediente({
+        name: 'PRUEBA - Harina de trigo',
+        price: 80,
+        packageQty: 1000,
+        unit: 'g'
+      });
+
+      const ingredientes = await obtenerIngredientes();
+
+      setMensaje(
+        `Guardado exitoso. Ingredientes en la nube: ${ingredientes.length}`
+      );
+    } catch (error) {
+      setMensaje(`Error al guardar: ${error.message}`);
+    } finally {
+      setGuardando(false);
+    }
+  }
+
+  return (
+    <div style={{ textAlign: 'center', padding: 12 }}>
+      <p>{mensaje}</p>
+      <button
+        type="button"
+        disabled={guardando}
+        onClick={probarGuardado}
+      >
+        {guardando
+          ? 'Guardando...'
+          : 'Guardar ingrediente de prueba'}
+      </button>
+    </div>
+  );
 }
 
+}
 
 
 createRoot(document.getElementById('root')).render(
