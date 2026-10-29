@@ -15,6 +15,55 @@ const conversion=(amount,from,to)=>units[from]?.[0]===units[to]?.[0]?amount*unit
 function App(){const [db,setDb]=useState(load),[tab,setTab]=useState('Inicio'),[line,setLine]=useState([]),[selected,setSelected]=useState(''),[qty,setQty]=useState(1),[method,setMethod]=useState('margin'),[pct,setPct]=useState(35),[laborMode,setLaborMode]=useState('fixed'),[labor,setLabor]=useState(0),[hours,setHours]=useState(1),[extra,setExtra]=useState({fill:0,pack:0,delivery:0,other:0}),[decors,setDecors]=useState({}),[notice,setNotice]=useState('');
 const update=fn=>setDb(old=>{const next=fn(structuredClone(old));localStorage.setItem(NEW,JSON.stringify(next));return next});
 
+ useEffect(() => {
+  let activo = true;
+
+  async function cargarIngredientesNube() {
+    try {
+      const registros = await obtenerIngredientes();
+
+      if (!activo) return;
+
+      const ingredientesNube = registros.map(adaptarIngrediente);
+
+      setDb(actual => {
+        const siguiente = structuredClone(actual);
+
+        // Conservamos los ingredientes locales existentes.
+        const ingredientes = [...siguiente.ingredients];
+
+        // Incorporamos los registros de Supabase sin repetir sus IDs.
+        for (const ingrediente of ingredientesNube) {
+          const posicion = ingredientes.findIndex(
+            i => i.id === ingrediente.id
+          );
+
+          if (posicion === -1) {
+            ingredientes.push(ingrediente);
+          } else {
+            ingredientes[posicion] = ingrediente;
+          }
+        }
+
+        siguiente.ingredients = ingredientes;
+
+        return siguiente;
+      });
+    } catch (error) {
+      console.error('Error al cargar ingredientes:', error);
+      setNotice(
+        'No se pudieron cargar los ingredientes de Supabase: ' +
+        error.message
+      );
+    }
+  }
+
+  cargarIngredientesNube();
+
+  return () => {
+    activo = false;
+  };
+}, []);              
 const [guardandoIngrediente, setGuardandoIngrediente] = useState(false);
 
 async function guardarIngredienteFormulario(e) {
