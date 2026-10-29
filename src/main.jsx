@@ -2,6 +2,7 @@ import React,{useState} from 'react';import{createRoot}from'react-dom/client';im
 import { useEffect } from 'react';
 import { supabase } from './supabase';
 import Login from './Login';
+import { obtenerIngredientes } from './ingredientsService';
 const KEY='bum-bum-costos-v1',NEW='bum-bum-costos-v3';const blank=()=>({ingredients:[],recipes:[],quotes:[],sales:[],decorations:[],settings:{}});
 const load=()=>{try{const existing=JSON.parse(localStorage.getItem(NEW)||localStorage.getItem(KEY)||'null');return {...blank(),...existing}}catch{return blank()}};
 const fmt=n=>'RD$ '+Number(n||0).toLocaleString('es-DO',{minimumFractionDigits:2,maximumFractionDigits:2});const n=v=>Math.max(0,Number(v)||0);const uid=()=>crypto.randomUUID();
@@ -57,7 +58,37 @@ function AppProtegida() {
     return <Login onLogin={setSession} />;
   }
 
-  return <App />;
+ 
+return (
+  <>
+    <PruebaSupabase />
+    <App />
+  </>
+);
+
+}
+
+
+function PruebaSupabase() {
+  const [mensaje, setMensaje] = useState(
+    'Comprobando conexión con Supabase...'
+  );
+
+  useEffect(() => {
+    obtenerIngredientes()
+      .then(datos => {
+        setMensaje(
+          `Conexión exitosa. Ingredientes en la nube: ${datos.length}`
+        );
+      })
+      .catch(error => {
+        setMensaje(`Error de conexión: ${error.message}`);
+      });
+  }, []);
+
+  return <p style={{ textAlign: 'center', padding: 12 }}>
+    {mensaje}
+  </p>;
 }
 
 createRoot(document.getElementById('root')).render(
