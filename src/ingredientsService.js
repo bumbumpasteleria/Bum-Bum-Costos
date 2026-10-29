@@ -57,17 +57,19 @@ export function adaptarIngrediente(registro) {
     id: registro.id,
     name: registro.name,
     unit: registro.base_unit,
-    packageQty: Number(registro.stock_quantity),
-    price:
-      Number(registro.last_unit_cost) *
-      Number(registro.stock_quantity)
+    // La cantidad de compra no está guardada en Supabase. Mostrar por unidad.
+    packageQty: 1,
+    price: Number(registro.last_unit_cost),
+    lastUnitCost: Number(registro.last_unit_cost),
+    cantidadCompraConfirmada: false
   };
 }
 
 export async function actualizarPrecioIngrediente({
   id,
   price,
-  packageQty
+  packageQty,
+  unit
 }) {
   const precio = Number(price);
   const cantidad = Number(packageQty);
@@ -80,10 +82,23 @@ export async function actualizarPrecioIngrediente({
     throw new Error('La cantidad debe ser mayor que cero.');
   }
 
+  const { data: ingrediente, error: consultaError } = await supabase
+    .from('ingredients')
+    .select('id, base_unit')
+    .eq('id', id)
+    .maybeSingle();
+  if (consultaError) throw consultaError;
+  if (!ingrediente) throw new Error('El ingrediente no existe en Supabase o no tienes acceso. Si es local, necesita migración.');
+  if (ingrediente.base_unit !== unit) throw new Error('La unidad cambió. Recarga antes de editar el precio.');
+  const costo = precio / cantidad;
+  if (!Number.isFinite(costo) || (precio > 0 && costo === 0)) {
+    throw new Error('El costo calculado está fuera del rango permitido.');
+  }
+
   const { data, error } = await supabase
     .from('ingredients')
     .update({
-      last_unit_cost: precio / cantidad
+      last_unit_cost: costo
     })
     .eq('id', id)
     .select()
