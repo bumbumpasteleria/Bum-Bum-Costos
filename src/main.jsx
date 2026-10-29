@@ -5,7 +5,8 @@ import Login from './Login';
 import {
   obtenerIngredientes,
   guardarIngrediente,
-  adaptarIngrediente
+  adaptarIngrediente,
+  actualizarPrecioIngrediente
 } from './ingredientsService';
 const KEY='bum-bum-costos-v1',NEW='bum-bum-costos-v3';const blank=()=>({ingredients:[],recipes:[],quotes:[],sales:[],decorations:[],settings:{}});
 const load=()=>{try{const existing=JSON.parse(localStorage.getItem(NEW)||localStorage.getItem(KEY)||'null');return {...blank(),...existing}}catch{return blank()}};
@@ -13,6 +14,7 @@ const fmt=n=>'RD$ '+Number(n||0).toLocaleString('es-DO',{minimumFractionDigits:2
 const units={g:['mass',1],kg:['mass',1000],lb:['mass',453.59237],oz:['mass',28.349523125],mg:['mass',.001],ml:['volume',1],L:['volume',1000],'fl oz':['volume',29.5735295625],unidad:['count',1],docena:['count',12]};
 const conversion=(amount,from,to)=>units[from]?.[0]===units[to]?.[0]?amount*units[from][1]/units[to][1]:null;
 function App(){const [db,setDb]=useState(load),[tab,setTab]=useState('Inicio'),[line,setLine]=useState([]),[selected,setSelected]=useState(''),[qty,setQty]=useState(1),[method,setMethod]=useState('margin'),[pct,setPct]=useState(35),[laborMode,setLaborMode]=useState('fixed'),[labor,setLabor]=useState(0),[hours,setHours]=useState(1),[extra,setExtra]=useState({fill:0,pack:0,delivery:0,other:0}),[decors,setDecors]=useState({}),[notice,setNotice]=useState('');
+const [idsNube,setIdsNube]=useState(null),[editandoPrecio,setEditandoPrecio]=useState(false);
 const update=fn=>setDb(old=>{const next=fn(structuredClone(old));localStorage.setItem(NEW,JSON.stringify(next));return next});
 
  useEffect(() => {
@@ -25,6 +27,7 @@ const update=fn=>setDb(old=>{const next=fn(structuredClone(old));localStorage.se
       if (!activo) return;
 
       const ingredientesNube = registros.map(adaptarIngrediente);
+      setIdsNube(new Set(registros.map(i=>i.id)));
 
       setDb(actual => {
         const siguiente = structuredClone(actual);
@@ -84,7 +87,8 @@ async function guardarIngredienteFormulario(e) {
       unit: String(datos.get('unit'))
     });
 
-    const ingrediente = adaptarIngrediente(registro);
+    const ingrediente = {...adaptarIngrediente(registro),price:Number(datos.get("price")),packageQty:Number(datos.get("packageQty")),cantidadCompraConfirmada:true};
+    setIdsNube(actual=>new Set([...(actual || []),registro.id]));
 
     update(db => {
       if (!db.ingredients.some(i => i.id === ingrediente.id)) {
@@ -102,7 +106,53 @@ async function guardarIngredienteFormulario(e) {
   }
 }
                
-const unitCost=i=>n(i.price)/Math.max(.000001,n(i.packageQty));const recipeCost=r=>(r.lines||[]).reduce((s,l)=>{const i=db.ingredients.find(x=>x.id===l.ingredientId);if(!i)return s;const q=conversion(n(l.qty),l.unit||i.unit,i.unit);return s+(q===null?0:q*unitCost(i))},0);
+async function editarPrecioIngrediente(ingrediente) {
+  if (editandoPrecio) return;
+  if (!idsNube?.has(ingrediente.id)) {
+    setNotice(idsNube === null ? 'No se pudo verificar Supabase. Recarga antes de editar.' : 'Este ingrediente solo está en el almacenamiento local y necesita migración antes de editar su precio en Supabase.');
+    return;
+  }
+  const entrada = prompt('Nuevo precio de compra en RD$');
+  if (entrada === null) return;
+  const precio = Number(entrada);
+  if (!entrada.trim() || !Number.isFinite(precio) || precio < 0) {
+    setNotice('Introduce un precio válido en RD$, mayor o igual a cero.'); return;
+  }
+  const entradaCantidad = prompt('Cantidad comprada correspondiente a ese precio, en ' + ingrediente.unit + '. Confírmala con tu compra; no uses las existencias disponibles.');
+  if (entradaCantidad === null) return;
+  const cantidad = Number(entradaCantidad);
+  if (!entradaCantidad.trim() || !Number.isFinite(cantidad) || cantidad <= 0) {
+    setNotice('Introduce una cantidad de compra válida, mayor que cero. No se cambió el precio.'); return;
+  }
+  const costo = precio / cantidad;
+  if (!Number.isFinite(costo) || (precio > 0 && costo === 0)) {
+    setNotice('El costo calculado está fuera del rango permitido.'); return;
+  }
+  if (!confirm('¿Guardar ' + fmt(precio) + ' por ' + cantidad + ' ' + ingrediente.unit + ' de ' + ingrediente.name + '? Costo: ' + fmt(costo) + '/' + ingrediente.unit + '. Las existencias no cambiarán.')) return;
+  setEditandoPrecio(true);
+  try {
+    const registro = await actualizarPrecioIngrediente({id:ingrediente.id,price:precio,packageQty:cantidad,unit:ingrediente.unit});
+    const cambios = {price:precio,packageQty:cantidad,lastUnitCost:Number(registro.last_unit_cost),cantidadCompraConfirmada:true};
+    setDb(actual=>({...actual,ingredients:actual.ingredients.map(i=>i.id===ingrediente.id ? {...i,...cambios} : i)}));
+    try {
+      // Conservar las demás colecciones de la copia local.
+      const guardado = localStorage.getItem(NEW) || localStorage.getItem(KEY);
+      const siguiente = guardado ? JSON.parse(guardado) : blank();
+      if (!Array.isArray(siguiente.ingredients)) throw new Error('Copia local no válida');
+      const indice = siguiente.ingredients.findIndex(i=>i.id===ingrediente.id);
+      if (indice === -1) siguiente.ingredients.push({...ingrediente,...cambios});
+      else siguiente.ingredients[indice] = {...siguiente.ingredients[indice],...cambios};
+      localStorage.setItem(NEW,JSON.stringify(siguiente));
+      setNotice('Precio actualizado en Supabase. Las recetas ya reflejan el nuevo costo.');
+    } catch {
+      setNotice('Precio guardado en Supabase y actualizado en las recetas, pero no se pudo sincronizar la copia local.');
+    }
+  } catch (error) {
+    setNotice('No se pudo actualizar el precio: ' + error.message);
+  } finally { setEditandoPrecio(false); }
+}
+
+const unitCost=i=>i.lastUnitCost != null ? n(i.lastUnitCost) : n(i.price)/Math.max(.000001,n(i.packageQty));const recipeCost=r=>(r.lines||[]).reduce((s,l)=>{const i=db.ingredients.find(x=>x.id===l.ingredientId);if(!i)return s;const q=conversion(n(l.qty),l.unit||i.unit,i.unit);return s+(q===null?0:q*unitCost(i))},0);
 const recipe=db.recipes.find(x=>x.id===selected),base=recipe?recipeCost(recipe)*(recipe.scaling==='fixed'?Math.ceil(n(qty)):n(qty)):0,decorTotal=db.decorations.reduce((s,d)=>s+n(decors[d.id])*n(d.price),0),laborTotal=n(labor)*(laborMode==='hourly'?n(hours):1),total=base+decorTotal+laborTotal+Object.values(extra).reduce((a,b)=>a+n(b),0),price=method==='margin'?total/(1-Math.min(95,n(pct))/100):total*(1+n(pct)/100);
 const fileImport=async e=>{const f=e.target.files?.[0];if(!f)return;try{const data=JSON.parse(await f.text());if(!Array.isArray(data.ingredients)||!Array.isArray(data.recipes)||!Array.isArray(data.quotes)||!Array.isArray(data.sales))throw Error('Estructura de respaldo no válida');if(!confirm('Esto reemplazará los datos de esta versión. ¿Continuar?'))return;update(()=>({...blank(),...data}));setNotice('Respaldo restaurado. Verifica los datos.')}catch(err){setNotice('No se pudo importar: '+err.message)}};
 const exportData=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='bum-bum-costos-respaldo.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
@@ -150,19 +200,13 @@ const tabs=['Inicio','Ingredientes','Recetas','Decoraciones','Cotizador','Ventas
         <span>
           <b>{i.name}</b>
           <small>
-            {fmt(i.price)} / {i.packageQty} {i.unit} · {fmt(unitCost(i))}/{i.unit}
+            {i.cantidadCompraConfirmada === false ? 'Costo unitario' : fmt(i.price)+' / '+i.packageQty+' '+i.unit} · {fmt(unitCost(i))}/{i.unit}
           </small>
         </span>
         <button
           className="ghost"
-          onClick={()=>{
-            const v=prompt('Nuevo precio RD$',i.price);
-            if(v!==null&&v.trim()!==''&&Number(v)>=0)
-              update(d=>{
-                d.ingredients.find(x=>x.id===i.id).price=n(v);
-                return d;
-              });
-          }}
+          disabled={editandoPrecio}
+          onClick={()=>editarPrecioIngrediente(i)}
         >
           Editar precio
         </button>
