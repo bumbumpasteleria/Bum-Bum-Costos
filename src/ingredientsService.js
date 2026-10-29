@@ -8,7 +8,7 @@ export async function obtenerIngredientes() {
     .order('name', { ascending: true });
 
   if (error) throw error;
-  return data;
+  return data ?? [];
 }
 
 export async function guardarIngrediente({
@@ -24,8 +24,12 @@ export async function guardarIngrediente({
     throw new Error('Introduce el nombre del ingrediente.');
   }
 
+  if (!unit) {
+    throw new Error('Selecciona una unidad.');
+  }
+
   if (!Number.isFinite(cantidad) || cantidad <= 0) {
-    throw new Error('La cantidad comprada debe ser mayor que cero.');
+    throw new Error('La cantidad debe ser mayor que cero.');
   }
 
   if (!Number.isFinite(precio) || precio < 0) {
@@ -46,4 +50,16 @@ export async function guardarIngrediente({
 
   if (error) throw error;
   return data;
+}
+
+export function adaptarIngrediente(registro) {
+  return {
+    id: registro.id,
+    name: registro.name,
+    unit: registro.base_unit,
+    packageQty: Number(registro.stock_quantity),
+    price:
+      Number(registro.last_unit_cost) *
+      Number(registro.stock_quantity)
+  };
 }
