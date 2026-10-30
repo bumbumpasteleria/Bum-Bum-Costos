@@ -1,6 +1,7 @@
 -- Synthetic data only; all fixture writes are rolled back.
 begin;
 insert into auth.users(id,email) values ('12345000-0000-4000-8000-000000000001','catalogo-test@example.invalid');
+update public.business_profiles set status='approved',password_required=false where id in ('12345000-0000-4000-8000-000000000001');
 set local role authenticated;
 set local request.jwt.claim.sub='12345000-0000-4000-8000-000000000001';
 insert into public.ingredients(id,name,supplier,item_kind,base_unit,last_unit_cost,purchase_unit,purchase_quantity,purchase_price) values

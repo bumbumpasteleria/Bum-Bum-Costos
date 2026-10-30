@@ -6,6 +6,7 @@ insert into auth.users(id,email) values
 insert into public.ingredients(id,owner_id,name,base_unit,last_unit_cost) values
 ('12340000-0000-4000-8000-000000000011','12340000-0000-4000-8000-000000000001','TEMP A','g',0.12),
 ('12340000-0000-4000-8000-000000000012','12340000-0000-4000-8000-000000000002','TEMP B','g',0.20);
+update public.business_profiles set status='approved',password_required=false where id in ('12340000-0000-4000-8000-000000000001','12340000-0000-4000-8000-000000000002');
 set local role authenticated;
 set local request.jwt.claim.sub='12340000-0000-4000-8000-000000000001';
 select public.guardar_receta_bum_bum('12340000-0000-4000-8000-000000000021','TEMP RECETA',1,'lb','fixed','[{"ingredient_id":"12340000-0000-4000-8000-000000000011","quantity_base":500}]'::jsonb);
