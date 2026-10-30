@@ -24,7 +24,7 @@ export async function guardarIngrediente({
     throw new Error('Introduce el nombre del ingrediente.');
   }
 
-  if (!unit) {
+  if (!['g', 'ml', 'unit'].includes(unit)) {
     throw new Error('Selecciona una unidad.');
   }
 
@@ -36,12 +36,17 @@ export async function guardarIngrediente({
     throw new Error('El precio no puede ser negativo.');
   }
 
+  const costo = precio / cantidad;
+  if (!Number.isFinite(costo) || costo >= 1e10 || (precio > 0 && costo < 0.0000005)) {
+    throw new Error('El costo calculado está fuera del rango permitido.');
+  }
+
   const { data, error } = await supabase
     .from('ingredients')
     .insert({
       name: name.trim(),
       base_unit: unit,
-      last_unit_cost: precio / cantidad,
+      last_unit_cost: costo,
       stock_quantity: cantidad,
       minimum_stock: 0
     })
@@ -56,7 +61,7 @@ export function adaptarIngrediente(registro) {
   return {
     id: registro.id,
     name: registro.name,
-    unit: registro.base_unit,
+    unit: registro.base_unit === 'unit' ? 'unidad' : registro.base_unit,
     // La cantidad de compra no está guardada en Supabase. Mostrar por unidad.
     packageQty: 1,
     price: Number(registro.last_unit_cost),
@@ -89,9 +94,9 @@ export async function actualizarPrecioIngrediente({
     .maybeSingle();
   if (consultaError) throw consultaError;
   if (!ingrediente) throw new Error('El ingrediente no existe en Supabase o no tienes acceso. Si es local, necesita migración.');
-  if (ingrediente.base_unit !== unit) throw new Error('La unidad cambió. Recarga antes de editar el precio.');
+  if (ingrediente.base_unit !== (unit === 'unidad' ? 'unit' : unit)) throw new Error('La unidad cambió. Recarga antes de editar el precio.');
   const costo = precio / cantidad;
-  if (!Number.isFinite(costo) || (precio > 0 && costo === 0)) {
+  if (!Number.isFinite(costo) || costo >= 1e10 || (precio > 0 && costo < 0.0000005)) {
     throw new Error('El costo calculado está fuera del rango permitido.');
   }
 
@@ -101,6 +106,7 @@ export async function actualizarPrecioIngrediente({
       last_unit_cost: costo
     })
     .eq('id', id)
+    .eq('base_unit', ingrediente.base_unit)
     .select()
     .single();
 
