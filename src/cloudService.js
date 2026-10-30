@@ -17,7 +17,7 @@ const cotizacion=r=>({...r.details,id:r.id,date:r.details?.date||r.created_at?.s
 const venta=r=>({...r.details,id:r.id,date:r.sold_at?.slice(0,10),channel:r.channel,gross:Number(r.gross_amount),productionCost:r.details?.productionCost??Number(r.cost_amount),commission:r.details?.commission??(Number(r.gross_amount)?Number(r.commission_amount)/Number(r.gross_amount)*100:0),extra:r.details?.extra||0});
 export async function cargarDatos(owner) {
   const tables=['ingredients','recipes','decorations','quotes','sales'];
-  async function leer(table,select='*'){const rows=[];for(let start=0;;start+=500){const page=await resultado(supabase.from(table).select(select).eq('owner_id',owner).order('id').range(start,start+499));rows.push(...page);if(page.length<500)return rows;}}
+  async function leer(table,select='*'){const rows=[];for(let start=0;;start+=500){let query=supabase.from(table).select(select).eq('owner_id',owner);if(table!=='recipe_lines')query=query.order('created_at');const page=await resultado(query.order('id').range(start,start+499));rows.push(...page);if(page.length<500)return rows;}}
   const [datos,lineas]=await Promise.all([Promise.all(tables.map(table=>leer(table))),leer('recipe_lines','*, ingredients(base_unit)')]);
   datos[1]=datos[1].map(r=>({...r,recipe_lines:lineas.filter(l=>l.recipe_id===r.id)}));
   return {ingredients:datos[0].map(adaptarIngrediente),recipes:datos[1].map(receta),decorations:datos[2].map(decoracion),quotes:datos[3].map(cotizacion),sales:datos[4].map(venta),settings:{}};
