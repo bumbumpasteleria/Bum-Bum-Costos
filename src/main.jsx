@@ -9,13 +9,14 @@ import {
   actualizarPrecioIngrediente
 } from './ingredientsService';
 const KEY='bum-bum-costos-v1',NEW='bum-bum-costos-v3';const blank=()=>({ingredients:[],recipes:[],quotes:[],sales:[],decorations:[],settings:{}});
-const load=()=>{try{const existing=JSON.parse(localStorage.getItem(NEW)||localStorage.getItem(KEY)||'null');return {...blank(),...existing}}catch{return blank()}};
 const fmt=n=>'RD$ '+Number(n||0).toLocaleString('es-DO',{minimumFractionDigits:2,maximumFractionDigits:2});const n=v=>Math.max(0,Number(v)||0);const uid=()=>crypto.randomUUID();
 const units={g:['mass',1],kg:['mass',1000],lb:['mass',453.59237],oz:['mass',28.349523125],mg:['mass',.001],ml:['volume',1],L:['volume',1000],'fl oz':['volume',29.5735295625],unidad:['count',1],docena:['count',12]};
 const conversion=(amount,from,to)=>units[from]?.[0]===units[to]?.[0]?amount*units[from][1]/units[to][1]:null;
-function App(){const [db,setDb]=useState(load),[tab,setTab]=useState('Inicio'),[line,setLine]=useState([]),[selected,setSelected]=useState(''),[qty,setQty]=useState(1),[method,setMethod]=useState('margin'),[pct,setPct]=useState(35),[laborMode,setLaborMode]=useState('fixed'),[labor,setLabor]=useState(0),[hours,setHours]=useState(1),[extra,setExtra]=useState({fill:0,pack:0,delivery:0,other:0}),[decors,setDecors]=useState({}),[notice,setNotice]=useState('');
+function App({session}){const [db,setDb]=useState(()=>{try{return {...blank(),...JSON.parse(localStorage.getItem(NEW+':'+session.user.id)||'null')}}catch{return blank()}}),[tab,setTab]=useState('Inicio'),[line,setLine]=useState([]),[selected,setSelected]=useState(''),[qty,setQty]=useState(1),[method,setMethod]=useState('margin'),[pct,setPct]=useState(35),[laborMode,setLaborMode]=useState('fixed'),[labor,setLabor]=useState(0),[hours,setHours]=useState(1),[extra,setExtra]=useState({fill:0,pack:0,delivery:0,other:0}),[decors,setDecors]=useState({}),[notice,setNotice]=useState('');
 const [idsNube,setIdsNube]=useState(null),[editandoPrecio,setEditandoPrecio]=useState(false);
-const update=fn=>setDb(old=>{const next=fn(structuredClone(old));localStorage.setItem(NEW,JSON.stringify(next));return next});
+const [menuAbierto,setMenuAbierto]=useState(false),[cerrandoSesion,setCerrandoSesion]=useState(false);
+async function cerrarSesion(){if(cerrandoSesion)return;setCerrandoSesion(true);try{const {error}=await supabase.auth.signOut();if(error)throw error;}catch(error){setNotice('No se pudo cerrar sesión: '+error.message);}finally{setCerrandoSesion(false);}}
+const update=fn=>setDb(old=>{const next=fn(structuredClone(old));localStorage.setItem(NEW+':'+session.user.id,JSON.stringify(next));return next});
 
  useEffect(() => {
   let activo = true;
@@ -136,13 +137,13 @@ async function editarPrecioIngrediente(ingrediente) {
     setDb(actual=>({...actual,ingredients:actual.ingredients.map(i=>i.id===ingrediente.id ? {...i,...cambios} : i)}));
     try {
       // Conservar las demás colecciones de la copia local.
-      const guardado = localStorage.getItem(NEW) || localStorage.getItem(KEY);
+      const guardado = localStorage.getItem(NEW+':'+session.user.id);
       const siguiente = guardado ? JSON.parse(guardado) : blank();
       if (!Array.isArray(siguiente.ingredients)) throw new Error('Copia local no válida');
       const indice = siguiente.ingredients.findIndex(i=>i.id===ingrediente.id);
       if (indice === -1) siguiente.ingredients.push({...ingrediente,...cambios});
       else siguiente.ingredients[indice] = {...siguiente.ingredients[indice],...cambios};
-      localStorage.setItem(NEW,JSON.stringify(siguiente));
+      localStorage.setItem(NEW+':'+session.user.id,JSON.stringify(siguiente));
       setNotice('Precio actualizado en Supabase. Las recetas ya reflejan el nuevo costo.');
     } catch {
       setNotice('Precio guardado en Supabase y actualizado en las recetas, pero no se pudo sincronizar la copia local.');
@@ -156,7 +157,7 @@ const unitCost=i=>i.lastUnitCost != null ? n(i.lastUnitCost) : n(i.price)/Math.m
 const recipe=db.recipes.find(x=>x.id===selected),base=recipe?recipeCost(recipe)*(recipe.scaling==='fixed'?Math.ceil(n(qty)):n(qty)):0,decorTotal=db.decorations.reduce((s,d)=>s+n(decors[d.id])*n(d.price),0),laborTotal=n(labor)*(laborMode==='hourly'?n(hours):1),total=base+decorTotal+laborTotal+Object.values(extra).reduce((a,b)=>a+n(b),0),price=method==='margin'?total/(1-Math.min(95,n(pct))/100):total*(1+n(pct)/100);
 const fileImport=async e=>{const f=e.target.files?.[0];if(!f)return;try{const data=JSON.parse(await f.text());if(!Array.isArray(data.ingredients)||!Array.isArray(data.recipes)||!Array.isArray(data.quotes)||!Array.isArray(data.sales))throw Error('Estructura de respaldo no válida');if(!confirm('Esto reemplazará los datos de esta versión. ¿Continuar?'))return;update(()=>({...blank(),...data}));setNotice('Respaldo restaurado. Verifica los datos.')}catch(err){setNotice('No se pudo importar: '+err.message)}};
 const exportData=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='bum-bum-costos-respaldo.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
-const tabs=['Inicio','Ingredientes','Recetas','Decoraciones','Cotizador','Ventas','Respaldo'];return <><header><img src="/logo.jpg"/><div><h1>Bum Bum Costos</h1><span>Repostería artesanal · Gestión inteligente</span></div></header><nav>{tabs.map(t=><button className={tab===t?'active':''} key={t} onClick={()=>setTab(t)}>{t}</button>)}</nav><main>{notice&&<div className="notice" onClick={()=>setNotice('')}>{notice} ×</div>}{tab==='Inicio'&&<><h2>Tu negocio, bajo control</h2><div className="cards">{[['Ingredientes',db.ingredients.length],['Recetas',db.recipes.length],['Decoraciones',db.decorations.length],['Ventas',fmt(db.sales.reduce((s,x)=>s+n(x.gross),0))]].map(([a,b])=><div className="metric" key={a}><small>{a}</small><strong>{b}</strong></div>)}</div><section><h3>Empecemos</h3><p>Registra tus ingredientes, arma recetas y genera cotizaciones con decoraciones. Esta versión conserva tus datos en este navegador; todavía no está conectada a Supabase.</p></section></>}
+const tabs=['Inicio','Ingredientes','Recetas','Decoraciones','Cotizador','Ventas','Respaldo'];return <><header><img src="/logo.jpg"/><div><h1>Bum Bum Costos</h1><span>Repostería artesanal · Gestión inteligente</span></div><div className="account"><span>{session.user.email}</span><button type="button" className="secondary" onClick={cerrarSesion} disabled={cerrandoSesion}>{cerrandoSesion?'Cerrando…':'Cerrar sesión'}</button></div></header><div className="menu-bar"><button type="button" aria-expanded={menuAbierto} aria-controls="menu-principal" onClick={()=>setMenuAbierto(v=>!v)}>{menuAbierto?'Cerrar menú':'☰ Menú'} · {tab}</button></div><nav id="menu-principal" hidden={!menuAbierto}>{tabs.map(t=><button className={tab===t?'active':''} key={t} onClick={()=>{setTab(t);setMenuAbierto(false)}}>{t}</button>)}</nav><main>{notice&&<div className="notice" onClick={()=>setNotice('')}>{notice} ×</div>}{tab==='Inicio'&&<><h2>Tu negocio, bajo control</h2><div className="cards">{[['Ingredientes',db.ingredients.length],['Recetas',db.recipes.length],['Decoraciones',db.decorations.length],['Ventas',fmt(db.sales.reduce((s,x)=>s+n(x.gross),0))]].map(([a,b])=><div className="metric" key={a}><small>{a}</small><strong>{b}</strong></div>)}</div><section><h3>Empecemos</h3><p>Registra tus ingredientes, arma recetas y genera cotizaciones con decoraciones. Los ingredientes se guardan en Supabase. Las demás secciones todavía se guardan en este navegador y están pendientes de conexión a la nube.</p></section></>}
 
 {tab==='Ingredientes'&&<>
   <h2>Ingredientes</h2>
@@ -227,16 +228,24 @@ function AppProtegida() {
   useEffect(() => {
     let active = true;
 
+    let sessionActualizada = false;
     supabase.auth.getSession().then(({ data, error }) => {
       if (!active) return;
+      if (sessionActualizada) return;
       if (error) console.error('Error de sesión:', error);
       setSession(data?.session ?? null);
+      setLoading(false);
+    }).catch(error => {
+      if (!active || sessionActualizada) return;
+      console.error('Error de sesión:', error);
+      setSession(null);
       setLoading(false);
     });
 
     const { data: listener } =
       supabase.auth.onAuthStateChange((_event, newSession) => {
         if (active) {
+          sessionActualizada = true;
           setSession(newSession);
           setLoading(false);
         }
@@ -256,77 +265,8 @@ function AppProtegida() {
     return <Login onLogin={setSession} />;
   }
 
- 
-return (
-  <>
-    <PruebaSupabase />
-    <App />
-  </>
-);
 
-function PruebaSupabase() {
-  const [mensaje, setMensaje] = useState(
-    'Comprobando conexión con Supabase...'
-  );
-  const [guardando, setGuardando] = useState(false);
-
-  useEffect(() => {
-    obtenerIngredientes()
-      .then(datos => {
-        setMensaje(
-          `Conexión exitosa. Ingredientes en la nube: ${datos.length}`
-        );
-      })
-      .catch(error => {
-        setMensaje(`Error de conexión: ${error.message}`);
-      });
-  }, []);
-
-  async function probarGuardado() {
-    if (guardando) return;
-
-    setGuardando(true);
-    setMensaje('Guardando ingrediente de prueba...');
-
-    try {
-      await guardarIngrediente({
-        name: 'PRUEBA - Harina de trigo',
-        price: 80,
-        packageQty: 1000,
-        unit: 'g'
-      });
-
-      const ingredientes = await obtenerIngredientes();
-
-      setMensaje(
-        `Guardado exitoso. Ingredientes en la nube: ${ingredientes.length}`
-      );
-    } catch (error) {
-      setMensaje(`Error al guardar: ${error.message}`);
-    } finally {
-      setGuardando(false);
-    }
-  }
-
-  return (
-    <div style={{ textAlign: 'center', padding: 12 }}>
-      <p>{mensaje}</p>
-      <button
-        type="button"
-        disabled={guardando}
-        onClick={probarGuardado}
-      >
-        {guardando
-          ? 'Guardando...'
-          : 'Guardar ingrediente de prueba'}
-      </button>
-    </div>
-  );
+return <App key={session.user.id} session={session} />;
 }
 
-}
-
-
-createRoot(document.getElementById('root')).render(
-  <AppProtegida />
-);
+createRoot(document.getElementById('root')).render(<AppProtegida />);
