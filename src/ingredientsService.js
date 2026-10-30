@@ -61,6 +61,11 @@ export function adaptarIngrediente(registro) {
   return {
     id: registro.id,
     name: registro.name,
+    supplier: registro.supplier || '',
+    itemKind: registro.item_kind || 'ingredient',
+    purchaseUnit: registro.purchase_unit || null,
+    purchaseQuantity: registro.purchase_quantity == null ? null : Number(registro.purchase_quantity),
+    purchasePrice: registro.purchase_price == null ? null : Number(registro.purchase_price),
     unit: registro.base_unit === 'unit' ? 'unidad' : registro.base_unit,
     // La cantidad de compra no está guardada en Supabase. Mostrar por unidad.
     packageQty: 1,

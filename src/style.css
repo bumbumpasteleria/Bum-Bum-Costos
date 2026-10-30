@@ -3,3 +3,5 @@
 nav[hidden]{display:none}.menu-bar{background:#fff;padding:10px 18px;border-bottom:1px solid #eedddd}.account{margin-left:auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.account span{overflow-wrap:anywhere}.login-screen{min-height:100vh;display:grid;place-items:center;padding:20px}.login-card{width:100%;max-width:420px;background:white;border:1px solid #f0dfe0;border-radius:20px;padding:28px}.login-card img{width:80px;border-radius:18px}.login-card button{width:100%}@media(max-width:600px){header{flex-wrap:wrap}.account{margin-left:0;width:100%}.account span{flex:1}nav{flex-wrap:wrap}}
 
 .app-content{border:0;padding:0;margin:0;min-width:0}.app-content:disabled{opacity:.65}
+
+.catalog-form{scroll-margin-top:20px}.catalog-form p{line-height:1.6;color:#71565c}.form-error{color:#a12432;background:#fff0f0;border:1px solid #edbdc4;border-radius:10px;padding:12px}.catalog-form input,.catalog-form select{font-size:16px}.result h2{overflow-wrap:anywhere}
