@@ -9,7 +9,7 @@ const smtpUser=Deno.env.get('SMTP_USERNAME');
 const transport=nodemailer.createTransport({host:'smtp.gmail.com',port:465,secure:true,auth:{user:smtpUser,pass:Deno.env.get('SMTP_PASSWORD')},connectionTimeout:10000,socketTimeout:15000});
 async function query(operation:any){const {data,error}=await operation;if(error)throw error;return data;}
 function headers(origin:string){return {'Content-Type':'application/json','Access-Control-Allow-Origin':origin,'Access-Control-Allow-Headers':'authorization,apikey,content-type,x-client-info','Access-Control-Allow-Methods':'POST,OPTIONS','Vary':'Origin'};}
-async function mail(to:string,subject:string,text:string){if(!smtpUser||!Deno.env.get('SMTP_PASSWORD'))throw new Error('SMTP_NOT_CONFIGURED');await transport.sendMail({from:{name:'Bum Bum Costos',address:smtpUser},to,subject,text});}
+async function mail(to:string,subject:string,text:string){if(!smtpUser||!Deno.env.get('SMTP_PASSWORD'))throw new Error('SMTP_NOT_CONFIGURED');try{await transport.sendMail({from:{name:'Bum Bum Costos',address:smtpUser},to,subject,text});}catch(error){const e=error as {code?:string;responseCode?:number};const code=['EAUTH','ECONNECTION','ETIMEDOUT','ESOCKET','EENVELOPE','EMESSAGE','EDNS'].includes(e.code||'')?e.code:'SMTP_ERROR';console.error('SMTP_DELIVERY_FAILED',code,Number.isInteger(e.responseCode)?e.responseCode:0);throw new Error('SMTP_DELIVERY_FAILED');}}
 async function assertAdmin(req:Request){const token=req.headers.get('Authorization')?.replace(/^Bearer\s+/i,'');if(!token)throw new Error('UNAUTHORIZED');const {data,error}=await db.auth.getUser(token);if(error||!data.user)throw new Error('UNAUTHORIZED');const row=await query(db.from('business_admins').select('user_id').eq('user_id',data.user.id).maybeSingle());if(!row)throw new Error('FORBIDDEN');return data.user.id;}
 
 Deno.serve(async req=>{
@@ -55,3 +55,4 @@ Deno.serve(async req=>{
   catch{return Response.json({ok:true,warning:'Cuenta aprobada, pero no se pudo enviar la invitación. Usa Reenviar invitación.'},{headers:h});}
  }catch(error){const msg=String((error as Error).message||error);const status=msg==='UNAUTHORIZED'?401:msg==='FORBIDDEN'?403:msg.includes('RATE_LIMIT')?429:400;return Response.json({error:status===401?'Inicia sesión.':status===403?'Solo la administradora puede realizar esta acción.':status===429?'Hay demasiadas solicitudes. Intenta más tarde.':'No se pudo completar la operación. Revisa los datos o intenta de nuevo.'},{status,headers:h});}
 });
+
