@@ -130,3 +130,7 @@ Los perfiles de Pastelería, Panadería y Mixto deben ajustar accesos de navegac
 - Guardar fuentes y advertencias junto con las equivalencias; ingredientes sin verificación deben quedar pendientes o requerir calibración.
 - Para cada módulo conectado, probar validación, aislamiento por cuenta, integridad referencial y recuperación antes de ampliar su uso.
 
+
+## Pendiente solicitado: renovación visual integral
+
+Al finalizar las mejoras funcionales, renovar la interfaz completa para que se sienta como una aplicación moderna: tipografía actual, navegación clara en celular, tarjetas e iconos visuales, botones cómodos y una jerarquía simple. Mantener las tareas principales visibles y las opciones avanzadas en segundo plano. Incluir inicio, catálogo, recetarios, cotizador, ventas y administración, conservando el funcionamiento y los datos. Esta renovación global queda pendiente; la primera simplificación visual se aplica a Herramientas.
