@@ -33,7 +33,23 @@ Deno.serve(async req=>{
    return Response.json({message:'Solicitud recibida. Si corresponde, recibirás una invitación cuando la administradora la apruebe.'},{headers:h});
   }
   const adminId=await assertAdmin(req);
-  if(action==='list'){const page=Math.max(0,Math.min(10000,Number(body.page)||0));const data=await query(db.from('account_requests').select('*').order('created_at',{ascending:false}).range(page*50,page*50+49));return Response.json({requests:data},{headers:h});}
+  if(action==='list'){const page=Math.max(0,Math.min(10000,Math.floor(Number(body.page)||0)));const data=await query(db.from('account_requests').select('*').in('status',['pending','approving']).order('created_at',{ascending:false}).order('id').range(page*50,page*50+49));return Response.json({requests:data},{headers:h});}
+  if(action==='people'){
+   const page=Math.max(0,Math.min(10000,Math.floor(Number(body.page)||0)));
+   const profiles=await query(db.from('business_profiles').select('id,owner_name,business_name,password_required,created_at').eq('status','approved').order('created_at',{ascending:false}).order('id').range(page*50,page*50+50));
+   const visible=profiles.slice(0,50),ids=visible.map((p:any)=>p.id);
+   if(!ids.length)return Response.json({people:[],hasMore:false},{headers:h});
+   const [requests,admins]=await Promise.all([
+    query(db.from('account_requests').select('id,auth_user_id,invitation_sent').eq('status','approved').in('auth_user_id',ids)),
+    query(db.from('business_admins').select('user_id').in('user_id',ids))
+   ]);
+   const people=await Promise.all(visible.map(async(p:any)=>{
+    const result=await db.auth.admin.getUserById(p.id);if(result.error)throw result.error;
+    const request=requests.find((r:any)=>r.auth_user_id===p.id);
+    return {...p,email:result.data.user.email||'',is_admin:admins.some((a:any)=>a.user_id===p.id),request_id:request?.id||null,invitation_sent:request?.invitation_sent??null};
+   }));
+   return Response.json({people,hasMore:profiles.length>50},{headers:h});
+  }
   if(action==='test-email'){await mail(adminEmail,'Prueba de correo — Bum Bum Costos','La conexión de correo de Bum Bum Costos está lista.');return Response.json({ok:true},{headers:h});}
   if(!/^[0-9a-f-]{36}$/i.test(body.id||''))throw new Error('Solicitud no válida.');
   if(action==='reject'){await query(db.from('account_requests').update({status:'rejected',reviewed_by:adminId,reviewed_at:new Date().toISOString()}).eq('id',body.id).eq('status','pending').select('id').single());return Response.json({ok:true},{headers:h});}
