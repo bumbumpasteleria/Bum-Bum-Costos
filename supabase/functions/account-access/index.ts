@@ -5,11 +5,12 @@ import {validateRequest} from './validation.ts';
 const site=Deno.env.get('SITE_URL')||'https://bum-bum-costos.bumbumpasteleria.workers.dev';
 const adminEmail='bumbumpasteleria@gmail.com';
 const db=createClient(Deno.env.get('SUPABASE_URL')!,Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,{auth:{persistSession:false,autoRefreshToken:false}});
-const smtpUser=Deno.env.get('SMTP_USERNAME');
-const transport=nodemailer.createTransport({host:'smtp.gmail.com',port:465,secure:true,auth:{user:smtpUser,pass:Deno.env.get('SMTP_PASSWORD')},connectionTimeout:10000,socketTimeout:15000});
+const smtpUser=Deno.env.get('SMTP_USERNAME')?.trim();
+const smtpPassword=Deno.env.get('SMTP_PASSWORD')?.replace(/\s/g,'');
+const transport=nodemailer.createTransport({host:'smtp.gmail.com',port:465,secure:true,auth:{user:smtpUser,pass:smtpPassword},connectionTimeout:10000,socketTimeout:15000});
 async function query(operation:any){const {data,error}=await operation;if(error)throw error;return data;}
 function headers(origin:string){return {'Content-Type':'application/json','Access-Control-Allow-Origin':origin,'Access-Control-Allow-Headers':'authorization,apikey,content-type,x-client-info','Access-Control-Allow-Methods':'POST,OPTIONS','Vary':'Origin'};}
-async function mail(to:string,subject:string,text:string){if(!smtpUser||!Deno.env.get('SMTP_PASSWORD'))throw new Error('SMTP_NOT_CONFIGURED');try{await transport.sendMail({from:{name:'Bum Bum Costos',address:smtpUser},to,subject,text});}catch(error){const e=error as {code?:string;responseCode?:number};const code=['EAUTH','ECONNECTION','ETIMEDOUT','ESOCKET','EENVELOPE','EMESSAGE','EDNS'].includes(e.code||'')?e.code:'SMTP_ERROR';console.error('SMTP_DELIVERY_FAILED',code,Number.isInteger(e.responseCode)?e.responseCode:0);throw new Error('SMTP_DELIVERY_FAILED');}}
+async function mail(to:string,subject:string,text:string){if(!smtpUser||!smtpPassword)throw new Error('SMTP_NOT_CONFIGURED');try{await transport.sendMail({from:{name:'Bum Bum Costos',address:smtpUser},to,subject,text});}catch(error){const e=error as {code?:string;responseCode?:number};const code=['EAUTH','ECONNECTION','ETIMEDOUT','ESOCKET','EENVELOPE','EMESSAGE','EDNS'].includes(e.code||'')?e.code:'SMTP_ERROR';console.error('SMTP_DELIVERY_FAILED',code,Number.isInteger(e.responseCode)?e.responseCode:0);throw new Error('SMTP_DELIVERY_FAILED');}}
 async function assertAdmin(req:Request){const token=req.headers.get('Authorization')?.replace(/^Bearer\s+/i,'');if(!token)throw new Error('UNAUTHORIZED');const {data,error}=await db.auth.getUser(token);if(error||!data.user)throw new Error('UNAUTHORIZED');const row=await query(db.from('business_admins').select('user_id').eq('user_id',data.user.id).maybeSingle());if(!row)throw new Error('FORBIDDEN');return data.user.id;}
 
 Deno.serve(async req=>{
@@ -22,7 +23,7 @@ Deno.serve(async req=>{
   const raw=await req.text();if(raw.length>12000)return Response.json({error:'Solicitud demasiado extensa'},{status:413,headers:h});
   const body=JSON.parse(raw),action=body.action;
   if(action==='request'){
-   if(!smtpUser||!Deno.env.get('SMTP_PASSWORD'))return Response.json({error:'Las solicitudes aún no están habilitadas. Intenta más tarde.'},{status:503,headers:h});
+   if(!smtpUser||!smtpPassword)return Response.json({error:'Las solicitudes aún no están habilitadas. Intenta más tarde.'},{status:503,headers:h});
    const data=validateRequest(body.data||{});
    const ip=req.headers.get('x-forwarded-for')||'unknown';
    const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')+ip));
