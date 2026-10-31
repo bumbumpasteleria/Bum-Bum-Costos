@@ -5,6 +5,7 @@ insert into public.recipe_books(id,owner_id,name,usage) values
 ('12346000-0000-4000-8000-000000000012','12346000-0000-4000-8000-000000000001','Encargos','orders'),
 ('12346000-0000-4000-8000-000000000013','12346000-0000-4000-8000-000000000002','Privado','orders');
 insert into public.ingredients(id,owner_id,name,base_unit,last_unit_cost) values ('12346000-0000-4000-8000-000000000021','12346000-0000-4000-8000-000000000001','Harina temporal','g',0.12);
+update public.business_profiles set status='approved',password_required=false where id in ('12346000-0000-4000-8000-000000000001','12346000-0000-4000-8000-000000000002');
 set local role authenticated;
 set local request.jwt.claim.sub='12346000-0000-4000-8000-000000000001';
 select public.guardar_receta_recetario_bum_bum('12346000-0000-4000-8000-000000000031','Vainilla',1,'unidad','fixed','[{"ingredient_id":"12346000-0000-4000-8000-000000000021","quantity_base":500}]'::jsonb,'Bizcocho','12346000-0000-4000-8000-000000000011');

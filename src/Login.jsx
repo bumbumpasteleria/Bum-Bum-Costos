@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { supabase } from './supabase';
 
-export default function Login({ onLogin }) {
+export default function Login({ onLogin, onBack }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -67,6 +67,7 @@ export default function Login({ onLogin }) {
         <button type="submit" disabled={loading}>
           {loading ? 'Ingresando...' : 'Iniciar sesión'}
         </button>
+        {onBack&&<button type="button" className="secondary" onClick={onBack} disabled={loading}>Volver al inicio</button>}
       </form>
     </div>
   );
