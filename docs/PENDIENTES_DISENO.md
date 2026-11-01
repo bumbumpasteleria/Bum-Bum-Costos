@@ -1,6 +1,6 @@
 # Renovación visual pendiente de Bum Bum Costos
 
-Solicitada por la usuaria el 31 de octubre de 2026. Se trabajará al terminar las prioridades funcionales acordadas. Este documento registra el alcance; no aplica todavía el rediseño.
+Solicitada por la usuaria el 31 de octubre de 2026. Actualización del 1 de noviembre de 2026: la usuaria priorizó esta renovación antes de las próximas ampliaciones. Diseño elegido: Dulce y visual; crema, vino y rosa suave; tipografía Manrope. Implementación preparada en rama, pendiente de aprobación para publicar.
 
 ## Cambios solicitados
 
