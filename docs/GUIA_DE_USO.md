@@ -51,6 +51,7 @@ Arma una receta paso a paso
 4. Pulsa + Ingrediente, elige uno de tu catálogo y escribe su cantidad y unidad. Repite por cada ingrediente.
 5. Pulsa Guardar receta. Usa los filtros para encontrarla por uso o recetario.
 6. Para cambiar una receta guardada, pulsa Editar receta. Ajusta los campos y sus ingredientes y pulsa Guardar cambios de receta. Cancelar edición conserva la receta anterior.
+7. Busca por nombre y combina los filtros de uso y recetario. Abre Ver ingredientes y costos para consultar cantidades, proveedor y costo por unidad de rendimiento sin editar.
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 
