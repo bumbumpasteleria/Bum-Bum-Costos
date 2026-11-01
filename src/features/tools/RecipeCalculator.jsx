@@ -1,3 +1,4 @@
+import {useDraftState} from '../drafts/Drafts';
 import RecipeCategoryField from '../recipes/RecipeCategoryField';
 import React,{useRef,useState} from 'react';
 import {scaleRecipe,combineScaledRecipes,compatibleYieldUnits,positiveAmount} from '../../domain/costing/scaleRecipes.mjs';
@@ -8,8 +9,8 @@ const money=value=>'RD$ '+Number(value).toLocaleString('es-DO',{minimumFractionD
 const fresh=()=>({key:crypto.randomUUID(),saveId:crypto.randomUUID(),recipeId:'',mode:'factor',factor:'1',baseYield:'',baseUnit:'unidad',target:'',targetUnit:'unidad',name:'',bookId:'',category:'',saved:false});
 const usages={orders:'Encargos',delivery:'Apps de envío',general:'Uso general'};
 export default function RecipeCalculator({recipes,ingredients,books=[],onSave,busy=false}){
- const [entries,setEntries]=useState(()=>[fresh()]),[error,setError]=useState(''),[saving,setSaving]=useState(false);const lock=useRef(false);
- const [combo,setCombo]=useState(()=>({id:crypto.randomUUID(),name:'',bookId:'',category:'Postres',yield:'1',yieldUnit:'bandeja',saved:false}));
+ const [entries,setEntries]=useDraftState('calculator:entries',()=>[fresh()]),[error,setError]=useState(''),[saving,setSaving]=useState(false);const lock=useRef(false);
+ const [combo,setCombo]=useDraftState('calculator:combo',()=>({id:crypto.randomUUID(),name:'',bookId:'',category:'Postres',yield:'1',yieldUnit:'bandeja',saved:false}));
  function touchCombo(patch={}){setCombo(old=>({...old,...patch,id:crypto.randomUUID(),saved:false}));}
  function change(key,patch){touchCombo();setEntries(rows=>rows.map(row=>row.key===key?{...row,...patch,saveId:crypto.randomUUID(),saved:false}:row));setError('');}
  function choose(key,id){const recipe=recipes.find(r=>r.id===id);change(key,{recipeId:id,baseYield:String(recipe?.yield??''),baseUnit:recipe?.yieldUnit||'unidad',target:String(recipe?.yield??''),targetUnit:recipe?.yieldUnit||'unidad',factor:'1',name:recipe?recipe.name+' · porción para Apps':'',bookId:'',category:recipe?.category||''});}

@@ -60,6 +60,8 @@ export async function guardarIngrediente({
 export function adaptarIngrediente(registro) {
   return {
     id: registro.id,
+    stockQuantity: registro.stock_quantity == null ? null : Number(registro.stock_quantity),
+    minimumStock: registro.minimum_stock == null ? null : Number(registro.minimum_stock),
     name: registro.name,
     supplier: registro.supplier || '',
     itemKind: registro.item_kind || 'ingredient',

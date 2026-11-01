@@ -1,8 +1,9 @@
+import {useDraftState} from './features/drafts/Drafts';
 import React,{useState,useRef} from 'react';
 import {usosRecetario} from './recetariosService';
 
 export default function Recetarios({books,onSave,busy}){
-  const [name,setName]=useState(''),[usage,setUsage]=useState('orders'),[editing,setEditing]=useState(null),[error,setError]=useState('');
+  const [name,setName]=useDraftState('books:name',''),[usage,setUsage]=useDraftState('books:usage','orders'),[editing,setEditing]=useDraftState('books:editing',null),[error,setError]=useState('');
   const lock=useRef(false);
   function reset(){setName('');setUsage('orders');setEditing(null);setError('');}
   async function submit(e){e.preventDefault();if(lock.current)return;lock.current=true;setError('');try{await onSave({name,usage},editing);reset();}catch(err){setError(err.message);}finally{lock.current=false;}}

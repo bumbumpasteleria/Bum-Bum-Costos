@@ -15,3 +15,7 @@ Si el PDF dice «harina», se muestran ingredientes como «Harina La Blanquita»
 En cada línea, Registrar ingrediente abre los campos de nombre, proveedor, precio total, cantidad comprada y unidad de compra. Guardar ingrediente y vincular lo registra en tu catálogo privado y selecciona su ID para esa línea, conservando la cantidad de la receta. Una compra de 1 kg puede usarse en una receta de 250 g. Si la unidad de la receta no se reconoció, debes seleccionarla explícitamente; no se convierten tazas a gramos por suposición. Los nombres y proveedores idénticos ya registrados se señalan para elegir el registro existente.
 
 Puedes crear un recetario sin salir. Mientras un registro está abierto, el guardado final de receta queda bloqueado. Los errores conservan los formularios. Los ingredientes y recetarios se guardan por separado antes de guardar la receta, y permanecen en tu catálogo si luego cancelas la importación. No se requieren cambios de base de datos ni permisos.
+
+## Retomar un borrador
+
+El texto extraído, las correcciones y los registros abiertos se conservan al cambiar de módulo o recargar en el mismo dispositivo y cuenta. El archivo PDF no se almacena como borrador. Guardar confirma la receta en la nube. Cancelar la revisión descarta sus correcciones y conserva el texto original para volver a revisarlo.

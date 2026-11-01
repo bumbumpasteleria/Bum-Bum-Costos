@@ -1,3 +1,4 @@
+import {useDraftState} from '../drafts/Drafts';
 import React,{useEffect,useState} from 'react';
 import {UNITS,getUnit,convertExact,convertIngredient,ingredientUnits,formatDecimal,recipeQuantity,decimal,multiply,divide} from '../../domain/measurements/conversions.mjs';
 import {INGREDIENT_REFERENCES,SOURCES} from './references.mjs';
@@ -11,8 +12,8 @@ const categories={temperature:{icon:'🌡️',example:'De °C a °F',hint:'Ajust
 const id=()=>crypto.randomUUID();
 export default function Tools({owner,recipes=[],ingredients=[],books=[],onSaveRecipe,busy=false,onUse}){
  const [prefs,setPrefs]=useState(()=>{try{return loadPreferences(window.localStorage,owner)}catch{return defaultPreferences()}});
- const [notice,setNotice]=useState(''),[storageError,setStorageError]=useState(''),[recipeId,setRecipeId]=useState(''),[targetId,setTargetId]=useState('');
- const [commercialId,setCommercialId]=useState(''),[commercialAmount,setCommercialAmount]=useState('1');
+ const [notice,setNotice]=useState(''),[storageError,setStorageError]=useState(''),[recipeId,setRecipeId]=useDraftState('tools:recipeId',''),[targetId,setTargetId]=useDraftState('tools:targetId','');
+ const [commercialId,setCommercialId]=useDraftState('tools:commercialId',''),[commercialAmount,setCommercialAmount]=useDraftState('tools:commercialAmount','1');
  useEffect(()=>{try{savePreferences(window.localStorage,owner,prefs);setStorageError('')}catch{setStorageError('No se pudieron guardar las preferencias en este dispositivo. Los cálculos siguen disponibles.')}},[prefs,owner]);
  const set=update=>{setPrefs(p=>({...p,...update}));setNotice('')};
  const references=[...INGREDIENT_REFERENCES,...prefs.calibrations];

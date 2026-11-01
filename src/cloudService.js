@@ -33,6 +33,7 @@ export async function guardarRegistro(tipo, item, owner, ingredients) {
     await resultado(supabase.rpc('guardar_receta_organizada_bum_bum',{p_category:String(item.category||'').trim(),p_preparation:item.preparation||'',p_id:item.id,p_name:item.name,p_yield:item.yield,p_yield_unit:item.yieldUnit,p_scaling:item.scaling,p_lines:lines,p_product_type:item.productType,p_book_id:item.bookId}));
     return item;
   }
+  if(tipo==='sales'&&item.fridgeProductId){const data=await resultado(supabase.rpc('bum_fridge_sale',{p_sale:item}));return venta(data);}
   let payload;
   if(tipo==='decorations')payload={name:item.name,unit_cost:item.price,description:item.type};
   else if(tipo==='quotes')payload={details:item,pricing_method:item.method,total_cost:item.totalCost,quoted_price:item.price};
