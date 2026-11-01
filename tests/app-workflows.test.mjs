@@ -38,7 +38,7 @@ function setup(owner,isAdmin=false,initial={}){
  tiposProducto:['Bizcocho','Galleta'],unidadesRendimiento:['unidad','g'],etiquetaArticulo:i=>i.name,
  costoMateriales:(items,qty)=>items.reduce((sum,i)=>sum+(qty[i.id]||0)*i.lastUnitCost,0),detalleMateriales:()=>[],
  ...serviceModule.exports,
- Brand:marker('Brand'),AppIcon:marker('AppIcon'),HomeDashboard:marker('HomeDashboard'),DeleteRecipe:marker('DeleteRecipe'),RecipeDetails:marker('RecipeDetails'),RecipeEditor:marker('RecipeEditor'),RecipeCostStatus:marker('RecipeCostStatus'),ModuleGuide:marker('ModuleGuide'),Catalogo:marker('Catalogo'),Recetarios:marker('Recetarios'),AsignarRecetario:marker('AsignarRecetario'),RecipeReadiness:marker('RecipeReadiness'),Tools:marker('Tools'),Solicitudes:marker('Solicitudes'),PersonasConAcceso:marker('PersonasConAcceso')};
+ ImportRecipe:marker('ImportRecipe'),Brand:marker('Brand'),AppIcon:marker('AppIcon'),HomeDashboard:marker('HomeDashboard'),DeleteRecipe:marker('DeleteRecipe'),RecipeDetails:marker('RecipeDetails'),RecipeEditor:marker('RecipeEditor'),RecipeCostStatus:marker('RecipeCostStatus'),ModuleGuide:marker('ModuleGuide'),Catalogo:marker('Catalogo'),Recetarios:marker('Recetarios'),AsignarRecetario:marker('AsignarRecetario'),RecipeReadiness:marker('RecipeReadiness'),Tools:marker('Tools'),Solicitudes:marker('Solicitudes'),PersonasConAcceso:marker('PersonasConAcceso')};
  // Sustituir solo las operaciones remotas, conservar filtros reales del recetario.
  ctx.guardarRecetario=async(form,actor)=>{calls.push({type:'book',actor});return {id:crypto.randomUUID(),...form}};
  ctx.asignarRecetario=async(id,bookId,actor)=>({id,recipe_book_id:bookId});

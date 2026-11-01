@@ -35,6 +35,7 @@ export const MODULE_GUIDES = {
   "Recetas": {
     "title": "Arma una receta paso a paso",
     "steps": [
+      "Para traer una receta que ya tienes, pulsa Importar PDF, carga un archivo con texto y revisa cada dato. Elige el ingrediente y su proveedor, el recetario y el rendimiento antes de Guardar receta importada. No se importan precios ni se crean ingredientes automáticamente.",
       "Registra primero tus ingredientes en Ingredientes.",
       "Crea un recetario con nombre y uso: Encargos, Apps de envío o Uso general.",
       "Completa nombre, recetario, rendimiento total, unidad y tipo de artículo.",
