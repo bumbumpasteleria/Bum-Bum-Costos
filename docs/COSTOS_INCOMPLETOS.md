@@ -1,11 +1,13 @@
-# Costos incompletos: primera mejora de consolidación
+# Costos incompletos antes de cotizar
 
-Base: main 3cadf3c0e71d9dcc9b60ee70fb36d56b23231994.
+Integración sobre main 7686d588a4264a0903a19b6c7839cceaf28e4c76, conservando las guías, la ayuda de recetas, perfiles y eliminación de ingredientes. Publicación autorizada por la usuaria al continuar con el punto 1.
 
-Antes, el cálculo omitía ingredientes ausentes y unidades incompatibles como si no costaran nada. Ahora el evaluador puro devuelve total nulo y motivos específicos si falta catálogo, precio, cantidad o una unidad compatible. Una receta sin ingredientes también está incompleta. Un precio cero explícito sigue siendo válido. El adaptador conserva el costo nulo de Supabase en vez de convertirlo a cero.
+El evaluador devuelve total nulo y una explicación si falta ingrediente, precio, cantidad o una unidad compatible. Una receta vacía también está incompleta. Un precio cero explícito sigue siendo válido. El adaptador conserva el precio nulo de Supabase en lugar de transformarlo en cero.
 
-Recetas muestra «Costo incompleto» y los datos que hay que revisar. Cotizador oculta total, sugerencia y ganancia ante receta incompleta; el botón y su manejador bloquean el guardado. También se valida la cantidad y se rechazan importes no finitos. Se conservan los factores de unidades, margen/recargo, escalado fijo, recetarios de Encargos y cotizaciones históricas. No se modifica ninguna fila ni política de Supabase.
+Recetas muestra «Costo incompleto» y qué revisar. Cotizador oculta costo total, precio sugerido y ganancia estimada cuando no se puede calcular. El botón y su manejador impiden guardar una cotización incompleta. También se valida la cantidad y se rechazan importes no finitos. Las cotizaciones ya guardadas no se recalculan ni se modifican.
 
-Validación: npm test (19 grupos), npm run build y regresiones existentes de recetarios, cuentas y personas con sustitutos de Supabase. No se han creado cotizaciones reales ni probado este cambio con la cuenta productiva. Las pruebas nuevas cubren compatibilidad, datos ausentes/incorrectos, gratuidad explícita, desbordamientos y evaluación sin mutación.
+Se conservan factores de unidades, precio vigente, margen/recargo, escalado fijo y selección de recetarios de Encargos. No se cambian tablas, permisos, políticas, datos ni dependencias.
 
-Esto completa solo la primera corrección de la fase 2. Siguen pendientes: esquema reproducible, CI, respaldo/restauración, consolidación de otros costos y ampliación del recetario. La renovación visual integral permanece al final.
+Validación: 36 grupos de pruebas, incluidos recorridos de la interfaz con servicios/componentes simulados para tres roles, bloqueo de cotización incompleta incluso al invocar el manejador, precio cero explícito, cantidades vacías, factores, unidades, datos inválidos, error remoto, eliminación y avisos de acceso. Compilación correcta. No se guardaron cotizaciones reales ni se alteraron ingredientes productivos para provocar errores.
+
+La renovación visual solicitada queda en PENDIENTES_DISENO.md. Esta corrección completa el punto 1 de pendientes inmediatos, no toda la consolidación técnica del plan general.

@@ -42,3 +42,15 @@ export function costoMateriales(materials, cantidades) {
 export function detalleMateriales(materials,cantidades) {
   return materials.filter(i=>Number(cantidades[i.id])>0).map(i=>({id:i.id,name:i.name,supplier:i.supplier,unit:i.unit,qty:Number(cantidades[i.id]),unitCost:Number(i.lastUnitCost)}));
 }
+
+export async function eliminarIngrediente(id,owner){
+ if(!id||!owner)throw new Error('No se pudo identificar el ingrediente de tu cuenta.');
+ const {data,error}=await supabase.from('ingredients').delete().eq('id',id).eq('owner_id',owner).eq('item_kind','ingredient').select('id').maybeSingle();
+ if(error){
+  if(error.code==='23503')throw new Error('Este ingrediente está usado en una receta, compra o movimiento de inventario y no se puede eliminar.');
+  if(error.code==='42501')throw new Error('Tu cuenta no tiene permiso para eliminar este ingrediente.');
+  throw new Error('No se pudo confirmar la eliminación. Revisa tu conexión y actualiza la lista antes de intentar de nuevo.');
+ }
+ if(data?.id!==id)throw new Error('El ingrediente no se eliminó. Puede que ya no esté disponible; actualiza la lista.');
+ return data.id;
+}
