@@ -9,3 +9,9 @@ Despliegue: aplicar primero supabase/migrations/20261101_importar_receta_pdf.sql
 ## Nombres incompletos y proveedores
 
 Si el PDF dice «harina», se muestran ingredientes como «Harina La Blanquita» y «Harina de trigo». Cada opción muestra proveedor y precio por unidad del catálogo. Si hay varias opciones, incluso una coincidencia exacta junto con otras marcas, debes elegir una. Una coincidencia parcial nunca se vincula por sí sola. Los nombres sin coincidencias pueden asignarse con la lista completa. No se mezclan registros de distintos proveedores ni se crean precios.
+
+## Registrar sin salir del importador
+
+En cada línea, Registrar ingrediente abre los campos de nombre, proveedor, precio total, cantidad comprada y unidad de compra. Guardar ingrediente y vincular lo registra en tu catálogo privado y selecciona su ID para esa línea, conservando la cantidad de la receta. Una compra de 1 kg puede usarse en una receta de 250 g. Si la unidad de la receta no se reconoció, debes seleccionarla explícitamente; no se convierten tazas a gramos por suposición. Los nombres y proveedores idénticos ya registrados se señalan para elegir el registro existente.
+
+Puedes crear un recetario sin salir. Mientras un registro está abierto, el guardado final de receta queda bloqueado. Los errores conservan los formularios. Los ingredientes y recetarios se guardan por separado antes de guardar la receta, y permanecen en tu catálogo si luego cancelas la importación. No se requieren cambios de base de datos ni permisos.

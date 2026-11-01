@@ -45,19 +45,24 @@ Añade empaques y consumibles
 
 Arma una receta paso a paso
 
-1. Registra primero tus ingredientes en Ingredientes.
-2. Crea un recetario con nombre y uso: Encargos, Apps de envío o Uso general.
-3. Completa nombre, recetario, rendimiento total, unidad y tipo de artículo.
-4. Pulsa + Ingrediente, elige uno de tu catálogo y escribe su cantidad y unidad. Repite por cada ingrediente.
-5. Pulsa Guardar receta. Usa los filtros para encontrarla por uso o recetario.
-6. Para cambiar una receta guardada, pulsa Editar receta. Ajusta los campos y sus ingredientes y pulsa Guardar cambios de receta. Cancelar edición conserva la receta anterior.
-7. Busca por nombre y combina los filtros de uso y recetario. Abre Ver ingredientes y costos para consultar cantidades, proveedor y costo por unidad de rendimiento sin editar.
-8. Para escribir la preparación, guarda primero la receta y pulsa Editar receta. Completa Pasos de preparación y guarda los cambios. Luego podrás leerlos en Ver ingredientes y costos.
-9. Para borrar una receta, pulsa Eliminar receta, revisa su nombre y confirma Sí, eliminar receta. Cancelar eliminación la conserva. El borrado es definitivo; sus ingredientes del catálogo y cotizaciones guardadas se conservan.
+1. Para traer una receta que ya tienes, pulsa Importar PDF, carga un archivo con texto y pulsa Revisar receta.
+2. Comprueba nombre, preparación, rendimiento e ingredientes. Los nombres incompletos muestran opciones de tu catálogo con proveedor y precio; elige la que usaste.
+3. Si falta un ingrediente, pulsa Registrar ingrediente para esa línea. Indica nombre, proveedor, precio total, cantidad comprada y unidad. Guardar ingrediente y vincular conserva la cantidad que usa la receta.
+4. Si aún no tienes recetario, pulsa Crear recetario aquí, escribe su nombre y elige Encargos, Apps de envío o Uso general.
+5. Al terminar la revisión, pulsa Guardar receta importada. Registrar ingredientes o recetarios no guarda todavía la receta.
+6. Para crear una receta manualmente, registra primero sus ingredientes en Ingredientes.
+7. Crea un recetario con nombre y uso: Encargos, Apps de envío o Uso general. Dentro de él, escribe una categoría como Masas, Rellenos, Coberturas o una nueva. Usa el filtro de categorías para organizar la lista.
+8. Completa nombre, recetario, rendimiento total, unidad y tipo de artículo.
+9. Pulsa + Ingrediente, elige uno de tu catálogo y escribe su cantidad y unidad. Repite por cada ingrediente.
+10. Pulsa Guardar receta. Usa los filtros para encontrarla por uso o recetario.
+11. Para cambiar una receta guardada, pulsa Editar receta. Ajusta los campos y sus ingredientes y pulsa Guardar cambios de receta. Cancelar edición conserva la receta anterior.
+12. Busca por nombre y combina los filtros de uso y recetario. Abre Ver ingredientes y costos para consultar cantidades, proveedor y costo por unidad de rendimiento sin editar.
+13. Para escribir la preparación, guarda primero la receta y pulsa Editar receta. Completa Pasos de preparación y guarda los cambios. Luego podrás leerlos en Ver ingredientes y costos.
+14. Para borrar una receta, pulsa Eliminar receta, revisa su nombre y confirma Sí, eliminar receta. Cancelar eliminación la conserva. El borrado es definitivo; sus ingredientes del catálogo y cotizaciones guardadas se conservan.
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 
-**Consejo:** Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar.
+**Consejo:** Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar. Los ingredientes y recetarios creados durante la importación permanecen guardados aunque canceles la receta. La cantidad de compra es distinta de la cantidad usada en la receta; no se convierten tazas a gramos automáticamente.
 
 ## Decoraciones
 
@@ -114,10 +119,13 @@ Descarga una copia de tus registros
 
 Convierte una medida rápidamente
 
-1. Elige Temperatura, Peso, Líquidos o Ingredientes.
-2. Escribe la cantidad y selecciona las unidades De y A.
-3. Lee el resultado. Puedes intercambiar las unidades o copiarlo.
-4. Abre las opciones de abajo solo si necesitas favoritos, medidas propias o usar cantidades de una receta.
+1. En la calculadora de recetas, elige hasta tres recetas. Indica cuánto rinde cada receta completa y usa ×2, ½, ¼ o una cantidad final deseada.
+2. Consulta cada ingrediente ajustado y la suma total. El mismo ingrediente de proveedores distintos conserva cantidades separadas.
+3. Para Apps, puedes guardar una porción o la combinación completa como receta nueva. Indica su rendimiento (por ejemplo seis bandejas), categoría y recetario de destino. La fórmula original se conserva.
+4. Elige Temperatura, Peso, Líquidos o Ingredientes.
+5. Escribe la cantidad y selecciona las unidades De y A.
+6. Lee el resultado. Puedes intercambiar las unidades o copiarlo.
+7. Abre las opciones de abajo solo si necesitas favoritos, medidas propias o usar cantidades de una receta.
 
 **Ejemplo:** En Temperatura, 180 °C equivalen a 356 °F. En Ingredientes, elige cuál estás midiendo: una taza de harina no pesa lo mismo que una de azúcar.
 
