@@ -5,7 +5,7 @@ import './recipeEditor.css';
 
 export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,busy}){
  const initial=useRef(recipe),lock=useRef(false);
- const [form,setForm]=useState(()=>({name:recipe.name,bookId:recipe.bookId||'',yield:String(recipe.yield),yieldUnit:recipe.yieldUnit,productType:recipe.productType,scaling:recipe.scaling,
+ const [form,setForm]=useState(()=>({name:recipe.name,preparation:recipe.preparation||'',bookId:recipe.bookId||'',yield:String(recipe.yield),yieldUnit:recipe.yieldUnit,productType:recipe.productType,scaling:recipe.scaling,
   lines:recipe.lines.map(line=>({...line,qty:String(line.qty),key:line.id||crypto.randomUUID()}))}));
  const [saving,setSaving]=useState(false),[error,setError]=useState('');
  const disabled=busy||saving;
@@ -33,6 +33,7 @@ export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,b
   </div>})}
   {!form.lines.length&&<p className="warning">Agrega al menos un ingrediente antes de guardar.</p>}
   <button type="button" className="secondary" onClick={add} disabled={!ingredients.length}>+ Ingrediente</button>
+  <h4>Preparación</h4><label>Pasos de preparación<textarea rows={7} maxLength={20000} value={form.preparation} onChange={e=>change('preparation',e.target.value)} placeholder="Escribe los pasos, uno por línea. Puedes incluir tus tiempos, temperatura y notas."/></label><small>Opcional · hasta 20,000 caracteres. Escribe las indicaciones propias de esta receta.</small>
   {error&&<p className="form-error" role="alert">{error}</p>}
   <div className="actions"><button disabled={!books.length||!form.lines.length}>{saving?'Guardando cambios…':'Guardar cambios de receta'}</button><button type="button" className="secondary" onClick={onCancel}>Cancelar edición</button></div>
   </fieldset>

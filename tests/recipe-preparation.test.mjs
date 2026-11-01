@@ -1,0 +1,5 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readPreparation,validatePreparation} from '../src/features/recipes/recipePreparation.mjs';
+test('preparación conserva texto antiguo y metadatos migrados sin mostrar JSON técnico',()=>{assert.equal(readPreparation('Mezclar.\nHornear.'),'Mezclar.\nHornear.');assert.equal(readPreparation('{"bumBum":1,"legacyInstructions":"Texto antiguo"}'),'Texto antiguo');assert.equal(readPreparation('{"bumBum":1,"preparation":"Nuevo","legacyInstructions":"Antiguo"}'),'Nuevo');assert.equal(readPreparation('{"bumBum":1,"preparation":"","legacyInstructions":"Antiguo"}'),'');for(const value of [null,'{"bumBum":1,"scaling":"fixed"}','[1,2]','null'])assert.equal(readPreparation(value),'');});
+test('preparación opcional acepta saltos y límite y rechaza contenido no textual',()=>{assert.equal(validatePreparation(''),'');assert.equal(validatePreparation('  pasos\n  '),'  pasos\n  ');assert.equal(validatePreparation('x'.repeat(20000)).length,20000);for(const value of [null,1,{},'x'.repeat(20001)])assert.throws(()=>validatePreparation(value),/20,000/);});

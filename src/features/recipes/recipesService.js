@@ -1,3 +1,4 @@
+import {validatePreparation} from './recipePreparation.mjs';
 import {supabase} from '../../supabase';
 import {adaptarReceta,cantidadBase,medidas} from '../../cloudService';
 import {tiposProducto,unidadesRendimiento} from '../../catalogoService';
@@ -38,13 +39,13 @@ export function prepararEdicionReceta(form,original,ingredients,books){
   }
   return result;
  });
- return {p_id:original.id,p_name:name,p_yield:amount,p_yield_unit:form.yieldUnit,p_scaling:form.scaling,p_product_type:form.productType,p_book_id:form.bookId,p_lines:lines,p_original:original.editSnapshot};
+ return {p_preparation:validatePreparation(form.preparation??original.preparation??''),p_id:original.id,p_name:name,p_yield:amount,p_yield_unit:form.yieldUnit,p_scaling:form.scaling,p_product_type:form.productType,p_book_id:form.bookId,p_lines:lines,p_original:original.editSnapshot};
 }
 
 export async function actualizarReceta(form,original,owner,ingredients,books){
  if(!owner)throw new Error('Inicia sesión antes de guardar.');
  const args=prepararEdicionReceta(form,original,ingredients,books);
- const {data,error}=await supabase.rpc('actualizar_receta_recetario_bum_bum',args);
+ const {data,error}=await supabase.rpc('actualizar_receta_preparacion_bum_bum',args);
  if(error){
   if(error.code==='PGRST202')throw new Error('La edición de recetas aún no está habilitada. La administradora debe publicar la actualización.');
   if(error.code==='P0001')throw new Error(error.message);
