@@ -11,7 +11,7 @@ export function cantidadBase(cantidad, unidad) {
 }
 async function resultado(query) {const {data,error}=await query;if(error)throw error;return data;}
 function metadata(text){try{const value=JSON.parse(text);return value?.bumBum===1?value:{}}catch{return {}}}
-const receta=r=>({id:r.id,name:r.name,bookId:r.recipe_book_id||null,productType:metadata(r.instructions).productType||'Otro artículo',yield:Number(r.yield_quantity),yieldUnit:r.yield_unit,scaling:metadata(r.instructions).scaling||'scalable',lines:(r.recipe_lines||[]).map(l=>({ingredientId:l.ingredient_id,qty:Number(l.quantity_base),unit:l.ingredients?.base_unit==='unit'?'unidad':l.ingredients?.base_unit}))});
+export const adaptarReceta=r=>({id:r.id,name:r.name,bookId:r.recipe_book_id||null,productType:metadata(r.instructions).productType||'Otro artículo',yield:Number(r.yield_quantity),yieldUnit:r.yield_unit,scaling:metadata(r.instructions).scaling||'scalable',lines:(r.recipe_lines||[]).map(l=>({id:l.id,ingredientId:l.ingredient_id,qty:Number(l.quantity_base),unit:l.ingredients?.base_unit==='unit'?'unidad':l.ingredients?.base_unit})),editSnapshot:{name:r.name,recipe_book_id:r.recipe_book_id||null,yield_quantity:String(r.yield_quantity),yield_unit:r.yield_unit,instructions:r.instructions??null,lines:(r.recipe_lines||[]).map(l=>({id:l.id,ingredient_id:l.ingredient_id,quantity_base:String(l.quantity_base)}))}});
 const decoracion=r=>({id:r.id,name:r.name,type:r.description||'Otros',price:Number(r.unit_cost)});
 const cotizacion=r=>({...r.details,id:r.id,date:r.details?.date||r.created_at?.slice(0,10),totalCost:Number(r.total_cost),price:Number(r.quoted_price),method:r.pricing_method});
 const venta=r=>({...r.details,id:r.id,date:r.sold_at?.slice(0,10),channel:r.channel,gross:Number(r.gross_amount),productionCost:r.details?.productionCost??Number(r.cost_amount),commission:r.details?.commission??(Number(r.gross_amount)?Number(r.commission_amount)/Number(r.gross_amount)*100:0),extra:r.details?.extra||0});
@@ -21,7 +21,7 @@ export async function cargarDatos(owner) {
   const [datos,lineas]=await Promise.all([Promise.all(tables.map(table=>leer(table))),leer('recipe_lines','*, ingredients(base_unit)')]);
   datos[1]=datos[1].map(r=>({...r,recipe_lines:lineas.filter(l=>l.recipe_id===r.id)}));
   const articulos=datos[0].map(adaptarIngrediente);
-  return {ingredients:articulos.filter(i=>i.itemKind==='ingredient'),materials:articulos.filter(i=>i.itemKind==='material'),recipes:datos[1].map(receta),decorations:datos[2].map(decoracion),quotes:datos[3].map(cotizacion),sales:datos[4].map(venta),books:datos[5],settings:{}};
+  return {ingredients:articulos.filter(i=>i.itemKind==='ingredient'),materials:articulos.filter(i=>i.itemKind==='material'),recipes:datos[1].map(adaptarReceta),decorations:datos[2].map(decoracion),quotes:datos[3].map(cotizacion),sales:datos[4].map(venta),books:datos[5],settings:{}};
 }
 export async function guardarRegistro(tipo, item, owner, ingredients) {
   const valores=tipo==='recipes'?[item.yield]:tipo==='decorations'?[item.price]:tipo==='quotes'?[item.totalCost,item.price,item.pct]:[item.gross,item.commission,item.productionCost,item.extra];
