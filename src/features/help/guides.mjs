@@ -35,8 +35,12 @@ export const MODULE_GUIDES = {
   "Recetas": {
     "title": "Arma una receta paso a paso",
     "steps": [
-      "Para traer una receta que ya tienes, pulsa Importar PDF, carga un archivo con texto y revisa cada dato. Elige el ingrediente y su proveedor, el recetario y el rendimiento antes de Guardar receta importada. Si el nombre está incompleto, verás opciones parecidas con proveedor y precio: elige la que usaste. No se crean ingredientes automáticamente.",
-      "Registra primero tus ingredientes en Ingredientes.",
+      "Para traer una receta que ya tienes, pulsa Importar PDF, carga un archivo con texto y pulsa Revisar receta.",
+      "Comprueba nombre, preparación, rendimiento e ingredientes. Los nombres incompletos muestran opciones de tu catálogo con proveedor y precio; elige la que usaste.",
+      "Si falta un ingrediente, pulsa Registrar ingrediente para esa línea. Indica nombre, proveedor, precio total, cantidad comprada y unidad. Guardar ingrediente y vincular conserva la cantidad que usa la receta.",
+      "Si aún no tienes recetario, pulsa Crear recetario aquí, escribe su nombre y elige Encargos, Apps de envío o Uso general.",
+      "Al terminar la revisión, pulsa Guardar receta importada. Registrar ingredientes o recetarios no guarda todavía la receta.",
+      "Para crear una receta manualmente, registra primero sus ingredientes en Ingredientes.",
       "Crea un recetario con nombre y uso: Encargos, Apps de envío o Uso general. Dentro de él, escribe una categoría como Masas, Rellenos, Coberturas o una nueva. Usa el filtro de categorías para organizar la lista.",
       "Completa nombre, recetario, rendimiento total, unidad y tipo de artículo.",
       "Pulsa + Ingrediente, elige uno de tu catálogo y escribe su cantidad y unidad. Repite por cada ingrediente.",
@@ -47,7 +51,7 @@ export const MODULE_GUIDES = {
       "Para borrar una receta, pulsa Eliminar receta, revisa su nombre y confirma Sí, eliminar receta. Cancelar eliminación la conserva. El borrado es definitivo; sus ingredientes del catálogo y cotizaciones guardadas se conservan."
     ],
     "example": "Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.",
-    "tip": "Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar."
+    "tip": "Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar. Los ingredientes y recetarios creados durante la importación permanecen guardados aunque canceles la receta. La cantidad de compra es distinta de la cantidad usada en la receta; no se convierten tazas a gramos automáticamente."
   },
   "Decoraciones": {
     "title": "Prepara tu catálogo de decoraciones",
