@@ -3,12 +3,13 @@ import {UNITS,getUnit,convertExact,convertIngredient,ingredientUnits,formatDecim
 import {INGREDIENT_REFERENCES,SOURCES} from './references.mjs';
 import {defaultPreferences,loadPreferences,savePreferences,calibration,commercialStandard} from './storage.mjs';
 import './tools.css';
+const RecipeCalculator=React.lazy(()=>import('./RecipeCalculator'));
 const today=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/Santo_Domingo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 const initials={mass:['lb','g'],volume:['us-cup','ml'],temperature:['C','F'],ingredient:['ref-cup','g']};
 const names={temperature:'Temperatura',mass:'Peso',volume:'Líquidos',ingredient:'Ingredientes'};
 const categories={temperature:{icon:'🌡️',example:'De °C a °F',hint:'Ajusta la temperatura de tu receta.'},mass:{icon:'⚖️',example:'Gramos, libras y onzas',hint:'Convierte el peso de tus ingredientes.'},volume:{icon:'🥛',example:'Mililitros, litros y tazas',hint:'Elige la medida de tus líquidos.'},ingredient:{icon:'🥄',example:'Tazas y cucharadas a gramos',hint:'Cada ingrediente pesa diferente. Elige cuál vas a medir.'}};
 const id=()=>crypto.randomUUID();
-export default function Tools({owner,recipes=[],ingredients=[],onUse}){
+export default function Tools({owner,recipes=[],ingredients=[],books=[],onSaveRecipe,busy=false,onUse}){
  const [prefs,setPrefs]=useState(()=>{try{return loadPreferences(window.localStorage,owner)}catch{return defaultPreferences()}});
  const [notice,setNotice]=useState(''),[storageError,setStorageError]=useState(''),[recipeId,setRecipeId]=useState(''),[targetId,setTargetId]=useState('');
  const [commercialId,setCommercialId]=useState(''),[commercialAmount,setCommercialAmount]=useState('1');
@@ -33,7 +34,7 @@ export default function Tools({owner,recipes=[],ingredients=[],onUse}){
  function saveStandard(event){event.preventDefault();const form=event.currentTarget;try{const data=commercialStandard({...Object.fromEntries(new FormData(form)),id:id()});if(prefs.standards.length>=30)throw Error('Se admiten hasta 30 estándares por dispositivo.');set({standards:[...prefs.standards,data]});setCommercialId(data.id);form.reset();setNotice('Estándar comercial guardado en este dispositivo.');}catch(e){setNotice(e.message)}}
  const standard=prefs.standards.find(s=>s.id===commercialId);let commercialResult='';
  try{if(standard){const amount=decimal(commercialAmount);if(amount.n<=0n)throw Error('Cantidad comercial mayor que cero.');const ratio=divide(amount,decimal(standard.commercialQty));commercialResult=`Mezcla: ${formatDecimal(multiply(decimal(standard.mixtureG),ratio),prefs.places)} g · Rendimiento: ${formatDecimal(multiply(decimal(standard.yieldG),ratio),prefs.places)} g · Porciones estimadas: ${formatDecimal(multiply(decimal(standard.portions),ratio),1)}`}}catch(e){commercialResult=e.message}
- return <div className="tools"><div className="tools-heading"><div><small>TU AYUDA EN LA COCINA</small><h2>¿Qué quieres convertir?</h2><p>Elige una opción, escribe la cantidad y mira el resultado.</p></div></div>
+ return <div className="tools"><React.Suspense fallback={<p>Cargando calculadora de recetas…</p>}><RecipeCalculator recipes={recipes} ingredients={ingredients} books={books} onSave={onSaveRecipe} busy={busy}/></React.Suspense><div className="tools-heading"><div><small>TU AYUDA EN LA COCINA</small><h2>¿Qué quieres convertir?</h2><p>Elige una opción, escribe la cantidad y mira el resultado.</p></div></div>
  
  {storageError&&<p role="alert" className="warning">{storageError}</p>}{notice&&<p role="status" className="notice">{notice}</p>}
  <section aria-label="Calculadora de conversiones"><div className="tools-tabs" role="group" aria-label="Tipo de conversión">{Object.entries(names).map(([key,name])=><button key={key} type="button" aria-pressed={kind===key} className={kind===key?'':'secondary'} onClick={()=>chooseKind(key)}><span className="tools-category-icon" aria-hidden="true">{categories[key].icon}</span><strong>{name}</strong><small>{categories[key].example}</small></button>)}</div><div className="tools-current"><h3>{names[kind]}</h3><p>{categories[kind].hint}</p></div>

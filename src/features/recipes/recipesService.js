@@ -26,6 +26,7 @@ export function prepararEdicionReceta(form,original,ingredients,books){
  if(!['fixed','scalable'].includes(form.scaling))throw new Error('Selecciona el tipo de escalado.');
  if(!books.some(book=>book.id===form.bookId))throw new Error('Selecciona un recetario de tu cuenta.');
  if(!Array.isArray(form.lines)||!form.lines.length)throw new Error('Agrega al menos un ingrediente.');
+ const category=String(form.category??original.category??'').trim();if(category.length>80)throw new Error('La categoría admite hasta 80 caracteres.');
  const seen=new Set();
  const lines=form.lines.map(line=>{
   const ingredient=ingredients.find(item=>item.id===line.ingredientId);
@@ -39,13 +40,13 @@ export function prepararEdicionReceta(form,original,ingredients,books){
   }
   return result;
  });
- return {p_preparation:validatePreparation(form.preparation??original.preparation??''),p_id:original.id,p_name:name,p_yield:amount,p_yield_unit:form.yieldUnit,p_scaling:form.scaling,p_product_type:form.productType,p_book_id:form.bookId,p_lines:lines,p_original:original.editSnapshot};
+ return {p_category:category,p_preparation:validatePreparation(form.preparation??original.preparation??''),p_id:original.id,p_name:name,p_yield:amount,p_yield_unit:form.yieldUnit,p_scaling:form.scaling,p_product_type:form.productType,p_book_id:form.bookId,p_lines:lines,p_original:original.editSnapshot};
 }
 
 export async function actualizarReceta(form,original,owner,ingredients,books){
  if(!owner)throw new Error('Inicia sesión antes de guardar.');
  const args=prepararEdicionReceta(form,original,ingredients,books);
- const {data,error}=await supabase.rpc('actualizar_receta_preparacion_bum_bum',args);
+ const {data,error}=await supabase.rpc('actualizar_receta_organizada_bum_bum',args);
  if(error){
   if(error.code==='PGRST202')throw new Error('La edición de recetas aún no está habilitada. La administradora debe publicar la actualización.');
   if(error.code==='P0001')throw new Error(error.message);

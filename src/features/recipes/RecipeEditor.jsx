@@ -1,3 +1,4 @@
+import RecipeCategoryField from './RecipeCategoryField';
 import IngredientMatches from './IngredientMatches.jsx';
 import React,{useRef,useState} from 'react';
 import {medidas} from '../../cloudService';
@@ -6,7 +7,7 @@ import './recipeEditor.css';
 
 export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,busy,importing=false}){
  const initial=useRef(recipe),lock=useRef(false);
- const [form,setForm]=useState(()=>({name:recipe.name,preparation:recipe.preparation||'',bookId:recipe.bookId||'',yield:String(recipe.yield),yieldUnit:recipe.yieldUnit,productType:recipe.productType,scaling:recipe.scaling,
+ const [form,setForm]=useState(()=>({name:recipe.name,category:recipe.category||'',preparation:recipe.preparation||'',bookId:recipe.bookId||'',yield:String(recipe.yield),yieldUnit:recipe.yieldUnit,productType:recipe.productType,scaling:recipe.scaling,
   lines:recipe.lines.map(line=>({...line,qty:String(line.qty),key:line.id||crypto.randomUUID()}))}));
  const [saving,setSaving]=useState(false),[error,setError]=useState('');
  const disabled=busy||saving;
@@ -19,7 +20,7 @@ export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,b
   <h3>{importing?'Datos de la receta importada':'Editar receta'}</h3><p>{importing?'Elige los ingredientes de tu catálogo y completa los campos pendientes. Se creará una receta nueva.':'Los cambios actualizarán esta receta. Las cotizaciones guardadas conservarán sus importes.'}</p>
   <fieldset className="app-content" disabled={disabled}><div className="grid">
    <label>Nombre de la receta<input value={form.name} maxLength={160} required onChange={e=>change('name',e.target.value)}/></label>
-   <label>Recetario<select value={form.bookId} required onChange={e=>change('bookId',e.target.value)}><option value="" disabled>Seleccionar recetario</option>{form.bookId&&!books.some(b=>b.id===form.bookId)&&<option value={form.bookId} disabled>Recetario no disponible</option>}{books.map(book=><option key={book.id} value={book.id}>{book.name}</option>)}</select></label>
+   <RecipeCategoryField value={form.category} onChange={value=>change('category',value)}/><label>Recetario<select value={form.bookId} required onChange={e=>change('bookId',e.target.value)}><option value="" disabled>Seleccionar recetario</option>{form.bookId&&!books.some(b=>b.id===form.bookId)&&<option value={form.bookId} disabled>Recetario no disponible</option>}{books.map(book=><option key={book.id} value={book.id}>{book.name}</option>)}</select></label>
    <label>Rendimiento total<input type="number" min="0.001" step="any" value={form.yield} required onChange={e=>change('yield',e.target.value)}/></label>
    <label>Unidad de rendimiento<select value={form.yieldUnit} onChange={e=>change('yieldUnit',e.target.value)}>{!unidadesRendimiento.includes(form.yieldUnit)&&<option value={form.yieldUnit} disabled>{form.yieldUnit} · elegir otra</option>}{unidadesRendimiento.map(unit=><option key={unit}>{unit}</option>)}</select></label>
    <label>Tipo de producto<select value={form.productType} onChange={e=>change('productType',e.target.value)}>{tiposProducto.map(type=><option key={type}>{type}</option>)}</select></label>

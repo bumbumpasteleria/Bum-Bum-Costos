@@ -37,7 +37,7 @@ export const MODULE_GUIDES = {
     "steps": [
       "Para traer una receta que ya tienes, pulsa Importar PDF, carga un archivo con texto y revisa cada dato. Elige el ingrediente y su proveedor, el recetario y el rendimiento antes de Guardar receta importada. Si el nombre está incompleto, verás opciones parecidas con proveedor y precio: elige la que usaste. No se crean ingredientes automáticamente.",
       "Registra primero tus ingredientes en Ingredientes.",
-      "Crea un recetario con nombre y uso: Encargos, Apps de envío o Uso general.",
+      "Crea un recetario con nombre y uso: Encargos, Apps de envío o Uso general. Dentro de él, escribe una categoría como Masas, Rellenos, Coberturas o una nueva. Usa el filtro de categorías para organizar la lista.",
       "Completa nombre, recetario, rendimiento total, unidad y tipo de artículo.",
       "Pulsa + Ingrediente, elige uno de tu catálogo y escribe su cantidad y unidad. Repite por cada ingrediente.",
       "Pulsa Guardar receta. Usa los filtros para encontrarla por uso o recetario.",
@@ -95,6 +95,9 @@ export const MODULE_GUIDES = {
   "Herramientas": {
     "title": "Convierte una medida rápidamente",
     "steps": [
+      "En la calculadora de recetas, elige hasta tres recetas. Indica cuánto rinde cada receta completa y usa ×2, ½, ¼ o una cantidad final deseada.",
+      "Consulta cada ingrediente ajustado y la suma total. El mismo ingrediente de proveedores distintos conserva cantidades separadas.",
+      "Para Apps, puedes guardar una porción o la combinación completa como receta nueva. Indica su rendimiento (por ejemplo seis bandejas), categoría y recetario de destino. La fórmula original se conserva.",
       "Elige Temperatura, Peso, Líquidos o Ingredientes.",
       "Escribe la cantidad y selecciona las unidades De y A.",
       "Lee el resultado. Puedes intercambiar las unidades o copiarlo.",
