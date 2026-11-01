@@ -31,7 +31,7 @@ La transacción terminó en ROLLBACK. El resultado fue OK y no se conservaron re
 - Se abrieron las pantallas oficiales de Ingredientes, Materiales, Recetas, Decoraciones, Cotizador, Ventas, Respaldo, Herramientas, Solicitudes y Personas con acceso con la sesión administradora, sin errores de carga. La ficha desplegable y el estado actualizado de contraseña se comprobaron después de publicar PR9 y desplegar account-access.
 - Pruebas sobre manejadores reales de App con componentes y remotos simulados recorren tres roles: catálogo vacío, acceso a Ingredientes, alta de ingrediente y recetario, añadir ingrediente y guardar receta, materiales, decoración, cotización de Encargos, venta, Herramientas, respaldo y cierre de sesión. Cada guardado conserva el propietario correcto.
 - Las regresiones de catálogo y cuentas con sustituto de Supabase verificaron proveedores, presentaciones, precios sin alterar stock/IDs, empaques, error remoto, controles administrativos y exclusión de datos privados. No enviaron correos.
-- npm test: 16 grupos correctos. npm run build correcto.
+- npm test: 23 grupos correctos. npm run build correcto.
 - QA local de componentes reales: las once guías abren y muestran su ejemplo; Registrar ingrediente navega al módulo correcto. Revisión visual en escritorio y 390 × 844.
 
 ## Límites
@@ -43,3 +43,9 @@ Inventario operativo, producción, restauración de respaldos y edición profesi
 ## Ayuda por módulo
 
 Once guías en «¿Cómo se usa?», con pasos, ejemplo y límites reales. Cerradas inicialmente y reiniciadas al cambiar de pantalla; disponibles aunque falle la carga comercial. Las guías administrativas solo se muestran a la administradora. Texto completo en GUIA_DE_USO.md. Sin tablas, dependencias o permisos nuevos.
+
+## Eliminar ingredientes
+
+Botón solo en Ingredientes, con confirmación y cancelación dentro de la lista. El borrado remoto filtra por ID, cuenta y tipo ingrediente y exige el ID de la fila eliminada antes de actualizar React. Se bloquean referencias en recetas guardadas o en el borrador; las claves foráneas reales sin cascada también rechazan referencias de recetas, compras y movimientos. Los errores no retiran el ingrediente de la lista. No se amplían permisos ni se cambia RLS.
+
+Se verificó en una transacción reversible para las tres cuentas que un fixture propio libre se elimina, uno usado conserva ingrediente/receta/líneas y no se puede eliminar un fixture ajeno. Final ROLLBACK confirmado. No se eliminó ningún ingrediente real de las usuarias. Pruebas locales cubren confirmación, cancelación, errores, propiedad, tipo, borrador y actualización solo después de confirmación remota.

@@ -12,7 +12,7 @@ const booksCode=(await transformWithEsbuild(await readFile(new URL('recetariosSe
 const nodes=x=>x&&typeof x==='object'?[x,...(x.children||[]).flat(Infinity).flatMap(nodes)]:[];
 const text=x=>typeof x==='string'||typeof x==='number'?String(x):x&&typeof x==='object'?(x.children||[]).flat(Infinity).map(text).join(''):'';
 function setup(owner,isAdmin=false){
- let hooks=[],index=0,effects=[],calls=[],signouts=0,downloads=0;
+ let hooks=[],index=0,effects=[],calls=[],signouts=0,downloads=0,deleteFailure=false;
  const empty={ingredients:[],materials:[],recipes:[],books:[],decorations:[],quotes:[],sales:[],settings:{}};
  const react={createElement:(type,props,...children)=>({type,props:props||{},children}),Fragment:'fragment'};
  const serviceModule={exports:{}};vm.runInNewContext(booksCode,{module:serviceModule,exports:serviceModule.exports,require:()=>({supabase:{}})});
@@ -25,6 +25,7 @@ function setup(owner,isAdmin=false){
  useEffect(fn,deps){const i=index++;if(!hooks[i]||deps.some((d,j)=>d!==hooks[i].deps[j])){hooks[i]={deps};effects.push(fn)}},
  supabase:{auth:{signOut:async()=>{signouts++;return {error:null}}}},
  cargarDatos:async()=>structuredClone(empty),
+ eliminarIngrediente:async(id,actor)=>{calls.push({type:'delete',id,actor});if(deleteFailure)throw Error('Conexión interrumpida');return id},
  guardarArticulo:async(form,kind,actor)=>{calls.push({type:'catalog',actor});return {id:crypto.randomUUID(),...form,itemKind:kind,unit:kind==='material'?'unidad':'g',lastUnitCost:1}},
  guardarRecetario:async(form,actor)=>{calls.push({type:'book',actor});return {id:crypto.randomUUID(),...form}},
  asignarRecetario:async(id,bookId,actor)=>{calls.push({type:'assign',actor});return {id,recipe_book_id:bookId}},
@@ -45,7 +46,7 @@ function setup(owner,isAdmin=false){
  function go(tab){if(!button(tab)){const menu=nodes(tree).find(n=>n.type==='button'&&text(n).includes('Menú'));menu.props.onClick();render()}button(tab).props.onClick();render();assert.equal(component('ModuleGuide').props.module,tab);assert.ok(MODULE_GUIDES[tab]?.steps.length);}
  function field(label,value){const row=nodes(tree).find(n=>n.type==='label'&&typeof n.children[0]==='string'&&n.children[0]===label);const control=nodes(row).find(n=>n.type==='select'||n.type==='input');control.props.onChange({target:{value}});render()}
  async function submit(values){const form=nodes(tree).find(n=>n.type==='form');assert.ok(form);await form.props.onSubmit({preventDefault(){},currentTarget:{values,reset(){}}});render()}
- return {boot,go,render,button,component,field,submit,calls,get tree(){return tree},get signouts(){return signouts},get downloads(){return downloads}};
+ return {boot,go,render,button,component,field,submit,calls,setDeleteFailure:v=>deleteFailure=v,get tree(){return tree},get signouts(){return signouts},get downloads(){return downloads}};
 }
 for(const [owner,admin] of [['administradora',true],['usuaria-a',false],['usuaria-b',false]])test('flujo completo de interfaz compartida: '+owner,async()=>{
  const app=setup(owner,admin);await app.boot();app.go('Recetas');
@@ -55,6 +56,7 @@ for(const [owner,admin] of [['administradora',true],['usuaria-a',false],['usuari
  assert.equal(app.component('RecipeReadiness').props.hasIngredients,true);assert.equal(app.component('RecipeReadiness').props.hasBooks,false);
  await app.component('Recetarios').props.onSave({name:'Encargos',usage:'orders'});app.render();assert.equal(app.component('RecipeReadiness'),undefined);
  assert.ok(app.button('+ Ingrediente'));app.button('+ Ingrediente').props.onClick();app.render();
+ app.go('Ingredientes');const draftItem=app.component('Catalogo').props.items[0];await assert.rejects(()=>app.component('Catalogo').props.onDelete(draftItem),/receta que estás preparando/);app.go('Recetas');
  const select=nodes(app.tree).find(n=>n.type==='select'&&n.props.name==='bookId');const book=nodes(select).find(n=>n.type==='option'&&n.props.value);assert.ok(book);
  await app.submit({name:'Galleta',bookId:book.props.value,productType:'Galleta',yield:'12',yieldUnit:'unidad',scaling:'scalable'});
  const saved=app.calls.find(c=>c.type==='recipes');assert.equal(saved.item.lines.length,1);assert.equal(saved.item.lines[0].qty,1);assert.equal(saved.item.bookId,book.props.value);
@@ -65,7 +67,7 @@ for(const [owner,admin] of [['administradora',true],['usuaria-a',false],['usuari
  app.go('Herramientas');assert.equal(app.component('Tools').props.owner,owner);
  app.go('Respaldo');app.button('Descargar respaldo JSON').props.onClick();assert.equal(app.downloads,1);
  app.go('Inicio');const menu=nodes(app.tree).find(n=>n.type==='button'&&text(n).includes('Menú'));menu.props.onClick();app.render();assert.equal(!!app.button('Personas con acceso'),admin);assert.equal(!!app.button('Solicitudes'),admin);
- await app.button('Cerrar sesión').props.onClick();assert.equal(app.signouts,1);assert.ok(app.calls.every(c=>c.actor===owner));
+ app.go('Ingredientes');const used=app.component('Catalogo').props.items[0];await assert.rejects(()=>app.component('Catalogo').props.onDelete(used),/receta guardada/);assert.ok(!app.calls.some(c=>c.type==='delete'));await app.button('Cerrar sesión').props.onClick();assert.equal(app.signouts,1);assert.ok(app.calls.every(c=>c.actor===owner));
 });
 
 test('guías reales disponibles por pantalla y ayuda administrativa reservada',async()=>{
@@ -77,4 +79,10 @@ test('guías reales disponibles por pantalla y ayuda administrativa reservada',a
   const view=Guide({module,isAdmin:true});assert.equal(view.type,'details');assert.notEqual(view.props.open,true);assert.match(text(view),/Ejemplo:/);assert.ok(text(view).includes(data.steps[0]));
   if(data.adminOnly)assert.equal(Guide({module,isAdmin:false}),null);else assert.ok(Guide({module,isAdmin:false}));
  }
+});
+
+test('eliminar en la app conserva el catálogo si falla y lo actualiza solo después del guardado remoto',async()=>{
+ const app=setup('cuenta-propia');await app.boot();app.go('Ingredientes');await app.component('Catalogo').props.onSave({name:'Harina'},'ingredient');app.render();const item=app.component('Catalogo').props.items[0];app.setDeleteFailure(true);
+ await assert.rejects(()=>app.component('Catalogo').props.onDelete(item),/Conexión/);app.render();assert.equal(app.component('Catalogo').props.items.length,1);
+ app.setDeleteFailure(false);await app.component('Catalogo').props.onDelete(item);app.render();assert.equal(app.component('Catalogo').props.items.length,0);assert.ok(app.calls.filter(c=>c.type==='delete').every(c=>c.actor==='cuenta-propia'&&c.id===item.id));
 });

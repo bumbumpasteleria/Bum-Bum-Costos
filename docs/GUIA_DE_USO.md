@@ -22,11 +22,11 @@ Registra lo que usas para cocinar
 1. Escribe el nombre y dónde lo compraste.
 2. Coloca el precio total pagado y la cantidad de esa compra.
 3. Selecciona la unidad: g, kg, lb, ml u otra disponible.
-4. Pulsa Guardar ingrediente. Después podrás elegirlo al armar una receta.
+4. Pulsa Guardar ingrediente. Después podrás elegirlo al armar una receta. Para borrar un registro, pulsa Eliminar y confirma en la misma pantalla.
 
 **Ejemplo:** Si compraste 1 kg de harina por RD$150, coloca precio 150, cantidad 1 y unidad kg.
 
-Editar actualiza ese registro. Otro proveedor crea una variante independiente para conservar su precio. No cambies gramos por mililitros: requieren una equivalencia del ingrediente.
+No se puede eliminar un ingrediente usado en recetas, compras o movimientos. Editar actualiza ese registro. Otro proveedor crea una variante independiente para conservar su precio. No cambies gramos por mililitros: requieren una equivalencia del ingrediente.
 
 ## Materiales
 

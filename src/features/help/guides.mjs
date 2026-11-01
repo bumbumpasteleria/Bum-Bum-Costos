@@ -16,10 +16,10 @@ export const MODULE_GUIDES = {
       "Escribe el nombre y dónde lo compraste.",
       "Coloca el precio total pagado y la cantidad de esa compra.",
       "Selecciona la unidad: g, kg, lb, ml u otra disponible.",
-      "Pulsa Guardar ingrediente. Después podrás elegirlo al armar una receta."
+      "Pulsa Guardar ingrediente. Después podrás elegirlo al armar una receta. Para borrar un registro, pulsa Eliminar y confirma en la misma pantalla."
     ],
     "example": "Si compraste 1 kg de harina por RD$150, coloca precio 150, cantidad 1 y unidad kg.",
-    "tip": "Editar actualiza ese registro. Otro proveedor crea una variante independiente para conservar su precio. No cambies gramos por mililitros: requieren una equivalencia del ingrediente."
+    "tip": "No se puede eliminar un ingrediente usado en recetas, compras o movimientos. Editar actualiza ese registro. Otro proveedor crea una variante independiente para conservar su precio. No cambies gramos por mililitros: requieren una equivalencia del ingrediente."
   },
   "Materiales": {
     "title": "Añade empaques y consumibles",
