@@ -13,6 +13,7 @@ export default function RecipeDetails({recipe,ingredients,format}){
   <h4>Ingredientes para toda la receta</h4><ul className="recipe-details-lines">{(recipe.lines||[]).map((line,index)=>{const ingredient=ingredients.find(item=>item.id===line.ingredientId);const cost=assessRecipeCost({lines:[line]},ingredients);return <li key={line.id||index}><div><strong>{ingredient?etiquetaArticulo(ingredient):'Ingrediente no disponible'}</strong><span>{line.qty} {line.unit||ingredient?.unit||'Unidad no disponible'}</span></div><span>{cost.complete?format(cost.total):'Revisar costo'}</span></li>})}</ul>
   {rawPerUnit!==null&&!Number.isFinite(rawPerUnit)&&<p className="warning">El costo por unidad está fuera del rango permitido. Revisa el rendimiento.</p>}
   {!yieldValid&&<p className="warning">Revisa el rendimiento para calcular el costo por unidad.</p>}
+  <h4>Preparación</h4>{recipe.preparation?.trim()?<p className="recipe-preparation-text">{recipe.preparation}</p>:<p className="recipe-details-note">Aún no has escrito la preparación. Agrégala desde Editar receta.</p>}
   <p className="recipe-details-note">Costos con los precios actuales del proveedor elegido. Incluyen solo ingredientes; materiales, decoraciones y mano de obra se agregan en el Cotizador. Consulta esta ficha sin modificar la receta.</p>
  </div></details>;
 }
