@@ -1,3 +1,4 @@
+import {ingredientMatches,normalizeIngredient} from './ingredientMatches.mjs';
 // Deliberately conservative: unsupported measures stay unresolved for human review.
 export const normalize=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 const aliases={g:'g',gr:'g',gramo:'g',gramos:'g',kg:'kg',kilogramo:'kg',kilogramos:'kg',lb:'lb',libra:'lb',libras:'lb',oz:'oz',onza:'oz',onzas:'oz',mg:'mg',ml:'ml',mililitro:'ml',mililitros:'ml',l:'L',litro:'L',litros:'L',unidad:'unidad',unidades:'unidad',ud:'unidad',uds:'unidad',docena:'docena',docenas:'docena'};
@@ -13,8 +14,8 @@ export function parseIngredient(raw,ingredients=[]){
  const cleaned=raw.trim().replace(/^(?:[•●*]\s*|-\s+)/,''),quantity=cleaned.match(/^(\d+\s+\d+\/\d+|\d+\s*[½¼¾⅓⅔⅛⅜⅝⅞]|\d+\/\d+|\d+(?:[.,]\d+)?|[½¼¾⅓⅔⅛⅜⅝⅞])\s*/);
  let name=cleaned,qty='',unit='';
  if(quantity){qty=String(parseQuantity(quantity[1]));const rest=cleaned.slice(quantity[0].length);const measure=rest.match(/^([a-záéíóúñ]+)\.?\s+/i);if(measure&&aliases[normalize(measure[1])]){unit=aliases[normalize(measure[1])];name=rest.slice(measure[0].length).replace(/^de\s+/i,'');}else name=rest;}
- const candidates=ingredients.filter(i=>normalize(i.name)===normalize(name));
- return {raw,name,qty,unit,ingredientId:candidates.length===1?candidates[0].id:'',ambiguous:candidates.length>1};
+ const candidates=ingredientMatches(name,ingredients);
+ return {raw,name,qty,unit,ingredientId:candidates.length===1&&normalizeIngredient(candidates[0].name)===normalizeIngredient(name)?candidates[0].id:'',ambiguous:candidates.length>1};
 }
 export function parseRecipeText(text,ingredients=[]){
  if(typeof text!=='string'||text.length>100000)throw new Error('Usa una receta de hasta 100,000 caracteres.');

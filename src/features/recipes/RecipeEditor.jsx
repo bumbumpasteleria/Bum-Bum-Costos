@@ -1,3 +1,4 @@
+import IngredientMatches from './IngredientMatches.jsx';
 import React,{useRef,useState} from 'react';
 import {medidas} from '../../cloudService';
 import {tiposProducto,unidadesCompra,unidadesRendimiento,etiquetaArticulo} from '../../catalogoService';
@@ -11,6 +12,7 @@ export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,b
  const disabled=busy||saving;
  function change(key,value){setForm(old=>({...old,[key]:value}));setError('');}
  function changeLine(index,values){setForm(old=>({...old,lines:old.lines.map((line,i)=>i===index?{...line,...values}:line)}));setError('');}
+ function selectIngredient(index,id){const line=form.lines[index],unit=ingredients.find(item=>item.id===id)?.unit;changeLine(index,{ingredientId:id,unit:importing?(medidas[line.unit]?.[0]===medidas[unit]?.[0]?line.unit:''):unit||'g'});}
  function add(){const ingredient=ingredients[0];if(!ingredient){setError('Registra primero un ingrediente en tu catálogo.');return;}change('lines',[...form.lines,{key:crypto.randomUUID(),ingredientId:ingredient.id,qty:'1',unit:ingredient.unit}]);}
  async function submit(event){event.preventDefault();if(lock.current)return;lock.current=true;setSaving(true);setError('');try{await onSave(form,initial.current);}catch(err){setError(err.message);}finally{lock.current=false;setSaving(false)}}
  return <form className="recipe-editor" onSubmit={submit} aria-label={(importing?'Revisar importación ':'Editar receta ')+recipe.name}>
@@ -26,7 +28,8 @@ export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,b
   {!books.length&&<p className="warning">Crea un recetario en el formulario de arriba para poder guardar los cambios.</p>}
   <h4>Ingredientes de la receta</h4><p>Conserva o cambia cada ingrediente y su cantidad. Quitar una línea solo la retira de esta receta.</p>
   {form.lines.map((line,index)=>{const ingredient=ingredients.find(item=>item.id===line.ingredientId);const units=unidadesCompra.filter(unit=>medidas[unit]?.[0]===medidas[ingredient?.unit]?.[0]);return <div className="recipe-edit-line" key={line.key}>
-   <label>Ingrediente {index+1}<select required value={line.ingredientId} onChange={e=>changeLine(index,{ingredientId:e.target.value,unit:importing&&medidas[line.unit]?.[0]===medidas[ingredients.find(item=>item.id===e.target.value)?.unit]?.[0]?line.unit:importing?'':ingredients.find(item=>item.id===e.target.value)?.unit||'g'})}>{!ingredient&&<option value={line.ingredientId} disabled>{importing?'Elige ingrediente y proveedor':'Ingrediente no disponible · selecciona otro'}</option>}{ingredients.map(item=><option key={item.id} value={item.id}>{etiquetaArticulo(item)}</option>)}</select></label>
+   {importing&&line.name&&<IngredientMatches line={line} ingredients={ingredients} index={index} onSelect={id=>selectIngredient(index,id)}/>}
+   <label>Ingrediente {index+1}<select required value={line.ingredientId} onChange={e=>selectIngredient(index,e.target.value)}>{!ingredient&&<option value={line.ingredientId} disabled>{importing?'Elige ingrediente y proveedor':'Ingrediente no disponible · selecciona otro'}</option>}{ingredients.map(item=><option key={item.id} value={item.id}>{etiquetaArticulo(item)}</option>)}</select></label>
    <label>Cantidad {index+1}<input type="number" min="0.001" step="any" required value={line.qty} onChange={e=>changeLine(index,{qty:e.target.value})}/></label>
    <label>Unidad {index+1}<select value={line.unit} onChange={e=>changeLine(index,{unit:e.target.value})}>{!units.includes(line.unit)&&<option value={line.unit} disabled>{line.unit||'Unidad no disponible'}</option>}{units.map(unit=><option key={unit}>{unit}</option>)}</select></label>
    <button type="button" className="ghost" onClick={()=>change('lines',form.lines.filter((_,i)=>i!==index))} aria-label={'Quitar ingrediente '+(index+1)}>Quitar</button>
