@@ -6,9 +6,9 @@ Abre «¿Cómo se usa?» en cada pantalla. Cada cuenta tiene su propio espacio.
 
 Tu punto de partida
 
-1. Abre el menú para elegir qué quieres hacer.
+1. En computadora, usa el menú lateral. En celular, usa los accesos inferiores o pulsa Más para ver todos los módulos.
 2. Empieza por Ingredientes y registra tus compras con su precio y unidad.
-3. En Recetas, crea un recetario y luego agrega tus recetas.
+3. Pulsa Crear receta para abrir Recetas. Desde Tu recetario puedes abrir una receta guardada y consultar su ficha.
 4. Usa el Cotizador para encargos y registra tus ventas cuando las realices.
 
 **Ejemplo:** Puedes tener un recetario «Galletas para apps» y otro «Postres por encargo».

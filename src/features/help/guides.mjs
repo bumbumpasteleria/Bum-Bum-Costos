@@ -2,9 +2,9 @@ export const MODULE_GUIDES = {
   "Inicio": {
     "title": "Tu punto de partida",
     "steps": [
-      "Abre el menú para elegir qué quieres hacer.",
+      "En computadora, usa el menú lateral. En celular, usa los accesos inferiores o pulsa Más para ver todos los módulos.",
       "Empieza por Ingredientes y registra tus compras con su precio y unidad.",
-      "En Recetas, crea un recetario y luego agrega tus recetas.",
+      "Pulsa Crear receta para abrir Recetas. Desde Tu recetario puedes abrir una receta guardada y consultar su ficha.",
       "Usa el Cotizador para encargos y registra tus ventas cuando las realices."
     ],
     "example": "Puedes tener un recetario «Galletas para apps» y otro «Postres por encargo».",

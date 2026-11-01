@@ -1,3 +1,4 @@
+import {AuthLayout} from './features/layout/Brand';
 
 import React, { useState } from 'react';
 import { supabase } from './supabase';
@@ -34,11 +35,11 @@ export default function Login({ onLogin, onBack }) {
   }
 
   return (
-    <div className="login-screen">
+    <AuthLayout>
       <form className="login-card" onSubmit={handleLogin}>
-        <img src="/logo.jpg" alt="Bum Bum Pastelería" />
-        <h1>Bum Bum Costos</h1>
-        <p>Administración privada de tu pastelería</p>
+        <p className="eyebrow">BIENVENIDA A TU ESPACIO</p>
+        <h1>Qué bueno verte.</h1>
+        <p>Entra y sigue dando forma a tu negocio.</p>
 
         <label>
           Correo electrónico
@@ -69,6 +70,6 @@ export default function Login({ onLogin, onBack }) {
         </button>
         {onBack&&<button type="button" className="secondary" onClick={onBack} disabled={loading}>Volver al inicio</button>}
       </form>
-    </div>
+    </AuthLayout>
   );
 }
