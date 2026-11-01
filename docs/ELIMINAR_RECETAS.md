@@ -1,0 +1,9 @@
+# Eliminar recetas
+
+Botón por receta con nombre y confirmación dentro de la pantalla. Advierte que el borrado de receta, preparación y líneas es definitivo. Cancelar no envía peticiones. Bloqueo contra doble clic y durante edición/guardado. Un error conserva la tarjeta y pide comprobar estado ante fallos de red. Solo se retira del estado local cuando Supabase devuelve el ID y propietario esperados; se limpia la receta seleccionada en el cotizador si coincide.
+
+Inspección de producción de solo lectura: recipe_lines.recipe_id referencia recipes.id ON DELETE CASCADE. No se encontraron otras claves foráneas entrantes a recipes/recipe_lines, ni triggers DELETE en esas tablas. Las políticas ALL existentes filtran owner_id=auth.uid() y aprobación. Se realiza un solo DELETE de recipes filtrando ID y propietario, con retorno de ID/owner_id. La cascada elimina las líneas, no los ingredientes. Cotizaciones y ventas se conservan como histórico. No se requieren migraciones, funciones nuevas ni cambios de permisos/RLS.
+
+Validación: 63 pruebas de aplicación, servicios y componentes; compilación de producción (99 módulos). Prueba SQL con cuentas sintéticas y ROLLBACK ejecutada: borrado propio y líneas, bloqueo de cuenta ajena, conservación de ingrediente/precio/existencias, recetario y cotización. No se eliminaron recetas reales. Navegador con App real y servicio simulado: cancelar, error conservando receta, confirmación quitando tarjeta y revisión de escritorio/celular a 390 px. El contraste del botón se corrigió durante la revisión móvil.
+
+Publicación pendiente de aprobación. La funcionalidad permite que cada usuaria elimine sus propias recetas; no concede a la administradora acceso a recetas de otras cuentas. No ofrece papelera ni restauración. La confirmación del usuario final es necesaria para cada borrado.
