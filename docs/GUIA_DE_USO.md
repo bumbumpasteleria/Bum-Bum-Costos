@@ -13,7 +13,7 @@ Tu punto de partida
 
 **Ejemplo:** Puedes tener un recetario «Galletas para apps» y otro «Postres por encargo».
 
-Cada cuenta tiene su propio espacio. Cierra sesión cuando termines en un equipo compartido.
+**Consejo:** Cada cuenta tiene su propio espacio. Cierra sesión cuando termines en un equipo compartido.
 
 ## Ingredientes
 
@@ -26,7 +26,7 @@ Registra lo que usas para cocinar
 
 **Ejemplo:** Si compraste 1 kg de harina por RD$150, coloca precio 150, cantidad 1 y unidad kg.
 
-No se puede eliminar un ingrediente usado en recetas, compras o movimientos. Editar actualiza ese registro. Otro proveedor crea una variante independiente para conservar su precio. No cambies gramos por mililitros: requieren una equivalencia del ingrediente.
+**Consejo:** No se puede eliminar un ingrediente usado en recetas, compras o movimientos. Editar actualiza ese registro. Otro proveedor crea una variante independiente para conservar su precio. No cambies gramos por mililitros: requieren una equivalencia del ingrediente.
 
 ## Materiales
 
@@ -39,7 +39,7 @@ Añade empaques y consumibles
 
 **Ejemplo:** Un paquete de 10 cajas por RD$200: precio 200, cantidad 10 y unidad unidad. Cada caja costará RD$20.
 
-No repitas el mismo empaque en Materiales y en Otros gastos de empaque de la cotización.
+**Consejo:** No repitas el mismo empaque en Materiales y en Otros gastos de empaque de la cotización.
 
 ## Recetas
 
@@ -50,10 +50,11 @@ Arma una receta paso a paso
 3. Completa nombre, recetario, rendimiento total, unidad y tipo de artículo.
 4. Pulsa + Ingrediente, elige uno de tu catálogo y escribe su cantidad y unidad. Repite por cada ingrediente.
 5. Pulsa Guardar receta. Usa los filtros para encontrarla por uso o recetario.
+6. Para cambiar una receta guardada, pulsa Editar receta. Ajusta los campos y sus ingredientes y pulsa Guardar cambios de receta. Cancelar edición conserva la receta anterior.
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 
-Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador.
+**Consejo:** Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar.
 
 ## Decoraciones
 
@@ -65,7 +66,7 @@ Prepara tu catálogo de decoraciones
 
 **Ejemplo:** Si cada topper cuesta RD$50, registra 50 como costo por unidad. Dos toppers sumarán RD$100.
 
-Aquí registras el costo de la decoración; el precio de venta se calcula en el Cotizador.
+**Consejo:** Aquí registras el costo de la decoración; el precio de venta se calcula en el Cotizador.
 
 ## Cotizador
 
@@ -79,7 +80,7 @@ Calcula un encargo
 
 **Ejemplo:** Si tu receta rinde 12 galletas y necesitas 24, coloca 2 en Cantidad de rendimientos.
 
-Las recetas de Apps de envío no aparecen aquí. Si no hay opciones, crea un recetario de Encargos y asigna la receta. Margen y recargo son métodos distintos. No podrás guardar una cotización si la receta muestra Costo incompleto.
+**Consejo:** Las recetas de Apps de envío no aparecen aquí. Si no hay opciones, crea un recetario de Encargos y asigna la receta. Margen y recargo son métodos distintos. No podrás guardar una cotización si la receta muestra Costo incompleto.
 
 ## Ventas
 
@@ -92,7 +93,7 @@ Registra una venta real
 
 **Ejemplo:** Una venta de RD$100 con comisión 10%, costo de producción RD$50 y otros gastos RD$5 deja una ganancia estimada de RD$35.
 
-El costo de producción se introduce manualmente. Registrar una venta no descuenta ingredientes ni genera una producción automáticamente.
+**Consejo:** El costo de producción se introduce manualmente. Registrar una venta no descuenta ingredientes ni genera una producción automáticamente.
 
 ## Respaldo
 
@@ -104,7 +105,7 @@ Descarga una copia de tus registros
 
 **Ejemplo:** Puedes conservar una copia antes de reorganizar tus recetarios.
 
-La restauración todavía no está disponible. El archivo no es una copia completa de Supabase y no incluye los favoritos y calibraciones locales de Herramientas. Para usar otro dispositivo, inicia sesión con tu misma cuenta.
+**Consejo:** La restauración todavía no está disponible. El archivo no es una copia completa de Supabase y no incluye los favoritos y calibraciones locales de Herramientas. Para usar otro dispositivo, inicia sesión con tu misma cuenta.
 
 ## Herramientas
 
@@ -117,9 +118,9 @@ Convierte una medida rápidamente
 
 **Ejemplo:** En Temperatura, 180 °C equivalen a 356 °F. En Ingredientes, elige cuál estás midiendo: una taza de harina no pesa lo mismo que una de azúcar.
 
-Las equivalencias de ingredientes pueden ser aproximadas. Favoritos y medidas propias se guardan solo en este dispositivo, separados por cuenta. No hace falta conectar una receta para convertir.
+**Consejo:** Las equivalencias de ingredientes pueden ser aproximadas. Favoritos y medidas propias se guardan solo en este dispositivo, separados por cuenta. No hace falta conectar una receta para convertir.
 
-## Solicitudes · solo administradora
+## Solicitudes
 
 Revisa las solicitudes nuevas
 
@@ -129,9 +130,9 @@ Revisa las solicitudes nuevas
 
 **Ejemplo:** Una cuenta aprobada recibe por correo su enlace personal para crear su contraseña.
 
-Solo la administradora ve este módulo. La persona debe abrir la invitación más reciente dentro de una hora; no necesita compartirte su contraseña.
+**Consejo:** Solo la administradora ve este módulo. La persona debe abrir la invitación más reciente dentro de una hora; no necesita compartirte su contraseña.
 
-## Personas con acceso · solo administradora
+## Personas con acceso
 
 Consulta quién puede ingresar
 
@@ -142,4 +143,4 @@ Consulta quién puede ingresar
 
 **Ejemplo:** Contraseña configurada significa que la persona completó ese paso. Falta crear su contraseña indica que aún necesita activarla.
 
-La ficha muestra los datos recibidos; No proporcionado indica que ese campo no se completó. Cada persona conserva su espacio privado. Las funciones administrativas no se comparten con usuarios normales.
+**Consejo:** La ficha muestra los datos recibidos; No proporcionado indica que ese campo no se completó. Cada persona conserva su espacio privado. Las funciones administrativas no se comparten con usuarios normales.

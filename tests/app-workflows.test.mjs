@@ -13,7 +13,7 @@ const booksCode=(await transformWithEsbuild(await readFile(new URL('recetariosSe
 const nodes=x=>x&&typeof x==='object'?[x,...(x.children||[]).flat(Infinity).flatMap(nodes)]:[];
 const text=x=>typeof x==='string'||typeof x==='number'?String(x):x&&typeof x==='object'?(x.children||[]).flat(Infinity).map(text).join(''):'';
 function setup(owner,isAdmin=false,initial={}){
- let hooks=[],index=0,effects=[],calls=[],signouts=0,downloads=0,deleteFailure=false;
+ let hooks=[],index=0,effects=[],calls=[],signouts=0,downloads=0,deleteFailure=false,editFailure=false;
  const empty={ingredients:[],materials:[],recipes:[],books:[],decorations:[],quotes:[],sales:[],settings:{},...initial};
  const react={createElement:(type,props,...children)=>({type,props:props||{},children}),Fragment:'fragment'};
  const serviceModule={exports:{}};vm.runInNewContext(booksCode,{module:serviceModule,exports:serviceModule.exports,require:()=>({supabase:{}})});
@@ -27,6 +27,8 @@ function setup(owner,isAdmin=false,initial={}){
  supabase:{auth:{signOut:async()=>{signouts++;return {error:null}}}},
  cargarDatos:async()=>structuredClone(empty),
  eliminarIngrediente:async(id,actor)=>{calls.push({type:'delete',id,actor});if(deleteFailure)throw Error('Conexión interrumpida');return id},
+ obtenerReceta:async(id,actor)=>{calls.push({type:'openRecipe',actor});const recipe=empty.recipes.find(item=>item.id===id)||calls.find(call=>call.type==='recipes'&&call.item.id===id)?.item;if(!recipe)throw Error('Receta no disponible');return structuredClone({...recipe,editSnapshot:{test:true}})},
+ actualizarReceta:async(form,original,actor)=>{calls.push({type:'editRecipe',actor});if(editFailure)throw Error('La receta cambió mientras la editabas.');return {...original,...structuredClone(form),id:original.id}},
  guardarArticulo:async(form,kind,actor)=>{calls.push({type:'catalog',actor});return {id:crypto.randomUUID(),...form,itemKind:kind,unit:kind==='material'?'unidad':'g',lastUnitCost:Object.hasOwn(form,'cost')?form.cost:1}},
  guardarRecetario:async(form,actor)=>{calls.push({type:'book',actor});return {id:crypto.randomUUID(),...form}},
  asignarRecetario:async(id,bookId,actor)=>{calls.push({type:'assign',actor});return {id,recipe_book_id:bookId}},
@@ -34,7 +36,7 @@ function setup(owner,isAdmin=false,initial={}){
  tiposProducto:['Bizcocho','Galleta'],unidadesRendimiento:['unidad','g'],etiquetaArticulo:i=>i.name,
  costoMateriales:(items,qty)=>items.reduce((sum,i)=>sum+(qty[i.id]||0)*i.lastUnitCost,0),detalleMateriales:()=>[],
  ...serviceModule.exports,
- RecipeCostStatus:marker('RecipeCostStatus'),ModuleGuide:marker('ModuleGuide'),Catalogo:marker('Catalogo'),Recetarios:marker('Recetarios'),AsignarRecetario:marker('AsignarRecetario'),RecipeReadiness:marker('RecipeReadiness'),Tools:marker('Tools'),Solicitudes:marker('Solicitudes'),PersonasConAcceso:marker('PersonasConAcceso')};
+ RecipeEditor:marker('RecipeEditor'),RecipeCostStatus:marker('RecipeCostStatus'),ModuleGuide:marker('ModuleGuide'),Catalogo:marker('Catalogo'),Recetarios:marker('Recetarios'),AsignarRecetario:marker('AsignarRecetario'),RecipeReadiness:marker('RecipeReadiness'),Tools:marker('Tools'),Solicitudes:marker('Solicitudes'),PersonasConAcceso:marker('PersonasConAcceso')};
  // Sustituir solo las operaciones remotas, conservar filtros reales del recetario.
  ctx.guardarRecetario=async(form,actor)=>{calls.push({type:'book',actor});return {id:crypto.randomUUID(),...form}};
  ctx.asignarRecetario=async(id,bookId,actor)=>({id,recipe_book_id:bookId});
@@ -44,10 +46,10 @@ function setup(owner,isAdmin=false,initial={}){
  function button(label){return nodes(tree).find(n=>n.type==='button'&&text(n)===label)}
  function component(name){return nodes(tree).find(n=>typeof n.type==='function'&&n.type.displayName===name)}
  async function boot(){render();for(const fn of effects.splice(0))fn();await new Promise(resolve=>setImmediate(resolve));render()}
- function go(tab){if(!button(tab)){const menu=nodes(tree).find(n=>n.type==='button'&&text(n).includes('Menú'));menu.props.onClick();render()}button(tab).props.onClick();render();assert.equal(component('ModuleGuide').props.module,tab);assert.ok(MODULE_GUIDES[tab]?.steps.length);}
+ function go(tab,expected=tab){if(!button(tab)){const menu=nodes(tree).find(n=>n.type==='button'&&text(n).includes('Menú'));menu.props.onClick();render()}button(tab).props.onClick();render();assert.equal(component('ModuleGuide').props.module,expected);assert.ok(MODULE_GUIDES[tab]?.steps.length);}
  function field(label,value){const row=nodes(tree).find(n=>n.type==='label'&&typeof n.children[0]==='string'&&n.children[0]===label);const control=nodes(row).find(n=>n.type==='select'||n.type==='input');control.props.onChange({target:{value}});render()}
  async function submit(values){const form=nodes(tree).find(n=>n.type==='form');assert.ok(form);await form.props.onSubmit({preventDefault(){},currentTarget:{values,reset(){}}});render()}
- return {boot,go,render,button,component,field,submit,calls,setDeleteFailure:v=>deleteFailure=v,get tree(){return tree},get signouts(){return signouts},get downloads(){return downloads}};
+ return {boot,go,render,button,component,field,submit,calls,setDeleteFailure:v=>deleteFailure=v,setEditFailure:v=>editFailure=v,get tree(){return tree},get signouts(){return signouts},get downloads(){return downloads}};
 }
 for(const [owner,admin] of [['administradora',true],['usuaria-a',false],['usuaria-b',false]])test('flujo completo de interfaz compartida: '+owner,async()=>{
  const app=setup(owner,admin);await app.boot();app.go('Recetas');
@@ -97,3 +99,10 @@ for(const [owner,admin]of [['administradora',true],['usuaria-a',false],['usuaria
 test('precio cero explícito permite cotizar; una cantidad vacía lo bloquea sin mostrar importes',async()=>{
  const app=setup('propietaria',false,costFixture(0));await app.boot();app.go('Cotizador');app.field('Recetario de encargos','book');app.field('Receta o artículo','recipe');assert.equal(app.button('Guardar cotización').props.disabled,false);assert.ok(text(app.tree).includes('Precio sugerido'));app.field('Cantidad de rendimientos','');assert.equal(app.button('Guardar cotización').props.disabled,true);assert.ok(!text(app.tree).includes('Precio sugerido'));
 });
+
+for(const [owner,admin]of [['administradora',true],['usuaria-a',false],['usuaria-b',false]])test('editar una receta conserva ID, histórico y borrador ante conflicto: '+owner,async()=>{
+ const data=costFixture(.2);data.quotes=[{id:'historical',totalCost:50,price:100,recipeName:'Nombre histórico'}];const app=setup(owner,admin,data);await app.boot();app.go('Recetas');await app.button('Editar receta').props.onClick();app.render();let editor=app.component('RecipeEditor');assert.equal(editor.props.recipe.id,'recipe');app.go('Ingredientes','Recetas');assert.ok(app.component('RecipeEditor'));
+ const form={...editor.props.recipe,name:'Nombre actualizado',yield:24,lines:[{ingredientId:'ingredient',qty:500,unit:'g'}]};app.setEditFailure(true);await assert.rejects(()=>editor.props.onSave(form,editor.props.recipe),/cambió/);app.render();assert.ok(app.component('RecipeEditor'));assert.ok(text(app.tree).includes('Galletas'));
+ app.setEditFailure(false);editor=app.component('RecipeEditor');await editor.props.onSave(form,editor.props.recipe);app.render();assert.equal(app.component('RecipeEditor'),undefined);assert.ok(text(app.tree).includes('Nombre actualizado'));assert.equal(app.component('RecipeCostStatus').props.assessment.total,100);app.go('Cotizador');assert.ok(text(app.tree).includes('Nombre histórico'));assert.ok(app.calls.filter(c=>['openRecipe','editRecipe'].includes(c.type)).every(c=>c.actor===owner));
+});
+test('cancelar edición no guarda ni cambia la receta',async()=>{const app=setup('propietaria',false,costFixture(.2));await app.boot();app.go('Recetas');await app.button('Editar receta').props.onClick();app.render();app.component('RecipeEditor').props.onCancel();app.render();assert.equal(app.component('RecipeEditor'),undefined);assert.ok(!app.calls.some(c=>c.type==='editRecipe'));assert.ok(text(app.tree).includes('Galletas'));});
