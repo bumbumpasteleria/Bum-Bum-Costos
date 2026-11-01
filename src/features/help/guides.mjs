@@ -40,7 +40,8 @@ export const MODULE_GUIDES = {
       "Completa nombre, recetario, rendimiento total, unidad y tipo de artículo.",
       "Pulsa + Ingrediente, elige uno de tu catálogo y escribe su cantidad y unidad. Repite por cada ingrediente.",
       "Pulsa Guardar receta. Usa los filtros para encontrarla por uso o recetario.",
-      "Para cambiar una receta guardada, pulsa Editar receta. Ajusta los campos y sus ingredientes y pulsa Guardar cambios de receta. Cancelar edición conserva la receta anterior."
+      "Para cambiar una receta guardada, pulsa Editar receta. Ajusta los campos y sus ingredientes y pulsa Guardar cambios de receta. Cancelar edición conserva la receta anterior.",
+      "Busca por nombre y combina los filtros de uso y recetario. Abre Ver ingredientes y costos para consultar cantidades, proveedor y costo por unidad de rendimiento sin editar."
     ],
     "example": "Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.",
     "tip": "Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar."

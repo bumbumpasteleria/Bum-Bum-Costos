@@ -1,3 +1,4 @@
+import {matchesRecipeName} from '../src/features/recipes/recipeSearch.mjs';
 import {assessRecipeCost} from '../src/domain/costing/recipeCost.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -18,7 +19,7 @@ function setup(owner,isAdmin=false,initial={}){
  const react={createElement:(type,props,...children)=>({type,props:props||{},children}),Fragment:'fragment'};
  const serviceModule={exports:{}};vm.runInNewContext(booksCode,{module:serviceModule,exports:serviceModule.exports,require:()=>({supabase:{}})});
  const marker=name=>Object.assign(()=>null,{displayName:name});
- const ctx={assessRecipeCost,React:react,console,setTimeout:fn=>fn(),structuredClone,Intl,Date,Math,Number,Object,crypto:globalThis.crypto,Blob,
+ const ctx={matchesRecipeName,assessRecipeCost,React:react,console,setTimeout:fn=>fn(),structuredClone,Intl,Date,Math,Number,Object,crypto:globalThis.crypto,Blob,
  URL:{createObjectURL:()=> 'blob:test',revokeObjectURL(){}},document:{createElement:()=>({click(){downloads++}})},
  FormData:class{constructor(form){this.values=form.values}get(key){return this.values[key]}},
  useState(initial){const i=index++;if(!hooks[i])hooks[i]={value:typeof initial==='function'?initial():initial};return [hooks[i].value,v=>hooks[i].value=typeof v==='function'?v(hooks[i].value):v]},
@@ -36,7 +37,7 @@ function setup(owner,isAdmin=false,initial={}){
  tiposProducto:['Bizcocho','Galleta'],unidadesRendimiento:['unidad','g'],etiquetaArticulo:i=>i.name,
  costoMateriales:(items,qty)=>items.reduce((sum,i)=>sum+(qty[i.id]||0)*i.lastUnitCost,0),detalleMateriales:()=>[],
  ...serviceModule.exports,
- RecipeEditor:marker('RecipeEditor'),RecipeCostStatus:marker('RecipeCostStatus'),ModuleGuide:marker('ModuleGuide'),Catalogo:marker('Catalogo'),Recetarios:marker('Recetarios'),AsignarRecetario:marker('AsignarRecetario'),RecipeReadiness:marker('RecipeReadiness'),Tools:marker('Tools'),Solicitudes:marker('Solicitudes'),PersonasConAcceso:marker('PersonasConAcceso')};
+ RecipeDetails:marker('RecipeDetails'),RecipeEditor:marker('RecipeEditor'),RecipeCostStatus:marker('RecipeCostStatus'),ModuleGuide:marker('ModuleGuide'),Catalogo:marker('Catalogo'),Recetarios:marker('Recetarios'),AsignarRecetario:marker('AsignarRecetario'),RecipeReadiness:marker('RecipeReadiness'),Tools:marker('Tools'),Solicitudes:marker('Solicitudes'),PersonasConAcceso:marker('PersonasConAcceso')};
  // Sustituir solo las operaciones remotas, conservar filtros reales del recetario.
  ctx.guardarRecetario=async(form,actor)=>{calls.push({type:'book',actor});return {id:crypto.randomUUID(),...form}};
  ctx.asignarRecetario=async(id,bookId,actor)=>({id,recipe_book_id:bookId});
