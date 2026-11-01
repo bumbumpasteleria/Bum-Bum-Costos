@@ -69,8 +69,8 @@ export function adaptarIngrediente(registro) {
     unit: registro.base_unit === 'unit' ? 'unidad' : registro.base_unit,
     // La cantidad de compra no está guardada en Supabase. Mostrar por unidad.
     packageQty: 1,
-    price: Number(registro.last_unit_cost),
-    lastUnitCost: Number(registro.last_unit_cost),
+    price: registro.last_unit_cost == null ? null : Number(registro.last_unit_cost),
+    lastUnitCost: registro.last_unit_cost == null ? null : Number(registro.last_unit_cost),
     cantidadCompraConfirmada: false
   };
 }
@@ -119,3 +119,4 @@ export async function actualizarPrecioIngrediente({
 
   return data;
 }
+

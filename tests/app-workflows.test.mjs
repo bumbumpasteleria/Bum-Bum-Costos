@@ -1,3 +1,4 @@
+import {assessRecipeCost} from '../src/domain/costing/recipeCost.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -11,13 +12,13 @@ const compiled=(await transformWithEsbuild(source,'main.jsx',{loader:'jsx',forma
 const booksCode=(await transformWithEsbuild(await readFile(new URL('recetariosService.js',root),'utf8'),'recetariosService.js',{format:'cjs'})).code;
 const nodes=x=>x&&typeof x==='object'?[x,...(x.children||[]).flat(Infinity).flatMap(nodes)]:[];
 const text=x=>typeof x==='string'||typeof x==='number'?String(x):x&&typeof x==='object'?(x.children||[]).flat(Infinity).map(text).join(''):'';
-function setup(owner,isAdmin=false){
+function setup(owner,isAdmin=false,initial={}){
  let hooks=[],index=0,effects=[],calls=[],signouts=0,downloads=0,deleteFailure=false;
- const empty={ingredients:[],materials:[],recipes:[],books:[],decorations:[],quotes:[],sales:[],settings:{}};
+ const empty={ingredients:[],materials:[],recipes:[],books:[],decorations:[],quotes:[],sales:[],settings:{},...initial};
  const react={createElement:(type,props,...children)=>({type,props:props||{},children}),Fragment:'fragment'};
  const serviceModule={exports:{}};vm.runInNewContext(booksCode,{module:serviceModule,exports:serviceModule.exports,require:()=>({supabase:{}})});
  const marker=name=>Object.assign(()=>null,{displayName:name});
- const ctx={React:react,console,setTimeout:fn=>fn(),structuredClone,Intl,Date,Math,Number,Object,crypto:globalThis.crypto,Blob,
+ const ctx={assessRecipeCost,React:react,console,setTimeout:fn=>fn(),structuredClone,Intl,Date,Math,Number,Object,crypto:globalThis.crypto,Blob,
  URL:{createObjectURL:()=> 'blob:test',revokeObjectURL(){}},document:{createElement:()=>({click(){downloads++}})},
  FormData:class{constructor(form){this.values=form.values}get(key){return this.values[key]}},
  useState(initial){const i=index++;if(!hooks[i])hooks[i]={value:typeof initial==='function'?initial():initial};return [hooks[i].value,v=>hooks[i].value=typeof v==='function'?v(hooks[i].value):v]},
@@ -26,14 +27,14 @@ function setup(owner,isAdmin=false){
  supabase:{auth:{signOut:async()=>{signouts++;return {error:null}}}},
  cargarDatos:async()=>structuredClone(empty),
  eliminarIngrediente:async(id,actor)=>{calls.push({type:'delete',id,actor});if(deleteFailure)throw Error('Conexión interrumpida');return id},
- guardarArticulo:async(form,kind,actor)=>{calls.push({type:'catalog',actor});return {id:crypto.randomUUID(),...form,itemKind:kind,unit:kind==='material'?'unidad':'g',lastUnitCost:1}},
+ guardarArticulo:async(form,kind,actor)=>{calls.push({type:'catalog',actor});return {id:crypto.randomUUID(),...form,itemKind:kind,unit:kind==='material'?'unidad':'g',lastUnitCost:Object.hasOwn(form,'cost')?form.cost:1}},
  guardarRecetario:async(form,actor)=>{calls.push({type:'book',actor});return {id:crypto.randomUUID(),...form}},
  asignarRecetario:async(id,bookId,actor)=>{calls.push({type:'assign',actor});return {id,recipe_book_id:bookId}},
  guardarRegistro:async(type,item,actor)=>{calls.push({type,actor,item:structuredClone(item)});return item},
  tiposProducto:['Bizcocho','Galleta'],unidadesRendimiento:['unidad','g'],etiquetaArticulo:i=>i.name,
  costoMateriales:(items,qty)=>items.reduce((sum,i)=>sum+(qty[i.id]||0)*i.lastUnitCost,0),detalleMateriales:()=>[],
  ...serviceModule.exports,
- ModuleGuide:marker('ModuleGuide'),Catalogo:marker('Catalogo'),Recetarios:marker('Recetarios'),AsignarRecetario:marker('AsignarRecetario'),RecipeReadiness:marker('RecipeReadiness'),Tools:marker('Tools'),Solicitudes:marker('Solicitudes'),PersonasConAcceso:marker('PersonasConAcceso')};
+ RecipeCostStatus:marker('RecipeCostStatus'),ModuleGuide:marker('ModuleGuide'),Catalogo:marker('Catalogo'),Recetarios:marker('Recetarios'),AsignarRecetario:marker('AsignarRecetario'),RecipeReadiness:marker('RecipeReadiness'),Tools:marker('Tools'),Solicitudes:marker('Solicitudes'),PersonasConAcceso:marker('PersonasConAcceso')};
  // Sustituir solo las operaciones remotas, conservar filtros reales del recetario.
  ctx.guardarRecetario=async(form,actor)=>{calls.push({type:'book',actor});return {id:crypto.randomUUID(),...form}};
  ctx.asignarRecetario=async(id,bookId,actor)=>({id,recipe_book_id:bookId});
@@ -85,4 +86,14 @@ test('eliminar en la app conserva el catálogo si falla y lo actualiza solo desp
  const app=setup('cuenta-propia');await app.boot();app.go('Ingredientes');await app.component('Catalogo').props.onSave({name:'Harina'},'ingredient');app.render();const item=app.component('Catalogo').props.items[0];app.setDeleteFailure(true);
  await assert.rejects(()=>app.component('Catalogo').props.onDelete(item),/Conexión/);app.render();assert.equal(app.component('Catalogo').props.items.length,1);
  app.setDeleteFailure(false);await app.component('Catalogo').props.onDelete(item);app.render();assert.equal(app.component('Catalogo').props.items.length,0);assert.ok(app.calls.filter(c=>c.type==='delete').every(c=>c.actor==='cuenta-propia'&&c.id===item.id));
+});
+
+function costFixture(cost){return {books:[{id:'book',name:'Encargos',usage:'orders'}],ingredients:[{id:'ingredient',name:'Harina',unit:'g',lastUnitCost:cost}],recipes:[{id:'recipe',name:'Galletas',bookId:'book',productType:'Galleta',yield:12,yieldUnit:'unidad',scaling:'scalable',lines:[{ingredientId:'ingredient',qty:250,unit:'g'}]}]};}
+for(const [owner,admin]of [['administradora',true],['usuaria-a',false],['usuaria-b',false]])test('costo incompleto impide cotizar incluso al invocar el manejador: '+owner,async()=>{
+ const app=setup(owner,admin,costFixture(null));await app.boot();app.go('Recetas');assert.equal(app.component('RecipeCostStatus').props.assessment.complete,false);
+ app.go('Cotizador');app.field('Recetario de encargos','book');app.field('Receta o artículo','recipe');assert.equal(app.button('Guardar cotización').props.disabled,true);assert.ok(!text(app.tree).includes('Precio sugerido'));assert.match(app.component('RecipeCostStatus').props.assessment.issues.join(' '),/precio/);
+ await app.button('Guardar cotización').props.onClick();assert.ok(!app.calls.some(c=>c.type==='quotes'));
+});
+test('precio cero explícito permite cotizar; una cantidad vacía lo bloquea sin mostrar importes',async()=>{
+ const app=setup('propietaria',false,costFixture(0));await app.boot();app.go('Cotizador');app.field('Recetario de encargos','book');app.field('Receta o artículo','recipe');assert.equal(app.button('Guardar cotización').props.disabled,false);assert.ok(text(app.tree).includes('Precio sugerido'));app.field('Cantidad de rendimientos','');assert.equal(app.button('Guardar cotización').props.disabled,true);assert.ok(!text(app.tree).includes('Precio sugerido'));
 });

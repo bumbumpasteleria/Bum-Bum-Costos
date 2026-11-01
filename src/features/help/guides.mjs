@@ -42,7 +42,7 @@ export const MODULE_GUIDES = {
       "Pulsa Guardar receta. Usa los filtros para encontrarla por uso o recetario."
     ],
     "example": "Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.",
-    "tip": "Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Solo los recetarios de Encargos aparecen en el Cotizador."
+    "tip": "Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador."
   },
   "Decoraciones": {
     "title": "Prepara tu catálogo de decoraciones",
@@ -64,7 +64,7 @@ export const MODULE_GUIDES = {
       "Revisa el costo y el precio sugerido; después pulsa Guardar cotización."
     ],
     "example": "Si tu receta rinde 12 galletas y necesitas 24, coloca 2 en Cantidad de rendimientos.",
-    "tip": "Las recetas de Apps de envío no aparecen aquí. Si no hay opciones, crea un recetario de Encargos y asigna la receta. Margen y recargo son métodos distintos."
+    "tip": "Las recetas de Apps de envío no aparecen aquí. Si no hay opciones, crea un recetario de Encargos y asigna la receta. Margen y recargo son métodos distintos. No podrás guardar una cotización si la receta muestra Costo incompleto."
   },
   "Ventas": {
     "title": "Registra una venta real",
