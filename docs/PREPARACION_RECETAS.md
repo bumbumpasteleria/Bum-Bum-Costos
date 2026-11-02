@@ -9,3 +9,5 @@ La nueva función actualizar_receta_preparacion_bum_bum llama a la función de e
 Validación: 56 pruebas y compilación (96 módulos). SQL ejecutado con cuentas sintéticas dentro de una transacción deshecha: texto/saltos, campo vacío, límite, conflicto, acceso ajeno, preservación de IDs/líneas, stock/precio, cotización y texto antiguo. Se verificó ausencia de la nueva función y cuentas al finalizar. Navegador con App real y servicio simulado: escribir, guardar y consultar los pasos conservando costo de RD$50; revisión de escritorio y 390 px. Sin cambios a recetas reales.
 
 Publicación pendiente de aprobación: aplicar primero la nueva función compatible y luego publicar la interfaz. No se aplicó la migración persistentemente ni se publicó el frontend. Fotografías, tiempos estructurados, versiones y subrecetas quedan pendientes.
+
+Acceso actualizado: Recetas → Abrir recetario → Ver recetas del recetario → Abrir receta. La edición, asignación y eliminación se realizan dentro de esa ficha. Consulta RECETARIOS_Y_EQUIVALENCIAS.md para unidades preferidas y consumo al producir.

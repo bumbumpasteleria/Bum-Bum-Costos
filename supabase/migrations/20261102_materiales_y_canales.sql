@@ -51,7 +51,7 @@ declare d jsonb;key text;value text;begin
  if p_id is distinct from p_owner or jsonb_typeof(p_details) is distinct from 'object' or length(p_details::text)>300000 then raise exception 'Presentación no válida para esta cuenta';end if;
  d:='{}';
  foreach key in array array['businessName','phone','location','website','color','logo'] loop value:=coalesce(p_details->>key,'');d:=d||jsonb_build_object(key,value);end loop;
- if length(trim(d->>'businessName')) not between 1 and 160 or length(d->>'phone')>200 or length(d->>'location')>300 or length(d->>'website')>300 or (d->>'color')!~'^#[0-9A-Fa-f]{6}$' or length(d->>'logo')>250000 or (d->>'logo'<>'' and (d->>'logo')!~'^data:image/jpeg;base64,[A-Za-z0-9+/=]+$') then raise exception 'Revisa el nombre, color o logo del negocio';end if;
+ if length(trim(d->>'businessName')) not between 1 and 160 or length(d->>'phone')>200 or length(d->>'location')>300 or length(d->>'website')>300 or (d->>'color')!~'^#[0-9A-Fa-f]{6}$' or length(d->>'logo')>250000 or (d->>'logo'<>'' and (d->>'logo')!~'^data:image/(jpeg|png);base64,[A-Za-z0-9+/=]+$') then raise exception 'Revisa el nombre, color o logo del negocio';end if;
  return d;
 end $$;
 revoke all on function public.bum_validate_entry(uuid,text,jsonb,uuid,boolean),public.bum_validate_business_entry_v1(uuid,text,jsonb,uuid,boolean) from public,anon,authenticated;

@@ -1,3 +1,4 @@
+import {ingredientBaseQuantity,recipeMeasures} from './ingredientQuantity.mjs';
 import {assessRecipeCost} from './recipeCost.mjs';
 const units={g:['mass',1],kg:['mass',1000],lb:['mass',453.59237],oz:['mass',28.349523125],mg:['mass',.001],ml:['volume',1],L:['volume',1000],'gal US':['volume',3785.411784],'fl oz':['volume',29.5735295625],unidad:['count',1],docena:['count',12]};
 export function positiveAmount(value){
@@ -20,11 +21,11 @@ export function scaleRecipe(recipe,entry,ingredients){
  }else{factor=positiveAmount(entry.factor);output=base*factor;outputUnit=baseUnit;}
  if(!Number.isFinite(factor)||!Number.isFinite(output)||output<=0)throw Error('Revisa las cantidades: el resultado está fuera de rango.');
  if(!recipe.lines?.length)throw Error('Esta receta no tiene ingredientes.');
- const lines=recipe.lines.map(line=>{const ingredient=ingredients.find(i=>i.id===line.ingredientId);if(!ingredient)throw Error('Hay un ingrediente que ya no está en tu catálogo.');const qty=positiveAmount(line.qty)*factor,unit=line.unit||ingredient.unit;if(!units[unit]||!units[ingredient.unit]||units[unit][0]!==units[ingredient.unit][0])throw Error('Revisa la unidad de '+ingredient.name+'.');if(!Number.isFinite(qty)||qty<=0)throw Error('La cantidad de '+ingredient.name+' queda fuera del rango admitido.');return {ingredientId:line.ingredientId,qty,unit};});
+ const lines=recipe.lines.map(line=>{const ingredient=ingredients.find(i=>i.id===line.ingredientId);if(!ingredient)throw Error('Hay un ingrediente que ya no está en tu catálogo.');const qty=positiveAmount(line.qty)*factor,unit=line.unit||ingredient.unit;ingredientBaseQuantity(qty,unit,ingredient);if(!Number.isFinite(qty)||qty<=0)throw Error('La cantidad de '+ingredient.name+' queda fuera del rango admitido.');return {ingredientId:line.ingredientId,qty,unit};});
  return {factor,yield:output,yieldUnit:outputUnit,lines,cost:assessRecipeCost({lines},ingredients)};
 }
 export function combineScaledRecipes(results,ingredients){
  const grouped=new Map();
- for(const result of results)for(const line of result.lines){const unit=units[line.unit],baseUnit=unit[0]==='mass'?'g':unit[0]==='volume'?'ml':'unidad';const key=line.ingredientId;const old=grouped.get(key);const qty=(old?.qty||0)+line.qty*unit[1];if(!Number.isFinite(qty))throw Error('El total de ingredientes está fuera de rango.');grouped.set(key,{ingredientId:key,qty,unit:baseUnit});}
- const lines=[...grouped.values()];return {lines,cost:assessRecipeCost({lines},ingredients)};
+ for(const result of results)for(const line of result.lines){const item=ingredients.find(i=>i.id===line.ingredientId);if(!item)throw Error('Ingrediente no disponible.');const unit=recipeMeasures[line.unit],base=ingredientBaseQuantity(line.qty,line.unit,item),old=grouped.get(line.ingredientId),qty=(old?.baseQty||0)+base.quantity;if(!Number.isFinite(qty))throw Error('El total de ingredientes está fuera de rango.');const asGrams=unit[0]==='g'||old?.asGrams;let amount=qty,displayUnit=base.unit==='unit'?'unidad':base.unit;if(asGrams&&base.unit!=='g'){amount=qty*Number(item.gramsPerBaseUnit);displayUnit='g';}grouped.set(line.ingredientId,{ingredientId:line.ingredientId,qty:amount,unit:displayUnit,baseQty:qty,asGrams});}
+ const lines=[...grouped.values()].map(({baseQty,asGrams,...line})=>line);return {lines,cost:assessRecipeCost({lines},ingredients)};
 }

@@ -4,7 +4,7 @@ export const MODULE_GUIDES = {
     "steps": [
       "En computadora, usa el menú lateral. En celular, usa los accesos inferiores o pulsa Más para ver todos los módulos.",
       "Empieza por Ingredientes y registra tus compras con su precio y unidad.",
-      "Pulsa Crear receta para abrir Recetas. Abre Ver mis recetas recientes para desplegar las recetas guardadas y consultar su ficha.",
+      "Pulsa Crear receta para abrir Recetas o Registrar venta para anotar una venta. Abre Ver mis recetas recientes para desplegar las portadas y consultar su ficha. Las fotos que guardes en Foto, conservación y notas aparecen también en las recetas y en Mi nevera. Si no hay foto, verás una imagen de referencia identificada; no es una foto de tu producto.",
       "Usa el Cotizador para encargos y registra tus ventas cuando las realices.",
       "El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.",
       "Abre Finanzas para gastos y reportes; Pedidos para encargos; Respaldo para recuperar registros o versiones de recetas."
@@ -19,7 +19,8 @@ export const MODULE_GUIDES = {
       "Coloca el precio total pagado y la cantidad de esa compra. Es el precio de compra, no el precio de venta del postre.",
       "Selecciona la unidad: gramos, Kilos (kg), libras, mililitros o Galón estadounidense (3.785 L), entre otras. Un galón equivale exactamente a 3785.411784 ml.",
       "Pulsa Guardar ingrediente. Abre Ver ingredientes registrados para ver la lista; vuelve a pulsar para cerrarla. La lista empieza cerrada. Después podrás elegirlo al armar una receta. Para borrar un registro, pulsa Eliminar y confirma en la misma pantalla.",
-      "El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente."
+      "El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.",
+      "Para usar gramos de un ingrediente comprado por unidades o volumen, abre Usar este artículo en gramos. Indica cantidad y unidad de referencia y cuánto pesa en gramos: por ejemplo, 1 unidad pesa 50 g o 100 ml pesan 103 g. Guarda el ingrediente. La equivalencia es propia de ese artículo y proveedor; al crear otro proveedor debes medir y registrar la suya."
     ],
     "example": "Si compraste 1 kg de harina por RD$150, coloca precio 150, cantidad 1 y unidad kg.",
     "tip": "No se puede eliminar un ingrediente usado en recetas, compras o movimientos. Editar actualiza ese registro. Otro proveedor crea una variante independiente para conservar su precio. No cambies gramos por mililitros: requieren una equivalencia del ingrediente. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador."
@@ -37,25 +38,22 @@ export const MODULE_GUIDES = {
     "tip": "No repitas el mismo empaque en Materiales y en Otros gastos de empaque de la cotización. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador."
   },
   "Recetas": {
-    "title": "Arma una receta paso a paso",
+    "title": "Trabaja dentro de tu recetario",
     "steps": [
-      "Para traer una receta, pulsa Importar PDF o foto. Acepta PDF con texto, PDF escaneado y fotos JPG, PNG o WebP de hasta 10 MB. Las imágenes se leen en tu dispositivo, en español.",
-      "Espera el reconocimiento de texto o pulsa Cancelar lectura. Revisa especialmente números, fracciones, unidades y nombres: las fotos o escaneos pueden leerse con errores. PDF: hasta 20 páginas, con un máximo de 10 escaneadas por archivo.",
-      "Comprueba nombre, preparación, rendimiento e ingredientes. Los nombres incompletos muestran opciones de tu catálogo con proveedor y precio; elige la que usaste.",
-      "Si falta un ingrediente, pulsa Registrar ingrediente para esa línea. Indica nombre, proveedor, precio total, cantidad comprada y unidad. Guardar ingrediente y vincular conserva la cantidad que usa la receta.",
-      "Si aún no tienes recetario, pulsa Crear recetario aquí, escribe su nombre y elige Encargos, Apps de envío o Uso general.",
-      "Al terminar la revisión, pulsa Guardar receta importada. Registrar ingredientes o recetarios no guarda todavía la receta.",
-      "Para crear una receta manualmente, registra primero sus ingredientes en Ingredientes.",
-      "Crea un recetario con nombre y uso: Encargos, Apps de envío o Uso general. Dentro de él, escribe una categoría como Masas, Rellenos, Coberturas o una nueva. Usa el filtro de categorías para organizar la lista.",
-      "Completa nombre, recetario, rendimiento total, unidad y tipo de artículo.",
-      "Pulsa + Ingrediente para alimentos o + Material o empaque para cajas, bases y otros consumibles. Elige el proveedor y la cantidad para toda la receta. Ambos se incluyen en el costo y se ajustan al multiplicar o reducir la receta.",
-      "Pulsa Guardar receta. Abre Ver mis recetas y costos para desplegar tus recetas; vuelve a pulsar para ocultarlas. La lista empieza cerrada. Dentro encontrarás los filtros por uso o recetario.",
-      "Para cambiar una receta guardada, pulsa Editar receta. Ajusta los campos y sus ingredientes y pulsa Guardar cambios de receta. Cancelar edición conserva la receta anterior.",
-      "Busca por nombre y combina los filtros de uso y recetario. Abre Ver ingredientes y costos para consultar cantidades, proveedor y costo por unidad de rendimiento sin editar.",
-      "Para escribir la preparación, guarda primero la receta y pulsa Editar receta. Completa Pasos de preparación y guarda los cambios. Luego podrás leerlos en Ver ingredientes y costos.",
-      "Para borrar una receta, pulsa Eliminar receta, revisa su nombre y confirma Sí, eliminar receta. Cancelar eliminación la conserva. El borrado es definitivo; sus ingredientes del catálogo y cotizaciones guardadas se conservan.",
-      "El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.",
-      "En cada receta guardada, abre Foto, conservación y notas. Añade una foto y completa tus notas, alérgenos declarados e indicaciones de conservación; pulsa Guardar ficha y foto. La imagen se reduce y se guarda en tu cuenta privada."
+      "Primero aparecen tus recetarios. Pulsa Abrir recetario junto al nombre que quieras usar. Cada uno muestra su uso y cantidad de recetas.",
+      "Para crear uno, pulsa + Crear o gestionar recetarios, escribe nombre y uso y pulsa Crear recetario. Dentro del recetario, Editar este recetario permite cambiar su nombre o uso. Solo puedes eliminar recetarios vacíos; mueve sus recetas antes de confirmar el borrado.",
+      "Dentro del recetario, elige Subir receta en PDF o foto, Escribir nueva receta o Ver recetas del recetario. Los formularios aparecen al pulsar su botón.",
+      "Al subir un PDF o foto, se lee y aparece directamente la revisión. Comprueba nombre, rendimiento, preparación, cantidades, unidades y proveedor antes de Guardar receta importada. Puedes cancelar la revisión y corregir el texto reconocido.",
+      "Se acepta una receta por archivo: PDF con texto o escaneado, JPG, PNG o WebP de hasta 10 MB. PDF: hasta 20 páginas, con un máximo de 10 escaneadas. Se procesa en tu dispositivo; el archivo no se guarda como borrador.",
+      "Los nombres incompletos ofrecen coincidencias de tu catálogo. Si hay varias marcas o proveedores, elige el que usaste. Si falta un ingrediente, pulsa Registrar ingrediente para esa línea; guardar el ingrediente no guarda todavía la receta.",
+      "Para escribir una receta, completa nombre, recetario, categoría, rendimiento y tipo de artículo. Añade alimentos con + Ingrediente y consumibles con + Material o empaque; ambos forman parte del costo.",
+      "Proporcional permite media receta, el doble u otra proporción. Por tandas completas redondea hacia arriba al cotizar: 1,5 tandas cuentan como 2. La calculadora de Herramientas permite ajustar una proporción expresamente.",
+      "Puedes usar gramos de ingredientes comprados por unidades o volumen si registraste su equivalencia en Ingredientes. La receta conserva los gramos; los costos y la producción utilizan la cantidad equivalente de inventario. No se supone el peso de huevos ni de líquidos.",
+      "Pulsa Ver recetas del recetario y luego Abrir receta junto al nombre. Dentro están Ver ingredientes y costos, la foto y notas, Asignar recetario, Editar receta y Eliminar receta. La edición aparece en esa misma ficha.",
+      "Guardar cambios de receta conserva su ID y las cotizaciones anteriores. Si otra sesión modificó la receta, vuelve a abrirla antes de guardar. Cancelar edición conserva la receta guardada.",
+      "La eliminación pide confirmación y puede bloquearse si existen referencias. Conserva los ingredientes del catálogo y las cotizaciones guardadas. Para mover una receta, elige otro recetario dentro de su ficha y pulsa Asignar recetario.",
+      "En Foto, conservación y notas puedes guardar tu fotografía para las portadas de Inicio, Recetas y Mi nevera. Sin foto se muestra una imagen de referencia identificada. Los alérgenos y conservación los completas tú.",
+      "Los borradores se conservan al cambiar de módulo o recargar, en este dispositivo y para tu cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente."
     ],
     "example": "Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.",
     "tip": "Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar. Los ingredientes y recetarios creados durante la importación permanecen guardados aunque canceles la receta. La cantidad de compra es distinta de la cantidad usada en la receta; no se convierten tazas a gramos automáticamente. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador. Los alérgenos e indicaciones los completas tú; la aplicación no los deduce. En Respaldo puedes consultar las versiones anteriores guardadas desde esta actualización."
@@ -78,7 +76,7 @@ export const MODULE_GUIDES = {
       "Indica cuántos rendimientos completos de esa receta necesitas.",
       "Revisa los ingredientes y materiales incluidos en la receta. Añade solo los materiales adicionales del encargo, decoraciones, mano de obra fija o por horas, rellenos adicionales, entrega y otros gastos.",
       "Elige Margen sobre venta o Recargo sobre costo y su porcentaje.",
-      "Abre Logo y presentación de mi negocio, sube tu logo, elige el color y guarda nombre y contacto. La cuenta de Bum Bum ya tiene precargados su logo original y la paleta crema, vino y rosa; las demás cuentas conservan su propia identidad. Se conserva en tu cuenta y se aplica a los PDF que generes. Completa cliente, contacto, entrega, validez y notas si los necesitas. Revisa el desglose de artículos y costos y pulsa Guardar cotización. En cotizaciones guardadas, abre Ver cotización completa. PDF para cliente muestra el producto y precio final; PDF interno con costos incluye desglose y ganancia.",
+      "Abre Logo y presentación de mi negocio, sube tu logo, elige el color y guarda nombre y contacto. Un PNG con transparencia conserva el fondo transparente para integrarlo en la cotización. La cuenta de Bum Bum ya tiene precargados su logo original y la paleta crema, vino y rosa; las demás cuentas conservan su propia identidad. Se conserva en tu cuenta y se aplica a los PDF que generes. Completa cliente, contacto, entrega, validez y notas si los necesitas. Revisa el desglose de artículos y costos y pulsa Guardar cotización. En cotizaciones guardadas, abre Ver cotización completa. PDF para cliente muestra el producto y precio final; PDF interno con costos incluye desglose y ganancia.",
       "El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente."
     ],
     "example": "Si tu receta rinde 12 galletas y necesitas 24, coloca 2 en Cantidad de rendimientos.",
@@ -153,7 +151,8 @@ export const MODULE_GUIDES = {
     "steps": [
       "Revisa cada ingrediente y material, separado por proveedor.",
       "Pulsa Actualizar existencias e indica la cantidad disponible y el mínimo para reponer. Selecciona la unidad compatible que prefieras, por ejemplo kilos o galones; se guarda su equivalencia en la unidad base. Cero es válido.",
-      "Guarda existencias. La lista de Compras se actualiza inmediatamente. Si otra sesión cambió cantidades, actualiza y revisa el ajuste antes de guardarlo."
+      "Guarda existencias. La lista de Compras se actualiza inmediatamente. Si otra sesión cambió cantidades, actualiza y revisa el ajuste antes de guardarlo.",
+      "Después de registrar producción en Mi nevera, las existencias de ingredientes y materiales se actualizan automáticamente. Cambiar o guardar una receta no descuenta inventario. Las cantidades pueden incluir fracciones de unidad cuando se utilizan por peso."
     ],
     "example": "Harina: quedan 500 g, mínimo 500 g. Aparece en Compras.",
     "tip": "El mínimo es la señal para reponer, no una cantidad de compra sugerida. Los precios se conservan; las ventas de nevera no descuentan ingredientes automáticamente."
@@ -163,7 +162,8 @@ export const MODULE_GUIDES = {
     "steps": [
       "Aquí aparecen ingredientes y materiales con cantidad disponible igual o menor a su mínimo.",
       "Cada proveedor aparece por separado. Los artículos sin existencias o mínimo registrados requieren completarlos en Inventario.",
-      "Cuando repongas, pulsa Actualizar existencias y registra la cantidad real. Al superar el mínimo, el artículo sale de Compras."
+      "Cuando repongas, pulsa Actualizar existencias y registra la cantidad real. Al superar el mínimo, el artículo sale de Compras.",
+      "Los consumos registrados al producir actualizan las existencias; si un artículo llega a su mínimo, aparece en esta lista."
     ],
     "example": "Si una caja tiene mínimo 5 y quedan 5 unidades, aparece pendiente; si registras 20, deja de aparecer.",
     "tip": "Esta lista se calcula desde tu inventario en la nube. No borres el artículo ni cambies su precio para marcarlo como comprado."
@@ -175,7 +175,9 @@ export const MODULE_GUIDES = {
       "Registra una preparación terminada: producto, cantidad obtenida, veces que usaste la receta, fecha y vencimiento opcional.",
       "En Calcular precio para apps y otros canales, elige Directa, Uber Eats o PedidosYa. Revisa el costo base por unidad, añade únicamente empaques, mano de obra y gastos adicionales, e introduce la comisión real y margen deseado. Usa el precio sugerido o escribe otro y guarda el canal. Comisión y margen deben sumar menos de 100%. Consulta la cantidad disponible y abre Ver lotes, mínimo y precio. Los lotes vencidos se muestran, pero no cuentan como disponibles. Dentro de Ver lotes, mínimo y precio puedes actualizar el precio y el mínimo. Las ventas anteriores conservan sus importes; los productos antiguos no reciben un precio inventado.",
       "Para consumo propio, pérdidas o correcciones, usa Ajustar lote, indica cuánto queda y el motivo. Registra otro lote para nuevas preparaciones.",
-      "En Ventas, elige Producto de Mi nevera y la cantidad vendida. La venta descuenta primero los lotes que vencen antes."
+      "En Ventas, elige Producto de Mi nevera y la cantidad vendida. La venta descuenta primero los lotes que vencen antes.",
+      "La portada utiliza la foto guardada en la ficha de la receta vinculada. Si no hay foto, verás una imagen de referencia; las cantidades y estados siempre proceden de tus lotes.",
+      "Registrar una preparación descuenta ingredientes y materiales del inventario en una sola operación. Las recetas en gramos se convierten con la equivalencia de cada artículo. Si faltan existencias, no se guarda el lote ni se descuenta nada. Repetir el mismo intento no descuenta dos veces. Los lotes anteriores conservan su costo y no se descuentan retroactivamente. Abre Ver ingredientes descontados dentro de un lote nuevo para consultar su consumo."
     ],
     "example": "Una receta completa produce 12 porciones de tres leches: cantidad 12, veces 1. Vendes 3 y quedan 9.",
     "tip": "Cada cuenta tiene sus propios productos y lotes en la nube. Las fechas de vencimiento las decides tú. El costo del lote incluye ingredientes y materiales de la receta al producirlo; añade otros gastos de venta aparte. Los lotes conservan su costo aunque luego cambies precios."

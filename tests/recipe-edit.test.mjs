@@ -1,3 +1,4 @@
+import * as ingredientQuantity from '../src/domain/costing/ingredientQuantity.mjs';
 import {readPreparation,validatePreparation} from '../src/features/recipes/recipePreparation.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -7,7 +8,7 @@ import {transformWithEsbuild} from 'vite';
 const root=new URL('../src/',import.meta.url);
 const compile=async(file,loader='js')=>(await transformWithEsbuild(await readFile(new URL(file,root),'utf8'),file,{loader,format:'cjs'})).code;
 const [cloudCode,catalogCode,serviceCode,editorCode]=await Promise.all([compile('cloudService.js'),compile('catalogoService.js'),compile('features/recipes/recipesService.js'),compile('features/recipes/RecipeEditor.jsx','jsx')]);
-function load(code,require,extra={}){const m={exports:{}};vm.runInNewContext(code,{module:m,exports:m.exports,require,...extra});return m.exports;}
+function load(code,require,extra={}){const m={exports:{}};vm.runInNewContext(code,{module:m,exports:m.exports,require:path=>path.includes('ingredientQuantity')?ingredientQuantity:require(path),...extra});return m.exports;}
 const owner='owner-a';
 const raw=()=>({id:'recipe',owner_id:owner,name:'Galletas',recipe_book_id:'book',yield_quantity:12,yield_unit:'unidad',instructions:'{"bumBum":1,"scaling":"scalable","productType":"Galleta","custom":"keep"}',recipe_lines:[{id:'line-1',owner_id:owner,recipe_id:'recipe',ingredient_id:'flour',quantity_base:250,ingredients:{base_unit:'g'}}]});
 function fixture(){let calls=[],response=null,failure=null,readFailure=false;const record=raw();

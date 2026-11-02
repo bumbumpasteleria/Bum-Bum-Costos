@@ -19,6 +19,8 @@ do $$ declare r jsonb;failed boolean:=false;begin
  if not failed then raise exception 'Brand owner not enforced';end if;
  failed:=false;begin perform public.bum_save_entry(auth.uid(),'quote_brand',(r->'details')||'{"color":"not-a-color"}',1);exception when others then failed:=true;end;
  if not failed then raise exception 'Invalid color accepted';end if;
+ r:=public.bum_save_entry(auth.uid(),'quote_brand',(r->'details')||'{"logo":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jGZkAAAAASUVORK5CYII="}',1);
+ if r->'details'->>'logo' not like 'data:image/png;base64,%' then raise exception 'Transparent PNG not preserved';end if;
  perform public.bum_save_entry('12360000-0000-4000-8000-000000000081','expense','{"date":"2026-11-02","amount":5,"description":"Gasto de prueba","category":"Otros","channel":"General"}',0);
 end $$;
 do $$ declare r jsonb;original jsonb;lines jsonb;prices jsonb;backup jsonb;day date:=(now() at time zone 'America/Santo_Domingo')::date;failed boolean:=false;begin

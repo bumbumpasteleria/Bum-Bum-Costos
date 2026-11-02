@@ -18,7 +18,12 @@ export function prepararArticulo(form, kind, original) {
   if(original && medidas[original.unit]?.[0]!==base.unit)throw new Error('Selecciona una unidad compatible con las recetas y cotizaciones existentes.');
   const cost=price/base.quantity;
   if(!Number.isFinite(price)||price<0||!Number.isFinite(cost)||cost>=1e10||(price>0&&cost<0.0000005))throw new Error('Precio fuera del rango permitido.');
-  return {name,supplier,item_kind:kind,base_unit:base.unit,last_unit_cost:cost,purchase_unit:form.unit,purchase_quantity:quantity,purchase_price:price};
+  let gramsPerBaseUnit=original?.gramsPerBaseUnit??null;
+  if(Object.hasOwn(form,'equivalenceGrams')){
+   if(!String(form.equivalenceGrams??'').trim())gramsPerBaseUnit=null;
+   else{const grams=Number(form.equivalenceGrams),reference=cantidadBase(form.equivalenceQuantity??1,form.equivalenceUnit||form.unit);if(!['unit','ml'].includes(base.unit)||reference.unit!==base.unit||!Number.isFinite(grams)||grams<=0)throw Error('Revisa la cantidad, unidad y peso de la equivalencia.');gramsPerBaseUnit=grams/reference.quantity;if(!Number.isFinite(gramsPerBaseUnit)||gramsPerBaseUnit<=0||gramsPerBaseUnit>=1e6)throw Error('La equivalencia en gramos está fuera de rango.');}
+  }
+  return {grams_per_base_unit:gramsPerBaseUnit,name,supplier,item_kind:kind,base_unit:base.unit,last_unit_cost:cost,purchase_unit:form.unit,purchase_quantity:quantity,purchase_price:price};
 }
 
 export async function guardarArticulo(form,kind,owner,original) {

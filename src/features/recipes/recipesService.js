@@ -1,3 +1,4 @@
+import {recipeLinePayload} from '../../domain/costing/ingredientQuantity.mjs';
 import {validatePreparation} from './recipePreparation.mjs';
 import {supabase} from '../../supabase';
 import {adaptarReceta,cantidadBase,medidas} from '../../cloudService';
@@ -31,9 +32,7 @@ export function prepararEdicionReceta(form,original,ingredients,books){
  const lines=form.lines.map(line=>{
   const ingredient=ingredients.find(item=>item.id===line.ingredientId);
   if(!ingredient)throw new Error('Selecciona un ingrediente disponible de tu catálogo.');
-  const converted=cantidadBase(line.qty,line.unit||ingredient.unit);
-  if(converted.unit!==medidas[ingredient.unit]?.[0])throw new Error('La unidad no es compatible con '+ingredient.name+'.');
-  const result={ingredient_id:ingredient.id,quantity_base:converted.quantity};
+  const result=recipeLinePayload(line,ingredient);
   if(line.id){
    if(seen.has(line.id)||!original.lines.some(row=>row.id===line.id))throw new Error('Las líneas de la receta cambiaron. Vuelve a abrirla.');
    seen.add(line.id);result.id=line.id;
