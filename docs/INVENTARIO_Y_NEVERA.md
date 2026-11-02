@@ -20,3 +20,11 @@ Los formularios de negocio, importación, calculadora y cotizador guardan borrad
 4. Publicar la interfaz aprobada, comprobar carga de las pantallas vacías y las guías con la cuenta administradora. No crear ventas, recetas o productos ficticios en producción.
 
 Verificación realizada: compilación; pruebas automatizadas de interfaz, cálculo y persistencia; ensayo real en Supabase revertido de producción, costos por lote, reintentos, venta insuficiente, ajustes obsoletos y separación de cuentas. La vista local utiliza ejemplos sin conexión a cuentas reales.
+
+## Precio de compra y precio de venta
+
+Ingredientes y Materiales registran el precio total de compra, la cantidad y su unidad; calculan el costo por unidad base para recetas y cotizaciones. En Mi nevera registra el precio de venta por porción, unidad, bandeja, vaso o caja. Puedes actualizarlo dentro de Ver lotes, mínimo y precio. Los productos previos quedan sin precio hasta completarlo.
+
+Ventas propone el precio del producto y calcula cantidad × precio, redondeado al centavo, antes de comisiones. Puedes modificarlo para esa venta sin cambiar el precio habitual. El precio usado queda guardado con la venta. Cambiar el precio del producto no altera ventas ni costos de lotes anteriores. Una venta general o encargo conserva el ingreso manual de su total.
+
+La migración 20261102_precio_productos.sql añade sale_price y dos funciones privadas de operación. La función de ventas calcula el bruto en el servidor y mantiene las validaciones de stock, transacción e idempotencia existentes. La actualización de precio y mínimo compara los datos originales para impedir sobrescribir cambios simultáneos. Probar supabase/tests/precio_productos.sql dentro de la transacción de la migración en lugar de COMMIT; los fixtures se revierten. Aplicar la migración con autorización antes de publicar la interfaz.

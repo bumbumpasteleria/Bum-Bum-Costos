@@ -16,7 +16,7 @@ export const MODULE_GUIDES = {
     "title": "Registra lo que usas para cocinar",
     "steps": [
       "Escribe el nombre y dónde lo compraste.",
-      "Coloca el precio total pagado y la cantidad de esa compra.",
+      "Coloca el precio total pagado y la cantidad de esa compra. Es el precio de compra, no el precio de venta del postre.",
       "Selecciona la unidad: gramos, Kilos (kg), libras, mililitros o Galón estadounidense (3.785 L), entre otras. Un galón equivale exactamente a 3785.411784 ml.",
       "Pulsa Guardar ingrediente. Abre Ver ingredientes registrados para ver la lista; vuelve a pulsar para cerrarla. La lista empieza cerrada. Después podrás elegirlo al armar una receta. Para borrar un registro, pulsa Eliminar y confirma en la misma pantalla.",
       "El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente."
@@ -28,7 +28,7 @@ export const MODULE_GUIDES = {
     "title": "Añade empaques y consumibles",
     "steps": [
       "Registra cajas, bases, bolsas u otros materiales.",
-      "Indica el proveedor, precio total, cantidad comprada y unidad.",
+      "Indica el proveedor, precio total de compra, cantidad comprada y unidad. El costo por material se calcula desde esa compra.",
       "Guarda el material. Abre Ver materiales registrados para desplegar la lista y vuelve a pulsar para cerrarla. La lista empieza cerrada. Usa Editar para actualizarlo u Otro proveedor para una variante.",
       "En el Cotizador, selecciona cuántos materiales llevará el encargo.",
       "El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente."
@@ -88,7 +88,7 @@ export const MODULE_GUIDES = {
     "title": "Registra una venta real",
     "steps": [
       "Elige Venta general o encargo para registrar los importes habituales, o Producto de Mi nevera para descontar porciones o unidades.",
-      "Para nevera, selecciona producto y cantidad vendida. Completa fecha, canal, venta bruta, comisión y otros gastos.",
+      "Para nevera, selecciona producto y cantidad vendida. El precio de venta registrado se propone automáticamente y el total se calcula como cantidad × precio. Puedes ajustar ese precio para esta venta sin cambiar el producto. Completa fecha, canal, comisión y otros gastos.",
       "Pulsa Registrar venta. El guardado y el descuento son una sola operación: si no hay suficientes productos vigentes, no se registra ninguno de los dos.",
       "Las ventas generales requieren que indiques su costo de producción. Las ventas de nevera toman el costo de ingredientes de los lotes consumidos.",
       "En Reportes de ventas puedes filtrar por fecha o canal y descargar un PDF. En Finanzas registra los gastos adicionales del negocio."
@@ -171,9 +171,9 @@ export const MODULE_GUIDES = {
   "Mi nevera": {
     "title": "Tus productos listos para vender",
     "steps": [
-      "Añade un producto vinculado a una receta, selecciona si lo contarás por porción, unidad, bandeja, vaso o caja y define su mínimo.",
+      "Añade un producto vinculado a una receta, selecciona si lo contarás por porción, unidad, bandeja, vaso o caja y define su mínimo y precio de venta por esa unidad. El precio es anterior a las comisiones.",
       "Registra una preparación terminada: producto, cantidad obtenida, veces que usaste la receta, fecha y vencimiento opcional.",
-      "Consulta la cantidad disponible y abre Ver lotes y ajustar mínimo. Los lotes vencidos se muestran, pero no cuentan como disponibles.",
+      "Consulta la cantidad disponible y abre Ver lotes, mínimo y precio. Los lotes vencidos se muestran, pero no cuentan como disponibles. Dentro de Ver lotes, mínimo y precio puedes actualizar el precio y el mínimo. Las ventas anteriores conservan sus importes; los productos antiguos no reciben un precio inventado.",
       "Para consumo propio, pérdidas o correcciones, usa Ajustar lote, indica cuánto queda y el motivo. Registra otro lote para nuevas preparaciones.",
       "En Ventas, elige Producto de Mi nevera y la cantidad vendida. La venta descuenta primero los lotes que vencen antes."
     ],
