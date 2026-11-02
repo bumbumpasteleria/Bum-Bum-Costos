@@ -4,7 +4,7 @@ El Monograma BB con melocotón fue seleccionado por la usuaria. Identifica la ap
 
 La interfaz comparte crema, vino y rosa con acentos durazno y salvia, títulos editoriales y Manrope para lectura y controles. Inicio, recetas, nevera y cotizaciones usan el mismo lenguaje. Los datos y formularios, búsquedas, filtros, confirmaciones, borradores y control de acceso se conservan.
 
-Las colecciones de recetas e ingredientes siguen cerradas hasta abrirlas. Las fotografías de las fichas se muestran como portadas en Inicio, Recetas y Mi nevera, usando los registros privados ya cargados de la cuenta. Si no existe fotografía se ofrece una imagen de referencia etiquetada. No se guarda ni se atribuye a una receta como foto real.
+Las colecciones de recetas e ingredientes siguen cerradas hasta abrirlas. Las fotografías de las fichas se muestran como portadas de recetarios y de recetas dentro de su recetario, y en Mi nevera, usando los registros privados ya cargados de la cuenta. Si no existe fotografía se ofrece una imagen de referencia etiquetada. No se guarda ni se atribuye a una receta como foto real.
 
 Assets originales creados con la herramienta integrada de generación de imágenes: tres fotografías ilustrativas (vainilla con melocotón, tres leches, suspiro), master del Monograma BB con melocotón y versión sin fondo del logo del negocio. Se conserva el logo original en public/logo.jpg. Los assets web se optimizan en tamaño/formato para carga móvil sin modificar el diseño. No hay dependencias de imágenes remotas. Archivos públicos de marca y fotografías de referencia son recursos genéricos; las fotos privadas de usuarios permanecen en su cuenta.
 

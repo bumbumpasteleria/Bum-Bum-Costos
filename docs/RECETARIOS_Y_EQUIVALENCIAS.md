@@ -2,7 +2,13 @@
 
 ## Recetas por recetario
 
-Recetas empieza con los recetarios privados de la cuenta. Abrir uno muestra botones para subir un PDF/foto, escribir una receta y ver las guardadas. Los formularios y las colecciones aparecen únicamente al abrir sus controles. Dentro de Abrir receta están consulta, foto/notas, edición, asignación y eliminación. La búsqueda y categorías se aplican al recetario abierto. Inicio conserva el acceso directo a una receta y una edición pendiente sigue disponible.
+Hay tres áreas distintas. Recetarios muestra primero los libros privados; sus recetas solo aparecen al abrir el libro y desplegar Recetas guardadas. Dentro de Abrir receta están consulta, foto/notas, edición, asignación y eliminación. La búsqueda y categorías se aplican al recetario abierto. Inicio muestra recetarios, sin listar recetas fuera de ellos.
+
+Nueva receta permite seleccionar el recetario destino y elegir escribir o importar un PDF/foto. No mezcla formularios con recetas actuales. El acceso Agregar receta a este recetario lleva a esa área con el libro seleccionado. Las ediciones pendientes siguen disponibles dentro de la receta.
+
+Costos de productos reúne la ficha final: ingredientes y materiales según precios actuales, mano de obra fija o por horas, empaques adicionales, acabados, transporte y otros gastos. Muestra costo completo y por unidad de rendimiento. No se repiten aquí los materiales ya registrados en la fórmula. Cada receta tiene una ficha privada product_cost, con ID propio, versiones y respaldo; un índice evita duplicados por cuenta y receta. Guardar no cambia ventas ni lotes anteriores.
+
+Los productos existentes en Mi nevera muestran sus precios por canal en esta área. Usar costos de la ficha del producto copia explícitamente base, mano de obra y extras por unidad, conservando margen y comisión. Si la unidad de venta difiere del rendimiento, exige una equivalencia confirmada. Mi nevera enlaza a esta área. El Cotizador conserva los encargos particulares.
 
 La lectura de PDF o foto abre automáticamente la revisión, con el recetario de origen seleccionado. No guarda hasta confirmar Guardar receta importada. Se conservan el texto y las revisiones pendientes en los borradores existentes de la cuenta. Los nombres, cantidades y equivalencias deben revisarse. La lectura de un PDF con texto se verificó con un archivo real de ejemplo; no se ha recibido el archivo particular reportado por la usuaria.
 

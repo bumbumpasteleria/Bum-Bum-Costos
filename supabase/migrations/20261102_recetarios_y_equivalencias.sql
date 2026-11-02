@@ -93,4 +93,39 @@ begin
  values(p_id,u,p_product,p_prepared,p_expires,p_quantity,p_quantity,cost/p_quantity,p_factor,details_) returning * into batch;
  insert into public.fridge_movements(id,owner_id,product_id,batch_id,kind,quantity,reason) values(p_id,u,p_product,p_id,'production',p_quantity,'Preparación registrada');return to_jsonb(batch);
 end $$;
+
+-- A separate private final-cost sheet for each recipe; IDs do not collide with recipe_info.
+alter table public.business_entries drop constraint business_entries_kind_check;
+alter table public.business_entries add constraint business_entries_kind_check check(kind in ('expense','order','recipe_info','quote_brand','product_cost'));
+create unique index business_product_cost_recipe on public.business_entries(owner_id,(details->>'recipeId')) where kind='product_cost';
+alter function public.bum_validate_entry(uuid,text,jsonb,uuid,boolean) rename to bum_validate_entry_brands_v1;
+create function public.bum_validate_entry(p_id uuid,p_kind text,p_details jsonb,p_owner uuid,p_require_recipe boolean) returns jsonb
+language plpgsql security invoker set search_path='' as $$
+declare rid uuid;d jsonb;extras jsonb:='{}';key text;value numeric;begin
+ if p_kind is distinct from 'product_cost' then return public.bum_validate_entry_brands_v1(p_id,p_kind,p_details,p_owner,p_require_recipe);end if;
+ if p_owner is distinct from auth.uid() or jsonb_typeof(p_details) is distinct from 'object' or length(p_details::text)>20000 then raise exception 'Ficha de costos no válida';end if;
+ rid:=(p_details->>'recipeId')::uuid;
+ if rid is null or exists(select 1 from public.recipes where id=rid and owner_id<>p_owner) or (coalesce(p_require_recipe,true) and not exists(select 1 from public.recipes where id=rid and owner_id=p_owner)) then raise exception 'Selecciona una receta de tu cuenta';end if;
+ if length(trim(coalesce(p_details->>'recipeName',''))) not between 1 and 160 or length(coalesce(p_details->>'yieldUnit','')) not between 1 and 40 or p_details->>'laborMode' not in ('fixed','hourly') or p_details->>'laborMode' is null then raise exception 'Completa el nombre, rendimiento y mano de obra del producto';end if;
+ d:=jsonb_build_object('recipeId',rid,'recipeName',p_details->>'recipeName','yieldUnit',p_details->>'yieldUnit','laborMode',p_details->>'laborMode');
+ foreach key in array array['quantity','labor','hours','totalCost','produced','unitCost'] loop
+  value:=(p_details->>key)::numeric;
+  if value is null or value<0 or value>=1e12 or value::text in ('NaN','Infinity','-Infinity') or (key in ('quantity','produced') and value<=0) then raise exception 'Revisa los importes de la ficha de costos';end if;
+  d:=d||jsonb_build_object(key,value);
+ end loop;
+ if jsonb_typeof(p_details->'extra') is distinct from 'object' then raise exception 'Completa los gastos adicionales';end if;
+ foreach key in array array['fill','pack','delivery','other'] loop
+  value:=coalesce((p_details->'extra'->>key)::numeric,0);
+  if value<0 or value>=1e10 or value::text in ('NaN','Infinity','-Infinity') then raise exception 'Revisa los gastos adicionales';end if;
+  extras:=extras||jsonb_build_object(key,value);
+ end loop;
+ return d||jsonb_build_object('extra',extras);
+end $$;
+revoke all on function public.bum_validate_entry(uuid,text,jsonb,uuid,boolean),public.bum_validate_entry_brands_v1(uuid,text,jsonb,uuid,boolean) from public,anon,authenticated;
+do $$ declare source text;prior text;begin
+ source:=pg_get_functiondef('public.bum_save_entry(uuid,text,jsonb,integer)'::regprocedure);prior:=source;
+ source:=replace(source,'''expense'',''order'',''recipe_info'',''quote_brand''','''expense'',''order'',''recipe_info'',''quote_brand'',''product_cost''');
+ if source=prior then raise exception 'No se pudo habilitar la ficha privada de costos';end if;execute source;
+end $$;
+
 commit;
