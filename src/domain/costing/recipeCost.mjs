@@ -1,5 +1,5 @@
 // Conserva las unidades y factores históricos del recetario.
-const units={g:['mass',1],kg:['mass',1000],lb:['mass',453.59237],oz:['mass',28.349523125],mg:['mass',.001],ml:['volume',1],L:['volume',1000],'fl oz':['volume',29.5735295625],unidad:['count',1],docena:['count',12]};
+const units={g:['mass',1],kg:['mass',1000],lb:['mass',453.59237],oz:['mass',28.349523125],mg:['mass',.001],ml:['volume',1],L:['volume',1000],'gal US':['volume',3785.411784],'fl oz':['volume',29.5735295625],unidad:['count',1],docena:['count',12]};
 const numeric=value=>(typeof value==='number'||typeof value==='string'&&value.trim()!=='')&&Number.isFinite(Number(value))?Number(value):null;
 export function assessRecipeCost(recipe,ingredients){
  const issues=[];let sum=0;

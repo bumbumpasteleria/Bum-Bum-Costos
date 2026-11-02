@@ -5,7 +5,7 @@ import RecipeCategoryField from './RecipeCategoryField';
 import IngredientMatches from './IngredientMatches.jsx';
 import React,{useRef,useState} from 'react';
 import {medidas} from '../../cloudService';
-import {tiposProducto,unidadesCompra,unidadesRendimiento,etiquetaArticulo} from '../../catalogoService';
+import {tiposProducto,etiquetaUnidad,unidadesCompra,unidadesRendimiento,etiquetaArticulo} from '../../catalogoService';
 import './recipeEditor.css';
 
 export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,busy,importing=false,onCreateIngredient,onCreateBook}){
@@ -29,7 +29,7 @@ export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,b
    <label>Nombre de la receta<input value={form.name} maxLength={160} required onChange={e=>change('name',e.target.value)}/></label>
    <RecipeCategoryField value={form.category} onChange={value=>change('category',value)}/><label>Recetario<select value={form.bookId} required onChange={e=>change('bookId',e.target.value)}><option value="" disabled>Seleccionar recetario</option>{form.bookId&&!books.some(b=>b.id===form.bookId)&&<option value={form.bookId} disabled>Recetario no disponible</option>}{books.map(book=><option key={book.id} value={book.id}>{book.name}</option>)}</select></label>
    <label>Rendimiento total<input type="number" min="0.001" step="any" value={form.yield} required onChange={e=>change('yield',e.target.value)}/></label>
-   <label>Unidad de rendimiento<select value={form.yieldUnit} onChange={e=>change('yieldUnit',e.target.value)}>{!unidadesRendimiento.includes(form.yieldUnit)&&<option value={form.yieldUnit} disabled>{form.yieldUnit} · elegir otra</option>}{unidadesRendimiento.map(unit=><option key={unit}>{unit}</option>)}</select></label>
+   <label>Unidad de rendimiento<select value={form.yieldUnit} onChange={e=>change('yieldUnit',e.target.value)}>{!unidadesRendimiento.includes(form.yieldUnit)&&<option value={form.yieldUnit} disabled>{form.yieldUnit} · elegir otra</option>}{unidadesRendimiento.map(unit=><option key={unit} value={unit}>{etiquetaUnidad(unit)}</option>)}</select></label>
    <label>Tipo de producto<select value={form.productType} onChange={e=>change('productType',e.target.value)}>{tiposProducto.map(type=><option key={type}>{type}</option>)}</select></label>
    <label>Escalado<select value={form.scaling} onChange={e=>change('scaling',e.target.value)}><option value="scalable">Escalable</option><option value="fixed">Fija</option></select></label>
   </div>
@@ -41,7 +41,7 @@ export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,b
    {importing&&onCreateIngredient&&<><button type="button" className="secondary inline-register-action" disabled={creatingBook||registering!==null&&registering!==line.key} onClick={()=>setRegistering(line.key)}>+ Registrar ingrediente para línea {index+1}</button>{registering===line.key&&<InlineIngredient key={line.key} line={line} ingredients={ingredients} onCreate={onCreateIngredient} onCreated={item=>createdIngredient(line.key,item)} onCancel={()=>setRegistering(null)} busy={disabled}/>}</>}
    <label>Ingrediente {index+1}<select required value={line.ingredientId} onChange={e=>selectIngredient(index,e.target.value)}>{!ingredient&&<option value={line.ingredientId} disabled>{importing?'Elige ingrediente y proveedor':'Ingrediente no disponible · selecciona otro'}</option>}{ingredients.map(item=><option key={item.id} value={item.id}>{etiquetaArticulo(item)}</option>)}</select></label>
    <label>Cantidad {index+1}<input type="number" min="0.001" step="any" required value={line.qty} onChange={e=>changeLine(index,{qty:e.target.value})}/></label>
-   <label>Unidad {index+1}<select required value={line.unit} onChange={e=>changeLine(index,{unit:e.target.value})}>{!units.includes(line.unit)&&<option value={line.unit} disabled>{line.unit||'Unidad no disponible'}</option>}{units.map(unit=><option key={unit}>{unit}</option>)}</select></label>
+   <label>Unidad {index+1}<select required value={line.unit} onChange={e=>changeLine(index,{unit:e.target.value})}>{!units.includes(line.unit)&&<option value={line.unit} disabled>{line.unit||'Unidad no disponible'}</option>}{units.map(unit=><option key={unit} value={unit}>{etiquetaUnidad(unit)}</option>)}</select></label>
    <button type="button" className="ghost" onClick={()=>{if(registering===line.key)setRegistering(null);change('lines',form.lines.filter((_,i)=>i!==index))}} aria-label={'Quitar ingrediente '+(index+1)}>Quitar</button>
   </div>})}
   {!form.lines.length&&<p className="warning">Agrega al menos un ingrediente antes de guardar.</p>}

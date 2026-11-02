@@ -1,0 +1,8 @@
+export const TABLES=['ingredients','recipe_books','recipes','recipe_lines','decorations','quotes','fridge_products','fridge_batches','sales','fridge_movements','business_entries','business_entry_history','recipe_versions'];
+export const LABELS={ingredients:'Ingredientes y materiales',recipe_books:'Recetarios',recipes:'Recetas',recipe_lines:'Líneas de ingredientes',decorations:'Decoraciones',quotes:'Cotizaciones',fridge_products:'Productos de nevera',fridge_batches:'Lotes',sales:'Ventas',fridge_movements:'Movimientos de nevera',business_entries:'Gastos, pedidos y fichas',business_entry_history:'Historial de registros',recipe_versions:'Versiones de recetas'};
+export function validateBackup(file,owner){
+ if(!file||file.format!=='bum-bum-costos'||file.version!==2||file.owner!==owner||!file.data||Array.isArray(file.data))throw Error('Selecciona un respaldo de esta cuenta generado desde la versión actual de Respaldo.');
+ for(const table of TABLES){if(!Array.isArray(file.data[table])||file.data[table].length>20000)throw Error('Colección incompleta o demasiado grande: '+LABELS[table]);const seen=new Set();for(const row of file.data[table]){if(!row||typeof row.id!=='string'||!/^[\da-f]{8}(-[\da-f]{4}){3}-[\da-f]{12}$/i.test(row.id)||seen.has(row.id)||row.owner_id!==owner)throw Error('Hay identificadores repetidos, inválidos o de otra cuenta en '+LABELS[table]);seen.add(row.id);}}
+ return file;
+}
+export function previewBackup(file,current){return TABLES.map(table=>{const ids=new Set(current.data[table].map(r=>r.id));return {table,label:LABELS[table],count:file.data[table].length,existing:file.data[table].filter(row=>ids.has(row.id)).length};});}

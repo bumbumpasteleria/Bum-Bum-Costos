@@ -1,0 +1,3 @@
+import {supabase} from '../../supabase';
+export async function readEntries(owner,kind){let rows=[];for(let start=0;;start+=500){const {data,error}=await supabase.from('business_entries').select('*').eq('owner_id',owner).eq('kind',kind).order('created_at').order('id').range(start,start+499);if(error)throw error;rows.push(...data);if(data.length<500)return rows;}}
+export async function saveEntry(kind,id,details,version=0){const {data,error}=await supabase.rpc('bum_save_entry',{p_id:id,p_kind:kind,p_details:details,p_expected:version});if(error)throw Error(error.message||'No se pudo guardar.');return data;}
