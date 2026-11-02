@@ -1,0 +1,12 @@
+node_modules/
+dist/
+public/ocr/
+.qa-dist/
+qa*.html
+qa*.jsx
+qa-*.mjs
+vite.qa.config.js
+src/.qa-*
+.env
+.env.*
+!.env.example

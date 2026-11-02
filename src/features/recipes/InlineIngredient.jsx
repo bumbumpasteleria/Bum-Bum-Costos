@@ -1,6 +1,6 @@
 import {useDraftState} from '../drafts/Drafts';
 import React,{useRef,useState} from 'react';
-import {prepararArticulo,unidadesCompra} from '../../catalogoService';
+import {prepararArticulo,unidadesCompra,etiquetaUnidad} from '../../catalogoService';
 import {medidas} from '../../cloudService';
 import {normalizeIngredient} from './ingredientMatches.mjs';
 import './inlineRegistration.css';
@@ -23,7 +23,7 @@ export default function InlineIngredient({line,ingredients,onCreate,onCreated,on
  <label>Proveedor del ingrediente nuevo<input value={form.supplier} onChange={e=>change('supplier',e.target.value)} maxLength={160}/></label>
  <label>Precio total de compra RD$<input type="number" min="0" step="any" value={form.price} onChange={e=>change('price',e.target.value)}/></label>
  <label>Cantidad comprada<input type="number" min="0.001" step="any" value={form.quantity} onChange={e=>change('quantity',e.target.value)}/></label>
- <label>Unidad de la compra<select value={form.unit} onChange={e=>change('unit',e.target.value)}><option value="" disabled>Selecciona una unidad</option>{unidadesCompra.map(unit=><option key={unit}>{unit}</option>)}</select></label>
+ <label>Unidad de la compra<select value={form.unit} onChange={e=>change('unit',e.target.value)}><option value="" disabled>Selecciona una unidad</option>{unidadesCompra.map(unit=><option key={unit} value={unit}>{etiquetaUnidad(unit)}</option>)}</select></label>
  </div><small>Ejemplo: 1 kg por RD$100. El sistema calcula el precio por gramo. La cantidad que usa tu receta se conserva.</small>
  {error&&<p role="alert" className="form-error">{error}</p>}
  <div className="actions"><button type="button" onClick={save} disabled={!onCreate}>{saving?'Guardando ingrediente…':'Guardar ingrediente y vincular'}</button><button type="button" className="secondary" onClick={()=>{clearForm();onCancel();}}>Cancelar registro de ingrediente</button></div></fieldset></div>;
