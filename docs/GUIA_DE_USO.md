@@ -122,16 +122,20 @@ Copia y recupera tus registros
 
 ## Herramientas
 
-Convierte una medida rápidamente
+Convierte medidas y planifica tu preparación
 
-1. En la calculadora de recetas, elige hasta tres recetas. Indica cuánto rinde cada receta completa y usa ×2, ½, ¼ o una cantidad final deseada.
-2. Consulta cada ingrediente ajustado y la suma total. El mismo ingrediente de proveedores distintos conserva cantidades separadas.
-3. Para Apps, puedes guardar una porción o la combinación completa como receta nueva. Para encontrar el formulario, pulsa Ir a crear una receta combinada para Apps, después de elegir las recetas. Indica su rendimiento (por ejemplo seis bandejas), categoría y recetario de destino. La fórmula original se conserva.
-4. Elige Temperatura, Peso, Líquidos o Ingredientes.
-5. Escribe la cantidad y selecciona las unidades De y A.
-6. Lee el resultado. Puedes intercambiar las unidades o copiarlo.
-7. Abre las opciones de abajo solo si necesitas favoritos, medidas propias o usar cantidades de una receta.
-8. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
+1. En Planifica tu preparación, abre Moldes, Panificación o Rendimiento. Cada herramienta se abre por separado y conserva su borrador en este dispositivo para tu cuenta.
+2. En Moldes, indica forma, medidas interiores en cm, altura útil, llenado en porcentaje y cantidad, tanto del origen como del destino. El resultado es un factor geométrico. Para aplicarlo, usa ese factor en Ajustar o combinar recetas. No convierte volumen de molde a gramos ni modifica la receta.
+3. En Panificación, escribe nombres y gramos; clasifica todas las harinas y el agua. La suma de harinas es 100 %. Indica el peso de masa deseado para obtener los gramos ajustados de cada ingrediente. Leche y huevos van en Otros, sin suponer su contenido de agua. Para un prefermento, separa su harina y agua sin repetir el peso total.
+4. En Rendimiento, escribe peso inicial, peso final aprovechable y gramos por porción. Se muestran merma, rendimiento, porciones completas y sobrante. Incluye todas las adiciones en el peso inicial; no calcula una merma estándar ni registra movimientos de inventario.
+5. En la calculadora de recetas, elige hasta tres recetas. Indica cuánto rinde cada receta completa y usa ×2, ½, ¼ o una cantidad final deseada.
+6. Consulta cada ingrediente ajustado y la suma total. El mismo ingrediente de proveedores distintos conserva cantidades separadas.
+7. Para Apps, puedes guardar una porción o la combinación completa como receta nueva. Para encontrar el formulario, pulsa Ir a crear una receta combinada para Apps, después de elegir las recetas. Indica su rendimiento (por ejemplo seis bandejas), categoría y recetario de destino. La fórmula original se conserva.
+8. Elige Temperatura, Peso, Líquidos o Ingredientes.
+9. Escribe la cantidad y selecciona las unidades De y A.
+10. Lee el resultado. Puedes intercambiar las unidades o copiarlo.
+11. Abre las opciones de abajo solo si necesitas favoritos, medidas propias o usar cantidades de una receta.
+12. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 
 **Ejemplo:** En Temperatura, 180 °C equivalen a 356 °F. En Ingredientes, elige cuál estás midiendo: una taza de harina no pesa lo mismo que una de azúcar.
 

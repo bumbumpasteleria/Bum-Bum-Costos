@@ -102,8 +102,12 @@ export const MODULE_GUIDES = {
     "tip": "Conserva las copias en un lugar privado. Límite por archivo: 25 MB. La restauración es una sola operación: ante un error, no se confirma parcialmente. Para recuperar una versión de receta deben seguir disponibles su recetario e ingredientes."
   },
   "Herramientas": {
-    "title": "Convierte una medida rápidamente",
+    "title": "Convierte medidas y planifica tu preparación",
     "steps": [
+      "En Planifica tu preparación, abre Moldes, Panificación o Rendimiento. Cada herramienta se abre por separado y conserva su borrador en este dispositivo para tu cuenta.",
+      "En Moldes, indica forma, medidas interiores en cm, altura útil, llenado en porcentaje y cantidad, tanto del origen como del destino. El resultado es un factor geométrico. Para aplicarlo, usa ese factor en Ajustar o combinar recetas. No convierte volumen de molde a gramos ni modifica la receta.",
+      "En Panificación, escribe nombres y gramos; clasifica todas las harinas y el agua. La suma de harinas es 100 %. Indica el peso de masa deseado para obtener los gramos ajustados de cada ingrediente. Leche y huevos van en Otros, sin suponer su contenido de agua. Para un prefermento, separa su harina y agua sin repetir el peso total.",
+      "En Rendimiento, escribe peso inicial, peso final aprovechable y gramos por porción. Se muestran merma, rendimiento, porciones completas y sobrante. Incluye todas las adiciones en el peso inicial; no calcula una merma estándar ni registra movimientos de inventario.",
       "En la calculadora de recetas, elige hasta tres recetas. Indica cuánto rinde cada receta completa y usa ×2, ½, ¼ o una cantidad final deseada.",
       "Consulta cada ingrediente ajustado y la suma total. El mismo ingrediente de proveedores distintos conserva cantidades separadas.",
       "Para Apps, puedes guardar una porción o la combinación completa como receta nueva. Para encontrar el formulario, pulsa Ir a crear una receta combinada para Apps, después de elegir las recetas. Indica su rendimiento (por ejemplo seis bandejas), categoría y recetario de destino. La fórmula original se conserva.",
