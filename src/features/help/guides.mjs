@@ -48,7 +48,7 @@ export const MODULE_GUIDES = {
       "Para crear una receta manualmente, registra primero sus ingredientes en Ingredientes.",
       "Crea un recetario con nombre y uso: Encargos, Apps de envío o Uso general. Dentro de él, escribe una categoría como Masas, Rellenos, Coberturas o una nueva. Usa el filtro de categorías para organizar la lista.",
       "Completa nombre, recetario, rendimiento total, unidad y tipo de artículo.",
-      "Pulsa + Ingrediente, elige uno de tu catálogo y escribe su cantidad y unidad. Repite por cada ingrediente.",
+      "Pulsa + Ingrediente para alimentos o + Material o empaque para cajas, bases y otros consumibles. Elige el proveedor y la cantidad para toda la receta. Ambos se incluyen en el costo y se ajustan al multiplicar o reducir la receta.",
       "Pulsa Guardar receta. Abre Ver mis recetas y costos para desplegar tus recetas; vuelve a pulsar para ocultarlas. La lista empieza cerrada. Dentro encontrarás los filtros por uso o recetario.",
       "Para cambiar una receta guardada, pulsa Editar receta. Ajusta los campos y sus ingredientes y pulsa Guardar cambios de receta. Cancelar edición conserva la receta anterior.",
       "Busca por nombre y combina los filtros de uso y recetario. Abre Ver ingredientes y costos para consultar cantidades, proveedor y costo por unidad de rendimiento sin editar.",
@@ -76,9 +76,9 @@ export const MODULE_GUIDES = {
     "steps": [
       "Elige un recetario de Encargos y luego una receta.",
       "Indica cuántos rendimientos completos de esa receta necesitas.",
-      "Agrega materiales, decoraciones, mano de obra y otros gastos.",
+      "Revisa los ingredientes y materiales incluidos en la receta. Añade solo los materiales adicionales del encargo, decoraciones, mano de obra fija o por horas, rellenos adicionales, entrega y otros gastos.",
       "Elige Margen sobre venta o Recargo sobre costo y su porcentaje.",
-      "Revisa el costo y el precio sugerido; después pulsa Guardar cotización.",
+      "Abre Logo y presentación de mi negocio, sube tu logo, elige el color y guarda nombre y contacto. Se conserva en tu cuenta y se aplica a los PDF que generes. Completa cliente, contacto, entrega, validez y notas si los necesitas. Revisa el desglose de artículos y costos y pulsa Guardar cotización. En cotizaciones guardadas, abre Ver cotización completa. PDF para cliente muestra el producto y precio final; PDF interno con costos incluye desglose y ganancia.",
       "El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente."
     ],
     "example": "Si tu receta rinde 12 galletas y necesitas 24, coloca 2 en Cantidad de rendimientos.",
@@ -90,7 +90,7 @@ export const MODULE_GUIDES = {
       "Elige Venta general o encargo para registrar los importes habituales, o Producto de Mi nevera para descontar porciones o unidades.",
       "Para nevera, selecciona producto y cantidad vendida. El precio de venta registrado se propone automáticamente y el total se calcula como cantidad × precio. Puedes ajustar ese precio para esta venta sin cambiar el producto. Completa fecha, canal, comisión y otros gastos.",
       "Pulsa Registrar venta. El guardado y el descuento son una sola operación: si no hay suficientes productos vigentes, no se registra ninguno de los dos.",
-      "Las ventas generales requieren que indiques su costo de producción. Las ventas de nevera toman el costo de ingredientes de los lotes consumidos.",
+      "Las ventas generales requieren que indiques su costo de producción. Las ventas de nevera toman el costo de ingredientes y materiales de los lotes consumidos. Seleccionar el canal propone su precio, comisión y gastos adicionales guardados; los gastos por unidad se multiplican por la cantidad vendida. Puedes corregirlos para esta venta.",
       "En Reportes de ventas puedes filtrar por fecha o canal y descargar un PDF. En Finanzas registra los gastos adicionales del negocio."
     ],
     "example": "Una venta de RD$100 con comisión 10%, costo de producción RD$50 y otros gastos RD$5 deja una ganancia estimada de RD$35.",
@@ -171,14 +171,14 @@ export const MODULE_GUIDES = {
   "Mi nevera": {
     "title": "Tus productos listos para vender",
     "steps": [
-      "Añade un producto vinculado a una receta, selecciona si lo contarás por porción, unidad, bandeja, vaso o caja y define su mínimo y precio de venta por esa unidad. El precio es anterior a las comisiones.",
+      "Añade un producto vinculado a una receta, selecciona si lo contarás por porción, unidad, bandeja, vaso o caja y define su mínimo y precio de venta por esa unidad. El precio es anterior a las comisiones. Abre Calcular precio para apps y otros canales para configurar precios distintos por canal.",
       "Registra una preparación terminada: producto, cantidad obtenida, veces que usaste la receta, fecha y vencimiento opcional.",
-      "Consulta la cantidad disponible y abre Ver lotes, mínimo y precio. Los lotes vencidos se muestran, pero no cuentan como disponibles. Dentro de Ver lotes, mínimo y precio puedes actualizar el precio y el mínimo. Las ventas anteriores conservan sus importes; los productos antiguos no reciben un precio inventado.",
+      "En Calcular precio para apps y otros canales, elige Directa, Uber Eats o PedidosYa. Revisa el costo base por unidad, añade únicamente empaques, mano de obra y gastos adicionales, e introduce la comisión real y margen deseado. Usa el precio sugerido o escribe otro y guarda el canal. Comisión y margen deben sumar menos de 100%. Consulta la cantidad disponible y abre Ver lotes, mínimo y precio. Los lotes vencidos se muestran, pero no cuentan como disponibles. Dentro de Ver lotes, mínimo y precio puedes actualizar el precio y el mínimo. Las ventas anteriores conservan sus importes; los productos antiguos no reciben un precio inventado.",
       "Para consumo propio, pérdidas o correcciones, usa Ajustar lote, indica cuánto queda y el motivo. Registra otro lote para nuevas preparaciones.",
       "En Ventas, elige Producto de Mi nevera y la cantidad vendida. La venta descuenta primero los lotes que vencen antes."
     ],
     "example": "Una receta completa produce 12 porciones de tres leches: cantidad 12, veces 1. Vendes 3 y quedan 9.",
-    "tip": "Cada cuenta tiene sus propios productos y lotes en la nube. Las fechas de vencimiento las decides tú. El costo del lote incluye ingredientes de la receta; añade otros gastos de venta aparte. Los lotes conservan su costo aunque luego cambies precios."
+    "tip": "Cada cuenta tiene sus propios productos y lotes en la nube. Las fechas de vencimiento las decides tú. El costo del lote incluye ingredientes y materiales de la receta al producirlo; añade otros gastos de venta aparte. Los lotes conservan su costo aunque luego cambies precios."
   },
   "Producción": {
     "title": "Lo que necesitas volver a preparar",

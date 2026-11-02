@@ -5,3 +5,5 @@ Ficha desplegable en cada receta con rendimiento, costo total de ingredientes, c
 Búsqueda por nombre insensible a mayúsculas y acentos, combinada con los filtros existentes de uso y recetario. Durante una edición se deshabilita para conservar visible el borrador. La consulta no guarda ni cambia datos y solo recibe el catálogo privado ya cargado por la aplicación. Sin nuevas llamadas, tablas ni cambios de permisos.
 
 Validación: 53 pruebas (regresiones de aplicación y cinco pruebas de ficha/búsqueda), compilación de producción y navegador con datos simulados. Se comprobó búsqueda sin resultados, búsqueda por mayúsculas/espacios, ficha con costo RD$50 y RD$4.17 por unidad, y distribución de escritorio y 390 px. No se probaron cuentas ajenas ni se modificaron datos reales. Publicación pendiente de aprobación.
+
+Las recetas también admiten materiales y empaques del catálogo privado. Sus líneas muestran proveedor, cantidad y costo y se incluyen en el costo por rendimiento. Las cotizaciones añaden únicamente materiales extra, para no repetir los ya incluidos.

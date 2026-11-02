@@ -10,4 +10,4 @@ export function saleTotal(quantity,price){
  const cents=Math.round(unitPrice(price)*100);const total=Math.round((q*cents)+1e-8)/100;
  if(total>=1e12)throw Error('El total es demasiado grande.');return total;
 }
-export const priceLabel=value=>value==null?'Sin precio de venta':('RD$ '+Number(value).toLocaleString('es-DO',{minimumFractionDigits:2,maximumFractionDigits:2}));
+export const priceLabel=value=>(value==null||String(value).trim()===''||!Number.isFinite(Number(value)))?'Sin precio de venta':('RD$ '+Number(value).toLocaleString('es-DO',{minimumFractionDigits:2,maximumFractionDigits:2}));

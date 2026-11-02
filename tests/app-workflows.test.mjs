@@ -1,3 +1,4 @@
+import {buildQuote} from '../src/domain/costing/quote.mjs';
 import {matchesRecipeName} from '../src/features/recipes/recipeSearch.mjs';
 import {assessRecipeCost} from '../src/domain/costing/recipeCost.mjs';
 import test from 'node:test';
@@ -19,7 +20,7 @@ function setup(owner,isAdmin=false,initial={}){
  const react={createElement:(type,props,...children)=>({type,props:props||{},children}),Fragment:'fragment'};
  const serviceModule={exports:{}};vm.runInNewContext(booksCode,{module:serviceModule,exports:serviceModule.exports,require:()=>({supabase:{}})});
  const marker=name=>Object.assign(()=>null,{displayName:name});
- const ctx={matchesRecipeName,assessRecipeCost,React:react,console,setTimeout:fn=>fn(),structuredClone,Intl,Date,Math,Number,Object,crypto:globalThis.crypto,Blob,window:{scrollTo(){}},
+ const ctx={buildQuote,matchesRecipeName,assessRecipeCost,React:react,console,setTimeout:fn=>fn(),structuredClone,Intl,Date,Math,Number,Object,crypto:globalThis.crypto,Blob,window:{scrollTo(){}},
  URL:{createObjectURL:()=> 'blob:test',revokeObjectURL(){}},document:{getElementById:()=>null,createElement:()=>({click(){downloads++}})},
  FormData:class{constructor(form){this.values=form.values}get(key){return this.values[key]}},
  useState(initial){const i=index++;if(!hooks[i])hooks[i]={value:typeof initial==='function'?initial():initial};return [hooks[i].value,v=>hooks[i].value=typeof v==='function'?v(hooks[i].value):v]},
@@ -39,7 +40,7 @@ function setup(owner,isAdmin=false,initial={}){
  costoMateriales:(items,qty)=>items.reduce((sum,i)=>sum+(qty[i.id]||0)*i.lastUnitCost,0),detalleMateriales:()=>[],
  ...serviceModule.exports,
  RecipeCategoryField:marker('RecipeCategoryField'),ImportRecipe:marker('ImportRecipe'),Brand:marker('Brand'),AppIcon:marker('AppIcon'),HomeDashboard:marker('HomeDashboard'),DeleteRecipe:marker('DeleteRecipe'),RecipeDetails:marker('RecipeDetails'),RecipeEditor:marker('RecipeEditor'),RecipeCostStatus:marker('RecipeCostStatus'),ModuleGuide:marker('ModuleGuide'),Catalogo:marker('Catalogo'),Recetarios:marker('Recetarios'),AsignarRecetario:marker('AsignarRecetario'),RecipeReadiness:marker('RecipeReadiness'),Tools:marker('Tools'),Solicitudes:marker('Solicitudes'),PersonasConAcceso:marker('PersonasConAcceso')};
- ctx.useEntries=()=>({rows:[],setRows(){},loading:false,error:'',refresh(){}});ctx.Finance=marker('Finance');ctx.Orders=marker('Orders');ctx.Backups=marker('Backups');ctx.RecipeExtras=marker('RecipeExtras');
+ ctx.useEntries=()=>({rows:[],setRows(){},loading:false,error:'',refresh(){}});ctx.QuoteBranding=marker('QuoteBranding');ctx.QuoteSheet=marker('QuoteSheet');ctx.Finance=marker('Finance');ctx.Orders=marker('Orders');ctx.Backups=marker('Backups');ctx.RecipeExtras=marker('RecipeExtras');
  ctx.useDraftState=(_scope,initial)=>[...ctx.useState(initial),()=>{}];ctx.DraftForm=marker('DraftForm');ctx.Inventory=marker('Inventory');ctx.Fridge=marker('Fridge');ctx.SalesForm=marker('SalesForm');
  // Sustituir solo las operaciones remotas, conservar filtros reales del recetario.
  ctx.guardarRecetario=async(form,actor)=>{calls.push({type:'book',actor});return {id:crypto.randomUUID(),...form}};
