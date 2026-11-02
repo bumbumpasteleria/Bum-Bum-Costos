@@ -2,7 +2,7 @@ import {readPreparation} from './features/recipes/recipePreparation.mjs';
 import { supabase } from './supabase';
 import { adaptarIngrediente } from './ingredientsService';
 
-export const medidas = {g:['g',1],kg:['g',1000],lb:['g',453.59237],oz:['g',28.349523125],mg:['g',.001],ml:['ml',1],L:['ml',1000],'fl oz':['ml',29.5735295625],unidad:['unit',1],unit:['unit',1],docena:['unit',12]};
+export const medidas = {g:['g',1],kg:['g',1000],lb:['g',453.59237],oz:['g',28.349523125],mg:['g',.001],ml:['ml',1],L:['ml',1000],'gal US':['ml',3785.411784],'fl oz':['ml',29.5735295625],unidad:['unit',1],unit:['unit',1],docena:['unit',12]};
 export function cantidadBase(cantidad, unidad) {
   const medida=medidas[unidad], valor=Number(cantidad);
   if(!medida || !Number.isFinite(valor) || valor<=0) throw new Error('Introduce una cantidad y unidad válidas.');
@@ -15,7 +15,7 @@ function metadata(text){try{const value=JSON.parse(text);return value?.bumBum===
 export const adaptarReceta=r=>({id:r.id,name:r.name,category:metadata(r.instructions).category||'',preparation:readPreparation(r.instructions),bookId:r.recipe_book_id||null,productType:metadata(r.instructions).productType||'Otro artículo',yield:Number(r.yield_quantity),yieldUnit:r.yield_unit,scaling:metadata(r.instructions).scaling||'scalable',lines:(r.recipe_lines||[]).map(l=>({id:l.id,ingredientId:l.ingredient_id,qty:Number(l.quantity_base),unit:l.ingredients?.base_unit==='unit'?'unidad':l.ingredients?.base_unit})),editSnapshot:{name:r.name,recipe_book_id:r.recipe_book_id||null,yield_quantity:String(r.yield_quantity),yield_unit:r.yield_unit,instructions:r.instructions??null,lines:(r.recipe_lines||[]).map(l=>({id:l.id,ingredient_id:l.ingredient_id,quantity_base:String(l.quantity_base)}))}});
 const decoracion=r=>({id:r.id,name:r.name,type:r.description||'Otros',price:Number(r.unit_cost)});
 const cotizacion=r=>({...r.details,id:r.id,date:r.details?.date||r.created_at?.slice(0,10),totalCost:Number(r.total_cost),price:Number(r.quoted_price),method:r.pricing_method});
-const venta=r=>({...r.details,id:r.id,date:r.sold_at?.slice(0,10),channel:r.channel,gross:Number(r.gross_amount),productionCost:r.details?.productionCost??Number(r.cost_amount),commission:r.details?.commission??(Number(r.gross_amount)?Number(r.commission_amount)/Number(r.gross_amount)*100:0),extra:r.details?.extra||0});
+const venta=r=>({...r.details,id:r.id,date:r.sold_at?.slice(0,10),channel:r.channel,gross:Number(r.gross_amount),productionCost:r.details?.productionCost??(Number(r.cost_amount)-Number(r.details?.extra||0)),commission:r.details?.commission??(Number(r.gross_amount)?Number(r.commission_amount)/Number(r.gross_amount)*100:0),extra:r.details?.extra||0});
 export async function cargarDatos(owner) {
   const tables=['ingredients','recipes','decorations','quotes','sales','recipe_books'];
   async function leer(table,select='*'){const rows=[];for(let start=0;;start+=500){let query=supabase.from(table).select(select).eq('owner_id',owner);if(table!=='recipe_lines')query=query.order('created_at');const page=await resultado(query.order('id').range(start,start+499));rows.push(...page);if(page.length<500)return rows;}}

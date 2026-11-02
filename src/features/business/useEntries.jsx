@@ -1,0 +1,3 @@
+import {useEffect,useRef,useState} from 'react';
+import {readEntries} from './entriesService';
+export function useEntries(owner,kind){const [rows,setRows]=useState([]),[loading,setLoading]=useState(true),[error,setError]=useState('');const seq=useRef(0);async function refresh(){const token=++seq.current;setLoading(true);setError('');try{const next=await readEntries(owner,kind);if(token===seq.current)setRows(next);}catch(e){if(token===seq.current)setError('No se pudieron cargar los registros: '+e.message);}finally{if(token===seq.current)setLoading(false)}}useEffect(()=>{refresh();return()=>{seq.current++}},[owner,kind]);return {rows,setRows,loading,error,refresh};}

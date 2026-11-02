@@ -13,3 +13,5 @@ Dentro de cada recetario se organizan las recetas por categoría. Se sugieren Ma
 ## Publicación
 
 Primero habilitar supabase/migrations/20261101_categorias_recetas.sql. Añade dos funciones SECURITY INVOKER para crear/editar con categoría y preparación en la misma transacción, respetando las validaciones, concurrencia y políticas actuales. No reemplaza las funciones anteriores. Ejecutar supabase/tests/categorias_recetas.sql dentro de la transacción de la migración, en vez del COMMIT, para probar con fixtures y ROLLBACK. Publicar la aplicación solo después de habilitar las funciones.
+
+Para encontrar el guardado conjunto, elige las recetas y pulsa Ir a crear una receta combinada para Apps. El formulario también aparece abierto debajo de Todo lo que necesitas. Puedes usar 1/2 o los botones de fracciones para cada receta.

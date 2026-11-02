@@ -22,14 +22,14 @@ export function formatDecimal(value,places=4){
 }
 const unit=(id,label,group,factor,system)=>({id,label,group,factor,system});
 export const UNITS=[
- unit('mg','Miligramos (mg)','mass','0.001','SI'),unit('g','Gramos (g)','mass','1','SI'),unit('kg','Kilogramos (kg)','mass','1000','SI'),
+ unit('mg','Miligramos (mg)','mass','0.001','SI'),unit('g','Gramos (g)','mass','1','SI'),unit('kg','Kilos (kg)','mass','1000','SI'),
  unit('oz','Onzas de masa (oz)','mass','28.349523125','Internacional avoirdupois'),unit('lb','Libras de masa (lb)','mass','453.59237','Internacional avoirdupois'),
  unit('ml','Mililitros (mL)','volume','1','Métrico'),unit('L','Litros (L)','volume','1000','Métrico'),
  unit('us-floz','Onza líquida estadounidense','volume','29.5735295625','EE. UU. customary'),
  unit('us-cup','Taza estadounidense (8 fl oz US)','volume','236.5882365','EE. UU. customary'),
  unit('us-tbsp','Cucharada estadounidense','volume','14.78676478125','EE. UU. customary'),
  unit('us-tsp','Cucharadita estadounidense','volume','4.92892159375','EE. UU. customary'),
- unit('us-pint','Pinta estadounidense','volume','473.176473','EE. UU. customary'),unit('us-gallon','Galón estadounidense','volume','3785.411784','EE. UU. customary'),
+ unit('us-pint','Pinta estadounidense','volume','473.176473','EE. UU. customary'),unit('us-gallon','Galón estadounidense (3.785411784 L)','volume','3785.411784','EE. UU. customary'),
  unit('imp-floz','Onza líquida imperial','volume','28.4130625','Imperial británico'),unit('imp-pint','Pinta imperial','volume','568.26125','Imperial británico'),unit('imp-gallon','Galón imperial','volume','4546.09','Imperial británico'),
  unit('metric-tbsp','Cucharada de 15 mL','volume','15','Convención culinaria declarada'),unit('metric-tsp','Cucharadita de 5 mL','volume','5','Convención culinaria declarada'),
  unit('label-cup','Taza de etiquetado de 240 mL','volume','240','Etiquetado nutricional FDA'),
@@ -78,4 +78,3 @@ export function recipeQuantity(result,outputUnit,target){
  const qty=Number(normalized.n)/Number(normalized.d);if(!Number.isFinite(qty)||qty<=0||qty>1e12)throw Error('La cantidad no cabe en el recetario.');
  return {ingredientId:target.id,qty,unit:target.unit};
 }
-
