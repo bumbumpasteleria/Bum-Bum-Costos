@@ -92,7 +92,7 @@ Calcula un encargo
 2. Indica cuántos rendimientos completos de esa receta necesitas.
 3. Revisa los ingredientes y materiales incluidos en la receta. Añade solo los materiales adicionales del encargo, decoraciones, mano de obra fija o por horas, rellenos adicionales, entrega y otros gastos.
 4. Elige Margen sobre venta o Recargo sobre costo y su porcentaje.
-5. Abre Logo y presentación de mi negocio, sube tu logo, elige el color y guarda nombre y contacto. Se conserva en tu cuenta y se aplica a los PDF que generes. Completa cliente, contacto, entrega, validez y notas si los necesitas. Revisa el desglose de artículos y costos y pulsa Guardar cotización. En cotizaciones guardadas, abre Ver cotización completa. PDF para cliente muestra el producto y precio final; PDF interno con costos incluye desglose y ganancia.
+5. Abre Logo y presentación de mi negocio, sube tu logo, elige el color y guarda nombre y contacto. La cuenta de Bum Bum ya tiene precargados su logo original y la paleta crema, vino y rosa; las demás cuentas conservan su propia identidad. Se conserva en tu cuenta y se aplica a los PDF que generes. Completa cliente, contacto, entrega, validez y notas si los necesitas. Revisa el desglose de artículos y costos y pulsa Guardar cotización. En cotizaciones guardadas, abre Ver cotización completa. PDF para cliente muestra el producto y precio final; PDF interno con costos incluye desglose y ganancia.
 6. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 
 **Ejemplo:** Si tu receta rinde 12 galletas y necesitas 24, coloca 2 en Cantidad de rendimientos.
