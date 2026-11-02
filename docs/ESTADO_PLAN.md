@@ -2,7 +2,7 @@
 
 Revisión del 2 de noviembre de 2026. Este documento distingue el estado actual de las notas históricas de auditoría. El plan original pide entregas progresivas, sin fusionar ni publicar sin aprobación.
 
-## Entrega preparada en PR24
+## Entrega publicada en PR24
 
 - Renovación Dulce y visual e icono BB con melocotón, manteniendo el logo del negocio en cotizaciones.
 - Áreas independientes Recetarios, Nueva receta y Costos de productos; recetas visibles solo dentro de su libro, con edición en su ficha.
@@ -12,7 +12,7 @@ Revisión del 2 de noviembre de 2026. Este documento distingue el estado actual 
 - Fichas privadas de costo final por producto, mano de obra y gastos adicionales, con versiones y respaldos. Traslado explícito de costos por unidad a precios de venta.
 - Guías actualizadas. Validación con cuentas ficticias; no se usaron contraseñas ni se alteraron datos reales de las usuarias.
 
-Está implementado en la rama, aún no publicado. Requiere aplicar las dos migraciones de esta entrega y publicar la interfaz después de la aprobación.
+Publicada con aprobación de la usuaria el 2 de noviembre de 2026. Ambas migraciones aplicadas, PR24 fusionado y Cloudflare producción correcto. Comprobadas las áreas Recetarios y Costos de productos en la aplicación oficial.
 
 ## Funciones existentes que deben conservarse
 
@@ -30,3 +30,7 @@ La existencia de estas funciones no certifica cada dispositivo de cada usuaria. 
 6. Control de calidad y configuración de perfiles Pastelería/Panadería/Mixto, con criterios definidos por el negocio, sin inferir inocuidad ni fechas de consumo seguras.
 
 Cada entrega incluirá guía, pruebas de cálculo y permisos, revisión visual móvil/escritorio y PR. Los cambios de base de datos se probarán en transacciones reversibles antes de su aplicación permanente. No se sustituye una función existente por una maqueta ni se marca como completada una función solo documentada.
+
+## Siguiente entrega preparada
+
+Herramientas de moldes, porcentajes panaderos y rendimiento medido, con borradores privados por cuenta en el dispositivo. Fórmulas verificadas y guías actualizadas. No incluye aún temporizadores, concentración alimentaria, estimación de temperatura de masa ni sustituciones. Su publicación sigue requiriendo aprobación propia.
