@@ -1,3 +1,4 @@
+import * as ingredientQuantity from '../src/domain/costing/ingredientQuantity.mjs';
 import {readPreparation,validatePreparation} from '../src/features/recipes/recipePreparation.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -7,7 +8,7 @@ import {transformWithEsbuild} from 'vite';
 const root=new URL('../src/',import.meta.url);
 const compile=async(file,loader='js')=>(await transformWithEsbuild(await readFile(new URL(file,root),'utf8'),file,{loader,format:'cjs'})).code;
 const [cloudCode,catalogCode,serviceCode,editorCode]=await Promise.all([compile('cloudService.js'),compile('catalogoService.js'),compile('features/recipes/recipesService.js'),compile('features/recipes/RecipeEditor.jsx','jsx')]);
-function load(code,require,extra={}){const m={exports:{}};vm.runInNewContext(code,{module:m,exports:m.exports,require,...extra});return m.exports;}
+function load(code,require,extra={}){const m={exports:{}};vm.runInNewContext(code,{module:m,exports:m.exports,require:path=>path.includes('ingredientQuantity')?ingredientQuantity:require(path),...extra});return m.exports;}
 const owner='owner-a';
 const raw=()=>({id:'recipe',owner_id:owner,name:'Galletas',recipe_book_id:'book',yield_quantity:12,yield_unit:'unidad',instructions:'{"bumBum":1,"scaling":"scalable","productType":"Galleta","custom":"keep"}',recipe_lines:[{id:'line-1',owner_id:owner,recipe_id:'recipe',ingredient_id:'flour',quantity_base:250,ingredients:{base_unit:'g'}}]});
 function fixture(){let calls=[],response=null,failure=null,readFailure=false;const record=raw();
@@ -43,3 +44,5 @@ test('editor conserva lo escrito ante error y cancelar no guarda',async()=>{cons
 test('preparación se envía íntegra en la misma operación y conserva borrador ante error',async()=>{const ui=editor();ui.field('Pasos de preparación','1. Mezclar.\n2. Hornear.');ui.setFail(true);await ui.submit();assert.equal(ui.calls[0].form.preparation,'1. Mezclar.\n2. Hornear.');assert.equal(nodes(ui.tree).find(n=>n.type==='textarea').props.value,'1. Mezclar.\n2. Hornear.');const f=fixture();const args=f.api.prepararEdicionReceta({...f.form,preparation:'Pasos\ncon saltos'},f.recipe,f.ingredients,f.books);assert.equal(args.p_preparation,'Pasos\ncon saltos');assert.throws(()=>f.api.prepararEdicionReceta({...f.form,preparation:'x'.repeat(20001)},f.recipe,f.ingredients,f.books),/20,000/);});
 
 test('categoría se envía y valida sin perder preparación ni IDs',()=>{const f=fixture();const args=f.api.prepararEdicionReceta({...f.form,category:'Rellenos'},f.recipe,f.ingredients,f.books);assert.equal(args.p_category,'Rellenos');assert.equal(args.p_id,f.recipe.id);assert.equal(args.p_lines[0].id,'line-1');assert.throws(()=>f.api.prepararEdicionReceta({...f.form,category:'x'.repeat(81)},f.recipe,f.ingredients,f.books),/categoría/);});
+
+test('editar conserva ingredientes e incorpora materiales con su cantidad base',()=>{const f=fixture();f.ingredients.push({id:'box',name:'Caja',unit:'unidad',itemKind:'material'});f.form.lines.push({ingredientId:'box',qty:6,unit:'unidad'});const args=f.api.prepararEdicionReceta(f.form,f.recipe,f.ingredients,f.books);assert.equal(args.p_lines[1].ingredient_id,'box');assert.equal(args.p_lines[1].quantity_base,6);assert.equal(args.p_lines[0].id,'line-1');});

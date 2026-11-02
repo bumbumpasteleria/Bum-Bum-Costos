@@ -25,3 +25,5 @@ El texto extraído, las correcciones y los registros abiertos se conservan al ca
 El reconocimiento usa Tesseract.js 7.0.0 con datos españoles locales. `prebuild` y `predev` copian los recursos fijados de las dependencias a `public/ocr/`; no se versionan los archivos generados. La aplicación sirve trabajador, núcleo y datos desde su propio origen. El primer reconocimiento puede tardar más. No se envían imágenes a un servicio de inteligencia artificial. Documentación: https://github.com/naptha/tesseract.js y https://github.com/naptha/tessdata.
 
 Kilos se guarda como kg. Galón estadounidense se guarda como gal US y equivale a 3785.411784 ml. Un galón imperial escrito en el archivo requiere revisión explícita; no se interpreta como estadounidense.
+
+Flujo actualizado: primero abre un recetario y pulsa Subir receta en PDF o foto. Al terminar de leer, aparece directamente la revisión con ese recetario seleccionado. Guardar receta importada sigue siendo una acción expresa. Las equivalencias en gramos de ingredientes comprados por unidades o volumen se respetan y se conservan los gramos en la receta.

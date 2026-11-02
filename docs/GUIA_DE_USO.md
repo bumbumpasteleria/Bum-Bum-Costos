@@ -8,7 +8,7 @@ Tu punto de partida
 
 1. En computadora, usa el menú lateral. En celular, usa los accesos inferiores o pulsa Más para ver todos los módulos.
 2. Empieza por Ingredientes y registra tus compras con su precio y unidad.
-3. Pulsa Crear receta para abrir Recetas. Abre Ver mis recetas recientes para desplegar las recetas guardadas y consultar su ficha.
+3. Pulsa Crear receta para abrir Nueva receta. En Mis recetarios abre el libro que quieras consultar; sus recetas se muestran dentro. Costear un producto abre el área de costos finales.
 4. Usa el Cotizador para encargos y registra tus ventas cuando las realices.
 5. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 6. Abre Finanzas para gastos y reportes; Pedidos para encargos; Respaldo para recuperar registros o versiones de recetas.
@@ -26,6 +26,7 @@ Registra lo que usas para cocinar
 3. Selecciona la unidad: gramos, Kilos (kg), libras, mililitros o Galón estadounidense (3.785 L), entre otras. Un galón equivale exactamente a 3785.411784 ml.
 4. Pulsa Guardar ingrediente. Abre Ver ingredientes registrados para ver la lista; vuelve a pulsar para cerrarla. La lista empieza cerrada. Después podrás elegirlo al armar una receta. Para borrar un registro, pulsa Eliminar y confirma en la misma pantalla.
 5. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
+6. Para usar gramos de un ingrediente comprado por unidades o volumen, abre Usar este artículo en gramos. Indica cantidad y unidad de referencia y cuánto pesa en gramos: por ejemplo, 1 unidad pesa 50 g o 100 ml pesan 103 g. Guarda el ingrediente. La equivalencia es propia de ese artículo y proveedor; al crear otro proveedor debes medir y registrar la suya.
 
 **Ejemplo:** Si compraste 1 kg de harina por RD$150, coloca precio 150, cantidad 1 y unidad kg.
 
@@ -47,25 +48,17 @@ Añade empaques y consumibles
 
 ## Recetas
 
-Arma una receta paso a paso
+Consulta tus recetas dentro de sus recetarios
 
-1. Para traer una receta, pulsa Importar PDF o foto. Acepta PDF con texto, PDF escaneado y fotos JPG, PNG o WebP de hasta 10 MB. Las imágenes se leen en tu dispositivo, en español.
-2. Espera el reconocimiento de texto o pulsa Cancelar lectura. Revisa especialmente números, fracciones, unidades y nombres: las fotos o escaneos pueden leerse con errores. PDF: hasta 20 páginas, con un máximo de 10 escaneadas por archivo.
-3. Comprueba nombre, preparación, rendimiento e ingredientes. Los nombres incompletos muestran opciones de tu catálogo con proveedor y precio; elige la que usaste.
-4. Si falta un ingrediente, pulsa Registrar ingrediente para esa línea. Indica nombre, proveedor, precio total, cantidad comprada y unidad. Guardar ingrediente y vincular conserva la cantidad que usa la receta.
-5. Si aún no tienes recetario, pulsa Crear recetario aquí, escribe su nombre y elige Encargos, Apps de envío o Uso general.
-6. Al terminar la revisión, pulsa Guardar receta importada. Registrar ingredientes o recetarios no guarda todavía la receta.
-7. Para crear una receta manualmente, registra primero sus ingredientes en Ingredientes.
-8. Crea un recetario con nombre y uso: Encargos, Apps de envío o Uso general. Dentro de él, escribe una categoría como Masas, Rellenos, Coberturas o una nueva. Usa el filtro de categorías para organizar la lista.
-9. Completa nombre, recetario, rendimiento total, unidad y tipo de artículo.
-10. Pulsa + Ingrediente, elige uno de tu catálogo y escribe su cantidad y unidad. Repite por cada ingrediente.
-11. Pulsa Guardar receta. Abre Ver mis recetas y costos para desplegar tus recetas; vuelve a pulsar para ocultarlas. La lista empieza cerrada. Dentro encontrarás los filtros por uso o recetario.
-12. Para cambiar una receta guardada, pulsa Editar receta. Ajusta los campos y sus ingredientes y pulsa Guardar cambios de receta. Cancelar edición conserva la receta anterior.
-13. Busca por nombre y combina los filtros de uso y recetario. Abre Ver ingredientes y costos para consultar cantidades, proveedor y costo por unidad de rendimiento sin editar.
-14. Para escribir la preparación, guarda primero la receta y pulsa Editar receta. Completa Pasos de preparación y guarda los cambios. Luego podrás leerlos en Ver ingredientes y costos.
-15. Para borrar una receta, pulsa Eliminar receta, revisa su nombre y confirma Sí, eliminar receta. Cancelar eliminación la conserva. El borrado es definitivo; sus ingredientes del catálogo y cotizaciones guardadas se conservan.
-16. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
-17. En cada receta guardada, abre Foto, conservación y notas. Añade una foto y completa tus notas, alérgenos declarados e indicaciones de conservación; pulsa Guardar ficha y foto. La imagen se reduce y se guarda en tu cuenta privada.
+1. Al entrar aparecen tus recetarios. Pulsa Abrir recetario junto al nombre que quieras usar. Las recetas no se muestran fuera de su libro.
+2. Para crear uno, pulsa + Crear o gestionar recetarios, escribe nombre y uso y pulsa Crear recetario. Dentro de un recetario, Editar este recetario permite cambiar nombre o uso. Solo puedes eliminar recetarios vacíos; mueve sus recetas antes de confirmar el borrado.
+3. Dentro del recetario, pulsa Ver recetas del recetario. Puedes buscar por nombre y filtrar por categoría dentro de ese libro.
+4. Pulsa Abrir receta junto al nombre. Dentro están la consulta de ingredientes y costos básicos, foto y notas, Asignar recetario, Editar receta y Eliminar receta. La edición aparece dentro de esa misma ficha.
+5. Guardar cambios de receta conserva su ID y las cotizaciones anteriores. Si otra sesión modificó la receta, vuelve a abrirla antes de guardar. Cancelar edición conserva la versión guardada.
+6. Para mover una receta, elige otro recetario dentro de su ficha y pulsa Asignar recetario. Para eliminar, revisa el nombre y confirma. Puede bloquearse si hay referencias; el catálogo y cotizaciones anteriores se conservan.
+7. Para ingresar otra, pulsa Agregar receta a este recetario: abre el área Nueva receta con el destino seleccionado. Allí puedes subir PDF/foto o escribirla.
+8. Para sumar mano de obra y gastos, pulsa Calcular costo final de la receta. Se abrirá Costos de productos con ese artículo seleccionado.
+9. En Foto, conservación y notas guarda tu fotografía para las portadas. Sin foto se muestra una imagen de referencia identificada. Las indicaciones de conservación y alérgenos las completas tú.
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 
@@ -90,9 +83,9 @@ Calcula un encargo
 
 1. Elige un recetario de Encargos y luego una receta.
 2. Indica cuántos rendimientos completos de esa receta necesitas.
-3. Agrega materiales, decoraciones, mano de obra y otros gastos.
+3. Revisa los ingredientes y materiales incluidos en la receta. Añade solo los materiales adicionales del encargo, decoraciones, mano de obra fija o por horas, rellenos adicionales, entrega y otros gastos.
 4. Elige Margen sobre venta o Recargo sobre costo y su porcentaje.
-5. Revisa el costo y el precio sugerido; después pulsa Guardar cotización.
+5. Abre Logo y presentación de mi negocio, sube tu logo, elige el color y guarda nombre y contacto. Un PNG con transparencia conserva el fondo transparente para integrarlo en la cotización. La cuenta de Bum Bum ya tiene precargados su logo original y la paleta crema, vino y rosa; las demás cuentas conservan su propia identidad. Se conserva en tu cuenta y se aplica a los PDF que generes. Completa cliente, contacto, entrega, validez y notas si los necesitas. Revisa el desglose de artículos y costos y pulsa Guardar cotización. En cotizaciones guardadas, abre Ver cotización completa. PDF para cliente muestra el producto y precio final; PDF interno con costos incluye desglose y ganancia.
 6. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 
 **Ejemplo:** Si tu receta rinde 12 galletas y necesitas 24, coloca 2 en Cantidad de rendimientos.
@@ -106,7 +99,7 @@ Registra una venta real
 1. Elige Venta general o encargo para registrar los importes habituales, o Producto de Mi nevera para descontar porciones o unidades.
 2. Para nevera, selecciona producto y cantidad vendida. El precio de venta registrado se propone automáticamente y el total se calcula como cantidad × precio. Puedes ajustar ese precio para esta venta sin cambiar el producto. Completa fecha, canal, comisión y otros gastos.
 3. Pulsa Registrar venta. El guardado y el descuento son una sola operación: si no hay suficientes productos vigentes, no se registra ninguno de los dos.
-4. Las ventas generales requieren que indiques su costo de producción. Las ventas de nevera toman el costo de ingredientes de los lotes consumidos.
+4. Las ventas generales requieren que indiques su costo de producción. Las ventas de nevera toman el costo de ingredientes y materiales de los lotes consumidos. Seleccionar el canal propone su precio, comisión y gastos adicionales guardados; los gastos por unidad se multiplican por la cantidad vendida. Puedes corregirlos para esta venta.
 5. En Reportes de ventas puedes filtrar por fecha o canal y descargar un PDF. En Finanzas registra los gastos adicionales del negocio.
 
 **Ejemplo:** Una venta de RD$100 con comisión 10%, costo de producción RD$50 y otros gastos RD$5 deja una ganancia estimada de RD$35.
@@ -178,6 +171,7 @@ Lo que tienes para preparar
 1. Revisa cada ingrediente y material, separado por proveedor.
 2. Pulsa Actualizar existencias e indica la cantidad disponible y el mínimo para reponer. Selecciona la unidad compatible que prefieras, por ejemplo kilos o galones; se guarda su equivalencia en la unidad base. Cero es válido.
 3. Guarda existencias. La lista de Compras se actualiza inmediatamente. Si otra sesión cambió cantidades, actualiza y revisa el ajuste antes de guardarlo.
+4. Después de registrar producción en Mi nevera, las existencias de ingredientes y materiales se actualizan automáticamente. Cambiar o guardar una receta no descuenta inventario. Las cantidades pueden incluir fracciones de unidad cuando se utilizan por peso.
 
 **Ejemplo:** Harina: quedan 500 g, mínimo 500 g. Aparece en Compras.
 
@@ -190,6 +184,7 @@ Qué necesitas reponer
 1. Aquí aparecen ingredientes y materiales con cantidad disponible igual o menor a su mínimo.
 2. Cada proveedor aparece por separado. Los artículos sin existencias o mínimo registrados requieren completarlos en Inventario.
 3. Cuando repongas, pulsa Actualizar existencias y registra la cantidad real. Al superar el mínimo, el artículo sale de Compras.
+4. Los consumos registrados al producir actualizan las existencias; si un artículo llega a su mínimo, aparece en esta lista.
 
 **Ejemplo:** Si una caja tiene mínimo 5 y quedan 5 unidades, aparece pendiente; si registras 20, deja de aparecer.
 
@@ -199,15 +194,18 @@ Qué necesitas reponer
 
 Tus productos listos para vender
 
-1. Añade un producto vinculado a una receta, selecciona si lo contarás por porción, unidad, bandeja, vaso o caja y define su mínimo y precio de venta por esa unidad. El precio es anterior a las comisiones.
+1. Añade un producto vinculado a una receta, selecciona si lo contarás por porción, unidad, bandeja, vaso o caja y define su mínimo y precio de venta por esa unidad. El precio es anterior a las comisiones. Pulsa Ver costo final y precios para abrir Costos de productos y configurar precios por canal.
 2. Registra una preparación terminada: producto, cantidad obtenida, veces que usaste la receta, fecha y vencimiento opcional.
-3. Consulta la cantidad disponible y abre Ver lotes, mínimo y precio. Los lotes vencidos se muestran, pero no cuentan como disponibles. Dentro de Ver lotes, mínimo y precio puedes actualizar el precio y el mínimo. Las ventas anteriores conservan sus importes; los productos antiguos no reciben un precio inventado.
+3. En Costos de productos, abre el cálculo de precios por canal y elige Directa, Uber Eats o PedidosYa. Revisa el costo base por unidad, añade únicamente empaques, mano de obra y gastos adicionales, e introduce la comisión real y margen deseado. Usa el precio sugerido o escribe otro y guarda el canal. Comisión y margen deben sumar menos de 100%. Consulta la cantidad disponible y abre Ver lotes, mínimo y precio. Los lotes vencidos se muestran, pero no cuentan como disponibles. Dentro de Ver lotes, mínimo y precio puedes actualizar el precio y el mínimo. Las ventas anteriores conservan sus importes; los productos antiguos no reciben un precio inventado.
 4. Para consumo propio, pérdidas o correcciones, usa Ajustar lote, indica cuánto queda y el motivo. Registra otro lote para nuevas preparaciones.
 5. En Ventas, elige Producto de Mi nevera y la cantidad vendida. La venta descuenta primero los lotes que vencen antes.
+6. La portada utiliza la foto guardada en la ficha de la receta vinculada. Si no hay foto, verás una imagen de referencia; las cantidades y estados siempre proceden de tus lotes.
+7. Registrar una preparación descuenta ingredientes y materiales del inventario en una sola operación. Las recetas en gramos se convierten con la equivalencia de cada artículo. Si faltan existencias, no se guarda el lote ni se descuenta nada. Repetir el mismo intento no descuenta dos veces. Los lotes anteriores conservan su costo y no se descuentan retroactivamente. Abre Ver ingredientes descontados dentro de un lote nuevo para consultar su consumo.
+8. Mi nevera se dedica a existencias, lotes, producción y precio registrado. La ficha completa con mano de obra y gastos se gestiona en Costos de productos.
 
 **Ejemplo:** Una receta completa produce 12 porciones de tres leches: cantidad 12, veces 1. Vendes 3 y quedan 9.
 
-**Consejo:** Cada cuenta tiene sus propios productos y lotes en la nube. Las fechas de vencimiento las decides tú. El costo del lote incluye ingredientes de la receta; añade otros gastos de venta aparte. Los lotes conservan su costo aunque luego cambies precios.
+**Consejo:** Cada cuenta tiene sus propios productos y lotes en la nube. Las fechas de vencimiento las decides tú. El costo del lote incluye ingredientes y materiales de la receta al producirlo; añade otros gastos de venta aparte. Los lotes conservan su costo aunque luego cambies precios.
 
 ## Producción
 
@@ -259,3 +257,39 @@ Organiza tus encargos y entregas
 **Ejemplo:** Un encargo de RD$2,000 con anticipo de RD$500 muestra RD$1,500 de saldo.
 
 **Consejo:** Guardar el pedido no registra una venta ni descuenta productos de la nevera. Registra el ingreso real una sola vez en Ventas para evitar duplicados. El borrador se conserva en este dispositivo.
+
+## Nueva receta
+
+Añade una receta a un recetario
+
+1. Esta área es solo para ingresar recetas. Elige Recetario destino; si aún no tienes ninguno, crea uno aquí con nombre y uso.
+2. Elige Subir receta en PDF o foto o Escribir nueva receta. Las recetas actuales se consultan en Recetarios y no se mezclan con este formulario.
+3. Al subir un PDF o foto, se lee y aparece directamente la revisión. Comprueba nombre, rendimiento, preparación, cantidades, unidades y proveedor antes de Guardar receta importada. Puedes cancelar la revisión y corregir el texto reconocido.
+4. Se acepta una receta por archivo: PDF con texto o escaneado, JPG, PNG o WebP de hasta 10 MB. PDF: hasta 20 páginas, con un máximo de 10 escaneadas. Se procesa en tu dispositivo; el archivo no se guarda como borrador.
+5. Los nombres incompletos ofrecen coincidencias de tu catálogo. Si hay varias marcas o proveedores, elige el que usaste. Si falta un ingrediente, pulsa Registrar ingrediente para esa línea; guardar el ingrediente no guarda todavía la receta.
+6. Para escribir una receta, completa nombre, recetario, categoría, rendimiento y tipo de artículo. Añade alimentos con + Ingrediente y consumibles con + Material o empaque; ambos forman parte del costo.
+7. Proporcional permite media receta, el doble u otra proporción. Por tandas completas redondea hacia arriba al cotizar: 1,5 tandas cuentan como 2. La calculadora de Herramientas permite ajustar una proporción expresamente.
+8. Puedes usar gramos de ingredientes comprados por unidades o volumen si registraste su equivalencia en Ingredientes. La receta conserva los gramos; los costos y la producción utilizan la cantidad equivalente de inventario. No se supone el peso de huevos ni de líquidos.
+9. Comprueba el recetario elegido y pulsa Guardar receta importada o Guardar receta. Después abre Recetarios, ese recetario y Ver recetas del recetario para consultarla.
+10. Los borradores se conservan por cuenta en este dispositivo. El archivo no se guarda; se conserva el texto reconocido y el formulario de revisión.
+
+**Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
+
+**Consejo:** Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar. Los ingredientes y recetarios creados durante la importación permanecen guardados aunque canceles la receta. La cantidad de compra es distinta de la cantidad usada en la receta; no se convierten tazas a gramos automáticamente. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador. Los alérgenos e indicaciones los completas tú; la aplicación no los deduce. En Respaldo puedes consultar las versiones anteriores guardadas desde esta actualización.
+
+## Costos de productos
+
+Calcula el costo del artículo terminado
+
+1. Elige un recetario y la receta o producto. También puedes entrar desde Calcular costo final dentro de una receta abierta o Ver costo final y precios en Mi nevera.
+2. Indica cuántas veces usas la receta. Se suman ingredientes y materiales con los precios actuales. La receta guardada se conserva.
+3. Añade mano de obra como monto fijo o como horas por tarifa, y los gastos adicionales de empaque, acabados, entrega u otros. No repitas los materiales ya incluidos en la receta; añade los consumibles de inventario a la receta si deben descontarse al producir.
+4. Revisa costo completo, cantidad obtenida y costo por porción o unidad de rendimiento. Guardar costo del producto conserva esta ficha privada. Los cambios de ingredientes actualizan el cálculo actual; el último costo guardado queda indicado para comparar.
+5. Si el producto ya está en Mi nevera, abre Precios de venta por canal. Si su unidad de venta es distinta del rendimiento, indica cuántas porciones o unidades del rendimiento lleva cada unidad vendida; no se supone una equivalencia.
+6. En el canal elegido, pulsa Usar costos de la ficha del producto para trasladar costo base, mano de obra, empaque y otros gastos sin duplicarlos. Introduce la comisión real de la aplicación y el margen deseado, elige el precio y guarda el canal.
+7. En Ventas se usan el precio del canal y los gastos adicionales por unidad. El costo real de ingredientes corresponde a los lotes vendidos, por lo que una venta de un lote antiguo puede tener otra ganancia.
+8. Para un encargo particular usa el Cotizador. Para cambiar cantidades, ingredientes o preparación usa la receta dentro de Recetarios. Actualizar costos recarga las fichas; Descartar cambios recupera la última guardada.
+
+**Ejemplo:** Una receta rinde 12 porciones. Ingredientes y materiales RD$42, mano de obra RD$240 y gastos RD$18: costo completo RD$300, o RD$25 por porción.
+
+**Consejo:** El costo completo no es el precio de venta. La comisión y el margen se aplican al calcular el precio de cada canal. Cada cuenta conserva sus propias fichas y su historial.

@@ -60,6 +60,7 @@ export async function guardarIngrediente({
 export function adaptarIngrediente(registro) {
   return {
     id: registro.id,
+    gramsPerBaseUnit: registro.grams_per_base_unit==null?null:Number(registro.grams_per_base_unit),
     stockQuantity: registro.stock_quantity == null ? null : Number(registro.stock_quantity),
     minimumStock: registro.minimum_stock == null ? null : Number(registro.minimum_stock),
     name: registro.name,

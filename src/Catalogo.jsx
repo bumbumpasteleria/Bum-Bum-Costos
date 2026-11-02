@@ -1,10 +1,11 @@
+import IngredientEquivalence from './IngredientEquivalence';
 import {useDraftState} from './features/drafts/Drafts';
 import './catalogo.css';
 import React,{useRef,useState} from 'react';
 import { medidas } from './cloudService';
 import { etiquetaArticulo,unidadesCompra,etiquetaUnidad } from './catalogoService';
 
-const vacio=()=>({name:'',supplier:'',price:'',quantity:'',unit:'g'});
+const vacio=()=>({name:'',supplier:'',price:'',quantity:'',unit:'g',equivalenceQuantity:'1',equivalenceGrams:'',equivalenceUnit:''});
 const dinero=n=>'RD$ '+Number(n).toLocaleString('es-DO',{minimumFractionDigits:2,maximumFractionDigits:6});
 export default function Catalogo({kind,items,onSave,onDelete,busy}) {
   const material=kind==='material',nombre=material?'material':'ingrediente';
@@ -13,9 +14,9 @@ export default function Catalogo({kind,items,onSave,onDelete,busy}) {
   const [listOpen,setListOpen]=useState(false);
   const proveedores=[...new Set(items.map(i=>i.supplier).filter(Boolean))];
   const unidades=unidadesCompra.filter(u=>!original||medidas[u][0]===medidas[original.unit]?.[0]);
-  function change(e){setForm(actual=>({...actual,[e.target.name]:e.target.value}));setError('');}
+  function change(e){const {name,value}=e.target;setForm(actual=>({...actual,...(name==='unit'&&medidas[value]?.[0]!==medidas[actual.unit]?.[0]?{equivalenceGrams:'',equivalenceQuantity:'1',equivalenceUnit:''}:{}),[name]:value}));setError('');}
   function limpiar(){setOriginal(null);setError('');setForm({...vacio(),unit:material?'unidad':'g'});}
-  function editar(item,otroProveedor=false){setError('');setOriginal(otroProveedor?null:item);setForm({name:item.name,supplier:otroProveedor?'':item.supplier||'',price:otroProveedor?'':String(item.purchasePrice??item.price),quantity:String(item.purchaseQuantity??item.packageQty??1),unit:item.purchaseUnit||item.unit});formRef.current?.scrollIntoView({behavior:'smooth',block:'start'});}
+  function editar(item,otroProveedor=false){setError('');setOriginal(otroProveedor?null:item);setForm({name:item.name,supplier:otroProveedor?'':item.supplier||'',price:otroProveedor?'':String(item.purchasePrice??item.price),quantity:String(item.purchaseQuantity??item.packageQty??1),unit:item.purchaseUnit||item.unit,equivalenceQuantity:'1',equivalenceUnit:item.unit,equivalenceGrams:otroProveedor||item.gramsPerBaseUnit==null?'':String(item.gramsPerBaseUnit)});formRef.current?.scrollIntoView({behavior:'smooth',block:'start'});}
   async function guardar(e){e.preventDefault();if(lock.current)return;lock.current=true;setSaving(true);setError('');try{await onSave(form,kind,original);limpiar();}catch(err){setError('No se pudo confirmar el guardado: '+err.message);}finally{lock.current=false;setSaving(false);}}
   async function eliminar(item){if(lock.current)return;lock.current=true;setSaving(true);setDeleteError('');try{await onDelete(item);if(original?.id===item.id)limpiar();setDeleting(null);}catch(err){setDeleteError(err.message);}finally{lock.current=false;setSaving(false)}}
   return <>
@@ -33,7 +34,7 @@ export default function Catalogo({kind,items,onSave,onDelete,busy}) {
             <label>Cantidad de esa compra<input name="quantity" type="number" min="0.001" step="any" value={form.quantity} onChange={change} required/></label>
             <label>Unidad de compra<select name="unit" value={form.unit} onChange={change}>{unidades.map(u=><option key={u} value={u}>{etiquetaUnidad(u)}</option>)}</select></label>
           </div>
-          {original&&<p>La unidad debe ser compatible con la registrada. Cambiar precio o proveedor conserva el inventario y las referencias existentes.</p>}
+          <IngredientEquivalence form={form} onChange={(key,value)=>setForm(old=>({...old,[key]:value}))}/>{original&&<p>La unidad debe ser compatible con la registrada. Cambiar precio o proveedor conserva el inventario y las referencias existentes.</p>}
           {error&&<p role="alert" className="form-error">{error}</p>}
           <div className="actions"><button type="submit">{saving?'Guardando…':original?'Guardar cambios':'Guardar '+nombre}</button><button type="button" className="secondary" onClick={limpiar}>{original?'Cancelar edición':'Limpiar formulario'}</button></div>
         </fieldset>

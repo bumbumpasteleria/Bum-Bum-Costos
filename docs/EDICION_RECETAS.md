@@ -18,3 +18,5 @@ La función actualizar_receta_recetario_bum_bum trabaja en una sola transacción
 La migración 20261031_editar_receta.sql todavía NO está aplicada persistentemente. Requiere aprobación antes de aplicarla y publicar la aplicación. Primero aplicar la función compatible con la versión anterior, luego publicar la interfaz y comprobar el flujo con una receta de prueba autorizada. Las pruebas simuladas no sustituyen esa comprobación final en producción.
 
 La preparación con fotos, subrecetas e historial de versiones queda para futuras entregas. El rediseño completo sigue registrado en PENDIENTES_DISENO.md.
+
+Acceso actualizado: Recetas → Abrir recetario → Ver recetas del recetario → Abrir receta. La edición, asignación y eliminación se realizan dentro de esa ficha. Consulta RECETARIOS_Y_EQUIVALENCIAS.md para unidades preferidas y consumo al producir.

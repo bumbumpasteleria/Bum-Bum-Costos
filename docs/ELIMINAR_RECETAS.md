@@ -7,3 +7,5 @@ Inspección de producción de solo lectura: recipe_lines.recipe_id referencia re
 Validación: 63 pruebas de aplicación, servicios y componentes; compilación de producción (99 módulos). Prueba SQL con cuentas sintéticas y ROLLBACK ejecutada: borrado propio y líneas, bloqueo de cuenta ajena, conservación de ingrediente/precio/existencias, recetario y cotización. No se eliminaron recetas reales. Navegador con App real y servicio simulado: cancelar, error conservando receta, confirmación quitando tarjeta y revisión de escritorio/celular a 390 px. El contraste del botón se corrigió durante la revisión móvil.
 
 Publicación pendiente de aprobación. La funcionalidad permite que cada usuaria elimine sus propias recetas; no concede a la administradora acceso a recetas de otras cuentas. No ofrece papelera ni restauración. La confirmación del usuario final es necesaria para cada borrado.
+
+Acceso actualizado: Recetas → Abrir recetario → Ver recetas del recetario → Abrir receta. La edición, asignación y eliminación se realizan dentro de esa ficha. Consulta RECETARIOS_Y_EQUIVALENCIAS.md para unidades preferidas y consumo al producir.
