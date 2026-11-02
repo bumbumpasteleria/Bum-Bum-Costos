@@ -10,10 +10,11 @@ Tu punto de partida
 2. Empieza por Ingredientes y registra tus compras con su precio y unidad.
 3. Pulsa Crear receta para abrir Recetas. Desde Tu recetario puedes abrir una receta guardada y consultar su ficha.
 4. Usa el Cotizador para encargos y registra tus ventas cuando las realices.
+5. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 
 **Ejemplo:** Puedes tener un recetario «Galletas para apps» y otro «Postres por encargo».
 
-**Consejo:** Cada cuenta tiene su propio espacio. Cierra sesión cuando termines en un equipo compartido.
+**Consejo:** Cada cuenta tiene su propio espacio. Cierra sesión cuando termines en un equipo compartido. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador.
 
 ## Ingredientes
 
@@ -23,10 +24,11 @@ Registra lo que usas para cocinar
 2. Coloca el precio total pagado y la cantidad de esa compra.
 3. Selecciona la unidad: g, kg, lb, ml u otra disponible.
 4. Pulsa Guardar ingrediente. Después podrás elegirlo al armar una receta. Para borrar un registro, pulsa Eliminar y confirma en la misma pantalla.
+5. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 
 **Ejemplo:** Si compraste 1 kg de harina por RD$150, coloca precio 150, cantidad 1 y unidad kg.
 
-**Consejo:** No se puede eliminar un ingrediente usado en recetas, compras o movimientos. Editar actualiza ese registro. Otro proveedor crea una variante independiente para conservar su precio. No cambies gramos por mililitros: requieren una equivalencia del ingrediente.
+**Consejo:** No se puede eliminar un ingrediente usado en recetas, compras o movimientos. Editar actualiza ese registro. Otro proveedor crea una variante independiente para conservar su precio. No cambies gramos por mililitros: requieren una equivalencia del ingrediente. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador.
 
 ## Materiales
 
@@ -36,10 +38,11 @@ Añade empaques y consumibles
 2. Indica el proveedor, precio total, cantidad comprada y unidad.
 3. Guarda el material. Usa Editar para actualizarlo u Otro proveedor para una variante.
 4. En el Cotizador, selecciona cuántos materiales llevará el encargo.
+5. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 
 **Ejemplo:** Un paquete de 10 cajas por RD$200: precio 200, cantidad 10 y unidad unidad. Cada caja costará RD$20.
 
-**Consejo:** No repitas el mismo empaque en Materiales y en Otros gastos de empaque de la cotización.
+**Consejo:** No repitas el mismo empaque en Materiales y en Otros gastos de empaque de la cotización. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador.
 
 ## Recetas
 
@@ -59,10 +62,11 @@ Arma una receta paso a paso
 12. Busca por nombre y combina los filtros de uso y recetario. Abre Ver ingredientes y costos para consultar cantidades, proveedor y costo por unidad de rendimiento sin editar.
 13. Para escribir la preparación, guarda primero la receta y pulsa Editar receta. Completa Pasos de preparación y guarda los cambios. Luego podrás leerlos en Ver ingredientes y costos.
 14. Para borrar una receta, pulsa Eliminar receta, revisa su nombre y confirma Sí, eliminar receta. Cancelar eliminación la conserva. El borrado es definitivo; sus ingredientes del catálogo y cotizaciones guardadas se conservan.
+15. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 
-**Consejo:** Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar. Los ingredientes y recetarios creados durante la importación permanecen guardados aunque canceles la receta. La cantidad de compra es distinta de la cantidad usada en la receta; no se convierten tazas a gramos automáticamente.
+**Consejo:** Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar. Los ingredientes y recetarios creados durante la importación permanecen guardados aunque canceles la receta. La cantidad de compra es distinta de la cantidad usada en la receta; no se convierten tazas a gramos automáticamente. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador.
 
 ## Decoraciones
 
@@ -71,10 +75,11 @@ Prepara tu catálogo de decoraciones
 1. Escribe el nombre de la decoración y elige su tipo.
 2. Coloca el costo por una unidad y guarda.
 3. En el Cotizador, selecciona la cantidad que llevará el encargo.
+4. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 
 **Ejemplo:** Si cada topper cuesta RD$50, registra 50 como costo por unidad. Dos toppers sumarán RD$100.
 
-**Consejo:** Aquí registras el costo de la decoración; el precio de venta se calcula en el Cotizador.
+**Consejo:** Aquí registras el costo de la decoración; el precio de venta se calcula en el Cotizador. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador.
 
 ## Cotizador
 
@@ -85,23 +90,24 @@ Calcula un encargo
 3. Agrega materiales, decoraciones, mano de obra y otros gastos.
 4. Elige Margen sobre venta o Recargo sobre costo y su porcentaje.
 5. Revisa el costo y el precio sugerido; después pulsa Guardar cotización.
+6. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 
 **Ejemplo:** Si tu receta rinde 12 galletas y necesitas 24, coloca 2 en Cantidad de rendimientos.
 
-**Consejo:** Las recetas de Apps de envío no aparecen aquí. Si no hay opciones, crea un recetario de Encargos y asigna la receta. Margen y recargo son métodos distintos. No podrás guardar una cotización si la receta muestra Costo incompleto.
+**Consejo:** Las recetas de Apps de envío no aparecen aquí. Si no hay opciones, crea un recetario de Encargos y asigna la receta. Margen y recargo son métodos distintos. No podrás guardar una cotización si la receta muestra Costo incompleto. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador.
 
 ## Ventas
 
 Registra una venta real
 
-1. Selecciona la fecha y el canal de venta.
-2. Escribe una descripción y el monto bruto vendido.
-3. Indica la comisión en porcentaje, el costo de producción y otros gastos.
-4. Pulsa Registrar venta y revisa la ganancia estimada de la lista.
+1. Elige Venta general o encargo para registrar los importes habituales, o Producto de Mi nevera para descontar porciones o unidades.
+2. Para nevera, selecciona producto y cantidad vendida. Completa fecha, canal, venta bruta, comisión y otros gastos.
+3. Pulsa Registrar venta. El guardado y el descuento son una sola operación: si no hay suficientes productos vigentes, no se registra ninguno de los dos.
+4. Las ventas generales requieren que indiques su costo de producción. Las ventas de nevera toman el costo de ingredientes de los lotes consumidos.
 
 **Ejemplo:** Una venta de RD$100 con comisión 10%, costo de producción RD$50 y otros gastos RD$5 deja una ganancia estimada de RD$35.
 
-**Consejo:** El costo de producción se introduce manualmente. Registrar una venta no descuenta ingredientes ni genera una producción automáticamente.
+**Consejo:** Registra tus ventas diarias. Los lotes vencidos no se venden. Si se interrumpe la conexión, el formulario se conserva; reintentar el mismo registro evita duplicar la venta de nevera.
 
 ## Respaldo
 
@@ -110,10 +116,11 @@ Descarga una copia de tus registros
 1. Espera a que terminen de cargar tus datos.
 2. Pulsa Descargar respaldo JSON.
 3. Guarda el archivo en una carpeta que puedas encontrar después.
+4. El respaldo incluye productos, lotes y movimientos de Mi nevera junto con los registros de los demás módulos. Los borradores locales no se incluyen.
 
 **Ejemplo:** Puedes conservar una copia antes de reorganizar tus recetarios.
 
-**Consejo:** La restauración todavía no está disponible. El archivo no es una copia completa de Supabase y no incluye los favoritos y calibraciones locales de Herramientas. Para usar otro dispositivo, inicia sesión con tu misma cuenta.
+**Consejo:** La restauración todavía no está disponible. El archivo no es una copia completa de Supabase y no incluye los favoritos y calibraciones locales de Herramientas. Para usar otro dispositivo, inicia sesión con tu misma cuenta. Si no se pueden leer todos los datos de la nube, se muestra un error y no se descarga una copia incompleta.
 
 ## Herramientas
 
@@ -126,10 +133,11 @@ Convierte una medida rápidamente
 5. Escribe la cantidad y selecciona las unidades De y A.
 6. Lee el resultado. Puedes intercambiar las unidades o copiarlo.
 7. Abre las opciones de abajo solo si necesitas favoritos, medidas propias o usar cantidades de una receta.
+8. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 
 **Ejemplo:** En Temperatura, 180 °C equivalen a 356 °F. En Ingredientes, elige cuál estás midiendo: una taza de harina no pesa lo mismo que una de azúcar.
 
-**Consejo:** Las equivalencias de ingredientes pueden ser aproximadas. Favoritos y medidas propias se guardan solo en este dispositivo, separados por cuenta. No hace falta conectar una receta para convertir.
+**Consejo:** Las equivalencias de ingredientes pueden ser aproximadas. Favoritos y medidas propias se guardan solo en este dispositivo, separados por cuenta. No hace falta conectar una receta para convertir. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador.
 
 ## Solicitudes
 
@@ -155,3 +163,53 @@ Consulta quién puede ingresar
 **Ejemplo:** Contraseña configurada significa que la persona completó ese paso. Falta crear su contraseña indica que aún necesita activarla.
 
 **Consejo:** La ficha muestra los datos recibidos; No proporcionado indica que ese campo no se completó. Cada persona conserva su espacio privado. Las funciones administrativas no se comparten con usuarios normales.
+
+## Inventario
+
+Lo que tienes para preparar
+
+1. Revisa cada ingrediente y material, separado por proveedor.
+2. Pulsa Actualizar existencias e indica la cantidad disponible en su unidad base y el mínimo para reponer. Cero es válido.
+3. Guarda existencias. La lista de Compras se actualiza inmediatamente. Si otra sesión cambió cantidades, actualiza y revisa el ajuste antes de guardarlo.
+
+**Ejemplo:** Harina: quedan 500 g, mínimo 500 g. Aparece en Compras.
+
+**Consejo:** El mínimo es la señal para reponer, no una cantidad de compra sugerida. Los precios se conservan; las ventas de nevera no descuentan ingredientes automáticamente.
+
+## Compras
+
+Qué necesitas reponer
+
+1. Aquí aparecen ingredientes y materiales con cantidad disponible igual o menor a su mínimo.
+2. Cada proveedor aparece por separado. Los artículos sin existencias o mínimo registrados requieren completarlos en Inventario.
+3. Cuando repongas, pulsa Actualizar existencias y registra la cantidad real. Al superar el mínimo, el artículo sale de Compras.
+
+**Ejemplo:** Si una caja tiene mínimo 5 y quedan 5 unidades, aparece pendiente; si registras 20, deja de aparecer.
+
+**Consejo:** Esta lista se calcula desde tu inventario en la nube. No borres el artículo ni cambies su precio para marcarlo como comprado.
+
+## Mi nevera
+
+Tus productos listos para vender
+
+1. Añade un producto vinculado a una receta, selecciona si lo contarás por porción, unidad, bandeja, vaso o caja y define su mínimo.
+2. Registra una preparación terminada: producto, cantidad obtenida, veces que usaste la receta, fecha y vencimiento opcional.
+3. Consulta la cantidad disponible y abre Ver lotes y ajustar mínimo. Los lotes vencidos se muestran, pero no cuentan como disponibles.
+4. Para consumo propio, pérdidas o correcciones, usa Ajustar lote, indica cuánto queda y el motivo. Registra otro lote para nuevas preparaciones.
+5. En Ventas, elige Producto de Mi nevera y la cantidad vendida. La venta descuenta primero los lotes que vencen antes.
+
+**Ejemplo:** Una receta completa produce 12 porciones de tres leches: cantidad 12, veces 1. Vendes 3 y quedan 9.
+
+**Consejo:** Cada cuenta tiene sus propios productos y lotes en la nube. Las fechas de vencimiento las decides tú. El costo del lote incluye ingredientes de la receta; añade otros gastos de venta aparte. Los lotes conservan su costo aunque luego cambies precios.
+
+## Producción
+
+Lo que necesitas volver a preparar
+
+1. Consulta los productos preparados cuya disponibilidad llegó al mínimo definido en Mi nevera.
+2. Revisa el producto y registra una preparación terminada con su cantidad, receta utilizada y fechas.
+3. Al reponer por encima del mínimo, desaparece de los pendientes. Las ventas y los vencimientos pueden volver a incluirlo.
+
+**Ejemplo:** Mínimo de tres leches: 3 porciones. Quedan 3; aparece Preparar más. Preparas 12 y queda repuesto.
+
+**Consejo:** Esta pantalla refleja reposición de productos preparados. No registra producción ficticia ni descuenta ingredientes al abrirla.

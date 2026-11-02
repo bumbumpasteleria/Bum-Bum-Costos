@@ -1,0 +1,29 @@
+import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import {readFile} from 'node:fs/promises';import {transformWithEsbuild} from 'vite';
+import * as store from '../src/features/drafts/draftStore.mjs';
+import {minimumReached,fridgeSummary,nonnegative} from '../src/features/stock/stock.mjs';
+const root=new URL('../src/',import.meta.url);
+const compile=async(path,loader='js')=>(await transformWithEsbuild(await readFile(new URL(path,root),'utf8'),path,{format:'cjs',loader})).code;
+const draftsCode=await compile('features/drafts/Drafts.jsx','jsx');
+function memory(){const data=new Map();return {getItem:key=>data.get(key)??null,setItem:(key,value)=>data.set(key,value),data};}
+function hooks(storage,owner){let slots=[],index=0,effects=[];const context={storage,owner};const react={createContext:()=>({}),useContext:()=>context,useState(initial){const n=index++;slots[n]??={value:typeof initial==='function'?initial():initial};return [slots[n].value,next=>slots[n].value=next]},useRef(initial){const n=index++;return slots[n]??(slots[n]={current:initial})},useCallback:fn=>fn,useEffect:fn=>{index++;effects.push(fn)}};const m={exports:{}};vm.runInNewContext(draftsCode,{module:m,exports:m.exports,require:p=>p==='react'?react:store});return {render(scope,initial){index=0;const result=m.exports.useDraftState(scope,initial);for(const effect of effects.splice(0))effect();return result}};}
+test('draft survives module unmount/reload and stays isolated by account',()=>{
+ const storage=memory();let a=hooks(storage,'owner-a');const [initial,set]=a.render('recipe',()=>({name:'',lines:[]}));assert.equal(initial.name,'');set(v=>({...v,name:'Tres leches',lines:[{qty:250}]}));
+ a=hooks(storage,'owner-a');assert.equal(a.render('recipe',{})[0].name,'Tres leches');assert.deepEqual(a.render('recipe',{})[0].lines,[{qty:250}]);
+ const b=hooks(storage,'owner-b');assert.equal(b.render('recipe',()=>({name:''}))[0].name,'');assert.equal(store.readDraft(storage,'owner-a','recipe',{}).name,'Tres leches');
+});
+test('each keystroke is stored synchronously and successful clear resets only its scope',()=>{
+ const storage=memory();const h=hooks(storage,'a');const [,set,clear]=h.render('sale',()=>({id:'stable'}));store.writeDraft(storage,'a','other',{name:'Keep'});set({id:'stable',quantity:'3'});assert.equal(store.readDraft(storage,'a','sale',{}).quantity,'3');clear();assert.equal(store.readDraft(storage,'a','sale',()=>({quantity:''})).quantity,'');assert.equal(store.readDraft(storage,'a','other',{}).name,'Keep');
+});
+test('editor snapshot is persisted before edits and cannot silently adopt a newer server revision',()=>{
+ const storage=memory();hooks(storage,'a').render('recipe:r:snapshot',()=>({editSnapshot:{version:'old'}}));const after=hooks(storage,'a').render('recipe:r:snapshot',()=>({editSnapshot:{version:'new'}}))[0];assert.equal(after.editSnapshot.version,'old');
+});
+test('invalid JSON falls back safely without deleting other local collections',()=>{const s=memory();s.setItem(store.draftKey('a','bad'),'{broken');s.setItem('old-app-data','retain');assert.equal(store.readDraft(s,'a','bad',4),4);assert.equal(s.getItem('old-app-data'),'retain');});
+test('shopping threshold includes equality, explicit zero and excludes unknown stock',()=>{assert.equal(minimumReached(5,5),true);assert.equal(minimumReached(0,0),true);assert.equal(minimumReached(6,5),false);assert.equal(minimumReached(null,5),false);assert.equal(minimumReached(0,null),false);for(const value of ['',null,-1,NaN,Infinity,1e9])assert.throws(()=>nonnegative(value));assert.equal(nonnegative('0'),0);});
+test('fridge counts only current batches, separates products and triggers production at minimum',()=>{
+ const products=[{id:'a',minimum_quantity:3},{id:'b',minimum_quantity:0}];const batches=[{product_id:'a',remaining_quantity:3,prepared_on:'2026-10-30',expires_on:'2026-11-01'},{product_id:'a',remaining_quantity:99,prepared_on:'2026-10-30',expires_on:'2026-10-31'},{product_id:'a',remaining_quantity:99,prepared_on:'2026-11-02',expires_on:null},{product_id:'b',remaining_quantity:12,prepared_on:'2026-10-30',expires_on:null}];
+ const summary=fridgeSummary(products,batches,'2026-11-01');assert.equal(summary[0].quantity,3);assert.equal(summary[0].pending,true);assert.equal(summary[1].quantity,12);assert.equal(summary[1].pending,false);batches[0].remaining_quantity=15;assert.equal(fridgeSummary(products,batches,'2026-11-01')[0].pending,false);
+});
+const serviceCode=await compile('features/stock/stockService.js');
+function service(reply){const ops=[];const q={update:v=>{ops.push(['update',v]);return q},eq:(k,v)=>{ops.push(['eq',k,v]);return q},is:(k,v)=>{ops.push(['is',k,v]);return q},select:()=>q,maybeSingle:async()=>reply};const m={exports:{}};vm.runInNewContext(serviceCode,{module:m,exports:m.exports,require:p=>p.includes('supabase')?{supabase:{from:t=>{ops.push(['from',t]);return q}}}:p.includes('ingredientsService')?{adaptarIngrediente:r=>r}:{nonnegative}});return {...m.exports,ops};}
+test('inventory update scopes account and original stock; never changes unit cost',async()=>{const api=service({data:{id:'i'},error:null});await api.saveInventory({id:'i',unit:'g',stockQuantity:12,minimumStock:null},{quantity:'0',minimum:'5'},'owner');assert.deepEqual(JSON.parse(JSON.stringify(api.ops[1])),['update',{stock_quantity:0,minimum_stock:5}]);assert.ok(api.ops.some(o=>o[0]==='eq'&&o[1]==='owner_id'&&o[2]==='owner'));assert.ok(api.ops.some(o=>o[0]==='eq'&&o[1]==='stock_quantity'&&o[2]===12));assert.ok(api.ops.some(o=>o[0]==='is'&&o[1]==='minimum_stock'));});
+test('missing/changed inventory or remote errors cannot confirm a save',async()=>{for(const reply of [{data:null,error:null},{data:{id:'other'},error:null},{data:null,error:Error('Offline')}])await assert.rejects(()=>service(reply).saveInventory({id:'i',unit:'g',stockQuantity:1,minimumStock:0},{quantity:2,minimum:1},'owner'));});

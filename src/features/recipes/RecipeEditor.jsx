@@ -1,3 +1,4 @@
+import {useDraftState} from '../drafts/Drafts';
 import InlineIngredient from './InlineIngredient';
 import InlineRecipeBook from './InlineRecipeBook';
 import RecipeCategoryField from './RecipeCategoryField';
@@ -8,11 +9,12 @@ import {tiposProducto,unidadesCompra,unidadesRendimiento,etiquetaArticulo} from 
 import './recipeEditor.css';
 
 export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,busy,importing=false,onCreateIngredient,onCreateBook}){
- const initial=useRef(recipe),lock=useRef(false);
- const [form,setForm]=useState(()=>({name:recipe.name,category:recipe.category||'',preparation:recipe.preparation||'',bookId:recipe.bookId||'',yield:String(recipe.yield),yieldUnit:recipe.yieldUnit,productType:recipe.productType,scaling:recipe.scaling,
+ const [snapshot,,clearSnapshot]=useDraftState('recipe:'+recipe.id+':snapshot',()=>recipe);const initial=useRef(snapshot),lock=useRef(false);
+ const [form,setForm,clearForm]=useDraftState('recipe:'+recipe.id+':form',()=>({name:recipe.name,category:recipe.category||'',preparation:recipe.preparation||'',bookId:recipe.bookId||'',yield:String(recipe.yield),yieldUnit:recipe.yieldUnit,productType:recipe.productType,scaling:recipe.scaling,
   lines:recipe.lines.map(line=>({...line,qty:String(line.qty),key:line.id||crypto.randomUUID()}))}));
  const [saving,setSaving]=useState(false),[error,setError]=useState('');
- const [registering,setRegistering]=useState(null),[creatingBook,setCreatingBook]=useState(false);
+ const [registering,setRegistering,clearRegistering]=useDraftState('recipe:'+recipe.id+':registering',null),[creatingBook,setCreatingBook,clearCreatingBook]=useDraftState('recipe:'+recipe.id+':creatingBook',false);
+ function clear(){clearForm();clearSnapshot();clearRegistering();clearCreatingBook();}
  const disabled=busy||saving;
  const registrationOpen=registering!==null||creatingBook;
  function createdIngredient(key,item){setForm(old=>({...old,lines:old.lines.map(line=>line.key===key?{...line,ingredientId:item.id,unit:medidas[line.unit]?.[0]===medidas[item.unit]?.[0]?line.unit:''}:line)}));setRegistering(null);setError('');}
@@ -20,7 +22,7 @@ export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,b
  function changeLine(index,values){setForm(old=>({...old,lines:old.lines.map((line,i)=>i===index?{...line,...values}:line)}));setError('');}
  function selectIngredient(index,id){const line=form.lines[index],unit=ingredients.find(item=>item.id===id)?.unit;changeLine(index,{ingredientId:id,unit:importing?(medidas[line.unit]?.[0]===medidas[unit]?.[0]?line.unit:''):unit||'g'});}
  function add(){const ingredient=ingredients[0];if(!ingredient){setError('Registra primero un ingrediente en tu catálogo.');return;}change('lines',[...form.lines,{key:crypto.randomUUID(),ingredientId:ingredient.id,qty:'1',unit:ingredient.unit}]);}
- async function submit(event){event.preventDefault();if(registrationOpen){setError('Termina o cancela el registro abierto antes de guardar la receta.');return;}if(importing&&form.lines.some(line=>!line.unit)){setError('Selecciona la unidad de cada ingrediente de la receta. No convertimos automáticamente tazas o cucharadas a gramos.');return;}if(lock.current)return;lock.current=true;setSaving(true);setError('');try{await onSave(form,initial.current);}catch(err){setError(err.message);}finally{lock.current=false;setSaving(false)}}
+ async function submit(event){event.preventDefault();if(registrationOpen){setError('Termina o cancela el registro abierto antes de guardar la receta.');return;}if(importing&&form.lines.some(line=>!line.unit)){setError('Selecciona la unidad de cada ingrediente de la receta. No convertimos automáticamente tazas o cucharadas a gramos.');return;}if(lock.current)return;lock.current=true;setSaving(true);setError('');try{await onSave(form,initial.current);clear();}catch(err){setError(err.message);}finally{lock.current=false;setSaving(false)}}
  return <form className="recipe-editor" onSubmit={submit} aria-label={(importing?'Revisar importación ':'Editar receta ')+recipe.name}>
   <h3>{importing?'Datos de la receta importada':'Editar receta'}</h3><p>{importing?'Elige los ingredientes de tu catálogo y completa los campos pendientes. Se creará una receta nueva.':'Los cambios actualizarán esta receta. Las cotizaciones guardadas conservarán sus importes.'}</p>
   <fieldset className="app-content" disabled={disabled}><div className="grid">
@@ -46,7 +48,7 @@ export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,b
   <button type="button" className="secondary" onClick={add} disabled={!ingredients.length}>+ Ingrediente</button>
   <h4>Preparación</h4><label>Pasos de preparación<textarea rows={7} maxLength={20000} value={form.preparation} onChange={e=>change('preparation',e.target.value)} placeholder="Escribe los pasos, uno por línea. Puedes incluir tus tiempos, temperatura y notas."/></label><small>Opcional · hasta 20,000 caracteres. Escribe las indicaciones propias de esta receta.</small>
   {error&&<p className="form-error" role="alert">{error}</p>}
-  <div className="actions"><button disabled={!books.length||!form.lines.length||registrationOpen}>{saving?'Guardando…':importing?'Guardar receta importada':'Guardar cambios de receta'}</button><button type="button" className="secondary" onClick={onCancel}>{importing?'Volver al texto':'Cancelar edición'}</button></div>
+  <div className="actions"><button disabled={!books.length||!form.lines.length||registrationOpen}>{saving?'Guardando…':importing?'Guardar receta importada':'Guardar cambios de receta'}</button><button type="button" className="secondary" onClick={()=>{clear();onCancel();}}>{importing?'Volver al texto':'Cancelar edición'}</button></div>
   </fieldset>
  </form>;
 }

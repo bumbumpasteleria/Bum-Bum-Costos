@@ -1,10 +1,11 @@
+import {useDraftState} from '../drafts/Drafts';
 import React,{useRef,useState} from 'react';
 import {parseRecipeText,validatePdfFile} from './pdfRecipe.mjs';
 import RecipeEditor from './RecipeEditor';
 import './importRecipe.css';
 
 export default function ImportRecipe({ingredients,books,onSave,onCreateIngredient,onCreateBook,busy}){
- const [open,setOpen]=useState(false),[text,setText]=useState(''),[draft,setDraft]=useState(null),[error,setError]=useState(''),[progress,setProgress]=useState(''),[source,setSource]=useState(''),[success,setSuccess]=useState('');
+ const [open,setOpen]=useDraftState('import:open',false),[text,setText]=useDraftState('import:text',''),[draft,setDraft]=useDraftState('import:draft',null),[error,setError]=useState(''),[progress,setProgress]=useState(''),[source,setSource]=useDraftState('import:source',''),[success,setSuccess]=useState('');
  const lock=useRef(false),[reading,setReading]=useState(false);
  async function read(event){const file=event.target.files?.[0];event.target.value='';if(!file||lock.current)return;lock.current=true;setReading(true);setError('');setSuccess('');setProgress('Abriendo PDF…');try{validatePdfFile(file);const {readRecipePdf}=await import('./readRecipePdf');const extracted=await readRecipePdf(file,setProgress);setText(extracted);setSource(file.name);setDraft(null);}catch(err){setError(err.message||'No se pudo abrir el archivo.');}finally{lock.current=false;setReading(false);setProgress('');}}
  function review(){try{setError('');if(!text.trim())throw new Error('Carga un PDF o pega el texto de una receta.');const parsed=parseRecipeText(text,ingredients);setDraft({...parsed,id:crypto.randomUUID(),lines:parsed.lines.map(line=>({...line,key:crypto.randomUUID()}))});}catch(err){setError(err.message);}}

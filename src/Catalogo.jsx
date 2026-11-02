@@ -1,3 +1,4 @@
+import {useDraftState} from './features/drafts/Drafts';
 import './catalogo.css';
 import React,{useRef,useState} from 'react';
 import { medidas } from './cloudService';
@@ -7,7 +8,7 @@ const vacio=()=>({name:'',supplier:'',price:'',quantity:'',unit:'g'});
 const dinero=n=>'RD$ '+Number(n).toLocaleString('es-DO',{minimumFractionDigits:2,maximumFractionDigits:6});
 export default function Catalogo({kind,items,onSave,onDelete,busy}) {
   const material=kind==='material',nombre=material?'material':'ingrediente';
-  const [form,setForm]=useState(()=>({...vacio(),unit:material?'unidad':'g'})),[original,setOriginal]=useState(null),[error,setError]=useState(''),[saving,setSaving]=useState(false),[deleting,setDeleting]=useState(null),[deleteError,setDeleteError]=useState('');
+  const [form,setForm]=useDraftState('catalog:'+kind+':form',()=>({...vacio(),unit:material?'unidad':'g'})),[original,setOriginal]=useDraftState('catalog:'+kind+':original',null),[error,setError]=useState(''),[saving,setSaving]=useState(false),[deleting,setDeleting]=useState(null),[deleteError,setDeleteError]=useState('');
   const formRef=useRef(null),lock=useRef(false);
   const proveedores=[...new Set(items.map(i=>i.supplier).filter(Boolean))];
   const unidades=unidadesCompra.filter(u=>!original||medidas[u][0]===medidas[original.unit]?.[0]);

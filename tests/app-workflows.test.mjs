@@ -26,7 +26,7 @@ function setup(owner,isAdmin=false,initial={}){
  useRef(initial){const i=index++;return hooks[i]??(hooks[i]={current:initial})},
  useEffect(fn,deps){const i=index++;if(!hooks[i]||deps.some((d,j)=>d!==hooks[i].deps[j])){hooks[i]={deps};effects.push(fn)}},
  supabase:{auth:{signOut:async()=>{signouts++;return {error:null}}}},
- cargarDatos:async()=>structuredClone(empty),
+ cargarDatos:async()=>structuredClone(empty),loadFridge:async()=>({products:[],batches:[],movements:[]}),
  eliminarReceta:async(id,actor)=>{calls.push({type:'deleteRecipe',id,actor});if(deleteFailure)throw Error('Conexión interrumpida');return id},
  eliminarIngrediente:async(id,actor)=>{calls.push({type:'delete',id,actor});if(deleteFailure)throw Error('Conexión interrumpida');return id},
  obtenerReceta:async(id,actor)=>{calls.push({type:'openRecipe',actor});const recipe=empty.recipes.find(item=>item.id===id)||calls.find(call=>call.type==='recipes'&&call.item.id===id)?.item;if(!recipe)throw Error('Receta no disponible');return structuredClone({...recipe,editSnapshot:{test:true}})},
@@ -39,6 +39,7 @@ function setup(owner,isAdmin=false,initial={}){
  costoMateriales:(items,qty)=>items.reduce((sum,i)=>sum+(qty[i.id]||0)*i.lastUnitCost,0),detalleMateriales:()=>[],
  ...serviceModule.exports,
  RecipeCategoryField:marker('RecipeCategoryField'),ImportRecipe:marker('ImportRecipe'),Brand:marker('Brand'),AppIcon:marker('AppIcon'),HomeDashboard:marker('HomeDashboard'),DeleteRecipe:marker('DeleteRecipe'),RecipeDetails:marker('RecipeDetails'),RecipeEditor:marker('RecipeEditor'),RecipeCostStatus:marker('RecipeCostStatus'),ModuleGuide:marker('ModuleGuide'),Catalogo:marker('Catalogo'),Recetarios:marker('Recetarios'),AsignarRecetario:marker('AsignarRecetario'),RecipeReadiness:marker('RecipeReadiness'),Tools:marker('Tools'),Solicitudes:marker('Solicitudes'),PersonasConAcceso:marker('PersonasConAcceso')};
+ ctx.useDraftState=(_scope,initial)=>[...ctx.useState(initial),()=>{}];ctx.DraftForm=marker('DraftForm');ctx.Inventory=marker('Inventory');ctx.Fridge=marker('Fridge');ctx.SalesForm=marker('SalesForm');
  // Sustituir solo las operaciones remotas, conservar filtros reales del recetario.
  ctx.guardarRecetario=async(form,actor)=>{calls.push({type:'book',actor});return {id:crypto.randomUUID(),...form}};
  ctx.asignarRecetario=async(id,bookId,actor)=>({id,recipe_book_id:bookId});
@@ -50,7 +51,7 @@ function setup(owner,isAdmin=false,initial={}){
  async function boot(){render();for(const fn of effects.splice(0))fn();await new Promise(resolve=>setImmediate(resolve));render()}
  function go(tab,expected=tab){if(!button(tab)){const menu=nodes(tree).find(n=>n.type==='button'&&text(n).includes('Menú'));menu.props.onClick();render()}button(tab).props.onClick();render();assert.equal(component('ModuleGuide').props.module,expected);assert.ok(MODULE_GUIDES[tab]?.steps.length);}
  function field(label,value){const row=nodes(tree).find(n=>n.type==='label'&&typeof n.children[0]==='string'&&n.children[0]===label);const control=nodes(row).find(n=>n.type==='select'||n.type==='input');control.props.onChange({target:{value}});render()}
- async function submit(values){const form=nodes(tree).find(n=>n.type==='form');assert.ok(form);await form.props.onSubmit({preventDefault(){},currentTarget:{values,reset(){}}});render()}
+ async function submit(values){if(component('SalesForm')){await component('SalesForm').props.onSave({...values,id:crypto.randomUUID(),gross:Number(values.gross),commission:Number(values.commission),productionCost:Number(values.productionCost),extra:Number(values.extra)});render();return;}const form=nodes(tree).find(n=>n.type==='form'||n.type?.displayName==='DraftForm');assert.ok(form);await form.props.onSubmit({preventDefault(){},currentTarget:{values,reset(){}}});render()}
  return {boot,go,render,button,component,field,submit,calls,setDeleteFailure:v=>deleteFailure=v,setEditFailure:v=>editFailure=v,get tree(){return tree},get signouts(){return signouts},get downloads(){return downloads}};
 }
 for(const [owner,admin] of [['administradora',true],['usuaria-a',false],['usuaria-b',false]])test('flujo completo de interfaz compartida: '+owner,async()=>{
@@ -70,7 +71,7 @@ for(const [owner,admin] of [['administradora',true],['usuaria-a',false],['usuari
  app.go('Cotizador');app.field('Recetario de encargos',book.props.value);app.field('Receta o artículo',saved.item.id);assert.equal(app.button('Guardar cotización').props.disabled,false);await app.button('Guardar cotización').props.onClick();app.render();assert.ok(app.calls.some(c=>c.type==='quotes'));
  app.go('Ventas');await app.submit({date:'2026-10-31',channel:'Directa',description:'Pedido',gross:'100',commission:'0',productionCost:'50',extra:'0'});assert.ok(app.calls.some(c=>c.type==='sales'));
  app.go('Herramientas');assert.equal(app.component('Tools').props.owner,owner);
- app.go('Respaldo');app.button('Descargar respaldo JSON').props.onClick();assert.equal(app.downloads,1);
+ app.go('Respaldo');await app.button('Descargar respaldo JSON').props.onClick();assert.equal(app.downloads,1);
  app.go('Inicio');const menu=nodes(app.tree).find(n=>n.type==='button'&&text(n).includes('Menú'));menu.props.onClick();app.render();assert.equal(!!app.button('Personas con acceso'),admin);assert.equal(!!app.button('Solicitudes'),admin);
  app.go('Ingredientes');const used=app.component('Catalogo').props.items[0];await assert.rejects(()=>app.component('Catalogo').props.onDelete(used),/receta guardada/);assert.ok(!app.calls.some(c=>c.type==='delete'));await app.button('Cerrar sesión').props.onClick();assert.equal(app.signouts,1);assert.ok(app.calls.every(c=>c.actor===owner));
 });
@@ -103,7 +104,7 @@ test('precio cero explícito permite cotizar; una cantidad vacía lo bloquea sin
 });
 
 for(const [owner,admin]of [['administradora',true],['usuaria-a',false],['usuaria-b',false]])test('editar una receta conserva ID, histórico y borrador ante conflicto: '+owner,async()=>{
- const data=costFixture(.2);data.quotes=[{id:'historical',totalCost:50,price:100,recipeName:'Nombre histórico'}];const app=setup(owner,admin,data);await app.boot();app.go('Recetas');await app.button('Editar receta').props.onClick();app.render();let editor=app.component('RecipeEditor');assert.equal(editor.props.recipe.id,'recipe');app.go('Ingredientes','Recetas');assert.ok(app.component('RecipeEditor'));
+ const data=costFixture(.2);data.quotes=[{id:'historical',totalCost:50,price:100,recipeName:'Nombre histórico'}];const app=setup(owner,admin,data);await app.boot();app.go('Recetas');await app.button('Editar receta').props.onClick();app.render();let editor=app.component('RecipeEditor');assert.equal(editor.props.recipe.id,'recipe');app.go('Ingredientes');app.go('Recetas');assert.ok(app.component('RecipeEditor'));
  const form={...editor.props.recipe,name:'Nombre actualizado',yield:24,lines:[{ingredientId:'ingredient',qty:500,unit:'g'}]};app.setEditFailure(true);await assert.rejects(()=>editor.props.onSave(form,editor.props.recipe),/cambió/);app.render();assert.ok(app.component('RecipeEditor'));assert.ok(text(app.tree).includes('Galletas'));
  app.setEditFailure(false);editor=app.component('RecipeEditor');await editor.props.onSave(form,editor.props.recipe);app.render();assert.equal(app.component('RecipeEditor'),undefined);assert.ok(text(app.tree).includes('Nombre actualizado'));assert.equal(app.component('RecipeCostStatus').props.assessment.total,100);app.go('Cotizador');assert.ok(text(app.tree).includes('Nombre histórico'));assert.ok(app.calls.filter(c=>['openRecipe','editRecipe'].includes(c.type)).every(c=>c.actor===owner));
 });
@@ -114,3 +115,6 @@ test('accesos del inicio navegan y abren receta con ficha desplegada',async()=>{
 test('categorías organizan y filtran recetas sin mezclar recetarios',async()=>{const data=costFixture(.2);data.recipes=[{...data.recipes[0],id:'masa',name:'Masa',category:'Masas'},{...data.recipes[0],id:'relleno',name:'Crema',category:'Rellenos'}];const app=setup('usuaria-categorias',false,data);await app.boot();app.go('Recetas');app.field('Filtrar por categoría','Masas');assert.equal(app.component('RecipeDetails').props.recipe.id,'masa');assert.ok(!text(app.tree).includes('Crema'));app.field('Filtrar por categoría','Rellenos');assert.equal(app.component('RecipeDetails').props.recipe.id,'relleno');app.field('Filtrar por categoría','all');assert.match(text(app.tree),/Masas/);assert.match(text(app.tree),/Rellenos/);});
 
 for(const owner of ['admin-registro','usuaria-registro-a','usuaria-registro-b'])test('importador registra catálogo y recetario solo para su cuenta: '+owner,async()=>{const app=setup(owner,false);await app.boot();app.go('Recetas');let importer=app.component('ImportRecipe');const book=await importer.props.onCreateBook({name:'Mi recetario',usage:'delivery'});app.render();const saved=await app.component('ImportRecipe').props.onCreateIngredient({name:'Harina',supplier:'Mi tienda',price:100,quantity:1,unit:'kg'});app.render();assert.ok(app.component('ImportRecipe').props.books.some(b=>b.id===book.id));assert.ok(app.component('ImportRecipe').props.ingredients.some(i=>i.id===saved.id));assert.ok(app.calls.filter(c=>c.type==='catalog'||c.type==='book').every(c=>c.actor===owner));});
+
+// An open draft remains reachable even when Home opens a different recipe/filter.
+test('una edición pendiente permanece visible al abrir otra receta desde Inicio',async()=>{const data=costFixture(.2);data.recipes.push({...data.recipes[0],id:'other',name:'Otra receta'});const app=setup('propietaria',false,data);await app.boot();app.go('Recetas');await app.button('Editar receta').props.onClick();app.render();const edited=app.component('RecipeEditor').props.recipe.id;app.go('Inicio');app.component('HomeDashboard').props.onRecipe(data.recipes.find(r=>r.id!==edited));app.render();assert.equal(app.component('RecipeEditor').props.recipe.id,edited);app.component('RecipeEditor').props.onCancel();app.render();assert.equal(app.component('RecipeEditor'),undefined);});
