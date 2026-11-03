@@ -1,0 +1,3 @@
+import React from 'react';import {RecordArea} from './RecordForm';
+const fields=[{key:'name',label:'Nombre',required:true},{key:'contact',label:'Teléfono o contacto'},{key:'email',label:'Correo',type:'email'},{key:'address',label:'Dirección'},{key:'notes',label:'Notas',type:'textarea'}];
+export default function Directories({owner}){return <><h2>Clientes y proveedores</h2><p>Tu directorio privado se reutiliza en los pedidos y las compras. Archivar conserva los registros anteriores.</p><details><summary>Clientes</summary><RecordArea {...{owner,fields}} kind="customer" title="Cliente"/></details><details><summary>Proveedores</summary><RecordArea {...{owner,fields}} kind="supplier" title="Proveedor"/></details></>}

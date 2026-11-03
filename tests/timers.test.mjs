@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {remaining} from '../src/features/management/timers.mjs';
+test('temporizadores recalculan al volver, conservan pausa y nunca muestran tiempo negativo',()=>{assert.equal(remaining({paused:false,ends:10000},4000),6000);assert.equal(remaining({paused:false,ends:10000},20000),0);assert.equal(remaining({paused:true,left:6000,ends:10000},20000),6000);const resumed={paused:false,ends:20000+6000};assert.equal(remaining(resumed,21000),5000);});

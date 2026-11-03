@@ -48,7 +48,9 @@ export const MODULE_GUIDES = {
       "Para mover una receta, elige otro recetario dentro de su ficha y pulsa Asignar recetario. Para eliminar, revisa el nombre y confirma. Puede bloquearse si hay referencias; el catálogo y cotizaciones anteriores se conservan.",
       "Para ingresar otra, pulsa Agregar receta a este recetario: abre el área Nueva receta con el destino seleccionado. Allí puedes subir PDF/foto o escribirla.",
       "Para sumar mano de obra y gastos, pulsa Calcular costo final de la receta. Se abrirá Costos de productos con ese artículo seleccionado.",
-      "En Foto, conservación y notas guarda tu fotografía para las portadas. Sin foto se muestra una imagen de referencia identificada. Las indicaciones de conservación y alérgenos las completas tú."
+      "En Foto, conservación y notas guarda tu fotografía para las portadas. Sin foto se muestra una imagen de referencia identificada. Las indicaciones de conservación y alérgenos las completas tú.",
+      "Dentro de la receta abre Ficha profesional y subrecetas. Guarda dimensiones del molde, capas, tiempos, temperatura y merma prevista; son condiciones que tú confirmas. El rendimiento ya registrado se utiliza para calcular el costo por porción.",
+      "Añade subrecetas vinculadas y la proporción de cada receta completa: 0.5 es la mitad. Sus cantidades y precios actuales se incorporan sin copiar la fórmula. La aplicación bloquea ciclos y evita eliminar una preparación usada por otra. Retira ingredientes duplicados que ya estuvieran copiados en la receta."
     ],
     "example": "Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.",
     "tip": "Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar. Los ingredientes y recetarios creados durante la importación permanecen guardados aunque canceles la receta. La cantidad de compra es distinta de la cantidad usada en la receta; no se convierten tazas a gramos automáticamente. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador. Los alérgenos e indicaciones los completas tú; la aplicación no los deduce. En Respaldo puedes consultar las versiones anteriores guardadas desde esta actualización."
@@ -115,7 +117,8 @@ export const MODULE_GUIDES = {
       "Escribe la cantidad y selecciona las unidades De y A.",
       "Lee el resultado. Puedes intercambiar las unidades o copiarlo.",
       "Abre las opciones de abajo solo si necesitas favoritos, medidas propias o usar cantidades de una receta.",
-      "El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente."
+      "El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.",
+      "El control Temporizadores aparece en todas las áreas. Inicia relojes con nombre y minutos; puedes pausarlos, continuarlos y confirmar avisos. Se conservan por cuenta en el dispositivo y recalculan el tiempo al regresar. Mantén la app abierta para ver los avisos; no es una alarma del teléfono cuando la aplicación está cerrada."
     ],
     "example": "En Temperatura, 180 °C equivalen a 356 °F. En Ingredientes, elige cuál estás midiendo: una taza de harina no pesa lo mismo que una de azúcar.",
     "tip": "Las equivalencias de ingredientes pueden ser aproximadas. Favoritos y medidas propias se guardan solo en este dispositivo, separados por cuenta. No hace falta conectar una receta para convertir. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador."
@@ -151,7 +154,9 @@ export const MODULE_GUIDES = {
       "Revisa cada ingrediente y material, separado por proveedor.",
       "Pulsa Actualizar existencias e indica la cantidad disponible y el mínimo para reponer. Selecciona la unidad compatible que prefieras, por ejemplo kilos o galones; se guarda su equivalencia en la unidad base. Cero es válido.",
       "Guarda existencias. La lista de Compras se actualiza inmediatamente. Si otra sesión cambió cantidades, actualiza y revisa el ajuste antes de guardarlo.",
-      "Después de registrar producción en Mi nevera, las existencias de ingredientes y materiales se actualizan automáticamente. Cambiar o guardar una receta no descuenta inventario. Las cantidades pueden incluir fracciones de unidad cuando se utilizan por peso."
+      "Después de registrar producción en Mi nevera, las existencias de ingredientes y materiales se actualizan automáticamente. Cambiar o guardar una receta no descuenta inventario. Las cantidades pueden incluir fracciones de unidad cuando se utilizan por peso.",
+      "Actualiza existencias con un motivo para conservar el movimiento. El conteo físico incluye lo retenido o vencido; Disponible para producir lo excluye. Las compras y lotes se registran en Movimientos de inventario.",
+      "Para retirar un lote concreto usa Registrar merma de este lote en Movimientos de inventario. No elimines el artículo: su historial de compra y producción se conserva."
     ],
     "example": "Harina: quedan 500 g, mínimo 500 g. Aparece en Compras.",
     "tip": "El mínimo es la señal para reponer, no una cantidad de compra sugerida. Los precios se conservan; las ventas de nevera no descuentan ingredientes automáticamente."
@@ -162,7 +167,8 @@ export const MODULE_GUIDES = {
       "Aquí aparecen ingredientes y materiales con cantidad disponible igual o menor a su mínimo.",
       "Cada proveedor aparece por separado. Los artículos sin existencias o mínimo registrados requieren completarlos en Inventario.",
       "Cuando repongas, pulsa Actualizar existencias y registra la cantidad real. Al superar el mínimo, el artículo sale de Compras.",
-      "Los consumos registrados al producir actualizan las existencias; si un artículo llega a su mínimo, aparece en esta lista."
+      "Los consumos registrados al producir actualizan las existencias; si un artículo llega a su mínimo, aparece en esta lista.",
+      "La lista automática usa existencias disponibles para producir, excluyendo lotes vencidos o retenidos. Registra la reposición en Movimientos de inventario; el artículo sale de la lista al superar su mínimo."
     ],
     "example": "Si una caja tiene mínimo 5 y quedan 5 unidades, aparece pendiente; si registras 20, deja de aparecer.",
     "tip": "Esta lista se calcula desde tu inventario en la nube. No borres el artículo ni cambies su precio para marcarlo como comprado."
@@ -177,7 +183,8 @@ export const MODULE_GUIDES = {
       "En Ventas, elige Producto de Mi nevera y la cantidad vendida. La venta descuenta primero los lotes que vencen antes.",
       "La portada utiliza la foto guardada en la ficha de la receta vinculada. Si no hay foto, verás una imagen de referencia; las cantidades y estados siempre proceden de tus lotes.",
       "Registrar una preparación descuenta ingredientes y materiales del inventario en una sola operación. Las recetas en gramos se convierten con la equivalencia de cada artículo. Si faltan existencias, no se guarda el lote ni se descuenta nada. Repetir el mismo intento no descuenta dos veces. Los lotes anteriores conservan su costo y no se descuentan retroactivamente. Abre Ver ingredientes descontados dentro de un lote nuevo para consultar su consumo.",
-      "Mi nevera se dedica a existencias, lotes, producción y precio registrado. La ficha completa con mano de obra y gastos se gestiona en Costos de productos."
+      "Mi nevera se dedica a existencias, lotes, producción y precio registrado. La ficha completa con mano de obra y gastos se gestiona en Costos de productos.",
+      "Una revisión de calidad Retenido sobre un lote impide venderlo hasta una revisión posterior Conforme. El vencimiento continúa aplicándose. El responsable debe registrar su criterio; la aplicación no decide inocuidad."
     ],
     "example": "Una receta completa produce 12 porciones de tres leches: cantidad 12, veces 1. Vendes 3 y quedan 9.",
     "tip": "Cada cuenta tiene sus propios productos y lotes en la nube. Las fechas de vencimiento las decides tú. El costo del lote incluye ingredientes y materiales de la receta al producirlo; añade otros gastos de venta aparte. Los lotes conservan su costo aunque luego cambies precios."
@@ -199,7 +206,8 @@ export const MODULE_GUIDES = {
       "Revisa ventas brutas, comisiones, costo de producción, otros gastos de ventas y gastos del negocio.",
       "Registra gastos adicionales como alquiler, servicios o mantenimiento. No repitas ingredientes ni comisiones que ya estén incluidos en la venta.",
       "Usa Corregir para ajustar un gasto. Anular gasto pide confirmación y conserva su historial.",
-      "Pulsa Descargar finanzas en PDF. El documento contiene el período, resumen y detalle, incluso si necesita varias páginas."
+      "Pulsa Descargar finanzas en PDF. El documento contiene el período, resumen y detalle, incluso si necesita varias páginas.",
+      "En Caja y rentabilidad consulta cobros reales, saldos, comparación mensual, contribución por producto y valor estimado de materias primas. El resultado de ventas y gastos es distinto del saldo efectivo."
     ],
     "example": "Ventas por RD$1,000 menos comisiones, producción y gastos registrados dan el resultado del período.",
     "tip": "El resultado depende de datos completos; no equivale al efectivo disponible ni incluye gastos que no hayas registrado. Por canal se incluyen solo sus gastos asignados; los generales aparecen en Todos."
@@ -220,7 +228,8 @@ export const MODULE_GUIDES = {
       "Crea un pedido con cliente, contacto opcional, fecha, descripción, total y anticipo. Puedes tomar una cotización guardada como punto de partida.",
       "Vincula opcionalmente una receta de Encargos; las recetas exclusivas de Apps no se muestran en esta selección.",
       "Actualiza su estado: Pendiente, En preparación, Listo, Entregado o Cancelado.",
-      "Busca por cliente o descripción y filtra la agenda por fecha y estado. Los entregados y cancelados se conservan en Todos."
+      "Busca por cliente o descripción y filtra la agenda por fecha y estado. Los entregados y cancelados se conservan en Todos.",
+      "Puedes elegir un cliente del directorio para reutilizar nombre y contacto. Planifica preparación y fotos de referencia en Agenda y cobros. Después del primer cobro registrado, usa Cobros y devoluciones para cambiar lo recibido; el anticipo ya no se modifica manualmente."
     ],
     "example": "Un encargo de RD$2,000 con anticipo de RD$500 muestra RD$1,500 de saldo.",
     "tip": "Guardar el pedido no registra una venta ni descuenta productos de la nevera. Registra el ingreso real una sola vez en Ventas para evitar duplicados. El borrador se conserva en este dispositivo."
@@ -237,7 +246,8 @@ export const MODULE_GUIDES = {
       "Proporcional permite media receta, el doble u otra proporción. Por tandas completas redondea hacia arriba al cotizar: 1,5 tandas cuentan como 2. La calculadora de Herramientas permite ajustar una proporción expresamente.",
       "Puedes usar gramos de ingredientes comprados por unidades o volumen si registraste su equivalencia en Ingredientes. La receta conserva los gramos; los costos y la producción utilizan la cantidad equivalente de inventario. No se supone el peso de huevos ni de líquidos.",
       "Comprueba el recetario elegido y pulsa Guardar receta importada o Guardar receta. Después abre Recetarios, ese recetario y Ver recetas del recetario para consultarla.",
-      "Los borradores se conservan por cuenta en este dispositivo. El archivo no se guarda; se conserva el texto reconocido y el formulario de revisión."
+      "Los borradores se conservan por cuenta en este dispositivo. El archivo no se guarda; se conserva el texto reconocido y el formulario de revisión.",
+      "Para una receta basada en preparaciones existentes abre Componer una receta con subrecetas vinculadas. Elige hasta tres fórmulas de origen, proporciones, nombre, rendimiento y recetario de destino. Esta composición se actualiza cuando cambian sus subrecetas; las combinaciones anteriores de Herramientas siguen siendo copias independientes."
     ],
     "example": "Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.",
     "tip": "Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar. Los ingredientes y recetarios creados durante la importación permanecen guardados aunque canceles la receta. La cantidad de compra es distinta de la cantidad usada en la receta; no se convierten tazas a gramos automáticamente. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador. Los alérgenos e indicaciones los completas tú; la aplicación no los deduce. En Respaldo puedes consultar las versiones anteriores guardadas desde esta actualización."
@@ -256,5 +266,67 @@ export const MODULE_GUIDES = {
     ],
     "example": "Una receta rinde 12 porciones. Ingredientes y materiales RD$42, mano de obra RD$240 y gastos RD$18: costo completo RD$300, o RD$25 por porción.",
     "tip": "El costo completo no es el precio de venta. La comisión y el margen se aplican al calcular el precio de cada canal. Cada cuenta conserva sus propias fichas y su historial."
+  },
+  "Clientes y proveedores": {
+    "title": "Reutiliza contactos de tu negocio",
+    "steps": [
+      "Abre Clientes o Proveedores y registra nombre, contacto, correo, dirección y notas.",
+      "Edita para corregir el registro. Archivar lo retira de las opciones nuevas sin borrar el historial. Reactivar vuelve a ofrecerlo.",
+      "En Pedidos selecciona el cliente. En compras elige el proveedor de la variante del artículo; otro proveedor requiere su variante de catálogo para conservar precios separados."
+    ],
+    "example": "Guarda tu proveedor de harina y reutilízalo al registrar sus compras.",
+    "tip": "Cada cuenta ve su propio directorio. No se envían correos ni mensajes desde este formulario."
+  },
+  "Movimientos de inventario": {
+    "title": "Registra compras y lotes sin repetir movimientos",
+    "steps": [
+      "Registra primero el conteo inicial del artículo en Inventario.",
+      "Elige el artículo y una unidad de compra compatible, cantidad, precio total, pago realizado, fecha, lote y vencimiento. El pago puede ser parcial o cero.",
+      "Guardar aumenta el stock, actualiza el costo por unidad base y registra el pago real en Caja. No registres ese pago de nuevo manualmente.",
+      "Consulta lotes y movimientos. Registrar merma de este lote retira exactamente la cantidad seleccionada de ese lote y del inventario, con motivo.",
+      "Las producciones consumen primero lotes vigentes próximos a vencer, y después existencias anteriores sin lote. Los lotes vencidos o retenidos se excluyen. Los precios editados también conservan un historial.",
+      "Si quedó un importe pendiente, abre Registrar pago pendiente de compra en su lote. El pago reduce el saldo y sale de Caja, sin volver a aumentar stock ni registrar otra compra."
+    ],
+    "example": "Compras 1 kg de harina por RD$100 y pagas RD$60: se añaden 1000 g, costo RD$0.10/g y salida de caja RD$60.",
+    "tip": "Los artículos existentes conservan su stock inicial; no se inventan compras ni vencimientos anteriores. Los reintentos conservan el identificador para evitar duplicar compras o mermas."
+  },
+  "Agenda y cobros": {
+    "title": "Planifica encargos y registra sus cobros",
+    "steps": [
+      "Elige mes y fecha para ver pedidos y preparaciones del calendario.",
+      "Crea una orden de trabajo con receta, proporción, cantidad prevista, pedido asociado, foto de referencia y notas.",
+      "Consulta los ingredientes consolidados pendientes de la fecha, separados por proveedor. Esta consulta no descuenta inventario.",
+      "Al terminar, abre Registrar producción terminada y confirma. Guarda consumos y costo histórico y descuenta una sola vez. Una orden cancelada no produce.",
+      "Los encargos producidos aquí no se vuelven a registrar como producción en Mi nevera. En el pedido del calendario abre Registrar venta de este encargo: utiliza el total acordado y el costo histórico de sus preparaciones terminadas, sin volver a descontar artículos ni registrar un cobro. El mismo encargo no se vende dos veces.",
+      "En Cobros y devoluciones selecciona el pedido, fecha, importe y medio. El saldo del pedido y la caja se actualizan juntos. No se permiten cobros sobre el saldo ni devoluciones superiores a lo recibido.",
+      "Descarga la orden de trabajo en PDF para consultar ingredientes y foto de referencia. Cuando ya está terminada, utiliza sus consumos históricos."
+    ],
+    "example": "Una preparación usa media masa y un cuarto de relleno. La lista suma ambas y la confirmación descuenta esos artículos.",
+    "tip": "Los anticipos anteriores se conservan, pero no se fabrican movimientos de caja pasados. Los cobros nuevos no se repiten como entrada manual ni como otra venta."
+  },
+  "Caja y rentabilidad": {
+    "title": "Separa el dinero recibido del resultado del negocio",
+    "steps": [
+      "Configura fecha y saldo inicial reales en Calidad y configuración.",
+      "Elige las fechas del reporte. Revisa entradas, salidas y saldo registrado de caja, resultado de ventas y gastos, y cuentas por cobrar actuales.",
+      "Los cobros nuevos de pedidos y los pagos de compras aparecen automáticamente. Registra las liquidaciones de ventas y pagos de gastos que falten como movimientos reales de caja.",
+      "Consulta comparación mensual y productos vendidos. La contribución por producto no reparte gastos generales arbitrariamente.",
+      "Descarga Caja y rentabilidad en PDF. El valor de materias primas es una estimación a precio actual, no dinero disponible.",
+      "Compras por pagar muestra el saldo de los lotes comprados. Registra los pagos posteriores desde el lote; no los dupliques manualmente. Para corregir un movimiento manual equivocado, registra su contrapartida con referencia al original para conservar el historial."
+    ],
+    "example": "Venta RD$100 con costo RD$40 puede dar resultado RD$60 aunque la plataforma todavía no haya depositado el dinero.",
+    "tip": "No dupliques pagos ya registrados. Un aporte del propietario aumenta la caja, pero no representa una venta ni ganancia."
+  },
+  "Calidad y configuración": {
+    "title": "Configura tu actividad y registra revisiones",
+    "steps": [
+      "Guarda perfil Pastelería, Panadería o Mixto, nombre, ubicación, saldo y fecha inicial de caja. El perfil conserva las funciones disponibles.",
+      "Escribe los criterios de calidad propios del negocio. La aplicación no inventa límites ni fechas seguras.",
+      "Registra preparación o área, fecha, receta o lote opcional, criterio, observación, decisión, responsable y acción correctiva.",
+      "Retenido / no utilizar bloquea el lote relacionado para consumo o venta. Una revisión posterior Conforme permite volver a usarlo si continúa vigente.",
+      "Los controles y sus modificaciones quedan privados en tu cuenta y se incluyen en el respaldo."
+    ],
+    "example": "Registra la revisión de presentación de un lote e indica quién lo comprobó.",
+    "tip": "Registrar Conforme no certifica inocuidad ni sustituye tus procedimientos. Si no seleccionas un lote, el registro documenta la revisión pero no bloquea existencias específicas."
   }
 };

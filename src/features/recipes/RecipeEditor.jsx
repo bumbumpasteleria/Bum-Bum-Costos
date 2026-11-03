@@ -13,7 +13,7 @@ import './recipeEditor.css';
 export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,busy,importing=false,onCreateIngredient,onCreateBook}){
  const [snapshot,,clearSnapshot]=useDraftState('recipe:'+recipe.id+':snapshot',()=>recipe);const initial=useRef(snapshot),lock=useRef(false);
  const [form,setForm,clearForm]=useDraftState('recipe:'+recipe.id+':form',()=>({name:recipe.name,category:recipe.category||'',preparation:recipe.preparation||'',bookId:recipe.bookId||'',yield:String(recipe.yield),yieldUnit:recipe.yieldUnit,productType:recipe.productType,scaling:recipe.scaling,
-  lines:recipe.lines.map(line=>({...line,qty:String(line.qty),key:line.id||crypto.randomUUID()}))}));
+  lines:(recipe.ownLines||recipe.lines).map(line=>({...line,qty:String(line.qty),key:line.id||crypto.randomUUID()}))}));
  const [saving,setSaving]=useState(false),[error,setError]=useState('');
  const [registering,setRegistering,clearRegistering]=useDraftState('recipe:'+recipe.id+':registering',null),[creatingBook,setCreatingBook,clearCreatingBook]=useDraftState('recipe:'+recipe.id+':creatingBook',false);
  function clear(){clearForm();clearSnapshot();clearRegistering();clearCreatingBook();}
@@ -46,11 +46,11 @@ export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,b
    <label>Unidad {index+1}<select required value={line.unit} onChange={e=>changeLine(index,{unit:e.target.value})}>{!units.includes(line.unit)&&<option value={line.unit} disabled>{line.unit||'Unidad no disponible'}</option>}{units.map(unit=><option key={unit} value={unit}>{etiquetaUnidad(unit)}</option>)}</select></label>
    <IngredientMeasureHint item={ingredient} line={line}/><button type="button" className="ghost" onClick={()=>{if(registering===line.key)setRegistering(null);change('lines',form.lines.filter((_,i)=>i!==index))}} aria-label={'Quitar ingrediente '+(index+1)}>Quitar</button>
   </div>})}
-  {!form.lines.length&&<p className="warning">Agrega al menos un ingrediente antes de guardar.</p>}
+  {!form.lines.length&&!recipe.subrecipes?.length&&<p className="warning">Agrega al menos un ingrediente antes de guardar.</p>}
   <button type="button" className="secondary" onClick={()=>add()} disabled={!ingredients.length}>+ Ingrediente</button>{!importing&&<button type="button" className="secondary" onClick={()=>add('material')} disabled={!ingredients.some(i=>i.itemKind==='material')}>+ Material o empaque</button>}
   <h4>Preparación</h4><label>Pasos de preparación<textarea rows={7} maxLength={20000} value={form.preparation} onChange={e=>change('preparation',e.target.value)} placeholder="Escribe los pasos, uno por línea. Puedes incluir tus tiempos, temperatura y notas."/></label><small>Opcional · hasta 20,000 caracteres. Escribe las indicaciones propias de esta receta.</small>
   {error&&<p className="form-error" role="alert">{error}</p>}
-  <div className="actions"><button disabled={!books.length||!form.lines.length||registrationOpen}>{saving?'Guardando…':importing?'Guardar receta importada':'Guardar cambios de receta'}</button><button type="button" className="secondary" onClick={()=>{clear();onCancel();}}>{importing?'Volver al texto':'Cancelar edición'}</button></div>
+  <div className="actions"><button disabled={!books.length||(!form.lines.length&&!recipe.subrecipes?.length)||registrationOpen}>{saving?'Guardando…':importing?'Guardar receta importada':'Guardar cambios de receta'}</button><button type="button" className="secondary" onClick={()=>{clear();onCancel();}}>{importing?'Volver al texto':'Cancelar edición'}</button></div>
   </fieldset>
  </form>;
 }

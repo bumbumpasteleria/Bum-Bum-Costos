@@ -59,6 +59,8 @@ Consulta tus recetas dentro de sus recetarios
 7. Para ingresar otra, pulsa Agregar receta a este recetario: abre el área Nueva receta con el destino seleccionado. Allí puedes subir PDF/foto o escribirla.
 8. Para sumar mano de obra y gastos, pulsa Calcular costo final de la receta. Se abrirá Costos de productos con ese artículo seleccionado.
 9. En Foto, conservación y notas guarda tu fotografía para las portadas. Sin foto se muestra una imagen de referencia identificada. Las indicaciones de conservación y alérgenos las completas tú.
+10. Dentro de la receta abre Ficha profesional y subrecetas. Guarda dimensiones del molde, capas, tiempos, temperatura y merma prevista; son condiciones que tú confirmas. El rendimiento ya registrado se utiliza para calcular el costo por porción.
+11. Añade subrecetas vinculadas y la proporción de cada receta completa: 0.5 es la mitad. Sus cantidades y precios actuales se incorporan sin copiar la fórmula. La aplicación bloquea ciclos y evita eliminar una preparación usada por otra. Retira ingredientes duplicados que ya estuvieran copiados en la receta.
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 
@@ -136,6 +138,7 @@ Convierte medidas y planifica tu preparación
 10. Lee el resultado. Puedes intercambiar las unidades o copiarlo.
 11. Abre las opciones de abajo solo si necesitas favoritos, medidas propias o usar cantidades de una receta.
 12. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
+13. El control Temporizadores aparece en todas las áreas. Inicia relojes con nombre y minutos; puedes pausarlos, continuarlos y confirmar avisos. Se conservan por cuenta en el dispositivo y recalculan el tiempo al regresar. Mantén la app abierta para ver los avisos; no es una alarma del teléfono cuando la aplicación está cerrada.
 
 **Ejemplo:** En Temperatura, 180 °C equivalen a 356 °F. En Ingredientes, elige cuál estás midiendo: una taza de harina no pesa lo mismo que una de azúcar.
 
@@ -176,6 +179,8 @@ Lo que tienes para preparar
 2. Pulsa Actualizar existencias e indica la cantidad disponible y el mínimo para reponer. Selecciona la unidad compatible que prefieras, por ejemplo kilos o galones; se guarda su equivalencia en la unidad base. Cero es válido.
 3. Guarda existencias. La lista de Compras se actualiza inmediatamente. Si otra sesión cambió cantidades, actualiza y revisa el ajuste antes de guardarlo.
 4. Después de registrar producción en Mi nevera, las existencias de ingredientes y materiales se actualizan automáticamente. Cambiar o guardar una receta no descuenta inventario. Las cantidades pueden incluir fracciones de unidad cuando se utilizan por peso.
+5. Actualiza existencias con un motivo para conservar el movimiento. El conteo físico incluye lo retenido o vencido; Disponible para producir lo excluye. Las compras y lotes se registran en Movimientos de inventario.
+6. Para retirar un lote concreto usa Registrar merma de este lote en Movimientos de inventario. No elimines el artículo: su historial de compra y producción se conserva.
 
 **Ejemplo:** Harina: quedan 500 g, mínimo 500 g. Aparece en Compras.
 
@@ -189,6 +194,7 @@ Qué necesitas reponer
 2. Cada proveedor aparece por separado. Los artículos sin existencias o mínimo registrados requieren completarlos en Inventario.
 3. Cuando repongas, pulsa Actualizar existencias y registra la cantidad real. Al superar el mínimo, el artículo sale de Compras.
 4. Los consumos registrados al producir actualizan las existencias; si un artículo llega a su mínimo, aparece en esta lista.
+5. La lista automática usa existencias disponibles para producir, excluyendo lotes vencidos o retenidos. Registra la reposición en Movimientos de inventario; el artículo sale de la lista al superar su mínimo.
 
 **Ejemplo:** Si una caja tiene mínimo 5 y quedan 5 unidades, aparece pendiente; si registras 20, deja de aparecer.
 
@@ -206,6 +212,7 @@ Tus productos listos para vender
 6. La portada utiliza la foto guardada en la ficha de la receta vinculada. Si no hay foto, verás una imagen de referencia; las cantidades y estados siempre proceden de tus lotes.
 7. Registrar una preparación descuenta ingredientes y materiales del inventario en una sola operación. Las recetas en gramos se convierten con la equivalencia de cada artículo. Si faltan existencias, no se guarda el lote ni se descuenta nada. Repetir el mismo intento no descuenta dos veces. Los lotes anteriores conservan su costo y no se descuentan retroactivamente. Abre Ver ingredientes descontados dentro de un lote nuevo para consultar su consumo.
 8. Mi nevera se dedica a existencias, lotes, producción y precio registrado. La ficha completa con mano de obra y gastos se gestiona en Costos de productos.
+9. Una revisión de calidad Retenido sobre un lote impide venderlo hasta una revisión posterior Conforme. El vencimiento continúa aplicándose. El responsable debe registrar su criterio; la aplicación no decide inocuidad.
 
 **Ejemplo:** Una receta completa produce 12 porciones de tres leches: cantidad 12, veces 1. Vendes 3 y quedan 9.
 
@@ -232,6 +239,7 @@ Conoce el resultado de tu negocio
 3. Registra gastos adicionales como alquiler, servicios o mantenimiento. No repitas ingredientes ni comisiones que ya estén incluidos en la venta.
 4. Usa Corregir para ajustar un gasto. Anular gasto pide confirmación y conserva su historial.
 5. Pulsa Descargar finanzas en PDF. El documento contiene el período, resumen y detalle, incluso si necesita varias páginas.
+6. En Caja y rentabilidad consulta cobros reales, saldos, comparación mensual, contribución por producto y valor estimado de materias primas. El resultado de ventas y gastos es distinto del saldo efectivo.
 
 **Ejemplo:** Ventas por RD$1,000 menos comisiones, producción y gastos registrados dan el resultado del período.
 
@@ -257,6 +265,7 @@ Organiza tus encargos y entregas
 2. Vincula opcionalmente una receta de Encargos; las recetas exclusivas de Apps no se muestran en esta selección.
 3. Actualiza su estado: Pendiente, En preparación, Listo, Entregado o Cancelado.
 4. Busca por cliente o descripción y filtra la agenda por fecha y estado. Los entregados y cancelados se conservan en Todos.
+5. Puedes elegir un cliente del directorio para reutilizar nombre y contacto. Planifica preparación y fotos de referencia en Agenda y cobros. Después del primer cobro registrado, usa Cobros y devoluciones para cambiar lo recibido; el anticipo ya no se modifica manualmente.
 
 **Ejemplo:** Un encargo de RD$2,000 con anticipo de RD$500 muestra RD$1,500 de saldo.
 
@@ -276,6 +285,7 @@ Añade una receta a un recetario
 8. Puedes usar gramos de ingredientes comprados por unidades o volumen si registraste su equivalencia en Ingredientes. La receta conserva los gramos; los costos y la producción utilizan la cantidad equivalente de inventario. No se supone el peso de huevos ni de líquidos.
 9. Comprueba el recetario elegido y pulsa Guardar receta importada o Guardar receta. Después abre Recetarios, ese recetario y Ver recetas del recetario para consultarla.
 10. Los borradores se conservan por cuenta en este dispositivo. El archivo no se guarda; se conserva el texto reconocido y el formulario de revisión.
+11. Para una receta basada en preparaciones existentes abre Componer una receta con subrecetas vinculadas. Elige hasta tres fórmulas de origen, proporciones, nombre, rendimiento y recetario de destino. Esta composición se actualiza cuando cambian sus subrecetas; las combinaciones anteriores de Herramientas siguen siendo copias independientes.
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 
@@ -297,3 +307,75 @@ Calcula el costo del artículo terminado
 **Ejemplo:** Una receta rinde 12 porciones. Ingredientes y materiales RD$42, mano de obra RD$240 y gastos RD$18: costo completo RD$300, o RD$25 por porción.
 
 **Consejo:** El costo completo no es el precio de venta. La comisión y el margen se aplican al calcular el precio de cada canal. Cada cuenta conserva sus propias fichas y su historial.
+
+## Clientes y proveedores
+
+Reutiliza contactos de tu negocio
+
+1. Abre Clientes o Proveedores y registra nombre, contacto, correo, dirección y notas.
+2. Edita para corregir el registro. Archivar lo retira de las opciones nuevas sin borrar el historial. Reactivar vuelve a ofrecerlo.
+3. En Pedidos selecciona el cliente. En compras elige el proveedor de la variante del artículo; otro proveedor requiere su variante de catálogo para conservar precios separados.
+
+**Ejemplo:** Guarda tu proveedor de harina y reutilízalo al registrar sus compras.
+
+**Consejo:** Cada cuenta ve su propio directorio. No se envían correos ni mensajes desde este formulario.
+
+## Movimientos de inventario
+
+Registra compras y lotes sin repetir movimientos
+
+1. Registra primero el conteo inicial del artículo en Inventario.
+2. Elige el artículo y una unidad de compra compatible, cantidad, precio total, pago realizado, fecha, lote y vencimiento. El pago puede ser parcial o cero.
+3. Guardar aumenta el stock, actualiza el costo por unidad base y registra el pago real en Caja. No registres ese pago de nuevo manualmente.
+4. Consulta lotes y movimientos. Registrar merma de este lote retira exactamente la cantidad seleccionada de ese lote y del inventario, con motivo.
+5. Las producciones consumen primero lotes vigentes próximos a vencer, y después existencias anteriores sin lote. Los lotes vencidos o retenidos se excluyen. Los precios editados también conservan un historial.
+6. Si quedó un importe pendiente, abre Registrar pago pendiente de compra en su lote. El pago reduce el saldo y sale de Caja, sin volver a aumentar stock ni registrar otra compra.
+
+**Ejemplo:** Compras 1 kg de harina por RD$100 y pagas RD$60: se añaden 1000 g, costo RD$0.10/g y salida de caja RD$60.
+
+**Consejo:** Los artículos existentes conservan su stock inicial; no se inventan compras ni vencimientos anteriores. Los reintentos conservan el identificador para evitar duplicar compras o mermas.
+
+## Agenda y cobros
+
+Planifica encargos y registra sus cobros
+
+1. Elige mes y fecha para ver pedidos y preparaciones del calendario.
+2. Crea una orden de trabajo con receta, proporción, cantidad prevista, pedido asociado, foto de referencia y notas.
+3. Consulta los ingredientes consolidados pendientes de la fecha, separados por proveedor. Esta consulta no descuenta inventario.
+4. Al terminar, abre Registrar producción terminada y confirma. Guarda consumos y costo histórico y descuenta una sola vez. Una orden cancelada no produce.
+5. Los encargos producidos aquí no se vuelven a registrar como producción en Mi nevera. En el pedido del calendario abre Registrar venta de este encargo: utiliza el total acordado y el costo histórico de sus preparaciones terminadas, sin volver a descontar artículos ni registrar un cobro. El mismo encargo no se vende dos veces.
+6. En Cobros y devoluciones selecciona el pedido, fecha, importe y medio. El saldo del pedido y la caja se actualizan juntos. No se permiten cobros sobre el saldo ni devoluciones superiores a lo recibido.
+7. Descarga la orden de trabajo en PDF para consultar ingredientes y foto de referencia. Cuando ya está terminada, utiliza sus consumos históricos.
+
+**Ejemplo:** Una preparación usa media masa y un cuarto de relleno. La lista suma ambas y la confirmación descuenta esos artículos.
+
+**Consejo:** Los anticipos anteriores se conservan, pero no se fabrican movimientos de caja pasados. Los cobros nuevos no se repiten como entrada manual ni como otra venta.
+
+## Caja y rentabilidad
+
+Separa el dinero recibido del resultado del negocio
+
+1. Configura fecha y saldo inicial reales en Calidad y configuración.
+2. Elige las fechas del reporte. Revisa entradas, salidas y saldo registrado de caja, resultado de ventas y gastos, y cuentas por cobrar actuales.
+3. Los cobros nuevos de pedidos y los pagos de compras aparecen automáticamente. Registra las liquidaciones de ventas y pagos de gastos que falten como movimientos reales de caja.
+4. Consulta comparación mensual y productos vendidos. La contribución por producto no reparte gastos generales arbitrariamente.
+5. Descarga Caja y rentabilidad en PDF. El valor de materias primas es una estimación a precio actual, no dinero disponible.
+6. Compras por pagar muestra el saldo de los lotes comprados. Registra los pagos posteriores desde el lote; no los dupliques manualmente. Para corregir un movimiento manual equivocado, registra su contrapartida con referencia al original para conservar el historial.
+
+**Ejemplo:** Venta RD$100 con costo RD$40 puede dar resultado RD$60 aunque la plataforma todavía no haya depositado el dinero.
+
+**Consejo:** No dupliques pagos ya registrados. Un aporte del propietario aumenta la caja, pero no representa una venta ni ganancia.
+
+## Calidad y configuración
+
+Configura tu actividad y registra revisiones
+
+1. Guarda perfil Pastelería, Panadería o Mixto, nombre, ubicación, saldo y fecha inicial de caja. El perfil conserva las funciones disponibles.
+2. Escribe los criterios de calidad propios del negocio. La aplicación no inventa límites ni fechas seguras.
+3. Registra preparación o área, fecha, receta o lote opcional, criterio, observación, decisión, responsable y acción correctiva.
+4. Retenido / no utilizar bloquea el lote relacionado para consumo o venta. Una revisión posterior Conforme permite volver a usarlo si continúa vigente.
+5. Los controles y sus modificaciones quedan privados en tu cuenta y se incluyen en el respaldo.
+
+**Ejemplo:** Registra la revisión de presentación de un lote e indica quién lo comprobó.
+
+**Consejo:** Registrar Conforme no certifica inocuidad ni sustituye tus procedimientos. Si no seleccionas un lote, el registro documenta la revisión pero no bloquea existencias específicas.

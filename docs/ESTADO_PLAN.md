@@ -20,17 +20,12 @@ Acceso aprobado y perfiles privados, personas con acceso, ingredientes por prove
 
 La existencia de estas funciones no certifica cada dispositivo de cada usuaria. Se siguen verificando mediante pruebas y flujos de revisión sin acceder a sesiones ajenas.
 
-## Próximas entregas del plan original
+## Herramientas publicadas en PR25
 
-1. Formulación profesional: moldes, tiempos y temperaturas estructurados, merma y rendimiento, referencias entre subrecetas con historial seguro. La combinación actual genera una copia escalada, no un vínculo dinámico de fórmulas.
-2. Herramientas técnicas: adaptación entre moldes, porcentajes panaderos/hidratación/prefermentos, rendimiento, porciones, concentraciones y temporizadores. Las equivalencias culinarias sin fuente verificada exigirán calibración; no se inventarán densidades.
-3. Inventario detallado: lotes y vencimientos de materias primas, historial de compras/precios y movimientos, mermas y ajustes documentados. Los lotes de producto terminado ya existen.
-4. Gestión comercial: directorio de clientes y proveedores reutilizable, referencias visuales de encargos, calendario y órdenes de trabajo con ingredientes consolidados. La agenda actual de pedidos es una lista filtrable por fecha, no un calendario completo.
-5. Finanzas ampliadas: cuentas por cobrar vinculadas a cobros reales, flujo de caja separado de utilidad, compras y gastos sin duplicación, comparaciones mensuales y rentabilidad por producto. No confundir el valor del inventario con efectivo disponible.
-6. Control de calidad y configuración de perfiles Pastelería/Panadería/Mixto, con criterios definidos por el negocio, sin inferir inocuidad ni fechas de consumo seguras.
+Adaptación entre moldes, porcentajes panaderos y rendimiento medido, con borradores privados por cuenta y dispositivo. Publicadas con aprobación y verificadas en el enlace oficial.
 
-Cada entrega incluirá guía, pruebas de cálculo y permisos, revisión visual móvil/escritorio y PR. Los cambios de base de datos se probarán en transacciones reversibles antes de su aplicación permanente. No se sustituye una función existente por una maqueta ni se marca como completada una función solo documentada.
+## Entrega integral en revisión
 
-## Siguiente entrega preparada
+Los seis bloques solicitados están implementados en esta entrega: fichas profesionales y subrecetas vinculadas; temporizadores; compras, lotes y movimientos de materias primas; directorios, calendario y órdenes de trabajo; caja, cobros y rentabilidad; controles de calidad y perfiles de negocio. Véase OPERACION_INTEGRAL.md para los flujos y límites concretos.
 
-Herramientas de moldes, porcentajes panaderos y rendimiento medido, con borradores privados por cuenta en el dispositivo. Fórmulas verificadas y guías actualizadas. No incluye aún temporizadores, concentración alimentaria, estimación de temperatura de masa ni sustituciones. Su publicación sigue requiriendo aprobación propia.
+La validación incluye pruebas automatizadas, operaciones reversibles en Supabase con cuentas ficticias, revisión de los nuevos flujos y PDF. La publicación permanente requiere aprobar conjuntamente la migración y el PR. No se marca esta entrega como publicada antes de verificar producción.
