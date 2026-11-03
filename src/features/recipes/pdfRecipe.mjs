@@ -1,3 +1,4 @@
+import {resolveMeasuredLine} from './resolveMeasuredLine.mjs';
 import {ingredientMatches,normalizeIngredient} from './ingredientMatches.mjs';
 // Deliberately conservative: unsupported measures stay unresolved for human review.
 export const normalize=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
@@ -15,7 +16,7 @@ export function parseIngredient(raw,ingredients=[]){
  let name=cleaned,qty='',unit='';
  if(quantity){qty=String(parseQuantity(quantity[1]));const rest=cleaned.slice(quantity[0].length);const measure=rest.match(/^([a-záéíóúñ]+)\.?\s+/i);if(measure&&aliases[normalize(measure[1])]){unit=aliases[normalize(measure[1])];name=rest.slice(measure[0].length).replace(/^de\s+/i,'');if(unit==='gal US'){if(/^(?:imperial|brit[aá]nico)/i.test(name))unit='';else name=name.replace(/^(?:US|estadounidense)\s+(?:de\s+)?/i,'');}}else name=rest;}
  const candidates=ingredientMatches(name,ingredients);
- return {raw,name,qty,unit,ingredientId:candidates.length===1&&normalizeIngredient(candidates[0].name)===normalizeIngredient(name)?candidates[0].id:'',ambiguous:candidates.length>1};
+ return resolveMeasuredLine({raw,name,qty,unit,ingredientId:candidates.length===1&&normalizeIngredient(candidates[0].name)===normalizeIngredient(name)?candidates[0].id:'',ambiguous:candidates.length>1},ingredients);
 }
 export function parseRecipeText(text,ingredients=[]){
  if(typeof text!=='string'||text.length>100000)throw new Error('Usa una receta de hasta 100,000 caracteres.');

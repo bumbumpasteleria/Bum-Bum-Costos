@@ -1,3 +1,4 @@
+import * as measuredLines from '../src/features/recipes/resolveMeasuredLine.mjs';
 import * as recipeStages from '../src/features/recipes/recipeStages.mjs';
 import * as ingredientQuantity from '../src/domain/costing/ingredientQuantity.mjs';
 import {readPreparation,validatePreparation} from '../src/features/recipes/recipePreparation.mjs';
@@ -9,7 +10,7 @@ import {transformWithEsbuild} from 'vite';
 const root=new URL('../src/',import.meta.url);
 const compile=async(file,loader='js')=>(await transformWithEsbuild(await readFile(new URL(file,root),'utf8'),file,{loader,format:'cjs'})).code;
 const [cloudCode,catalogCode,serviceCode,editorCode]=await Promise.all([compile('cloudService.js'),compile('catalogoService.js'),compile('features/recipes/recipesService.js'),compile('features/recipes/RecipeEditor.jsx','jsx')]);
-function load(code,require,extra={}){const m={exports:{}};vm.runInNewContext(code,{module:m,exports:m.exports,require:path=>path.includes('recipeStages')?recipeStages:path.includes('ingredientQuantity')?ingredientQuantity:require(path),...extra});return m.exports;}
+function load(code,require,extra={}){const m={exports:{}};vm.runInNewContext(code,{module:m,exports:m.exports,require:path=>path.includes('resolveMeasuredLine')?measuredLines:path.includes('recipeStages')?recipeStages:path.includes('ingredientQuantity')?ingredientQuantity:require(path),...extra});return m.exports;}
 const owner='owner-a';
 const raw=()=>({id:'recipe',owner_id:owner,name:'Galletas',recipe_book_id:'book',yield_quantity:12,yield_unit:'unidad',instructions:'{"bumBum":1,"scaling":"scalable","productType":"Galleta","custom":"keep"}',recipe_lines:[{id:'line-1',owner_id:owner,recipe_id:'recipe',ingredient_id:'flour',quantity_base:250,ingredients:{base_unit:'g'}}]});
 function fixture(){let calls=[],response=null,failure=null,readFailure=false;const record=raw();
@@ -31,7 +32,7 @@ test('conflicto, servicio ausente, red y respuesta de otra cuenta no se confirma
 const nodes=x=>x&&typeof x==='object'?[x,...(x.children||[]).flat(Infinity).flatMap(nodes)]:[];
 const text=x=>typeof x==='string'||typeof x==='number'?String(x):x&&typeof x==='object'?(x.children||[]).flat(Infinity).map(text).join(''):'';
 function editor(){const f=fixture();let hooks=[],index=0,tree,calls=[],cancelled=0,fail=false;
- const react={createElement:(type,props,...children)=>({type,props:props||{},children}),useState(initial){const i=index++;if(!hooks[i])hooks[i]={value:typeof initial==='function'?initial():initial};return [hooks[i].value,value=>hooks[i].value=typeof value==='function'?value(hooks[i].value):value]},useRef(initial){const i=index++;return hooks[i]??(hooks[i]={current:initial})}};
+ const react={useEffect(){},createElement:(type,props,...children)=>({type,props:props||{},children}),useState(initial){const i=index++;if(!hooks[i])hooks[i]={value:typeof initial==='function'?initial():initial};return [hooks[i].value,value=>hooks[i].value=typeof value==='function'?value(hooks[i].value):value]},useRef(initial){const i=index++;return hooks[i]??(hooks[i]={current:initial})}};
  const Editor=load(editorCode,path=>path.includes('drafts/Drafts')?{useDraftState:(_scope,initial)=>[...react.useState(initial),()=>{}]}:path==='react'?react:path==='../../cloudService'?{medidas:{g:['g',1],kg:['g',1000],unidad:['unit',1]}}:path==='../../catalogoService'?{...f.catalog,etiquetaArticulo:item=>item.name,unidadesCompra:['g','kg','unidad']}:{},{crypto:globalThis.crypto}).default;
  function render(){index=0;tree=Editor({recipe:f.recipe,ingredients:f.ingredients,books:f.books,busy:false,onCancel(){cancelled++},onSave:async(form,original)=>{calls.push({form:structuredClone(form),original});if(fail)throw Error('Conflicto de edición')}});return tree}
  function field(label,value){const wrap=nodes(tree).find(n=>n.type==='label'&&n.children.filter(c=>['string','number'].includes(typeof c)).join('')===label);const control=nodes(wrap).find(n=>['input','select','textarea'].includes(n.type));assert.ok(control,label);control.props.onChange({target:{value}});render()}
