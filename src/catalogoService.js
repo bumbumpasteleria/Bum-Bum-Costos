@@ -4,7 +4,7 @@ import { adaptarIngrediente } from './ingredientsService';
 
 export const tiposProducto = ['Bizcocho','Cupcake','Galleta','Brownie','Cheesecake','Flan','Tres leches','Postre en vaso','Pan','Otro artículo'];
 export const unidadesCompra = Object.keys(medidas).filter(u=>u!=='unit');
-export const unidadesRendimiento = ['unidad','porción','docena','g','kg','lb','lb comercial','oz','ml','L','gal US','bandeja','caja'];
+export const unidadesRendimiento = ['receta completa','unidad','porción','docena','g','kg','lb','lb comercial','oz','ml','L','gal US','bandeja','caja'];
 export const etiquetaArticulo = i=>`${i.name} · ${i.supplier || 'Sin proveedor registrado'}`;
 
 export function prepararArticulo(form, kind, original) {
