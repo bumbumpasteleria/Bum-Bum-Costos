@@ -11,3 +11,4 @@ Al crear un pedido desde una cotización se conservan sus datos y el desglose ac
 Las copias calculadas de recetas conservan etapas e instrucciones. Son fórmulas independientes; las subrecetas vinculadas siguen siendo el mecanismo para incorporar cambios posteriores. Los tiempos y moldes escritos requieren revisión al escalar. Restaurar una versión recupera también la organización de sus etapas.
 
 La migración de usabilidad conserva cuentas, políticas de acceso e inventario. Las pruebas de base se ejecutan con transacción revertida y usuarios ficticios; no modifican el negocio real.
+En celular, los grupos del menú se muestran en una sola columna con títulos oscuros sobre fondo claro. En computadora se conserva el menú lateral.
