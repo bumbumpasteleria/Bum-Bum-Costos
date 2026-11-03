@@ -47,7 +47,7 @@ export async function guardarIngrediente({
       name: name.trim(),
       base_unit: unit,
       last_unit_cost: costo,
-      stock_quantity: cantidad,
+      stock_quantity: null,
       minimum_stock: 0
     })
     .select()

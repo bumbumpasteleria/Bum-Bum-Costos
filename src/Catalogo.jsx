@@ -34,7 +34,7 @@ export default function Catalogo({kind,items,onSave,onDelete,busy}) {
             <label>Cantidad de esa compra<input name="quantity" type="number" min="0.001" step="any" value={form.quantity} onChange={change} required/></label>
             <label>Unidad de compra<select name="unit" value={form.unit} onChange={change}>{unidades.map(u=><option key={u} value={u}>{etiquetaUnidad(u)}</option>)}</select></label>
           </div>
-          <IngredientEquivalence form={form} onChange={(key,value)=>setForm(old=>({...old,[key]:value}))}/>{original&&<p>La unidad debe ser compatible con la registrada. Cambiar precio o proveedor conserva el inventario y las referencias existentes.</p>}
+          <p>Precio y presentación sirven para calcular costos. Registrar el artículo no aumenta existencias. Añade cada compra real en Movimientos de inventario; no necesitas un conteo inicial.</p><IngredientEquivalence form={form} onChange={(key,value)=>setForm(old=>({...old,[key]:value}))}/>{original&&<p>La unidad debe ser compatible con la registrada. Cambiar precio o proveedor conserva el inventario y las referencias existentes.</p>}
           {error&&<p role="alert" className="form-error">{error}</p>}
           <div className="actions"><button type="submit">{saving?'Guardando…':original?'Guardar cambios':'Guardar '+nombre}</button><button type="button" className="secondary" onClick={limpiar}>{original?'Cancelar edición':'Limpiar formulario'}</button></div>
         </fieldset>

@@ -29,6 +29,7 @@ Registra lo que usas para cocinar
 4. Pulsa Guardar ingrediente. Abre Ver ingredientes registrados para ver la lista; vuelve a pulsar para cerrarla. La lista empieza cerrada. Después podrás elegirlo al armar una receta. Para borrar un registro, pulsa Eliminar y confirma en la misma pantalla.
 5. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 6. Para usar gramos de un ingrediente comprado por unidades o volumen, abre Usar este artículo en gramos. Indica cantidad y unidad de referencia y cuánto pesa en gramos: por ejemplo, 1 unidad pesa 50 g o 100 ml pesan 103 g. Guarda el ingrediente. La equivalencia es propia de ese artículo y proveedor; al crear otro proveedor debes medir y registrar la suya.
+7. La presentación de compra sirve para calcular el precio; registrar el artículo no crea existencias. Si aún no has contado el stock, la primera compra real inicia el seguimiento. Las existencias anteriores se conservan.
 
 **Ejemplo:** Si compraste 1 kg de harina por RD$150, coloca precio 150, cantidad 1 y unidad kg.
 
@@ -43,6 +44,7 @@ Añade empaques y consumibles
 3. Guarda el material. Abre Ver materiales registrados para desplegar la lista y vuelve a pulsar para cerrarla. La lista empieza cerrada. Usa Editar para actualizarlo u Otro proveedor para una variante.
 4. En el Cotizador, selecciona cuántos materiales llevará el encargo.
 5. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
+6. Registrar el precio y presentación no añade stock. Usa Movimientos de inventario para las compras reales. Un artículo sin conteo inicia el seguimiento con su primera compra.
 
 **Ejemplo:** Un paquete de 10 cajas por RD$200: precio 200, cantidad 10 y unidad unidad. Cada caja costará RD$20.
 
@@ -63,6 +65,7 @@ Consulta tus recetas dentro de sus recetarios
 9. En Foto, conservación y notas guarda tu fotografía para las portadas. Sin foto se muestra una imagen de referencia identificada. Las indicaciones de conservación y alérgenos las completas tú.
 10. Dentro de la receta abre Ficha profesional y subrecetas. Guarda dimensiones del molde, capas, tiempos, temperatura y merma prevista; son condiciones que tú confirmas. El rendimiento ya registrado se utiliza para calcular el costo por porción.
 11. Añade subrecetas vinculadas y la proporción de cada receta completa: 0.5 es la mitad. Sus cantidades y precios actuales se incorporan sin copiar la fórmula. La aplicación bloquea ciclos y evita eliminar una preparación usada por otra. Retira ingredientes duplicados que ya estuvieran copiados en la receta.
+12. Dentro de una receta, Editar receta permite añadir, cambiar o quitar etapas. Quitar una etapa conserva sus ingredientes en General. En Ver ingredientes y costos abre cada etapa para consultar cantidades e instrucciones. Los vínculos a otras recetas siguen en Ficha profesional y subrecetas; sus cantidades se suman al total, por lo que no deben copiarse también como ingredientes propios.
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 
@@ -268,6 +271,7 @@ Organiza tus encargos y entregas
 3. Actualiza su estado: Pendiente, En preparación, Listo, Entregado o Cancelado.
 4. Busca por cliente o descripción y filtra la agenda por fecha y estado. Los entregados y cancelados se conservan en Todos.
 5. Puedes elegir un cliente del directorio para reutilizar nombre y contacto. Planifica preparación y fotos de referencia en Agenda y cobros. Después del primer cobro registrado, usa Cobros y devoluciones para cambiar lo recibido; el anticipo ya no se modifica manualmente.
+6. Añade varias recetas con su proporción y cantidad final, y hasta seis fotos de referencia. Indica cuántos días antes debe prepararse cada receta. Guardar crea o actualiza sus tareas en Agenda; planificar no descuenta inventario. Los cobros, la venta y el historial de preparación se consultan dentro del pedido.
 
 **Ejemplo:** Un encargo de RD$2,000 con anticipo de RD$500 muestra RD$1,500 de saldo.
 
@@ -288,6 +292,7 @@ Añade una receta a un recetario
 9. Comprueba el recetario elegido y pulsa Guardar receta importada o Guardar receta. Después abre Recetarios, ese recetario y Ver recetas del recetario para consultarla.
 10. Los borradores se conservan por cuenta en este dispositivo. El archivo no se guarda; se conserva el texto reconocido y el formulario de revisión.
 11. Para una receta basada en preparaciones existentes abre Componer una receta con subrecetas vinculadas. Elige hasta tres fórmulas de origen, proporciones, nombre, rendimiento y recetario de destino. Esta composición se actualiza cuando cambian sus subrecetas; las combinaciones anteriores de Herramientas siguen siendo copias independientes.
+12. Pulsa Receta por etapas para reunir base, crema, crumble y montaje en una sola receta. Añade etapas con nombre e instrucciones y asigna cada línea de ingrediente a su etapa. Cada línea se cuenta una sola vez. Los ingredientes generales pueden quedar sin etapa.
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 
@@ -341,13 +346,10 @@ Registra compras y lotes sin repetir movimientos
 
 Planifica encargos y registra sus cobros
 
-1. Elige mes y fecha para ver pedidos y preparaciones del calendario.
-2. Crea una orden de trabajo con receta, proporción, cantidad prevista, pedido asociado, foto de referencia y notas.
-3. Consulta los ingredientes consolidados pendientes de la fecha, separados por proveedor. Esta consulta no descuenta inventario.
-4. Al terminar, abre Registrar producción terminada y confirma. Guarda consumos y costo histórico y descuenta una sola vez. Una orden cancelada no produce.
-5. Los encargos producidos aquí no se vuelven a registrar como producción en Mi nevera. En el pedido del calendario abre Registrar venta de este encargo: utiliza el total acordado y el costo histórico de sus preparaciones terminadas, sin volver a descontar artículos ni registrar un cobro. El mismo encargo no se vende dos veces.
-6. En Cobros y devoluciones selecciona el pedido, fecha, importe y medio. El saldo del pedido y la caja se actualizan juntos. No se permiten cobros sobre el saldo ni devoluciones superiores a lo recibido.
-7. Descarga la orden de trabajo en PDF para consultar ingredientes y foto de referencia. Cuando ya está terminada, utiliza sus consumos históricos.
+1. Agenda muestra únicamente preparaciones pendientes o en proceso y entregas pendientes. Crea o edita el encargo desde Pedidos.
+2. Filtra pendientes de hoy y atrasados o próximas fechas. Marca En proceso al comenzar y Terminar preparación cuando realmente hayas producido: esta última acción descuenta ingredientes una sola vez.
+3. Las tareas terminadas desaparecen de Agenda y permanecen en el historial del pedido. Los cobros y la venta están dentro de Pedidos.
+4. El aviso superior muestra preparaciones vencidas o previstas para hoy. Puedes activar avisos del navegador por cuenta y dispositivo; requieren permiso y la aplicación abierta. Al volver se revisan otra vez los pendientes.
 
 **Ejemplo:** Una preparación usa media masa y un cuarto de relleno. La lista suma ambas y la confirmación descuenta esos artículos.
 

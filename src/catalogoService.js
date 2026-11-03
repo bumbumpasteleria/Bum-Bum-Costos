@@ -32,7 +32,7 @@ export async function guardarArticulo(form,kind,owner,original) {
   if(original) {
     if(original.itemKind!==kind)throw new Error('No se puede cambiar el tipo de este registro.');
     query=query.update(payload).eq('id',original.id).eq('owner_id',owner).eq('item_kind',kind).eq('base_unit',medidas[original.unit]?.[0]);
-  } else query=query.insert({...payload,owner_id:owner,stock_quantity:cantidadBase(form.quantity,form.unit).quantity,minimum_stock:0});
+  } else query=query.insert({...payload,owner_id:owner,stock_quantity:null,minimum_stock:0});
   const {data,error}=await query.select().single();
   if(error)throw error;
   return adaptarIngrediente(data);

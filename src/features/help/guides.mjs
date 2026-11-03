@@ -1,4 +1,4 @@
-export const MODULE_GUIDES = {
+const MODULE_GUIDES = {
   "Inicio": {
     "title": "Tu punto de partida",
     "steps": [
@@ -332,3 +332,11 @@ export const MODULE_GUIDES = {
     "tip": "Registrar Conforme no certifica inocuidad ni sustituye tus procedimientos. Si no seleccionas un lote, el registro documenta la revisión pero no bloquea existencias específicas."
   }
 };
+
+MODULE_GUIDES['Nueva receta'].steps.push('Pulsa Receta por etapas para reunir base, crema, crumble y montaje en una sola receta. Añade etapas con nombre e instrucciones y asigna cada línea de ingrediente a su etapa. Cada línea se cuenta una sola vez. Los ingredientes generales pueden quedar sin etapa.');
+MODULE_GUIDES['Recetas'].steps.push('Dentro de una receta, Editar receta permite añadir, cambiar o quitar etapas. Quitar una etapa conserva sus ingredientes en General. En Ver ingredientes y costos abre cada etapa para consultar cantidades e instrucciones. Los vínculos a otras recetas siguen en Ficha profesional y subrecetas; sus cantidades se suman al total, por lo que no deben copiarse también como ingredientes propios.');
+MODULE_GUIDES['Pedidos'].steps.push('Añade varias recetas con su proporción y cantidad final, y hasta seis fotos de referencia. Indica cuántos días antes debe prepararse cada receta. Guardar crea o actualiza sus tareas en Agenda; planificar no descuenta inventario. Los cobros, la venta y el historial de preparación se consultan dentro del pedido.');
+MODULE_GUIDES['Agenda y cobros'].steps=['Agenda muestra únicamente preparaciones pendientes o en proceso y entregas pendientes. Crea o edita el encargo desde Pedidos.','Filtra pendientes de hoy y atrasados o próximas fechas. Marca En proceso al comenzar y Terminar preparación cuando realmente hayas producido: esta última acción descuenta ingredientes una sola vez.','Las tareas terminadas desaparecen de Agenda y permanecen en el historial del pedido. Los cobros y la venta están dentro de Pedidos.','El aviso superior muestra preparaciones vencidas o previstas para hoy. Puedes activar avisos del navegador por cuenta y dispositivo; requieren permiso y la aplicación abierta. Al volver se revisan otra vez los pendientes.'];
+MODULE_GUIDES['Ingredientes'].steps.push('La presentación de compra sirve para calcular el precio; registrar el artículo no crea existencias. Si aún no has contado el stock, la primera compra real inicia el seguimiento. Las existencias anteriores se conservan.');
+MODULE_GUIDES['Materiales'].steps.push('Registrar el precio y presentación no añade stock. Usa Movimientos de inventario para las compras reales. Un artículo sin conteo inicia el seguimiento con su primera compra.');
+export {MODULE_GUIDES};
