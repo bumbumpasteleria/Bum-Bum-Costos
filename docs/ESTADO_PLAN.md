@@ -24,8 +24,13 @@ La existencia de estas funciones no certifica cada dispositivo de cada usuaria. 
 
 Adaptación entre moldes, porcentajes panaderos y rendimiento medido, con borradores privados por cuenta y dispositivo. Publicadas con aprobación y verificadas en el enlace oficial.
 
-## Entrega integral en revisión
+## Entrega integral publicada en PR26
 
 Los seis bloques solicitados están implementados en esta entrega: fichas profesionales y subrecetas vinculadas; temporizadores; compras, lotes y movimientos de materias primas; directorios, calendario y órdenes de trabajo; caja, cobros y rentabilidad; controles de calidad y perfiles de negocio. Véase OPERACION_INTEGRAL.md para los flujos y límites concretos.
 
-La validación incluye pruebas automatizadas, operaciones reversibles en Supabase con cuentas ficticias, revisión de los nuevos flujos y PDF. La publicación permanente requiere aprobar conjuntamente la migración y el PR. No se marca esta entrega como publicada antes de verificar producción.
+La validación incluye pruebas automatizadas, operaciones reversibles en Supabase con cuentas ficticias, revisión de los nuevos flujos y PDF. La usuaria aprobó su publicación: la migración está aplicada, el PR26 fusionado y la aplicación oficial comprobada.
+
+
+## Cierre visual y puesta en marcha
+
+Entrada con el nombre de la aplicación, iconos de teléfono unificados y adaptables, instrucciones de instalación y accesos a tareas diarias. Se mantienen los datos privados y los borradores. Completar los artículos aún no ingresados y las cantidades de Mi nevera requiere los datos reales de la usuaria.

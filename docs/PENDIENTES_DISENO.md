@@ -1,23 +1,9 @@
-# Renovación visual pendiente de Bum Bum Costos
+# Estado de la renovación visual
 
-Solicitada por la usuaria el 31 de octubre de 2026. Actualización del 1 de noviembre de 2026: la usuaria priorizó esta renovación antes de las próximas ampliaciones. Diseño elegido: Dulce y visual; crema, vino y rosa suave; tipografía Manrope. Implementación preparada en rama, pendiente de aprobación para publicar.
+La renovación Dulce y visual se publicó en PR24. PR26 añadió la navegación de los módulos operativos. Esta entrega completa la entrada e instalación: nombre Bum Bum Costos como protagonista, pantalla de apertura, tareas diarias, ayuda de puesta en marcha y variantes del icono BB con melocotón para Android e iPhone. Se conserva el diseño elegido, los colores crema/vino/rosa y la tipografía Manrope.
 
-## Cambios solicitados
+Se conserva el logo propio del negocio en cotizaciones. El icono de la aplicación es independiente y no reemplaza las marcas de otras cuentas. Los iconos de instalación tienen fondo opaco y la variante adaptable reserva espacio alrededor del monograma. Los archivos nuevos usan nombres versionados para facilitar su actualización; no se obliga a borrar datos del navegador.
 
-- Renovar por completo la pantalla principal y su distribución.
-- Mejorar la pantalla de inicio de sesión y entrada a la aplicación.
-- Cambiar la paleta de colores; definirla con la usuaria antes de aplicar la renovación.
-- Dar protagonismo al nombre «Bum Bum Costos» al iniciar, en lugar del logo actual.
-- Rediseñar el icono de la aplicación y preparar sus versiones para celular y acceso desde la pantalla de inicio.
-- Tipografía moderna, interfaz bonita y visual, con aspecto de aplicación actual y uso sencillo.
+La instalación se inicia con una acción del usuario. Se ofrecen instrucciones si el navegador no muestra la opción automática. No hay promesa de funcionamiento sin conexión ni de sustitución inmediata del icono en todos los teléfonos.
 
-## Propuestas para revisar en esa etapa
-
-- Inicio con accesos claros a las tareas frecuentes y un resumen útil del negocio.
-- Tarjetas e iconos consistentes, textos cortos y jerarquía visual clara.
-- Navegación cómoda en celular y botones fáciles de tocar.
-- Formularios más ligeros, estados vacíos que expliquen el siguiente paso y confirmaciones dentro de la aplicación.
-- Contraste legible, tamaños de letra cómodos y mensajes de guardado/error fáciles de reconocer.
-- Mantener las guías desplegables, el aislamiento por cuenta y todas las funciones existentes.
-
-Las propuestas deben revisarse visualmente antes de publicarse. No cambiar la marca, permisos, datos ni funcionamiento de negocio de forma incidental.
+La puesta en marcha requiere datos reales: conteos, productos disponibles, precios y mínimos. La usuaria confirmó mínimo 3 en la unidad base de cada artículo para sus registros actuales. No se inventan artículos faltantes ni lotes de nevera.

@@ -32,4 +32,4 @@ Los nuevos registros utilizan las tablas privadas y sus políticas existentes. L
 
 ## Publicación
 
-Aplicar 20261103_operacion_integral.sql antes de publicar el código asociado, una vez aprobada la entrega. Hasta entonces los módulos están preparados para revisión, no activos en producción. No se cambian credenciales ni políticas de acceso existentes.
+La migración 20261103_operacion_integral.sql y el código del PR26 están publicados con autorización de la usuaria; se verificaron en producción. No volver a ejecutar la migración de creación. No se cambian credenciales ni políticas de acceso existentes.

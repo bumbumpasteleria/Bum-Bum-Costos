@@ -1,3 +1,4 @@
+import AppLoading from './features/layout/AppLoading';
 import {resolveRecipes} from './features/management/operations.mjs';
 import RecipeProfessional from './features/management/RecipeProfessional';
 import ComposeRecipe from './features/management/ComposeRecipe';
@@ -178,7 +179,7 @@ function AppProtegida() {
   }, []);
 
   if (loading) {
-    return <p>Comprobando acceso a Bum Bum Costos...</p>;
+    return <AppLoading message="Abriendo tu aplicación…"/>;
   }
 
   if (!session) {

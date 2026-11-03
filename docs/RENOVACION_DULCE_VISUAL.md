@@ -11,3 +11,8 @@ Assets originales creados con la herramienta integrada de generación de imágen
 No añade tablas ni campos para la renovación. La migración de materiales/canales admite PNG transparente en la presentación privada, además de JPEG. Respeta los límites de tamaño y permisos anteriores.
 
 En celular ya instalado, el sistema puede tardar en actualizar el icono; al instalar de nuevo usa el nuevo manifiesto. Los datos de cuenta se conservan en Supabase. No es necesario borrar datos del navegador para usar el nuevo diseño.
+
+
+## Entrada e instalación
+
+La apertura muestra primero Bum Bum Costos, con monograma secundario. La portada pública ofrece iniciar sesión, solicitar cuenta y ayuda de instalación. Inicio incorpora Agenda, Mi nevera, Compras y Caja, además de una sección de puesta en marcha. Los iconos PNG opacos y la variante adaptable utilizan el mismo recurso aprobado; el SVG antiguo también se alinea con el melocotón. El navegador y el sistema del teléfono controlan la instalación y la actualización del icono.
