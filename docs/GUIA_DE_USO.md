@@ -293,6 +293,7 @@ Añade una receta a un recetario
 10. Los borradores se conservan por cuenta en este dispositivo. El archivo no se guarda; se conserva el texto reconocido y el formulario de revisión.
 11. Para una receta basada en preparaciones existentes abre Componer una receta con subrecetas vinculadas. Elige hasta tres fórmulas de origen, proporciones, nombre, rendimiento y recetario de destino. Esta composición se actualiza cuando cambian sus subrecetas; las combinaciones anteriores de Herramientas siguen siendo copias independientes.
 12. Pulsa Receta por etapas para reunir base, crema, crumble y montaje en una sola receta. Añade etapas con nombre e instrucciones y asigna cada línea de ingrediente a su etapa. Cada línea se cuenta una sola vez. Los ingredientes generales pueden quedar sin etapa.
+13. Borradores pendientes conserva recetas incompletas en tu cuenta. Abre Continuar borrador para resolver ingredientes, unidades y etapas. Guardar borrador pendiente conserva el trabajo en la nube sin activarlo para costos o producción; Guardar receta por etapas exige completar los datos y registra la fórmula definitiva.
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 
