@@ -12,7 +12,7 @@ import {medidas} from '../../cloudService';
 import {tiposProducto,etiquetaUnidad,unidadesCompra,unidadesRendimiento,etiquetaArticulo} from '../../catalogoService';
 import './recipeEditor.css';
 
-export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,busy,importing=false,creating=false,onCreateIngredient,onCreateBook}){
+export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,busy,importing=false,creating=false,onSaveDraft,onCreateIngredient,onCreateBook}){
  const [snapshot,,clearSnapshot]=useDraftState('recipe:'+recipe.id+':snapshot',()=>recipe);const initial=useRef(snapshot),lock=useRef(false);
  const [form,setForm,clearForm]=useDraftState('recipe:'+recipe.id+':form',()=>({stages:recipe.stages||[],name:recipe.name,category:recipe.category||'',preparation:recipe.preparation||'',bookId:recipe.bookId||'',yield:String(recipe.yield),yieldUnit:recipe.yieldUnit,productType:recipe.productType,scaling:recipe.scaling,
   lines:editorStageLines(recipe.ownLines||recipe.lines,recipe.stages||[]).map(line=>({...line,qty:String(line.qty),key:line.id||crypto.randomUUID()}))}));
@@ -54,6 +54,7 @@ export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,b
   <button type="button" className="secondary" onClick={()=>add()} disabled={!ingredients.length}>+ Ingrediente</button>{(!importing||creating)&&<button type="button" className="secondary" onClick={()=>add('material')} disabled={!ingredients.some(i=>i.itemKind==='material')}>+ Material o empaque</button>}
   <h4>Preparación</h4><label>Pasos de preparación<textarea rows={7} maxLength={20000} value={form.preparation} onChange={e=>change('preparation',e.target.value)} placeholder="Escribe los pasos, uno por línea. Puedes incluir tus tiempos, temperatura y notas."/></label><small>Opcional · hasta 20,000 caracteres. Escribe las indicaciones propias de esta receta.</small>
   {error&&<p className="form-error" role="alert">{error}</p>}
+  {onSaveDraft&&<button type="button" className="secondary" disabled={disabled||registrationOpen} onClick={async()=>{if(lock.current)return;lock.current=true;setSaving(true);setError('');try{await onSaveDraft(form)}catch(err){setError(err.message)}finally{lock.current=false;setSaving(false)}}}>Guardar borrador pendiente</button>}
   <div className="actions"><button disabled={!books.length||(!form.lines.length&&!recipe.subrecipes?.length)||registrationOpen}>{saving?'Guardando…':creating?'Guardar receta por etapas':importing?'Guardar receta importada':'Guardar cambios de receta'}</button><button type="button" className="secondary" onClick={()=>{clear();onCancel();}}>{creating?'Cancelar receta nueva':importing?'Volver al texto':'Cancelar edición'}</button></div>
   </fieldset>
  </form>;

@@ -11,3 +11,7 @@ En Pedidos se pueden guardar hasta seis fotografías comprimidas y veinte prepar
 Agenda muestra preparaciones y entregas pendientes. Los avisos opcionales del navegador necesitan permiso, la aplicación abierta y se activan por cuenta y dispositivo. Con la aplicación cerrada no son una alarma del teléfono.
 
 El catálogo distingue precio/presentación de existencias: registrar un artículo no crea stock. La primera compra puede iniciar el seguimiento de un artículo aún sin conteo. Las cantidades existentes no se reinician.
+
+## Borradores pendientes
+
+En Nueva receta, al seleccionar el recetario, se muestran sus borradores pendientes. Puedes guardar una fórmula incompleta con **Guardar borrador pendiente** y retomarla desde otra sesión de tu cuenta. Conserva nombres originales, cantidades, etapas e instrucciones mientras eliges los artículos del catálogo y sus equivalencias. No crea stock, una receta activa ni costos aparentes. El guardado definitivo valida los datos, registra la receta y archiva el borrador. No conviertas gramos a mililitros o huevos sin la equivalencia medida del artículo.
