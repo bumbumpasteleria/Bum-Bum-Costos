@@ -31,6 +31,7 @@ Registra lo que usas para cocinar
 5. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 6. Para usar gramos de un ingrediente comprado por unidades o volumen, abre Usar este artículo en gramos. Indica cantidad y unidad de referencia y cuánto pesa en gramos: por ejemplo, 1 unidad pesa 50 g o 100 ml pesan 103 g. Guarda el ingrediente. La equivalencia es propia de ese artículo y proveedor; al crear otro proveedor debes medir y registrar la suya.
 7. La presentación de compra sirve para calcular el precio; registrar el artículo no crea existencias. Si aún no has contado el stock, la primera compra real inicia el seguimiento. Las existencias anteriores se conservan.
+8. Los artículos con equivalencia guardada indican sus gramos por ml o unidad. Las referencias investigadas aparecen como aproximadas, con su fuente. Puedes corregir el peso desde Editar → Usar este artículo en gramos. En huevos guarda el peso sin cáscara, el de una clara y el de una yema. Otro proveedor conserva su propia equivalencia.
 
 **Ejemplo:** Si compraste 1 kg de harina por RD$150, coloca precio 150, cantidad 1 y unidad kg.
 
@@ -67,6 +68,7 @@ Consulta tus recetas dentro de sus recetarios
 10. Dentro de la receta abre Ficha profesional y subrecetas. Guarda dimensiones del molde, capas, tiempos, temperatura y merma prevista; son condiciones que tú confirmas. El rendimiento ya registrado se utiliza para calcular el costo por porción.
 11. Añade subrecetas vinculadas y la proporción de cada receta completa: 0.5 es la mitad. Sus cantidades y precios actuales se incorporan sin copiar la fórmula. La aplicación bloquea ciclos y evita eliminar una preparación usada por otra. Retira ingredientes duplicados que ya estuvieran copiados en la receta.
 12. Dentro de una receta, Editar receta permite añadir, cambiar o quitar etapas. Quitar una etapa conserva sus ingredientes en General. En Ver ingredientes y costos abre cada etapa para consultar cantidades e instrucciones. Los vínculos a otras recetas siguen en Ficha profesional y subrecetas; sus cantidades se suman al total, por lo que no deben copiarse también como ingredientes propios.
+13. Los líquidos guardados en gramos consumen los ml equivalentes. Para claras y yemas del mismo artículo dentro de una receta se aprovechan las dos partes de un huevo: el consumo es la cantidad mayor de huevos necesarios para cada parte, más los huevos enteros. Los sobrantes separados no se registran automáticamente.
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 
@@ -148,6 +150,7 @@ Convierte medidas y planifica tu preparación
 12. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 13. El control Temporizadores aparece en todas las áreas. Inicia relojes con nombre y minutos; puedes pausarlos, continuarlos y confirmar avisos. Se conservan por cuenta en el dispositivo y recalculan el tiempo al regresar. Mantén la app abierta para ver los avisos; no es una alarma del teléfono cuando la aplicación está cerrada.
 14. Guardar una porción o combinación crea una copia independiente con cantidades ajustadas, etapas e instrucciones. Las recetas originales se conservan. Revisa tiempos y moldes del texto: no se ajustan automáticamente. Para una receta que siga cambios de otra, usa subrecetas vinculadas dentro de su ficha.
+15. Abre Mis líquidos y huevos en gramos, selecciona tu artículo y la medida. Puedes pasar ml, unidades, claras o yemas a gramos, o volver de gramos a esa medida. Se usan los pesos guardados de tu catálogo y se muestra su fuente cuando es una referencia aproximada.
 
 **Ejemplo:** En Temperatura, 180 °C equivalen a 356 °F. En Ingredientes, elige cuál estás midiendo: una taza de harina no pesa lo mismo que una de azúcar.
 
@@ -190,6 +193,7 @@ Lo que tienes para preparar
 4. Después de registrar producción en Mi nevera, las existencias de ingredientes y materiales se actualizan automáticamente. Cambiar o guardar una receta no descuenta inventario. Las cantidades pueden incluir fracciones de unidad cuando se utilizan por peso.
 5. Actualiza existencias con un motivo para conservar el movimiento. El conteo físico incluye lo retenido o vencido; Disponible para producir lo excluye. Las compras y lotes se registran en Movimientos de inventario.
 6. Para retirar un lote concreto usa Registrar merma de este lote en Movimientos de inventario. No elimines el artículo: su historial de compra y producción se conserva.
+7. Pesar un líquido o una parte de huevo en gramos no cambia su unidad de inventario: al producir se calcula el equivalente en ml o huevos. La referencia no crea ni corrige existencias por sí sola.
 
 **Ejemplo:** Harina: quedan 500 g, mínimo 500 g. Aparece en Compras.
 
@@ -292,8 +296,9 @@ Añade una receta a un recetario
 3. Si falta un artículo, pulsa Registrar para esa línea. Puedes registrar el primero sin salir del formulario. Se conserva en tu catálogo aunque canceles la receta.
 4. Preparación general conserva las instrucciones. Organizar en etapas (opcional) permite separar base, relleno y montaje: escribe las instrucciones de cada etapa y asigna sus ingredientes. Una línea se cuenta una sola vez.
 5. Guardar borrador pendiente conserva en la nube una receta incompleta. Puedes continuarla aquí o desde su recetario. No se usa aún para costos ni producción.
-6. Guardar receta registra la fórmula definitiva cuando estén completos ingredientes, cantidades y unidades. Revisa las equivalencias propias del artículo; no se inventan pesos de huevos ni conversiones entre gramos y ml.
+6. Guardar receta registra la fórmula definitiva cuando estén completos ingredientes, cantidades y unidades. Revisa las equivalencias propias del artículo; se usan las equivalencias guardadas del artículo; las referencias aproximadas se identifican.
 7. El trabajo sin guardar se recupera en este dispositivo al volver con la misma cuenta. El archivo PDF original no se conserva como borrador.
+8. Al elegir un líquido con equivalencia en una línea nueva se propone g. En borradores e importaciones, una coincidencia única de líquido o huevo con equivalencia se vincula automáticamente; si hay varios proveedores debes elegir. Las cantidades escritas se conservan. Para huevos puedes elegir g de clara, g de yema, clara por unidad o yema por unidad.
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 

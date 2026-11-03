@@ -23,7 +23,9 @@ export function prepararArticulo(form, kind, original) {
    if(!String(form.equivalenceGrams??'').trim())gramsPerBaseUnit=null;
    else{const grams=Number(form.equivalenceGrams),reference=cantidadBase(form.equivalenceQuantity??1,form.equivalenceUnit||form.unit);if(!['unit','ml'].includes(base.unit)||reference.unit!==base.unit||!Number.isFinite(grams)||grams<=0)throw Error('Revisa la cantidad, unidad y peso de la equivalencia.');gramsPerBaseUnit=grams/reference.quantity;if(!Number.isFinite(gramsPerBaseUnit)||gramsPerBaseUnit<=0||gramsPerBaseUnit>=1e6)throw Error('La equivalencia en gramos está fuera de rango.');}
   }
-  return {grams_per_base_unit:gramsPerBaseUnit,name,supplier,item_kind:kind,base_unit:base.unit,last_unit_cost:cost,purchase_unit:form.unit,purchase_quantity:quantity,purchase_price:price};
+  const eggWeights={};for(const [field,column,key]of [['equivalenceWhite','grams_per_white','gramsPerWhite'],['equivalenceYolk','grams_per_yolk','gramsPerYolk']]){if(Object.hasOwn(form,field)){const value=String(form[field]??'').trim();const weight=value===''?null:Number(value);if(weight!==null&&(!Number.isFinite(weight)||weight<=0||weight>=1000||base.unit!=='unit'))throw Error('Revisa el peso de claras y yemas.');eggWeights[column]=weight;}else if(original?.[key]!=null)eggWeights[column]=original[key];}
+  const changed=original&&(gramsPerBaseUnit!==original.gramsPerBaseUnit||Object.entries(eggWeights).some(([key,value])=>value!==(key==='grams_per_white'?original.gramsPerWhite:original.gramsPerYolk)));
+  return {...eggWeights,...(changed?{conversion_reference:{kind:'measured',label:'Peso registrado por la cuenta'}}:{}),grams_per_base_unit:gramsPerBaseUnit,name,supplier,item_kind:kind,base_unit:base.unit,last_unit_cost:cost,purchase_unit:form.unit,purchase_quantity:quantity,purchase_price:price};
 }
 
 export async function guardarArticulo(form,kind,owner,original) {
@@ -60,4 +62,4 @@ export async function eliminarIngrediente(id,owner){
  return data.id;
 }
 
-export const etiquetaUnidad=u=>u==='kg'?'Kilos (kg)':u==='gal US'?'Galón estadounidense (3.785 L)':u;
+export const etiquetaUnidad=u=>u==='g clara'?'g de clara':u==='g yema'?'g de yema':u==='clara'?'clara (unidad)':u==='yema'?'yema (unidad)':u==='kg'?'Kilos (kg)':u==='gal US'?'Galón estadounidense (3.785 L)':u;

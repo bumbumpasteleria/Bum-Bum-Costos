@@ -1,13 +1,14 @@
+import {resolveMeasuredLine} from './resolveMeasuredLine.mjs';
 import RecipeStages from './RecipeStages.jsx';
 import {editorStageLines} from './recipeStages.mjs';
 import IngredientMeasureHint from '../../IngredientMeasureHint';
-import {ingredientUnitOptions} from '../../domain/costing/ingredientQuantity.mjs';
+import {ingredientUnitOptions,preferredRecipeUnit} from '../../domain/costing/ingredientQuantity.mjs';
 import {useDraftState} from '../drafts/Drafts';
 import InlineIngredient from './InlineIngredient';
 import InlineRecipeBook from './InlineRecipeBook';
 import RecipeCategoryField from './RecipeCategoryField';
 import IngredientMatches from './IngredientMatches.jsx';
-import React,{useRef,useState} from 'react';
+import React,{useRef,useState,useEffect} from 'react';
 import {medidas} from '../../cloudService';
 import {tiposProducto,etiquetaUnidad,unidadesCompra,unidadesRendimiento,etiquetaArticulo} from '../../catalogoService';
 import './recipeEditor.css';
@@ -15,16 +16,17 @@ import './recipeEditor.css';
 export default function RecipeEditor({recipe,ingredients,books,onSave,onCancel,busy,importing=false,creating=false,onSaveDraft,onCreateIngredient,onCreateBook}){
  const [snapshot,,clearSnapshot]=useDraftState('recipe:'+recipe.id+':snapshot',()=>recipe);const initial=useRef(snapshot),lock=useRef(false);
  const [form,setForm,clearForm]=useDraftState('recipe:'+recipe.id+':form',()=>({stages:recipe.stages||[],name:recipe.name,category:recipe.category||'',preparation:recipe.preparation||'',bookId:recipe.bookId||'',yield:String(recipe.yield),yieldUnit:recipe.yieldUnit,productType:recipe.productType,scaling:recipe.scaling,
-  lines:editorStageLines(recipe.ownLines||recipe.lines,recipe.stages||[]).map(line=>({...line,qty:String(line.qty),key:line.id||crypto.randomUUID()}))}));
+  lines:editorStageLines(recipe.ownLines||recipe.lines,recipe.stages||[]).map(line=>({...resolveMeasuredLine(line,ingredients),qty:String(line.qty),key:line.id||crypto.randomUUID()}))}));
  const [saving,setSaving]=useState(false),[error,setError]=useState('');
  const [registering,setRegistering,clearRegistering]=useDraftState('recipe:'+recipe.id+':registering',null),[creatingBook,setCreatingBook,clearCreatingBook]=useDraftState('recipe:'+recipe.id+':creatingBook',false);
  function clear(){clearForm();clearSnapshot();clearRegistering();clearCreatingBook();}
  const disabled=busy||saving;
+ useEffect(()=>{if(importing)setForm(old=>{let changed=false;const lines=old.lines.map(line=>{const resolved=resolveMeasuredLine(line,ingredients);if(resolved.ingredientId!==line.ingredientId||resolved.unit!==line.unit)changed=true;return resolved});return changed?{...old,lines}:old});},[ingredients,importing]);
  const registrationOpen=registering!==null||creatingBook;
- function createdIngredient(key,item){setForm(old=>({...old,lines:old.lines.map(line=>line.key===key?{...line,ingredientId:item.id,unit:line.newLine&&!line.unit?item.unit:ingredientUnitOptions(item).includes(line.unit)?line.unit:''}:line)}));setRegistering(null);setError('');}
+ function createdIngredient(key,item){setForm(old=>({...old,lines:old.lines.map(line=>line.key===key?{...line,ingredientId:item.id,unit:line.newLine&&!line.unit?preferredRecipeUnit(item):ingredientUnitOptions(item).includes(line.unit)?line.unit:''}:line)}));setRegistering(null);setError('');}
  function change(key,value){setForm(old=>({...old,[key]:value}));setError('');}
  function changeLine(index,values){setForm(old=>({...old,lines:old.lines.map((line,i)=>i===index?{...line,...values}:line)}));setError('');}
- function selectIngredient(index,id){const line=form.lines[index],item=ingredients.find(item=>item.id===id),unit=item?.unit;changeLine(index,{ingredientId:id,unit:line.newLine&&!line.unit?unit||'g':importing?(ingredientUnitOptions(item).includes(line.unit)?line.unit:''):unit||'g'});}
+ function selectIngredient(index,id){const line=form.lines[index],item=ingredients.find(item=>item.id===id),resolved=resolveMeasuredLine({...line,ingredientId:id},ingredients),unit=preferredRecipeUnit(item);changeLine(index,{ingredientId:id,unit:line.newLine&&!line.unit?unit:importing?(ingredientUnitOptions(item).includes(resolved.unit)?resolved.unit:''):unit});}
  function add(kind='ingredient'){change('lines',[...form.lines,{key:crypto.randomUUID(),ingredientId:'',qty:'',unit:'',itemKind:kind,newLine:true}]);}
  async function submit(event){event.preventDefault();if(registrationOpen){setError('Termina o cancela el registro abierto antes de guardar la receta.');return;}if(importing&&form.lines.some(line=>!line.unit)){setError('Selecciona la unidad de cada ingrediente de la receta. No convertimos automáticamente tazas o cucharadas a gramos.');return;}if(lock.current)return;lock.current=true;setSaving(true);setError('');try{await onSave(form,initial.current);clear();}catch(err){setError(err.message);}finally{lock.current=false;setSaving(false)}}
  return <form className="recipe-editor" onSubmit={submit} aria-label={(creating?'Nueva receta ':importing?'Revisar importación ':'Editar receta ')+recipe.name}>
