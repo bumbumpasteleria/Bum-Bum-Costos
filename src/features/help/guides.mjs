@@ -7,10 +7,12 @@ export const MODULE_GUIDES = {
       "Pulsa Crear receta para abrir Nueva receta. En Mis recetarios abre el libro que quieras consultar; sus recetas se muestran dentro. Costear un producto abre el área de costos finales.",
       "Usa el Cotizador para encargos y registra tus ventas cuando las realices.",
       "El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.",
-      "Abre Finanzas para gastos y reportes; Pedidos para encargos; Respaldo para recuperar registros o versiones de recetas."
+      "Abre Finanzas para gastos y reportes; Pedidos para encargos; Respaldo para recuperar registros o versiones de recetas.",
+      "En ¿Qué vamos a hacer hoy? abre Agenda, Mi nevera, Compras o Caja. Deja tu negocio listo para trabajar reúne perfil, saldo inicial, inventario y productos preparados. No crea existencias de ejemplo.",
+      "En Bum Bum Costos en tu teléfono abre las instrucciones para Android o iPhone. Cuando el navegador lo admita aparecerá Instalar aplicación; puedes entrar con tu misma cuenta."
     ],
     "example": "Puedes tener un recetario «Galletas para apps» y otro «Postres por encargo».",
-    "tip": "Cada cuenta tiene su propio espacio. Cierra sesión cuando termines en un equipo compartido. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador."
+    "tip": "Cada cuenta tiene su propio espacio. Cierra sesión cuando termines en un equipo compartido. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador. El icono conserva el monograma BB con melocotón. Si el teléfono conserva el anterior, añade el acceso nuevo desde el enlace oficial antes de retirar el antiguo. No borres datos del navegador para actualizar el icono."
   },
   "Ingredientes": {
     "title": "Registra lo que usas para cocinar",

@@ -1,0 +1,2 @@
+import React from 'react';
+export default function AppLoading({message='Preparando tu espacio…',children}){return <div className="app-launch"><section aria-label="Inicio de Bum Bum Costos"><p className="eyebrow">TU NEGOCIO, A TU MANERA</p><h1>Bum Bum <span>Costos</span></h1><img src="/brand/bb-peach.webp" width="84" height="84" alt="Monograma BB con melocotón"/><p role="status">{message}</p><div className="launch-progress" aria-hidden="true"/>{children}</section></div>}

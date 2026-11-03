@@ -1,3 +1,5 @@
+> Nota de vigencia: esta auditoría es histórica (31 de octubre). Las ampliaciones de inventario, nevera, edición, producción y finanzas se publicaron después, incluidos PR24–26. Consulta ESTADO_PLAN.md y OPERACION_INTEGRAL.md para el estado actual.
+
 # Auditoría funcional y guías de uso
 
 Base: main 9240c85517cf44a7e782bb7644207dc00e03ae3e. Revisión del 31 de octubre de 2026, hora de Santo Domingo.
