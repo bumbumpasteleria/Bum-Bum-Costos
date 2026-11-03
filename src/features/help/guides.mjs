@@ -2,7 +2,7 @@ const MODULE_GUIDES = {
   "Inicio": {
     "title": "Tu punto de partida",
     "steps": [
-      "El menú reúne las opciones por actividad. Abre Recetas y precios, Inventario y compras, Producción y pendientes, Encargos y clientes o Ventas y finanzas. En celular pulsa Más para desplegar los grupos.",
+      "El menú reúne las opciones por actividad. Abre Recetas y precios, Inventario y compras, Producción y pendientes, Encargos y clientes o Ventas y finanzas. En celular pulsa Más para desplegar los grupos en una columna y toca el nombre para abrir sus opciones.",
       "Empieza por Ingredientes y registra tus compras con su precio y unidad.",
       "Pulsa Crear receta para abrir Nueva receta. En Mis recetarios abre el libro que quieras consultar; sus recetas se muestran dentro. Costear un producto abre el área de costos finales.",
       "Usa el Cotizador para encargos y registra tus ventas cuando las realices.",

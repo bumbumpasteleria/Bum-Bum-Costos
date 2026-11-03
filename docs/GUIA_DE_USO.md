@@ -6,7 +6,7 @@ Abre «¿Cómo se usa?» en cada pantalla. Cada cuenta tiene su propio espacio.
 
 Tu punto de partida
 
-1. El menú reúne las opciones por actividad. Abre Recetas y precios, Inventario y compras, Producción y pendientes, Encargos y clientes o Ventas y finanzas. En celular pulsa Más para desplegar los grupos.
+1. El menú reúne las opciones por actividad. Abre Recetas y precios, Inventario y compras, Producción y pendientes, Encargos y clientes o Ventas y finanzas. En celular pulsa Más para desplegar los grupos en una columna y toca el nombre para abrir sus opciones.
 2. Empieza por Ingredientes y registra tus compras con su precio y unidad.
 3. Pulsa Crear receta para abrir Nueva receta. En Mis recetarios abre el libro que quieras consultar; sus recetas se muestran dentro. Costear un producto abre el área de costos finales.
 4. Usa el Cotizador para encargos y registra tus ventas cuando las realices.
