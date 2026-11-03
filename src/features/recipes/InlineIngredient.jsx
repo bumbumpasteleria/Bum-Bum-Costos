@@ -12,10 +12,10 @@ export default function InlineIngredient({line,ingredients,onCreate,onCreated,on
  const [error,setError]=useState(''),[saving,setSaving]=useState(false);const lock=useRef(false);
  function change(key,value){setForm(old=>({...old,...(key==='unit'&&medidas[value]?.[0]!==medidas[old.unit]?.[0]?{equivalenceGrams:'',equivalenceQuantity:'1',equivalenceUnit:''}:{}),[key]:value}));setError('');}
  async function save(event){event?.preventDefault();event?.stopPropagation();if(lock.current||busy)return;lock.current=true;setSaving(true);setError('');
-  try{const payload=prepararArticulo(form,'ingredient');
+  try{const payload=prepararArticulo(form,line.itemKind||'ingredient');
    if(line.unit)ingredientBaseQuantity(line.qty||1,line.unit,{name:form.name,unit:payload.base_unit==='unit'?'unidad':payload.base_unit,gramsPerBaseUnit:payload.grams_per_base_unit});
    if(ingredients.some(item=>normalizeIngredient(item.name)===normalizeIngredient(form.name)&&normalizeIngredient(item.supplier)===normalizeIngredient(form.supplier)))throw Error('Ya tienes este nombre y proveedor registrados. Cancela y selecciónalo en tu catálogo.');
-   const saved=await onCreate(form);if(!saved?.id)throw Error('No se pudo confirmar el ingrediente. Revisa tu catálogo antes de reintentar.');clearForm();onCreated(saved);
+   const saved=await onCreate(form,line.itemKind||'ingredient');if(!saved?.id)throw Error('No se pudo confirmar el ingrediente. Revisa tu catálogo antes de reintentar.');clearForm();onCreated(saved);
   }catch(err){setError(err.message||'No se pudo guardar. Conservamos lo que escribiste.');}finally{lock.current=false;setSaving(false);}
  }
  return <div className="inline-registration" role="group" aria-label={'Registrar ingrediente para '+(line.name||'esta línea')} onKeyDown={e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();save(e);}}}>
