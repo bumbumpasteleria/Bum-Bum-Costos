@@ -6,7 +6,7 @@ Abre «¿Cómo se usa?» en cada pantalla. Cada cuenta tiene su propio espacio.
 
 Tu punto de partida
 
-1. En computadora, usa el menú lateral. En celular, usa los accesos inferiores o pulsa Más para ver todos los módulos.
+1. El menú reúne las opciones por actividad. Abre Recetas y precios, Inventario y compras, Producción y pendientes, Encargos y clientes o Ventas y finanzas. En celular pulsa Más para desplegar los grupos.
 2. Empieza por Ingredientes y registra tus compras con su precio y unidad.
 3. Pulsa Crear receta para abrir Nueva receta. En Mis recetarios abre el libro que quieras consultar; sus recetas se muestran dentro. Costear un producto abre el área de costos finales.
 4. Usa el Cotizador para encargos y registra tus ventas cuando las realices.
@@ -14,10 +14,11 @@ Tu punto de partida
 6. Abre Finanzas para gastos y reportes; Pedidos para encargos; Respaldo para recuperar registros o versiones de recetas.
 7. En ¿Qué vamos a hacer hoy? abre Agenda, Mi nevera, Compras o Caja. Deja tu negocio listo para trabajar reúne perfil, saldo inicial, inventario y productos preparados. No crea existencias de ejemplo.
 8. En Bum Bum Costos en tu teléfono abre las instrucciones para Android o iPhone. Cuando el navegador lo admita aparecerá Instalar aplicación; puedes entrar con tu misma cuenta.
+9. El botón Atrás del navegador recorre los módulos que visitaste. La ayuda y los temporizadores están juntos arriba; abre solo lo que necesites.
 
 **Ejemplo:** Puedes tener un recetario «Galletas para apps» y otro «Postres por encargo».
 
-**Consejo:** Cada cuenta tiene su propio espacio. Cierra sesión cuando termines en un equipo compartido. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador. El icono conserva el monograma BB con melocotón. Si el teléfono conserva el anterior, añade el acceso nuevo desde el enlace oficial antes de retirar el antiguo. No borres datos del navegador para actualizar el icono.
+**Consejo:** Cada cuenta tiene su propio espacio. Cierra sesión cuando termines en un equipo compartido. El formulario automático se conserva solo en este dispositivo. Las recetas guardadas con Guardar borrador pendiente sí quedan en tu cuenta en la nube. No guardamos contraseñas ni el archivo PDF como borrador. El icono conserva el monograma BB con melocotón. Si el teléfono conserva el anterior, añade el acceso nuevo desde el enlace oficial antes de retirar el antiguo. No borres datos del navegador para actualizar el icono.
 
 ## Ingredientes
 
@@ -33,7 +34,7 @@ Registra lo que usas para cocinar
 
 **Ejemplo:** Si compraste 1 kg de harina por RD$150, coloca precio 150, cantidad 1 y unidad kg.
 
-**Consejo:** No se puede eliminar un ingrediente usado en recetas, compras o movimientos. Editar actualiza ese registro. Otro proveedor crea una variante independiente para conservar su precio. No cambies gramos por mililitros: requieren una equivalencia del ingrediente. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador.
+**Consejo:** No se puede eliminar un ingrediente usado en recetas, compras o movimientos. Editar actualiza ese registro. Otro proveedor crea una variante independiente para conservar su precio. No cambies gramos por mililitros: requieren una equivalencia del ingrediente. El formulario automático se conserva solo en este dispositivo. Las recetas guardadas con Guardar borrador pendiente sí quedan en tu cuenta en la nube. No guardamos contraseñas ni el archivo PDF como borrador.
 
 ## Materiales
 
@@ -48,7 +49,7 @@ Añade empaques y consumibles
 
 **Ejemplo:** Un paquete de 10 cajas por RD$200: precio 200, cantidad 10 y unidad unidad. Cada caja costará RD$20.
 
-**Consejo:** No repitas el mismo empaque en Materiales y en Otros gastos de empaque de la cotización. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador.
+**Consejo:** No repitas el mismo empaque en Materiales y en Otros gastos de empaque de la cotización. El formulario automático se conserva solo en este dispositivo. Las recetas guardadas con Guardar borrador pendiente sí quedan en tu cuenta en la nube. No guardamos contraseñas ni el archivo PDF como borrador.
 
 ## Recetas
 
@@ -56,7 +57,7 @@ Consulta tus recetas dentro de sus recetarios
 
 1. Al entrar aparecen tus recetarios. Pulsa Abrir recetario junto al nombre que quieras usar. Las recetas no se muestran fuera de su libro.
 2. Para crear uno, pulsa + Crear o gestionar recetarios, escribe nombre y uso y pulsa Crear recetario. Dentro de un recetario, Editar este recetario permite cambiar nombre o uso. Solo puedes eliminar recetarios vacíos; mueve sus recetas antes de confirmar el borrado.
-3. Dentro del recetario, pulsa Ver recetas del recetario. Puedes buscar por nombre y filtrar por categoría dentro de ese libro.
+3. Al abrir el recetario aparecen sus recetas. Puedes ocultarlas, buscar por nombre y filtrar por las categorías de ese libro. Continuar borradores pendientes reúne las recetas incompletas de ese mismo recetario.
 4. Pulsa Abrir receta junto al nombre. Dentro están la consulta de ingredientes y costos básicos, foto y notas, Asignar recetario, Editar receta y Eliminar receta. La edición aparece dentro de esa misma ficha.
 5. Guardar cambios de receta conserva su ID y las cotizaciones anteriores. Si otra sesión modificó la receta, vuelve a abrirla antes de guardar. Cancelar edición conserva la versión guardada.
 6. Para mover una receta, elige otro recetario dentro de su ficha y pulsa Asignar recetario. Para eliminar, revisa el nombre y confirma. Puede bloquearse si hay referencias; el catálogo y cotizaciones anteriores se conservan.
@@ -69,7 +70,7 @@ Consulta tus recetas dentro de sus recetarios
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 
-**Consejo:** Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar. Los ingredientes y recetarios creados durante la importación permanecen guardados aunque canceles la receta. La cantidad de compra es distinta de la cantidad usada en la receta; no se convierten tazas a gramos automáticamente. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador. Los alérgenos e indicaciones los completas tú; la aplicación no los deduce. En Respaldo puedes consultar las versiones anteriores guardadas desde esta actualización.
+**Consejo:** Si falta un ingrediente, regístralo desde su línea del formulario. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar. Los ingredientes y recetarios creados durante la importación permanecen guardados aunque canceles la receta. La cantidad de compra es distinta de la cantidad usada en la receta; no se convierten tazas a gramos automáticamente. El formulario automático se conserva solo en este dispositivo. Las recetas guardadas con Guardar borrador pendiente sí quedan en tu cuenta en la nube. No guardamos contraseñas ni el archivo PDF como borrador. Los alérgenos e indicaciones los completas tú; la aplicación no los deduce. En Respaldo puedes consultar las versiones anteriores guardadas desde esta actualización.
 
 ## Decoraciones
 
@@ -82,7 +83,7 @@ Prepara tu catálogo de decoraciones
 
 **Ejemplo:** Si cada topper cuesta RD$50, registra 50 como costo por unidad. Dos toppers sumarán RD$100.
 
-**Consejo:** Aquí registras el costo de la decoración; el precio de venta se calcula en el Cotizador. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador.
+**Consejo:** Aquí registras el costo de la decoración; el precio de venta se calcula en el Cotizador. El formulario automático se conserva solo en este dispositivo. Las recetas guardadas con Guardar borrador pendiente sí quedan en tu cuenta en la nube. No guardamos contraseñas ni el archivo PDF como borrador.
 
 ## Cotizador
 
@@ -97,17 +98,19 @@ Calcula un encargo
 
 **Ejemplo:** Si tu receta rinde 12 galletas y necesitas 24, coloca 2 en Cantidad de rendimientos.
 
-**Consejo:** Las recetas de Apps de envío no aparecen aquí. Si no hay opciones, crea un recetario de Encargos y asigna la receta. Margen y recargo son métodos distintos. No podrás guardar una cotización si la receta muestra Costo incompleto. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador.
+**Consejo:** Las recetas de Apps de envío no aparecen aquí. Si no hay opciones, crea un recetario de Encargos y asigna la receta. Margen y recargo son métodos distintos. No podrás guardar una cotización si la receta muestra Costo incompleto. El formulario automático se conserva solo en este dispositivo. Las recetas guardadas con Guardar borrador pendiente sí quedan en tu cuenta en la nube. No guardamos contraseñas ni el archivo PDF como borrador.
 
 ## Ventas
 
 Registra una venta real
 
-1. Elige Venta general o encargo para registrar los importes habituales, o Producto de Mi nevera para descontar porciones o unidades.
-2. Para nevera, selecciona producto y cantidad vendida. El precio de venta registrado se propone automáticamente y el total se calcula como cantidad × precio. Puedes ajustar ese precio para esta venta sin cambiar el producto. Completa fecha, canal, comisión y otros gastos.
-3. Pulsa Registrar venta. El guardado y el descuento son una sola operación: si no hay suficientes productos vigentes, no se registra ninguno de los dos.
-4. Las ventas generales requieren que indiques su costo de producción. Las ventas de nevera toman el costo de ingredientes y materiales de los lotes consumidos. Seleccionar el canal propone su precio, comisión y gastos adicionales guardados; los gastos por unidad se multiplican por la cantidad vendida. Puedes corregirlos para esta venta.
-5. En Reportes de ventas puedes filtrar por fecha o canal y descargar un PDF. En Finanzas registra los gastos adicionales del negocio.
+1. Para un encargo que ya registraste, pulsa Registrar venta desde su pedido. Venta libre se usa cuando no existe un pedido registrado; no repitas la misma venta por las dos rutas.
+2. Elige Venta general o encargo para registrar los importes habituales, o Producto de Mi nevera para descontar porciones o unidades.
+3. Para nevera, selecciona producto y cantidad vendida. El precio de venta registrado se propone automáticamente y el total se calcula como cantidad × precio. Puedes ajustar ese precio para esta venta sin cambiar el producto. Completa fecha, canal, comisión y otros gastos.
+4. Pulsa Registrar venta. El guardado y el descuento son una sola operación: si no hay suficientes productos vigentes, no se registra ninguno de los dos.
+5. Las ventas generales requieren que indiques su costo de producción. Las ventas de nevera toman el costo de ingredientes y materiales de los lotes consumidos. Seleccionar el canal propone su precio, comisión y gastos adicionales guardados; los gastos por unidad se multiplican por la cantidad vendida. Puedes corregirlos para esta venta.
+6. En Reportes de ventas puedes filtrar por fecha o canal y descargar un PDF. En Finanzas registra los gastos adicionales del negocio.
+7. Si recuperas un formulario con una fecha anterior a hoy, aparece un aviso. Conserva la fecha si corresponde a un registro pasado o pulsa Usar fecha de hoy; no se cambia por ti.
 
 **Ejemplo:** Una venta de RD$100 con comisión 10%, costo de producción RD$50 y otros gastos RD$5 deja una ganancia estimada de RD$35.
 
@@ -144,10 +147,11 @@ Convierte medidas y planifica tu preparación
 11. Abre las opciones de abajo solo si necesitas favoritos, medidas propias o usar cantidades de una receta.
 12. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 13. El control Temporizadores aparece en todas las áreas. Inicia relojes con nombre y minutos; puedes pausarlos, continuarlos y confirmar avisos. Se conservan por cuenta en el dispositivo y recalculan el tiempo al regresar. Mantén la app abierta para ver los avisos; no es una alarma del teléfono cuando la aplicación está cerrada.
+14. Guardar una porción o combinación crea una copia independiente con cantidades ajustadas, etapas e instrucciones. Las recetas originales se conservan. Revisa tiempos y moldes del texto: no se ajustan automáticamente. Para una receta que siga cambios de otra, usa subrecetas vinculadas dentro de su ficha.
 
 **Ejemplo:** En Temperatura, 180 °C equivalen a 356 °F. En Ingredientes, elige cuál estás midiendo: una taza de harina no pesa lo mismo que una de azúcar.
 
-**Consejo:** Las equivalencias de ingredientes pueden ser aproximadas. Favoritos y medidas propias se guardan solo en este dispositivo, separados por cuenta. No hace falta conectar una receta para convertir. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador.
+**Consejo:** Las equivalencias de ingredientes pueden ser aproximadas. Favoritos y medidas propias se guardan solo en este dispositivo, separados por cuenta. No hace falta conectar una receta para convertir. El formulario automático se conserva solo en este dispositivo. Las recetas guardadas con Guardar borrador pendiente sí quedan en tu cuenta en la nube. No guardamos contraseñas ni el archivo PDF como borrador.
 
 ## Solicitudes
 
@@ -195,15 +199,14 @@ Lo que tienes para preparar
 
 Qué necesitas reponer
 
-1. Aquí aparecen ingredientes y materiales con cantidad disponible igual o menor a su mínimo.
-2. Cada proveedor aparece por separado. Los artículos sin existencias o mínimo registrados requieren completarlos en Inventario.
-3. Cuando repongas, pulsa Actualizar existencias y registra la cantidad real. Al superar el mínimo, el artículo sale de Compras.
-4. Los consumos registrados al producir actualizan las existencias; si un artículo llega a su mínimo, aparece en esta lista.
-5. La lista automática usa existencias disponibles para producir, excluyendo lotes vencidos o retenidos. Registra la reposición en Movimientos de inventario; el artículo sale de la lista al superar su mínimo.
+1. Aquí aparecen los ingredientes y materiales que llegaron a su mínimo, separados por proveedor. Los artículos sin conteo no se presentan como agotados.
+2. Pulsa Registrar compra en el artículo: se abre Movimientos de inventario con el artículo y su unidad seleccionados. Completa cantidad, precio y pago real.
+3. Una compra aumenta existencias y registra el pago indicado. Cuando la existencia supera el mínimo, el artículo sale de Compras.
+4. Corregir conteo físico se usa para corregir lo que realmente hay, con un motivo; no sustituye el registro de una compra.
 
 **Ejemplo:** Si una caja tiene mínimo 5 y quedan 5 unidades, aparece pendiente; si registras 20, deja de aparecer.
 
-**Consejo:** Esta lista se calcula desde tu inventario en la nube. No borres el artículo ni cambies su precio para marcarlo como comprado.
+**Consejo:** Configura un mínimo por artículo en Inventario. La presentación del precio no representa existencias. No registres el mismo pago de compra dos veces.
 
 ## Mi nevera
 
@@ -245,6 +248,7 @@ Conoce el resultado de tu negocio
 4. Usa Corregir para ajustar un gasto. Anular gasto pide confirmación y conserva su historial.
 5. Pulsa Descargar finanzas en PDF. El documento contiene el período, resumen y detalle, incluso si necesita varias páginas.
 6. En Caja y rentabilidad consulta cobros reales, saldos, comparación mensual, contribución por producto y valor estimado de materias primas. El resultado de ventas y gastos es distinto del saldo efectivo.
+7. Si recuperas un formulario con una fecha anterior a hoy, aparece un aviso. Conserva la fecha si corresponde a un registro pasado o pulsa Usar fecha de hoy; no se cambia por ti.
 
 **Ejemplo:** Ventas por RD$1,000 menos comisiones, producción y gastos registrados dan el resultado del período.
 
@@ -272,6 +276,8 @@ Organiza tus encargos y entregas
 4. Busca por cliente o descripción y filtra la agenda por fecha y estado. Los entregados y cancelados se conservan en Todos.
 5. Puedes elegir un cliente del directorio para reutilizar nombre y contacto. Planifica preparación y fotos de referencia en Agenda y cobros. Después del primer cobro registrado, usa Cobros y devoluciones para cambiar lo recibido; el anticipo ya no se modifica manualmente.
 6. Añade varias recetas con su proporción y cantidad final, y hasta seis fotos de referencia. Indica cuántos días antes debe prepararse cada receta. Guardar crea o actualiza sus tareas en Agenda; planificar no descuenta inventario. Los cobros, la venta y el historial de preparación se consultan dentro del pedido.
+7. Usar una cotización guardada conserva cliente, contacto, fecha, notas y desglose. Revisa la fecha antes de guardar. No puedes crear dos pedidos activos de la misma cotización.
+8. Primero termina sus preparaciones en Agenda. Al marcar Listo o registrar su venta se descuentan una sola vez los materiales adicionales de la cotización, conservando el desglose aceptado. La venta propone mano de obra y otros gastos del desglose; no repitas los materiales en esos gastos.
 
 **Ejemplo:** Un encargo de RD$2,000 con anticipo de RD$500 muestra RD$1,500 de saldo.
 
@@ -281,23 +287,17 @@ Organiza tus encargos y entregas
 
 Añade una receta a un recetario
 
-1. Esta área es solo para ingresar recetas. Elige Recetario destino; si aún no tienes ninguno, crea uno aquí con nombre y uso.
-2. Elige Subir receta en PDF o foto o Escribir nueva receta. Las recetas actuales se consultan en Recetarios y no se mezclan con este formulario.
-3. Al subir un PDF o foto, se lee y aparece directamente la revisión. Comprueba nombre, rendimiento, preparación, cantidades, unidades y proveedor antes de Guardar receta importada. Puedes cancelar la revisión y corregir el texto reconocido.
-4. Se acepta una receta por archivo: PDF con texto o escaneado, JPG, PNG o WebP de hasta 10 MB. PDF: hasta 20 páginas, con un máximo de 10 escaneadas. Se procesa en tu dispositivo; el archivo no se guarda como borrador.
-5. Los nombres incompletos ofrecen coincidencias de tu catálogo. Si hay varias marcas o proveedores, elige el que usaste. Si falta un ingrediente, pulsa Registrar ingrediente para esa línea; guardar el ingrediente no guarda todavía la receta.
-6. Para escribir una receta, completa nombre, recetario, categoría, rendimiento y tipo de artículo. Añade alimentos con + Ingrediente y consumibles con + Material o empaque; ambos forman parte del costo.
-7. Proporcional permite media receta, el doble u otra proporción. Por tandas completas redondea hacia arriba al cotizar: 1,5 tandas cuentan como 2. La calculadora de Herramientas permite ajustar una proporción expresamente.
-8. Puedes usar gramos de ingredientes comprados por unidades o volumen si registraste su equivalencia en Ingredientes. La receta conserva los gramos; los costos y la producción utilizan la cantidad equivalente de inventario. No se supone el peso de huevos ni de líquidos.
-9. Comprueba el recetario elegido y pulsa Guardar receta importada o Guardar receta. Después abre Recetarios, ese recetario y Ver recetas del recetario para consultarla.
-10. Los borradores se conservan por cuenta en este dispositivo. El archivo no se guarda; se conserva el texto reconocido y el formulario de revisión.
-11. Para una receta basada en preparaciones existentes abre Componer una receta con subrecetas vinculadas. Elige hasta tres fórmulas de origen, proporciones, nombre, rendimiento y recetario de destino. Esta composición se actualiza cuando cambian sus subrecetas; las combinaciones anteriores de Herramientas siguen siendo copias independientes.
-12. Pulsa Receta por etapas para reunir base, crema, crumble y montaje en una sola receta. Añade etapas con nombre e instrucciones y asigna cada línea de ingrediente a su etapa. Cada línea se cuenta una sola vez. Los ingredientes generales pueden quedar sin etapa.
-13. Borradores pendientes conserva recetas incompletas en tu cuenta. Abre Continuar borrador para resolver ingredientes, unidades y etapas. Guardar borrador pendiente conserva el trabajo en la nube sin activarlo para costos o producción; Guardar receta por etapas exige completar los datos y registra la fórmula definitiva.
+1. Elige el recetario de destino. Escribir nueva receta abre un único formulario; también puedes subir un PDF o una foto y revisar lo que se pudo leer.
+2. Escribe nombre, categoría, rendimiento y tipo de producto. Añade cada ingrediente o material, elige su proveedor e indica la cantidad usada. No se seleccionan artículos ni cantidades por ti.
+3. Si falta un artículo, pulsa Registrar para esa línea. Puedes registrar el primero sin salir del formulario. Se conserva en tu catálogo aunque canceles la receta.
+4. Preparación general conserva las instrucciones. Organizar en etapas (opcional) permite separar base, relleno y montaje: escribe las instrucciones de cada etapa y asigna sus ingredientes. Una línea se cuenta una sola vez.
+5. Guardar borrador pendiente conserva en la nube una receta incompleta. Puedes continuarla aquí o desde su recetario. No se usa aún para costos ni producción.
+6. Guardar receta registra la fórmula definitiva cuando estén completos ingredientes, cantidades y unidades. Revisa las equivalencias propias del artículo; no se inventan pesos de huevos ni conversiones entre gramos y ml.
+7. El trabajo sin guardar se recupera en este dispositivo al volver con la misma cuenta. El archivo PDF original no se conserva como borrador.
 
 **Ejemplo:** Si la mezcla produce 12 galletas, el rendimiento es 12 y la unidad es unidad. Las cantidades de ingredientes corresponden a toda esa mezcla.
 
-**Consejo:** Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar. Los ingredientes y recetarios creados durante la importación permanecen guardados aunque canceles la receta. La cantidad de compra es distinta de la cantidad usada en la receta; no se convierten tazas a gramos automáticamente. Los borradores no se sincronizan entre dispositivos. No guardamos contraseñas ni el archivo PDF como borrador. Los alérgenos e indicaciones los completas tú; la aplicación no los deduce. En Respaldo puedes consultar las versiones anteriores guardadas desde esta actualización.
+**Consejo:** Si + Ingrediente no tiene opciones, falta registrar ingredientes. El costo utiliza el precio vigente del proveedor elegido. Si aparece Costo incompleto, revisa el precio, la cantidad y las unidades indicadas. Solo los recetarios de Encargos aparecen en el Cotizador. Si otra sesión modificó la receta, cancela la edición y vuelve a abrirla para revisar la versión más reciente antes de guardar. Los ingredientes y recetarios creados durante la importación permanecen guardados aunque canceles la receta. La cantidad de compra es distinta de la cantidad usada en la receta; no se convierten tazas a gramos automáticamente. El formulario automático se conserva solo en este dispositivo. Las recetas guardadas con Guardar borrador pendiente sí quedan en tu cuenta en la nube. No guardamos contraseñas ni el archivo PDF como borrador. Los alérgenos e indicaciones los completas tú; la aplicación no los deduce. En Respaldo puedes consultar las versiones anteriores guardadas desde esta actualización.
 
 ## Costos de productos
 
@@ -332,12 +332,13 @@ Reutiliza contactos de tu negocio
 
 Registra compras y lotes sin repetir movimientos
 
-1. Registra primero el conteo inicial del artículo en Inventario.
-2. Elige el artículo y una unidad de compra compatible, cantidad, precio total, pago realizado, fecha, lote y vencimiento. El pago puede ser parcial o cero.
+1. Puedes registrar una compra real aunque el artículo todavía no tenga conteo: esa primera compra inicia su seguimiento. No se fabrican existencias anteriores.
+2. Elige el artículo y una unidad compatible, cantidad, precio total, pago realizado, fecha, lote y vencimiento. Al cambiar el artículo se actualiza la unidad. El pago puede ser parcial o cero.
 3. Guardar aumenta el stock, actualiza el costo por unidad base y registra el pago real en Caja. No registres ese pago de nuevo manualmente.
 4. Consulta lotes y movimientos. Registrar merma de este lote retira exactamente la cantidad seleccionada de ese lote y del inventario, con motivo.
 5. Las producciones consumen primero lotes vigentes próximos a vencer, y después existencias anteriores sin lote. Los lotes vencidos o retenidos se excluyen. Los precios editados también conservan un historial.
 6. Si quedó un importe pendiente, abre Registrar pago pendiente de compra en su lote. El pago reduce el saldo y sale de Caja, sin volver a aumentar stock ni registrar otra compra.
+7. Si recuperas un formulario con una fecha anterior a hoy, aparece un aviso. Conserva la fecha si corresponde a un registro pasado o pulsa Usar fecha de hoy; no se cambia por ti.
 
 **Ejemplo:** Compras 1 kg de harina por RD$100 y pagas RD$60: se añaden 1000 g, costo RD$0.10/g y salida de caja RD$60.
 
@@ -345,7 +346,7 @@ Registra compras y lotes sin repetir movimientos
 
 ## Agenda y cobros
 
-Planifica encargos y registra sus cobros
+Tus preparaciones y entregas pendientes
 
 1. Agenda muestra únicamente preparaciones pendientes o en proceso y entregas pendientes. Crea o edita el encargo desde Pedidos.
 2. Filtra pendientes de hoy y atrasados o próximas fechas. Marca En proceso al comenzar y Terminar preparación cuando realmente hayas producido: esta última acción descuenta ingredientes una sola vez.

@@ -1,6 +1,6 @@
 # Recetas por etapas y encargos
 
-En Nueva receta selecciona un recetario y pulsa **Receta por etapas**. Añade hasta veinte etapas con nombre y preparación. Cada línea de ingrediente se asigna a una etapa o queda como general. Los ingredientes repetidos en distintas etapas mantienen sus cantidades separadas; el costo y consumo utilizan las líneas reales una sola vez.
+En Nueva receta selecciona un recetario y pulsa **Escribir nueva receta**. En el formulario abre **Organizar en etapas (opcional)**. Añade hasta veinte etapas con nombre y preparación. Cada línea de ingrediente se asigna a una etapa o queda como general. Los ingredientes repetidos en distintas etapas mantienen sus cantidades separadas; el costo y consumo utilizan las líneas reales una sola vez.
 
 En una receta existente, **Editar receta** permite organizar sus etapas. Quitar una etapa conserva los ingredientes como generales. La consulta muestra las etapas plegables con sus cantidades e instrucciones. Los vínculos a recetas existentes se conservan en **Ficha profesional y subrecetas**, se suman a los ingredientes propios y no se deben volver a copiar en la fórmula. El escalado usa todas las líneas y vínculos con la misma proporción.
 
