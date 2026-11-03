@@ -19,3 +19,8 @@ Antes de publicar la interfaz, aplicar con autorización las migraciones `202611
 Para comprobar ambas migraciones sin persistir cambios, unir sus cuerpos dentro de un solo BEGIN, omitir ambos COMMIT y añadir `supabase/tests/gestion_completa.sql`, que finaliza con ROLLBACK. Usa cuentas ficticias distintas para probar aislamiento, reintentos, conflictos, recuperación atómica, permisos y unidades. El redondeo de existencias respeta la precisión de la columna existente. El factor de conversión es 3785.411784 ml por galón estadounidense.
 
 Ejecutar `npm test` y `npm run build`. El reconocimiento OCR se prueba con una imagen ficticia en base64 y datos españoles locales. El paso prebuild copia las dependencias OCR a public/ocr, sin subirlas al repositorio. Revisar los PDF renderizados, las fotos y los formularios en computadora y celular antes de fusionar.
+
+
+## Actualización integral en revisión
+
+Consulta OPERACION_INTEGRAL.md para compras por lotes, costos históricos, cobros, órdenes de trabajo y composición vinculada. Las recetas combinadas por copia se conservan; el vínculo dinámico se crea explícitamente. Los datos actuales siguen siendo privados y las operaciones de inventario no se repiten por reintentos.

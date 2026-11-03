@@ -26,7 +26,7 @@ export function prepararEdicionReceta(form,original,ingredients,books){
  if(!tiposProducto.includes(form.productType))throw new Error('Selecciona un tipo de producto válido.');
  if(!['fixed','scalable'].includes(form.scaling))throw new Error('Selecciona el tipo de escalado.');
  if(!books.some(book=>book.id===form.bookId))throw new Error('Selecciona un recetario de tu cuenta.');
- if(!Array.isArray(form.lines)||!form.lines.length)throw new Error('Agrega al menos un ingrediente.');
+ if(!Array.isArray(form.lines)||(!form.lines.length&&!original.subrecipes?.length))throw new Error('Agrega al menos un ingrediente.');
  const category=String(form.category??original.category??'').trim();if(category.length>80)throw new Error('La categoría admite hasta 80 caracteres.');
  const seen=new Set();
  const lines=form.lines.map(line=>{

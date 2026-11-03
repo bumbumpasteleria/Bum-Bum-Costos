@@ -18,12 +18,12 @@ const decoracion=r=>({id:r.id,name:r.name,type:r.description||'Otros',price:Numb
 const cotizacion=r=>({...r.details,id:r.id,date:r.details?.date||r.created_at?.slice(0,10),totalCost:Number(r.total_cost),price:Number(r.quoted_price),method:r.pricing_method});
 const venta=r=>({...r.details,id:r.id,date:r.sold_at?.slice(0,10),channel:r.channel,gross:Number(r.gross_amount),productionCost:r.details?.productionCost??(Number(r.cost_amount)-Number(r.details?.extra||0)),commission:r.details?.commission??(Number(r.gross_amount)?Number(r.commission_amount)/Number(r.gross_amount)*100:0),extra:r.details?.extra||0});
 export async function cargarDatos(owner) {
-  const tables=['ingredients','recipes','decorations','quotes','sales','recipe_books'];
-  async function leer(table,select='*'){const rows=[];for(let start=0;;start+=500){let query=supabase.from(table).select(select).eq('owner_id',owner);if(table!=='recipe_lines')query=query.order('created_at');const page=await resultado(query.order('id').range(start,start+499));rows.push(...page);if(page.length<500)return rows;}}
+  const tables=['ingredients','recipes','decorations','quotes','sales','recipe_books','business_entries'];
+  async function leer(table,select='*'){const rows=[];for(let start=0;;start+=500){let query=supabase.from(table).select(select).eq('owner_id',owner);if(table==='business_entries')query=query.eq('kind','subrecipe');if(table!=='recipe_lines')query=query.order('created_at');const page=await resultado(query.order('id').range(start,start+499));rows.push(...page);if(page.length<500)return rows;}}
   const [datos,lineas]=await Promise.all([Promise.all(tables.map(table=>leer(table))),leer('recipe_lines','*, ingredients(base_unit)')]);
   datos[1]=datos[1].map(r=>({...r,recipe_lines:lineas.filter(l=>l.recipe_id===r.id)}));
   const articulos=datos[0].map(adaptarIngrediente);
-  return {ingredients:articulos.filter(i=>i.itemKind==='ingredient'),materials:articulos.filter(i=>i.itemKind==='material'),recipes:datos[1].map(adaptarReceta),decorations:datos[2].map(decoracion),quotes:datos[3].map(cotizacion),sales:datos[4].map(venta),books:datos[5],settings:{}};
+  return {ingredients:articulos.filter(i=>i.itemKind==='ingredient'),materials:articulos.filter(i=>i.itemKind==='material'),recipes:datos[1].map(adaptarReceta),decorations:datos[2].map(decoracion),quotes:datos[3].map(cotizacion),sales:datos[4].map(venta),books:datos[5],recipeLinks:datos[6],settings:{}};
 }
 export async function guardarRegistro(tipo, item, owner, ingredients) {
   const valores=tipo==='recipes'?[item.yield]:tipo==='decorations'?[item.price]:tipo==='quotes'?[item.totalCost,item.price,item.pct]:[item.gross,item.commission,item.productionCost,item.extra];

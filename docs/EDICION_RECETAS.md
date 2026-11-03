@@ -6,17 +6,13 @@ Se conserva el identificador de la receta y de cada línea retenida. Las líneas
 
 La función actualizar_receta_recetario_bum_bum trabaja en una sola transacción con SECURITY INVOKER y las políticas actuales. Solo authenticated puede ejecutarla; valida titular, recetario, ingredientes y líneas. Compara la versión abierta con la versión actual y rechaza cambios concurrentes, conservando el borrador en pantalla. Reabrir permite revisar la versión reciente.
 
-## Validación
+## Estado actual
 
-- 48 grupos de pruebas de aplicación, conversiones, costos, catálogo y edición.
-- Compilación de producción.
-- Prueba SQL transaccional con cuentas sintéticas: conservar IDs, añadir/quitar líneas, rechazo de datos ajenos, sesión anónima y valores inválidos, conflicto concurrente, preservación de precios/existencias/cotización/metadata/texto antiguo. Ejecutada con ROLLBACK; se confirmó la ausencia de la función y de las cuentas sintéticas después.
-- Navegador con la aplicación real y un servicio simulado sin conexión a cuentas: error conserva borrador, guardar cambia rendimiento e ingredientes y recalcula RD$50 a RD$130; cancelar conserva la receta. Formulario revisado a 390 px y escritorio.
-
-## Publicación pendiente
-
-La migración 20261031_editar_receta.sql todavía NO está aplicada persistentemente. Requiere aprobación antes de aplicarla y publicar la aplicación. Primero aplicar la función compatible con la versión anterior, luego publicar la interfaz y comprobar el flujo con una receta de prueba autorizada. Las pruebas simuladas no sustituyen esa comprobación final en producción.
-
-La preparación con fotos, subrecetas e historial de versiones queda para futuras entregas. El rediseño completo sigue registrado en PENDIENTES_DISENO.md.
+La edición está publicada y conserva IDs, verifica versiones y respeta la cuenta propietaria. Las pruebas originales se realizaron con datos ficticios y se revirtieron. Las fotos y el historial de versiones también están disponibles. La entrega integral añade composición vinculada y ficha profesional; al editar se modifican únicamente los ingredientes propios, sin copiar los heredados de subrecetas.
 
 Acceso actualizado: Recetas → Abrir recetario → Ver recetas del recetario → Abrir receta. La edición, asignación y eliminación se realizan dentro de esa ficha. Consulta RECETARIOS_Y_EQUIVALENCIAS.md para unidades preferidas y consumo al producir.
+
+
+## Actualización integral en revisión
+
+Consulta OPERACION_INTEGRAL.md para compras por lotes, costos históricos, cobros, órdenes de trabajo y composición vinculada. Las recetas combinadas por copia se conservan; el vínculo dinámico se crea explícitamente. Los datos actuales siguen siendo privados y las operaciones de inventario no se repiten por reintentos.

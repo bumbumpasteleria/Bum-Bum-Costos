@@ -32,3 +32,8 @@ La migración 20261102_precio_productos.sql añade sale_price y dos funciones pr
 Los lotes nuevos incluyen los materiales presentes en las líneas de la receta al producirlos. Los anteriores conservan el costo con el que se registraron. Los precios por canal se configuran con comisión y gastos adicionales por unidad; Ventas multiplica estos gastos por la cantidad y mantiene una copia de los importes efectivamente utilizados.
 
 El registro de producción descuenta ingredientes y materiales de Inventario, aplicando equivalencias por artículo si la receta usa gramos y el inventario unidades o ml. Completa existencias reales antes de producir. La operación completa se revierte si falta algún artículo y un reintento con el mismo ID no duplica el consumo. Los lotes nuevos permiten Ver ingredientes descontados. Los anteriores conservan costo y existencias sin ajustes retroactivos.
+
+
+## Actualización integral en revisión
+
+Consulta OPERACION_INTEGRAL.md para compras por lotes, costos históricos, cobros, órdenes de trabajo y composición vinculada. Las recetas combinadas por copia se conservan; el vínculo dinámico se crea explícitamente. Los datos actuales siguen siendo privados y las operaciones de inventario no se repiten por reintentos.
