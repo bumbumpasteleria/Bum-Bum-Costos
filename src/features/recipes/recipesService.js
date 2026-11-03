@@ -1,3 +1,4 @@
+import {stagePayload} from './recipeStages.mjs';
 import {recipeLinePayload} from '../../domain/costing/ingredientQuantity.mjs';
 import {validatePreparation} from './recipePreparation.mjs';
 import {supabase} from '../../supabase';
@@ -45,7 +46,8 @@ export function prepararEdicionReceta(form,original,ingredients,books){
 export async function actualizarReceta(form,original,owner,ingredients,books){
  if(!owner)throw new Error('Inicia sesión antes de guardar.');
  const args=prepararEdicionReceta(form,original,ingredients,books);
- const {data,error}=await supabase.rpc('actualizar_receta_organizada_bum_bum',args);
+ const staged=!!form.stages?.length||!!original.stages?.length;
+ const {data,error}=await supabase.rpc(staged?'bum_save_staged_recipe':'actualizar_receta_organizada_bum_bum',staged?{p_recipe:Object.fromEntries(Object.entries(args).filter(([key])=>key!=='p_original')),p_stages:stagePayload(form.stages||[],form.lines),p_original:args.p_original}:args);
  if(error){
   if(error.code==='PGRST202')throw new Error('La edición de recetas aún no está habilitada. La administradora debe publicar la actualización.');
   if(error.code==='P0001')throw new Error(error.message);

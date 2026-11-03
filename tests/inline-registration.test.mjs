@@ -1,8 +1,9 @@
+import * as recipeStages from '../src/features/recipes/recipeStages.mjs';
 import * as ingredientQuantity from '../src/domain/costing/ingredientQuantity.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import {readFile} from 'node:fs/promises';import {transformWithEsbuild} from 'vite';import {normalizeIngredient} from '../src/features/recipes/ingredientMatches.mjs';
 const source=new URL('../src/',import.meta.url);const compile=async(p,loader='jsx')=>(await transformWithEsbuild(await readFile(new URL(p,source),'utf8'),p,{loader,format:'cjs'})).code;
 const [ingredientCode,bookCode,editorCode,cloudCode,catalogCode]=await Promise.all([compile('features/recipes/InlineIngredient.jsx'),compile('features/recipes/InlineRecipeBook.jsx'),compile('features/recipes/RecipeEditor.jsx'),compile('cloudService.js','js'),compile('catalogoService.js','js')]);
-function load(code,require,extra={}){const m={exports:{}};vm.runInNewContext(code,{module:m,exports:m.exports,require:path=>path.includes('ingredientQuantity')?ingredientQuantity:require(path),crypto:globalThis.crypto,...extra});return m.exports;}
+function load(code,require,extra={}){const m={exports:{}};vm.runInNewContext(code,{module:m,exports:m.exports,require:path=>path.includes('recipeStages')?recipeStages:path.includes('ingredientQuantity')?ingredientQuantity:require(path),crypto:globalThis.crypto,...extra});return m.exports;}
 const cloud=load(cloudCode,p=>p.includes('supabase')?{supabase:{}}:p.includes('recipePreparation')?{readPreparation:()=>''}:{adaptarIngrediente:r=>r});
 const catalog=load(catalogCode,p=>p.includes('cloudService')?cloud:p.includes('supabase')?{supabase:{}}:{adaptarIngrediente:r=>r});
 const nodes=x=>x&&typeof x==='object'?[x,...(x.children||[]).flat(Infinity).flatMap(nodes)]:[],text=x=>['string','number'].includes(typeof x)?String(x):x&&typeof x==='object'?(x.children||[]).flat(Infinity).map(text).join(''):'';

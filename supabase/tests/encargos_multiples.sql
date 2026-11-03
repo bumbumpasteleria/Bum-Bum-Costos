@@ -1,0 +1,43 @@
+reset role;
+insert into public.recipe_books(id,owner_id,name,usage) values('12360000-0000-4000-8000-000000000022','12360000-0000-4000-8000-000000000001','ENCARGOS MULTIPLES','orders');
+insert into public.ingredients(id,owner_id,name,base_unit,last_unit_cost,stock_quantity,minimum_stock,supplier) values('12360000-0000-4000-8000-000000000016','12360000-0000-4000-8000-000000000001','SIN CONTEO','g',0.5,null,0,'Proveedor A');
+set local role authenticated;
+set local request.jwt.claim.sub='12360000-0000-4000-8000-000000000001';
+do $$ declare day date:=(now() at time zone 'America/Santo_Domingo')::date;o jsonb;d jsonb;v integer;w integer;before_ numeric;after_ numeric;failed boolean;photo text:='data:image/jpeg;base64,/9j/AA==';begin
+ perform public.guardar_receta_organizada_bum_bum('12360000-0000-4000-8000-000000000033','Masa encargos',12,'unidad','scalable','[{"ingredient_id":"12360000-0000-4000-8000-000000000011","quantity_base":50}]','Bizcocho','12360000-0000-4000-8000-000000000022','','Masas');
+ perform public.guardar_receta_organizada_bum_bum('12360000-0000-4000-8000-000000000034','Relleno encargos',6,'unidad','scalable','[{"ingredient_id":"12360000-0000-4000-8000-000000000012","quantity_base":2}]','Otro artículo','12360000-0000-4000-8000-000000000022','','Rellenos');
+ select stock_quantity into before_ from public.ingredients where id='12360000-0000-4000-8000-000000000011';
+ d:=jsonb_build_object('customer','Cliente ficticio','contact','','description','Dos preparaciones','deliveryDate',day+5,'total',100,'deposit',0,'status','pending','recipeId','','notes','','photos',jsonb_build_array(photo,photo),'recipes',jsonb_build_array(jsonb_build_object('id','12360000-0000-4000-8000-000000000901','recipeId','12360000-0000-4000-8000-000000000033','factor',0.5,'quantity',6,'leadDays',2),jsonb_build_object('id','12360000-0000-4000-8000-000000000902','recipeId','12360000-0000-4000-8000-000000000034','factor',2,'quantity',12,'leadDays',1)));
+ o:=public.bum_save_entry('12360000-0000-4000-8000-000000000900','order',d,0);v:=(o->>'version')::integer;
+ if jsonb_array_length(o->'details'->'photos')<>2 or (select count(*) from public.business_entries where kind='work_order' and details->>'managedOrderId'='12360000-0000-4000-8000-000000000900')<>2 then raise exception 'Multiple references/tasks not saved';end if;
+ if (select details->>'date' from public.business_entries where id='12360000-0000-4000-8000-000000000901')<>(day+3)::text then raise exception 'Preparation lead time ignored';end if;
+ perform public.bum_save_entry('12360000-0000-4000-8000-000000000900','order',d,0);
+ if (select count(*) from public.business_entries where kind='work_order' and details->>'managedOrderId'='12360000-0000-4000-8000-000000000900')<>2 then raise exception 'Retry duplicated preparations';end if;
+ if (select stock_quantity from public.ingredients where id='12360000-0000-4000-8000-000000000011')<>before_ then raise exception 'Planning consumed inventory';end if;
+ d:=jsonb_set(d,'{recipes,0,factor}','0.25');d:=jsonb_set(d,'{recipes,0,quantity}','3');o:=public.bum_save_entry('12360000-0000-4000-8000-000000000900','order',d,v);v:=(o->>'version')::integer;
+ select version into w from public.business_entries where id='12360000-0000-4000-8000-000000000901';perform public.bum_work_produce('12360000-0000-4000-8000-000000000911','12360000-0000-4000-8000-000000000901',w);
+ select stock_quantity into after_ from public.ingredients where id='12360000-0000-4000-8000-000000000011';if before_-after_<>12.5 then raise exception 'Wrong scaled consumption';end if;
+ perform public.bum_work_produce('12360000-0000-4000-8000-000000000911','12360000-0000-4000-8000-000000000901',w);
+ if (select stock_quantity from public.ingredients where id='12360000-0000-4000-8000-000000000011')<>after_ then raise exception 'Production retry consumed twice';end if;
+ failed:=false;begin perform public.bum_save_entry('12360000-0000-4000-8000-000000000900','order',jsonb_set(d,'{recipes,0,factor}','2'),v);exception when others then failed:=true;end;if not failed then raise exception 'Finished formula changed';end if;
+ failed:=false;begin perform public.bum_save_entry('12360000-0000-4000-8000-000000000900','order',jsonb_set(d,'{recipes}',jsonb_build_array(d->'recipes'->1)),v);exception when others then failed:=true;end;if not failed then raise exception 'Finished task removed';end if;
+ failed:=false;begin perform public.bum_save_entry('12360000-0000-4000-8000-000000000900','order',jsonb_set(d,'{photos}',jsonb_build_array('https://untrusted.invalid/x')),v);exception when others then failed:=true;end;if not failed then raise exception 'External photo accepted';end if;
+ failed:=false;begin perform public.bum_save_entry('12360000-0000-4000-8000-000000000900','order',jsonb_set(d,'{recipes,1,leadDays}','0.5'),v);exception when others then failed:=true;end;if not failed then raise exception 'Fractional lead days accepted';end if;
+ -- Photos larger than the old single-photo entry limit remain valid as an array.
+ d:=jsonb_set(d,'{photos}',jsonb_build_array('data:image/jpeg;base64,'||repeat('A',200000),'data:image/jpeg;base64,'||repeat('A',200000)));o:=public.bum_save_entry('12360000-0000-4000-8000-000000000900','order',d,v);v:=(o->>'version')::integer;
+ if jsonb_array_length(o->'details'->'photos')<>2 then raise exception 'Multiple photo array lost';end if;
+ d:=jsonb_set(d,'{status}','"cancelled"');perform public.bum_save_entry('12360000-0000-4000-8000-000000000900','order',d,v);
+ if (select details->>'status' from public.business_entries where id='12360000-0000-4000-8000-000000000902')<>'cancelled' or (select details->>'status' from public.business_entries where id='12360000-0000-4000-8000-000000000901')<>'done' then raise exception 'Cancellation lost finished history';end if;
+ o:=public.bum_inventory_purchase('12360000-0000-4000-8000-000000000921','12360000-0000-4000-8000-000000000016',100,50,day,null,'Inicio','Proveedor A',0);if (o->>'stock_quantity')::numeric<>100 then raise exception 'Initial purchase required physical count';end if;
+ perform public.bum_inventory_purchase('12360000-0000-4000-8000-000000000921','12360000-0000-4000-8000-000000000016',100,50,day,null,'Inicio','Proveedor A',0);
+ if (select stock_quantity from public.ingredients where id='12360000-0000-4000-8000-000000000016')<>100 then raise exception 'First purchase duplicated';end if;
+end $$;
+set local request.jwt.claim.sub='12360000-0000-4000-8000-000000000002';
+do $$ declare failed boolean:=false;begin
+ if exists(select 1 from public.business_entries where id='12360000-0000-4000-8000-000000000900') then raise exception 'Foreign reference photos readable';end if;
+ begin perform public.bum_save_entry('12360000-0000-4000-8000-000000000900','order','{}',0);exception when others then failed:=true;end;if not failed then raise exception 'Foreign order writable';end if;
+end $$;
+reset role;
+do $$ begin if has_function_privilege('authenticated','public.bum_save_entry_before_orders(uuid,text,jsonb,integer)','execute') or has_function_privilege('anon','public.bum_save_entry(uuid,text,jsonb,integer)','execute') then raise exception 'Auxiliary or anonymous access widened';end if;end $$;
+rollback;
+select 'OK: encargos múltiples, fotos, anticipación, tareas, inventario y privacidad; todo revertido' as resultado;
