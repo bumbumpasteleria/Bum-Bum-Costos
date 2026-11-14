@@ -25,3 +25,11 @@ Fuentes: [Apple: Web Push](https://developer.apple.com/documentation/usernotific
 Se revisaron formularios, guías, navegación, estados vacíos y mensajes de los módulos. Se corrigió el mensaje de creación de receta, la recuperación de versiones, los nombres de movimientos, la presentación de unidades, singular/plural y las instrucciones que enviaban a Agenda para crear pedidos o a Mi nevera para configurar comisiones. La búsqueda de borradores omite categorías sin resultados.
 
 Mi nevera abre la ficha de costo solicitada y refresca inventario tras producir. Una preparación con receta eliminada muestra una explicación y bloquea el descuento hasta revisarla. No se modifican fórmulas, precios, existencias ni documentos aportados por usuarios durante esta revisión.
+
+## Avisos por situación de la aplicación
+
+Cada cuenta elige preparaciones, entregas, ingredientes y materiales por reponer, productos de nevera en el mínimo, lotes vencidos o próximos a vencer, saldos de encargos y solicitudes de acceso. Las solicitudes están restringidas a administración en el servidor y en la interfaz. No se incluyen clientes, empleados ni importes en los mensajes.
+
+Se comprueban a partir de la hora diaria de cada dispositivo, con revisión cada 15 minutos. Cada tipo de aviso se envía como máximo una vez al día por dispositivo. No es un sistema de alarmas instantáneas. Los lotes se incluyen desde 3 días antes de su fecha registrada y mientras conserven cantidad; no se inventan fechas. Las existencias por reponer excluyen lotes vencidos o retenidos por calidad, como las listas de la aplicación. Los cobros se incluyen si el pedido tiene entrega para hoy o atrasada y saldo pendiente.
+
+Al pulsar el aviso se abre su módulo mediante una lista cerrada de destinos. Cambiar de cuenta evita mostrar avisos de la anterior. Las preferencias son privadas y no cambian existencias ni pedidos. `bum_notice_claim` reserva dispositivos con bloqueo, consulta sus datos por propietario y excluye avisos ya confirmados para ese día. `bum_notice_ack` confirma cada tipo por separado; los errores no confirman envío. Un fallo entre entrega y confirmación puede provocar reintento; la etiqueta agrupa el mismo aviso.

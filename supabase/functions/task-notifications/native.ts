@@ -12,8 +12,8 @@ async function accessToken(){
  const assertion=await new SignJWT({scope:'https://www.googleapis.com/auth/firebase.messaging'}).setProtectedHeader({alg:'RS256'}).setIssuer(s.client_email).setAudience('https://oauth2.googleapis.com/token').setIssuedAt().setExpirationTime('50m').sign(await importPKCS8(s.private_key,'RS256'));
  const response=await fetch('https://oauth2.googleapis.com/token',{method:'POST',body:new URLSearchParams({grant_type:'urn:ietf:params:oauth:grant-type:jwt-bearer',assertion}),signal:AbortSignal.timeout(10000)});const result=await response.json();if(!response.ok||!result.access_token)throw Error('No se pudo autenticar el envío Android.');cached={token:result.access_token,until:Date.now()+40*60000};return cached.token;
 }
-export async function sendNative(row:any,body:string,tag:string){
- const response=await fetch('https://fcm.googleapis.com/v1/projects/bum-bum-costos/messages:send',{method:'POST',headers:{Authorization:'Bearer '+await accessToken(),'Content-Type':'application/json'},body:JSON.stringify({message:{token:row.subscription.token,data:{ownerId:row.owner_id||row.ownerId,body,tag},android:{priority:'high',ttl:'3600s'}}}),signal:AbortSignal.timeout(10000)});
+export async function sendNative(row:any,body:string,tag:string,target='Agenda y cobros'){
+ const response=await fetch('https://fcm.googleapis.com/v1/projects/bum-bum-costos/messages:send',{method:'POST',headers:{Authorization:'Bearer '+await accessToken(),'Content-Type':'application/json'},body:JSON.stringify({message:{token:row.subscription.token,data:{ownerId:row.owner_id||row.ownerId,body,tag,target},android:{priority:'high',ttl:'3600s'}}}),signal:AbortSignal.timeout(10000)});
  if(!response.ok){const result=await response.json().catch(()=>({}));const invalid=result.error?.details?.some((d:any)=>d.errorCode==='UNREGISTERED');throw Object.assign(Error('No se pudo entregar el aviso Android.'),{statusCode:invalid?410:response.status})}
 }
 export async function nativeAction(db:any,query:any,owner:string,body:any,ready:boolean){
@@ -26,7 +26,7 @@ export async function nativeAction(db:any,query:any,owner:string,body:any,ready:
   if(!ready||!nativeSettings())throw Error('Estamos terminando de configurar los avisos de Android.');
   if(!Number.isInteger(body.hour)||body.hour<0||body.hour>23)throw Error('Selecciona una hora válida.');
   const devices=await query(db.from('push_subscriptions').select('id').eq('owner_id',owner).eq('enabled',true));if(devices.length>=10&&!devices.some((d:any)=>d.id===identity.id))throw Error('Esta cuenta ya tiene diez dispositivos con avisos activos.');
-  await query(db.from('push_subscriptions').upsert({id:identity.id,owner_id:owner,subscription:{platform:'android',proofHash:identity.proofHash,token:body.subscription.token},enabled:true,hour:body.hour,last_sent_day:existing?.owner_id===owner?existing.last_sent_day:null,claimed_until:null,updated_at:new Date().toISOString()}));return {enabled:true,hour:body.hour};
+  await query(db.from('push_subscriptions').upsert({id:identity.id,owner_id:owner,subscription:{platform:'android',proofHash:identity.proofHash,token:body.subscription.token},enabled:true,hour:body.hour,last_sent_day:existing?.owner_id===owner?existing.last_sent_day:null,sent_events:existing?.owner_id===owner?existing.sent_events||{}:{},last_checked_at:null,claimed_until:null,updated_at:new Date().toISOString()}));return {enabled:true,hour:body.hour};
  }
  if(!existing||existing.owner_id!==owner)return {enabled:false,hour:9};
  if(action==='native_status')return {enabled:existing.enabled,hour:existing.hour};

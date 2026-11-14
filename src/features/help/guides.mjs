@@ -12,7 +12,8 @@ const MODULE_GUIDES = {
       "En Bum Bum Costos en tu teléfono abre las instrucciones para Android o iPhone. Cuando el navegador lo admita aparecerá Instalar aplicación; puedes entrar con tu misma cuenta.",
       "El botón Atrás del navegador recorre los módulos que visitaste. La ayuda y los temporizadores están juntos arriba; abre solo lo que necesites.",
       "En Mis pendientes abre Notificaciones en mi teléfono. Actívalas en cada dispositivo y elige la hora del resumen diario de preparaciones y entregas. Puedes enviar una notificación de prueba.",
-      "La versión Android instalable abre con el icono de Bum Bum Costos y utiliza la misma cuenta. Los borradores locales pertenecen a cada instalación; guarda en la nube antes de cambiar de dispositivo."
+      "La versión Android instalable abre con el icono de Bum Bum Costos y utiliza la misma cuenta. Los borradores locales pertenecen a cada instalación; guarda en la nube antes de cambiar de dispositivo.",
+      "En Mis pendientes → Qué avisos quiero recibir elige preparaciones, entregas, compras, reposición de nevera, vencimientos o saldos. Las solicitudes solo están disponibles para administración. Se revisan a partir de la hora configurada y cada tipo se envía como máximo una vez al día por dispositivo. Al tocar un aviso se abre su área. Los vencimientos se avisan desde 3 días antes; los saldos se avisan cuando la entrega es para hoy o está atrasada."
     ],
     "example": "Puedes tener un recetario «Galletas para apps» y otro «Postres por encargo».",
     "tip": "Cada cuenta tiene su propio espacio. Cierra sesión cuando termines en un equipo compartido. El formulario automático se conserva solo en este dispositivo. Las recetas guardadas con Guardar borrador pendiente sí quedan en tu cuenta en la nube. No guardamos contraseñas ni el archivo PDF como borrador. El icono conserva el monograma BB con melocotón. Si el teléfono conserva el anterior, añade el acceso nuevo desde el enlace oficial antes de retirar el antiguo. No borres datos del navegador para actualizar el icono."
@@ -147,7 +148,8 @@ const MODULE_GUIDES = {
       "Lee los datos del dueño y del negocio.",
       "Pulsa Aprobar y crear cuenta si autorizas el acceso, o Rechazar solicitud.",
       "Las solicitudes resueltas salen de esta lista. Las aprobadas aparecen en Personas con acceso.",
-      "Usa Buscar en esta página por nombre, negocio, correo o ubicación. Filtra por estado y limpia los filtros para volver a ver todos los registros. La búsqueda corresponde a la página actual; usa Anterior o Siguiente para otras páginas."
+      "Usa Buscar en esta página por nombre, negocio, correo o ubicación. Filtra por estado y limpia los filtros para volver a ver todos los registros. La búsqueda corresponde a la página actual; usa Anterior o Siguiente para otras páginas.",
+      "En Mis pendientes → Qué avisos quiero recibir elige preparaciones, entregas, compras, reposición de nevera, vencimientos o saldos. Las solicitudes solo están disponibles para administración. Se revisan a partir de la hora configurada y cada tipo se envía como máximo una vez al día por dispositivo. Al tocar un aviso se abre su área. Los vencimientos se avisan desde 3 días antes; los saldos se avisan cuando la entrega es para hoy o está atrasada."
     ],
     "example": "Una cuenta aprobada recibe por correo su enlace personal para crear su contraseña.",
     "tip": "Solo la administradora ve este módulo. La persona debe abrir la invitación más reciente dentro de una hora; no necesita compartirte su contraseña."
@@ -187,7 +189,8 @@ const MODULE_GUIDES = {
       "Una compra aumenta existencias y registra el pago indicado. Cuando la existencia supera el mínimo, el artículo sale de Compras.",
       "Corregir conteo físico se usa para corregir lo que realmente hay, con un motivo; no sustituye el registro de una compra.",
       "Pulsa Asignar responsable en el artículo para indicar qué empleado se encargará de comprarlo. Cambiar responsable permite actualizarlo o dejarlo sin asignar.",
-      "En la aplicación Android, activa los avisos en Mis pendientes → Notificaciones de la aplicación Android. Permite las notificaciones y comprueba la recepción con Enviar notificación de prueba. Si el servicio todavía se está configurando, consulta Agenda."
+      "En la aplicación Android, activa los avisos en Mis pendientes → Notificaciones de la aplicación Android. Permite las notificaciones y comprueba la recepción con Enviar notificación de prueba. Si el servicio todavía se está configurando, consulta Agenda.",
+      "En Mis pendientes → Qué avisos quiero recibir elige preparaciones, entregas, compras, reposición de nevera, vencimientos o saldos. Las solicitudes solo están disponibles para administración. Se revisan a partir de la hora configurada y cada tipo se envía como máximo una vez al día por dispositivo. Al tocar un aviso se abre su área. Los vencimientos se avisan desde 3 días antes; los saldos se avisan cuando la entrega es para hoy o está atrasada."
     ],
     "example": "Si una caja tiene mínimo 5 y quedan 5 unidades, aparece pendiente; si registras 20, deja de aparecer.",
     "tip": "Configura un mínimo por artículo en Inventario. La presentación del precio no representa existencias. No registres el mismo pago de compra dos veces."
@@ -204,7 +207,8 @@ const MODULE_GUIDES = {
       "Registrar una preparación descuenta ingredientes y materiales del inventario en una sola operación. Las recetas en gramos se convierten con la equivalencia de cada artículo. Si faltan existencias, no se guarda el lote ni se descuenta nada. Repetir el mismo intento no descuenta dos veces. Los lotes anteriores conservan su costo y no se descuentan retroactivamente. Abre Ver ingredientes descontados dentro de un lote nuevo para consultar su consumo.",
       "Mi nevera se dedica a existencias, lotes, producción y precio registrado. La ficha completa con mano de obra y gastos se gestiona en Costos de productos.",
       "Una revisión de calidad Retenido sobre un lote impide venderlo hasta una revisión posterior Conforme. El vencimiento continúa aplicándose. El responsable debe registrar su criterio; la aplicación no decide inocuidad.",
-      "Ver costo final y precios abre la ficha de ese producto en Costos de productos. Registrar una producción actualiza también el inventario de ingredientes y materiales."
+      "Ver costo final y precios abre la ficha de ese producto en Costos de productos. Registrar una producción actualiza también el inventario de ingredientes y materiales.",
+      "En Mis pendientes → Qué avisos quiero recibir elige preparaciones, entregas, compras, reposición de nevera, vencimientos o saldos. Las solicitudes solo están disponibles para administración. Se revisan a partir de la hora configurada y cada tipo se envía como máximo una vez al día por dispositivo. Al tocar un aviso se abre su área. Los vencimientos se avisan desde 3 días antes; los saldos se avisan cuando la entrega es para hoy o está atrasada."
     ],
     "example": "Una receta completa produce 12 porciones de tres leches: cantidad 12, veces 1. Vendes 3 y quedan 9.",
     "tip": "Cada cuenta tiene sus propios productos y lotes en la nube. Las fechas de vencimiento las decides tú. El costo del lote incluye ingredientes y materiales de la receta al producirlo; añade otros gastos de venta aparte. Los lotes conservan su costo aunque luego cambies precios."
@@ -216,7 +220,8 @@ const MODULE_GUIDES = {
       "Revisa el producto y registra una preparación terminada con su cantidad, receta utilizada y fechas.",
       "Al reponer por encima del mínimo, desaparece de los pendientes. Las ventas y los vencimientos pueden volver a incluirlo.",
       "Asignar responsable guarda el nombre de quien repondrá cada producto. La asignación permanece al cambiar las existencias y puede cambiarse o quitarse. Para revisar el costo final, abre Ver costo final y precios.",
-      "En la aplicación Android, activa los avisos en Mis pendientes → Notificaciones de la aplicación Android. Permite las notificaciones y comprueba la recepción con Enviar notificación de prueba. Si el servicio todavía se está configurando, consulta Agenda."
+      "En la aplicación Android, activa los avisos en Mis pendientes → Notificaciones de la aplicación Android. Permite las notificaciones y comprueba la recepción con Enviar notificación de prueba. Si el servicio todavía se está configurando, consulta Agenda.",
+      "En Mis pendientes → Qué avisos quiero recibir elige preparaciones, entregas, compras, reposición de nevera, vencimientos o saldos. Las solicitudes solo están disponibles para administración. Se revisan a partir de la hora configurada y cada tipo se envía como máximo una vez al día por dispositivo. Al tocar un aviso se abre su área. Los vencimientos se avisan desde 3 días antes; los saldos se avisan cuando la entrega es para hoy o está atrasada."
     ],
     "example": "Mínimo de tres leches: 3 porciones. Quedan 3; aparece Preparar más. Preparas 12 y queda repuesto.",
     "tip": "Esta pantalla refleja reposición de productos preparados. No registra producción ficticia ni descuenta ingredientes al abrirla."
@@ -256,7 +261,8 @@ const MODULE_GUIDES = {
       "Puedes elegir un cliente del directorio para reutilizar nombre y contacto. Añade preparaciones y fotos de referencia aquí, en Pedidos; la Agenda muestra sus tareas pendientes. Después del primer cobro registrado, usa Cobros y devoluciones para cambiar lo recibido; el anticipo ya no se modifica manualmente.",
       "Añade varias recetas con su proporción y cantidad final, y hasta seis fotos de referencia. Indica cuántos días antes debe prepararse cada receta. Guardar crea o actualiza sus tareas en Agenda; planificar no descuenta inventario. Los cobros, la venta y el historial de preparación se consultan dentro del pedido.",
       "Usar una cotización guardada conserva cliente, contacto, fecha, notas y desglose. Revisa la fecha antes de guardar. No puedes crear dos pedidos activos de la misma cotización.",
-      "Primero termina sus preparaciones en Agenda. Al marcar Listo o registrar su venta se descuentan una sola vez los materiales adicionales de la cotización, conservando el desglose aceptado. La venta propone mano de obra y otros gastos del desglose; no repitas los materiales en esos gastos."
+      "Primero termina sus preparaciones en Agenda. Al marcar Listo o registrar su venta se descuentan una sola vez los materiales adicionales de la cotización, conservando el desglose aceptado. La venta propone mano de obra y otros gastos del desglose; no repitas los materiales en esos gastos.",
+      "En Mis pendientes → Qué avisos quiero recibir elige preparaciones, entregas, compras, reposición de nevera, vencimientos o saldos. Las solicitudes solo están disponibles para administración. Se revisan a partir de la hora configurada y cada tipo se envía como máximo una vez al día por dispositivo. Al tocar un aviso se abre su área. Los vencimientos se avisan desde 3 días antes; los saldos se avisan cuando la entrega es para hoy o está atrasada."
     ],
     "example": "Un encargo de RD$2,000 con anticipo de RD$500 muestra RD$1,500 de saldo.",
     "tip": "Guardar el pedido no registra una venta ni descuenta productos de la nevera. Registra el ingreso real una sola vez en Ventas para evitar duplicados. El borrador se conserva en este dispositivo."
@@ -323,7 +329,8 @@ const MODULE_GUIDES = {
       "Las tareas terminadas desaparecen de Agenda y permanecen en el historial del pedido. Los cobros y la venta están dentro de Pedidos.",
       "El aviso superior muestra las preparaciones pendientes. En Notificaciones en mi teléfono puedes activar un resumen diario de preparaciones y entregas, incluso con la app cerrada. El permiso se concede en cada dispositivo.",
       "En cada preparación o entrega pulsa Asignar responsable, escribe el nombre del empleado y guarda. Cambiar responsable permite corregirlo; dejarlo vacío retira la asignación. El nombre se conserva al editar el pedido y se incluye en el respaldo.",
-      "En la aplicación Android, activa los avisos en Mis pendientes → Notificaciones de la aplicación Android. Permite las notificaciones y comprueba la recepción con Enviar notificación de prueba. Si el servicio todavía se está configurando, consulta Agenda."
+      "En la aplicación Android, activa los avisos en Mis pendientes → Notificaciones de la aplicación Android. Permite las notificaciones y comprueba la recepción con Enviar notificación de prueba. Si el servicio todavía se está configurando, consulta Agenda.",
+      "En Mis pendientes → Qué avisos quiero recibir elige preparaciones, entregas, compras, reposición de nevera, vencimientos o saldos. Las solicitudes solo están disponibles para administración. Se revisan a partir de la hora configurada y cada tipo se envía como máximo una vez al día por dispositivo. Al tocar un aviso se abre su área. Los vencimientos se avisan desde 3 días antes; los saldos se avisan cuando la entrega es para hoy o está atrasada."
     ],
     "example": "Una preparación usa media masa y un cuarto de relleno. La lista suma ambas y la confirmación descuenta esos artículos.",
     "tip": "Los anticipos anteriores se conservan, pero no se fabrican movimientos de caja pasados. Los cobros nuevos no se repiten como entrada manual ni como otra venta. Los avisos diarios se envían a la hora elegida en República Dominicana, con hasta 15 minutos de margen. Solo se envían si hay pendientes. La entrega depende de la conexión, los permisos y la configuración del teléfono. En iPhone se requiere iOS 16.4 o posterior y abrir la app instalada desde la pantalla de inicio. Los temporizadores siguen siendo relojes locales; no son alarmas del teléfono."
@@ -337,7 +344,8 @@ const MODULE_GUIDES = {
       "Consulta comparación mensual y productos vendidos. La contribución por producto no reparte gastos generales arbitrariamente.",
       "Descarga Caja y rentabilidad en PDF. El valor de materias primas es una estimación a precio actual, no dinero disponible.",
       "Compras por pagar muestra el saldo de los lotes comprados. Registra los pagos posteriores desde el lote; no los dupliques manualmente. Para corregir un movimiento manual equivocado, registra su contrapartida con referencia al original para conservar el historial.",
-      "En Android, al exportar un documento se abre el selector del teléfono para guardarlo o compartirlo. Elige un destino privado para los archivos con información de tu negocio."
+      "En Android, al exportar un documento se abre el selector del teléfono para guardarlo o compartirlo. Elige un destino privado para los archivos con información de tu negocio.",
+      "En Mis pendientes → Qué avisos quiero recibir elige preparaciones, entregas, compras, reposición de nevera, vencimientos o saldos. Las solicitudes solo están disponibles para administración. Se revisan a partir de la hora configurada y cada tipo se envía como máximo una vez al día por dispositivo. Al tocar un aviso se abre su área. Los vencimientos se avisan desde 3 días antes; los saldos se avisan cuando la entrega es para hoy o está atrasada."
     ],
     "example": "Venta RD$100 con costo RD$40 puede dar resultado RD$60 aunque la plataforma todavía no haya depositado el dinero.",
     "tip": "No dupliques pagos ya registrados. Un aporte del propietario aumenta la caja, pero no representa una venta ni ganancia."

@@ -25,6 +25,6 @@ public class BumDevicePlugin extends Plugin {
     }
     @PluginMethod public void consumeAgenda(PluginCall call) {
         Intent intent=getActivity().getIntent();boolean open=intent!=null&&intent.getBooleanExtra("bumOpenAgenda",false);
-        if(open)intent.removeExtra("bumOpenAgenda");JSObject result=new JSObject();result.put("open",open);call.resolve(result);
+        String target=open?intent.getStringExtra("bumTarget"):null;if(open){intent.removeExtra("bumOpenAgenda");intent.removeExtra("bumTarget");}JSObject result=new JSObject();result.put("open",open);result.put("target",target==null?"Agenda y cobros":target);call.resolve(result);
     }
 }

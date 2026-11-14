@@ -1,3 +1,4 @@
+import {noticeText,validatePreferences} from './notices.mjs';
 import {nativeAction,sendNative} from './native.ts';
 import {createClient} from 'npm:@supabase/supabase-js@2';
 import webpush from 'npm:web-push@3.6.7';
@@ -6,8 +7,8 @@ const db=createClient(Deno.env.get('SUPABASE_URL')!,Deno.env.get('SUPABASE_SERVI
 const site='https://bum-bum-costos.bumbumpasteleria.workers.dev';
 async function query(p:PromiseLike<{data:any,error:any}>){const {data,error}=await p;if(error)throw Error('No se pudo completar la operación.');return data;}
 async function config(){let row=await query(db.from('push_service_config').select('*').eq('id',1).single());if(!row.vapid&&row.ready){await query(db.from('push_service_config').update({vapid:webpush.generateVAPIDKeys()}).eq('id',1).is('vapid',null));row=await query(db.from('push_service_config').select('*').eq('id',1).single())}return row;}
-async function send(row:any,keys:{publicKey:string,privateKey:string},body:string,tag:string){if(row.subscription?.platform==='android'){await sendNative(row,body,tag);return;}await webpush.sendNotification(validateSubscription(row.subscription),JSON.stringify({ownerId:row.owner_id||row.ownerId,title:'Bum Bum Costos',body,tag}),{vapidDetails:{subject:'mailto:bumbumpasteleria@gmail.com',...keys},TTL:3600,timeout:10000,urgency:'normal',contentEncoding:'aes128gcm'});}
-async function dispatch(settings:any){const rows=await query(db.rpc('bum_push_claim',{p_limit:20}));let sent=0,failed=0;await Promise.all(rows.map(async(row:any)=>{try{await send(row,settings.vapid,digestText(row.preparations,row.deliveries),'bum-agenda-'+row.day);await query(db.from('push_subscriptions').update({last_sent_day:row.day,claimed_until:null}).eq('id',row.id).eq('owner_id',row.ownerId));sent++;}catch(error){failed++;await query(db.from('push_subscriptions').update({...((error as {statusCode?:number}).statusCode===404||(error as {statusCode?:number}).statusCode===410?{enabled:false}:{}),claimed_until:new Date(Date.now()+15*60000).toISOString()}).eq('id',row.id).eq('owner_id',row.ownerId));}}));return {sent,failed};}
+async function send(row:any,keys:{publicKey:string,privateKey:string},body:string,tag:string,target='Agenda y cobros'){if(row.subscription?.platform==='android'){await sendNative(row,body,tag,target);return;}await webpush.sendNotification(validateSubscription(row.subscription),JSON.stringify({ownerId:row.owner_id||row.ownerId,title:'Bum Bum Costos',body,tag,target}),{vapidDetails:{subject:'mailto:bumbumpasteleria@gmail.com',...keys},TTL:3600,timeout:10000,urgency:'normal',contentEncoding:'aes128gcm'});}
+async function dispatch(settings:any){const rows=await query(db.rpc('bum_notice_claim',{p_limit:20}));let sent=0,failed=0;await Promise.all(rows.map(async(row:any)=>{let failedRow=false;for(const event of row.events){try{await send(row,settings.vapid,noticeText(event.kind,event.count),'bum-'+event.kind+'-'+row.day,event.target);await query(db.rpc('bum_notice_ack',{p_id:row.id,p_owner:row.ownerId,p_kind:event.kind,p_day:row.day}));sent++;}catch(error){failed++;failedRow=true;if((error as {statusCode?:number}).statusCode===404||(error as {statusCode?:number}).statusCode===410){await query(db.from('push_subscriptions').update({enabled:false}).eq('id',row.id).eq('owner_id',row.ownerId));break;}}}await query(db.from('push_subscriptions').update({claimed_until:failedRow?new Date(Date.now()+15*60000).toISOString():null}).eq('id',row.id).eq('owner_id',row.ownerId));}));return {sent,failed};}
 Deno.serve(async req=>{
  const origin=req.headers.get('Origin');const headers={'Content-Type':'application/json','Access-Control-Allow-Origin':origin==='https://localhost'?origin:site,'Access-Control-Allow-Headers':'authorization,apikey,content-type,x-client-info','Access-Control-Allow-Methods':'POST,OPTIONS','Vary':'Origin'};const response=(body:unknown,status=200)=>new Response(JSON.stringify(body),{status,headers});
  if(origin&&![site,'https://localhost'].includes(origin))return response({error:'Origen no permitido.'},403);if(req.method==='OPTIONS')return new Response(null,{status:204,headers});if(req.method!=='POST')return response({error:'Método no permitido.'},405);
@@ -19,6 +20,11 @@ Deno.serve(async req=>{
   }
   const token=req.headers.get('Authorization')?.replace(/^Bearer\s+/i,'');if(!token)return response({error:'Inicia sesión.'},401);const {data,error}=await db.auth.getUser(token);if(error||!data.user)return response({error:'Inicia sesión nuevamente.'},401);const owner=data.user.id;
   const profile=await query(db.from('business_profiles').select('status,password_required').eq('id',owner).single());if(profile.status!=='approved'||profile.password_required)return response({error:'Cuenta no autorizada.'},403);
+  if(['preferences_get','preferences_set'].includes(body.action)){
+   const admin=Boolean(await query(db.from('business_admins').select('user_id').eq('user_id',owner).maybeSingle()));
+   if(body.action==='preferences_set'){const preferences=validatePreferences(body.preferences,admin);await query(db.from('push_preferences').upsert({owner_id:owner,preferences}));return response({preferences,isAdmin:admin})}
+   const saved=await query(db.from('push_preferences').select('preferences').eq('owner_id',owner).maybeSingle());return response({preferences:validatePreferences(saved?.preferences||{},admin),isAdmin:admin});
+  }
   if(typeof body.action==='string'&&body.action.startsWith('native_'))return response(await nativeAction(db,query,owner,body,Boolean((await config()).ready)));
   if(body.action==='config'){const c=await config();return response(c.ready?{ready:true,publicKey:c.vapid.publicKey}:{ready:false});}
   if(body.action==='subscribe'&&!(await config()).ready)return response({error:'El servicio de recordatorios todavía se está configurando. Tus pendientes siguen en Agenda.'},503);
@@ -30,7 +36,7 @@ Deno.serve(async req=>{
   if(body.action==='subscribe'){
    const devices=await query(db.from('push_subscriptions').select('id').eq('owner_id',owner).eq('enabled',true));if(devices.length>=10&&!devices.some((d:any)=>d.id===id))return response({error:'Esta cuenta ya tiene diez dispositivos con avisos activos.'},409);
    const hour=validHour(body.hour??9),same=existing?.owner_id===owner;
-   await query(db.from('push_subscriptions').upsert({id,owner_id:owner,subscription,enabled:true,hour,last_sent_day:same?existing.last_sent_day:null,claimed_until:null,updated_at:new Date().toISOString()}));return response({enabled:true,hour});
+   await query(db.from('push_subscriptions').upsert({id,owner_id:owner,subscription,enabled:true,hour,last_sent_day:same?existing.last_sent_day:null,sent_events:same?existing.sent_events||{}:{},last_checked_at:null,claimed_until:null,updated_at:new Date().toISOString()}));return response({enabled:true,hour});
   }
   if(!existing||existing.owner_id!==owner)return response({enabled:false});
   if(body.action==='status')return response({enabled:existing.enabled,hour:existing.hour});
