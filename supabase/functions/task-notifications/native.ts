@@ -12,8 +12,8 @@ async function accessToken(){
  const assertion=await new SignJWT({scope:'https://www.googleapis.com/auth/firebase.messaging'}).setProtectedHeader({alg:'RS256'}).setIssuer(s.client_email).setAudience('https://oauth2.googleapis.com/token').setIssuedAt().setExpirationTime('50m').sign(await importPKCS8(s.private_key,'RS256'));
  const response=await fetch('https://oauth2.googleapis.com/token',{method:'POST',body:new URLSearchParams({grant_type:'urn:ietf:params:oauth:grant-type:jwt-bearer',assertion}),signal:AbortSignal.timeout(10000)});const result=await response.json();if(!response.ok||!result.access_token)throw Error('No se pudo autenticar el envío Android.');cached={token:result.access_token,until:Date.now()+40*60000};return cached.token;
 }
-export async function sendNative(row:any,body:string,tag:string){
- const response=await fetch('https://fcm.googleapis.com/v1/projects/bum-bum-costos/messages:send',{method:'POST',headers:{Authorization:'Bearer '+await accessToken(),'Content-Type':'application/json'},body:JSON.stringify({message:{token:row.subscription.token,data:{ownerId:row.owner_id||row.ownerId,body,tag},android:{priority:'high',ttl:'3600s'}}}),signal:AbortSignal.timeout(10000)});
+export async function sendNative(row:any,body:string,tag:string,target='Agenda y cobros'){
+ const response=await fetch('https://fcm.googleapis.com/v1/projects/bum-bum-costos/messages:send',{method:'POST',headers:{Authorization:'Bearer '+await accessToken(),'Content-Type':'application/json'},body:JSON.stringify({message:{token:row.subscription.token,data:{ownerId:row.owner_id||row.ownerId,body,tag,target},android:{priority:'high',ttl:'3600s'}}}),signal:AbortSignal.timeout(10000)});
  if(!response.ok){const result=await response.json().catch(()=>({}));const invalid=result.error?.details?.some((d:any)=>d.errorCode==='UNREGISTERED');throw Object.assign(Error('No se pudo entregar el aviso Android.'),{statusCode:invalid?410:response.status})}
 }
 export async function nativeAction(db:any,query:any,owner:string,body:any,ready:boolean){
