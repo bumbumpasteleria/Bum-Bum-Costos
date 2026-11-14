@@ -16,6 +16,7 @@ Tu punto de partida
 8. En Bum Bum Costos en tu teléfono abre las instrucciones para Android o iPhone. Cuando el navegador lo admita aparecerá Instalar aplicación; puedes entrar con tu misma cuenta.
 9. El botón Atrás del navegador recorre los módulos que visitaste. La ayuda y los temporizadores están juntos arriba; abre solo lo que necesites.
 10. En Mis pendientes abre Notificaciones en mi teléfono. Actívalas en cada dispositivo y elige la hora del resumen diario de preparaciones y entregas. Puedes enviar una notificación de prueba.
+11. La versión Android instalable abre con el icono de Bum Bum Costos y utiliza la misma cuenta. Los borradores locales pertenecen a cada instalación; guarda en la nube antes de cambiar de dispositivo.
 
 **Ejemplo:** Puedes tener un recetario «Galletas para apps» y otro «Postres por encargo».
 
@@ -98,6 +99,7 @@ Calcula un encargo
 4. Elige Margen sobre venta o Recargo sobre costo y su porcentaje.
 5. Abre Logo y presentación de mi negocio, sube tu logo, elige el color y guarda nombre y contacto. Un PNG con transparencia conserva el fondo transparente para integrarlo en la cotización. La cuenta de Bum Bum ya tiene precargados su logo original y la paleta crema, vino y rosa; las demás cuentas conservan su propia identidad. Se conserva en tu cuenta y se aplica a los PDF que generes. Completa cliente, contacto, entrega, validez y notas si los necesitas. Revisa el desglose de artículos y costos y pulsa Guardar cotización. En cotizaciones guardadas, abre Ver cotización completa. PDF para cliente muestra el producto y precio final; PDF interno con costos incluye desglose y ganancia.
 6. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
+7. En Android, al exportar un documento se abre el selector del teléfono para guardarlo o compartirlo. Elige un destino privado para los archivos con información de tu negocio.
 
 **Ejemplo:** Si tu receta rinde 12 galletas y necesitas 24, coloca 2 en Cantidad de rendimientos.
 
@@ -114,6 +116,7 @@ Registra una venta real
 5. Las ventas generales requieren que indiques su costo de producción. Las ventas de nevera toman el costo de ingredientes y materiales de los lotes consumidos. Seleccionar el canal propone su precio, comisión y gastos adicionales guardados; los gastos por unidad se multiplican por la cantidad vendida. Puedes corregirlos para esta venta.
 6. En Reportes de ventas puedes filtrar por fecha o canal y descargar un PDF. En Finanzas registra los gastos adicionales del negocio.
 7. Si recuperas un formulario con una fecha anterior a hoy, aparece un aviso. Conserva la fecha si corresponde a un registro pasado o pulsa Usar fecha de hoy; no se cambia por ti.
+8. En Android, al exportar un documento se abre el selector del teléfono para guardarlo o compartirlo. Elige un destino privado para los archivos con información de tu negocio.
 
 **Ejemplo:** Una venta de RD$100 con comisión 10%, costo de producción RD$50 y otros gastos RD$5 deja una ganancia estimada de RD$35.
 
@@ -210,6 +213,7 @@ Qué necesitas reponer
 3. Una compra aumenta existencias y registra el pago indicado. Cuando la existencia supera el mínimo, el artículo sale de Compras.
 4. Corregir conteo físico se usa para corregir lo que realmente hay, con un motivo; no sustituye el registro de una compra.
 5. Pulsa Asignar responsable en el artículo para indicar qué empleado se encargará de comprarlo. Cambiar responsable permite actualizarlo o dejarlo sin asignar.
+6. En la aplicación Android, activa los avisos en Mis pendientes → Notificaciones de la aplicación Android. Permite las notificaciones y comprueba la recepción con Enviar notificación de prueba. Si el servicio todavía se está configurando, consulta Agenda.
 
 **Ejemplo:** Si una caja tiene mínimo 5 y quedan 5 unidades, aparece pendiente; si registras 20, deja de aparecer.
 
@@ -242,6 +246,7 @@ Lo que necesitas volver a preparar
 2. Revisa el producto y registra una preparación terminada con su cantidad, receta utilizada y fechas.
 3. Al reponer por encima del mínimo, desaparece de los pendientes. Las ventas y los vencimientos pueden volver a incluirlo.
 4. Asignar responsable guarda el nombre de quien repondrá cada producto. La asignación permanece al cambiar las existencias y puede cambiarse o quitarse. Para revisar el costo final, abre Ver costo final y precios.
+5. En la aplicación Android, activa los avisos en Mis pendientes → Notificaciones de la aplicación Android. Permite las notificaciones y comprueba la recepción con Enviar notificación de prueba. Si el servicio todavía se está configurando, consulta Agenda.
 
 **Ejemplo:** Mínimo de tres leches: 3 porciones. Quedan 3; aparece Preparar más. Preparas 12 y queda repuesto.
 
@@ -258,6 +263,7 @@ Conoce el resultado de tu negocio
 5. Pulsa Descargar finanzas en PDF. El documento contiene el período, resumen y detalle, incluso si necesita varias páginas.
 6. En Caja y rentabilidad consulta cobros reales, saldos, comparación mensual, contribución por producto y valor estimado de materias primas. El resultado de ventas y gastos es distinto del saldo efectivo.
 7. Si recuperas un formulario con una fecha anterior a hoy, aparece un aviso. Conserva la fecha si corresponde a un registro pasado o pulsa Usar fecha de hoy; no se cambia por ti.
+8. En Android, al exportar un documento se abre el selector del teléfono para guardarlo o compartirlo. Elige un destino privado para los archivos con información de tu negocio.
 
 **Ejemplo:** Ventas por RD$1,000 menos comisiones, producción y gastos registrados dan el resultado del período.
 
@@ -363,6 +369,7 @@ Tus preparaciones y entregas pendientes
 3. Las tareas terminadas desaparecen de Agenda y permanecen en el historial del pedido. Los cobros y la venta están dentro de Pedidos.
 4. El aviso superior muestra las preparaciones pendientes. En Notificaciones en mi teléfono puedes activar un resumen diario de preparaciones y entregas, incluso con la app cerrada. El permiso se concede en cada dispositivo.
 5. En cada preparación o entrega pulsa Asignar responsable, escribe el nombre del empleado y guarda. Cambiar responsable permite corregirlo; dejarlo vacío retira la asignación. El nombre se conserva al editar el pedido y se incluye en el respaldo.
+6. En la aplicación Android, activa los avisos en Mis pendientes → Notificaciones de la aplicación Android. Permite las notificaciones y comprueba la recepción con Enviar notificación de prueba. Si el servicio todavía se está configurando, consulta Agenda.
 
 **Ejemplo:** Una preparación usa media masa y un cuarto de relleno. La lista suma ambas y la confirmación descuenta esos artículos.
 
@@ -378,6 +385,7 @@ Separa el dinero recibido del resultado del negocio
 4. Consulta comparación mensual y productos vendidos. La contribución por producto no reparte gastos generales arbitrariamente.
 5. Descarga Caja y rentabilidad en PDF. El valor de materias primas es una estimación a precio actual, no dinero disponible.
 6. Compras por pagar muestra el saldo de los lotes comprados. Registra los pagos posteriores desde el lote; no los dupliques manualmente. Para corregir un movimiento manual equivocado, registra su contrapartida con referencia al original para conservar el historial.
+7. En Android, al exportar un documento se abre el selector del teléfono para guardarlo o compartirlo. Elige un destino privado para los archivos con información de tu negocio.
 
 **Ejemplo:** Venta RD$100 con costo RD$40 puede dar resultado RD$60 aunque la plataforma todavía no haya depositado el dinero.
 

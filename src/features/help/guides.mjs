@@ -11,7 +11,8 @@ const MODULE_GUIDES = {
       "En ¿Qué vamos a hacer hoy? abre Agenda, Mi nevera, Compras o Caja. Deja tu negocio listo para trabajar reúne perfil, saldo inicial, inventario y productos preparados. No crea existencias de ejemplo.",
       "En Bum Bum Costos en tu teléfono abre las instrucciones para Android o iPhone. Cuando el navegador lo admita aparecerá Instalar aplicación; puedes entrar con tu misma cuenta.",
       "El botón Atrás del navegador recorre los módulos que visitaste. La ayuda y los temporizadores están juntos arriba; abre solo lo que necesites.",
-      "En Mis pendientes abre Notificaciones en mi teléfono. Actívalas en cada dispositivo y elige la hora del resumen diario de preparaciones y entregas. Puedes enviar una notificación de prueba."
+      "En Mis pendientes abre Notificaciones en mi teléfono. Actívalas en cada dispositivo y elige la hora del resumen diario de preparaciones y entregas. Puedes enviar una notificación de prueba.",
+      "La versión Android instalable abre con el icono de Bum Bum Costos y utiliza la misma cuenta. Los borradores locales pertenecen a cada instalación; guarda en la nube antes de cambiar de dispositivo."
     ],
     "example": "Puedes tener un recetario «Galletas para apps» y otro «Postres por encargo».",
     "tip": "Cada cuenta tiene su propio espacio. Cierra sesión cuando termines en un equipo compartido. El formulario automático se conserva solo en este dispositivo. Las recetas guardadas con Guardar borrador pendiente sí quedan en tu cuenta en la nube. No guardamos contraseñas ni el archivo PDF como borrador. El icono conserva el monograma BB con melocotón. Si el teléfono conserva el anterior, añade el acceso nuevo desde el enlace oficial antes de retirar el antiguo. No borres datos del navegador para actualizar el icono."
@@ -83,7 +84,8 @@ const MODULE_GUIDES = {
       "Revisa los ingredientes y materiales incluidos en la receta. Añade solo los materiales adicionales del encargo, decoraciones, mano de obra fija o por horas, rellenos adicionales, entrega y otros gastos.",
       "Elige Margen sobre venta o Recargo sobre costo y su porcentaje.",
       "Abre Logo y presentación de mi negocio, sube tu logo, elige el color y guarda nombre y contacto. Un PNG con transparencia conserva el fondo transparente para integrarlo en la cotización. La cuenta de Bum Bum ya tiene precargados su logo original y la paleta crema, vino y rosa; las demás cuentas conservan su propia identidad. Se conserva en tu cuenta y se aplica a los PDF que generes. Completa cliente, contacto, entrega, validez y notas si los necesitas. Revisa el desglose de artículos y costos y pulsa Guardar cotización. En cotizaciones guardadas, abre Ver cotización completa. PDF para cliente muestra el producto y precio final; PDF interno con costos incluye desglose y ganancia.",
-      "El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente."
+      "El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.",
+      "En Android, al exportar un documento se abre el selector del teléfono para guardarlo o compartirlo. Elige un destino privado para los archivos con información de tu negocio."
     ],
     "example": "Si tu receta rinde 12 galletas y necesitas 24, coloca 2 en Cantidad de rendimientos.",
     "tip": "Las recetas de Apps de envío no aparecen aquí. Si no hay opciones, crea un recetario de Encargos y asigna la receta. Margen y recargo son métodos distintos. No podrás guardar una cotización si la receta muestra Costo incompleto. El formulario automático se conserva solo en este dispositivo. Las recetas guardadas con Guardar borrador pendiente sí quedan en tu cuenta en la nube. No guardamos contraseñas ni el archivo PDF como borrador."
@@ -97,7 +99,8 @@ const MODULE_GUIDES = {
       "Pulsa Registrar venta. El guardado y el descuento son una sola operación: si no hay suficientes productos vigentes, no se registra ninguno de los dos.",
       "Las ventas generales requieren que indiques su costo de producción. Las ventas de nevera toman el costo de ingredientes y materiales de los lotes consumidos. Seleccionar el canal propone su precio, comisión y gastos adicionales guardados; los gastos por unidad se multiplican por la cantidad vendida. Puedes corregirlos para esta venta.",
       "En Reportes de ventas puedes filtrar por fecha o canal y descargar un PDF. En Finanzas registra los gastos adicionales del negocio.",
-      "Si recuperas un formulario con una fecha anterior a hoy, aparece un aviso. Conserva la fecha si corresponde a un registro pasado o pulsa Usar fecha de hoy; no se cambia por ti."
+      "Si recuperas un formulario con una fecha anterior a hoy, aparece un aviso. Conserva la fecha si corresponde a un registro pasado o pulsa Usar fecha de hoy; no se cambia por ti.",
+      "En Android, al exportar un documento se abre el selector del teléfono para guardarlo o compartirlo. Elige un destino privado para los archivos con información de tu negocio."
     ],
     "example": "Una venta de RD$100 con comisión 10%, costo de producción RD$50 y otros gastos RD$5 deja una ganancia estimada de RD$35.",
     "tip": "Registra tus ventas diarias. Los lotes vencidos no se venden. Si se interrumpe la conexión, el formulario se conserva; reintentar el mismo registro evita duplicar la venta de nevera."
@@ -183,7 +186,8 @@ const MODULE_GUIDES = {
       "Pulsa Registrar compra en el artículo: se abre Movimientos de inventario con el artículo y su unidad seleccionados. Completa cantidad, precio y pago real.",
       "Una compra aumenta existencias y registra el pago indicado. Cuando la existencia supera el mínimo, el artículo sale de Compras.",
       "Corregir conteo físico se usa para corregir lo que realmente hay, con un motivo; no sustituye el registro de una compra.",
-      "Pulsa Asignar responsable en el artículo para indicar qué empleado se encargará de comprarlo. Cambiar responsable permite actualizarlo o dejarlo sin asignar."
+      "Pulsa Asignar responsable en el artículo para indicar qué empleado se encargará de comprarlo. Cambiar responsable permite actualizarlo o dejarlo sin asignar.",
+      "En la aplicación Android, activa los avisos en Mis pendientes → Notificaciones de la aplicación Android. Permite las notificaciones y comprueba la recepción con Enviar notificación de prueba. Si el servicio todavía se está configurando, consulta Agenda."
     ],
     "example": "Si una caja tiene mínimo 5 y quedan 5 unidades, aparece pendiente; si registras 20, deja de aparecer.",
     "tip": "Configura un mínimo por artículo en Inventario. La presentación del precio no representa existencias. No registres el mismo pago de compra dos veces."
@@ -211,7 +215,8 @@ const MODULE_GUIDES = {
       "Consulta los productos preparados cuya disponibilidad llegó al mínimo definido en Mi nevera.",
       "Revisa el producto y registra una preparación terminada con su cantidad, receta utilizada y fechas.",
       "Al reponer por encima del mínimo, desaparece de los pendientes. Las ventas y los vencimientos pueden volver a incluirlo.",
-      "Asignar responsable guarda el nombre de quien repondrá cada producto. La asignación permanece al cambiar las existencias y puede cambiarse o quitarse. Para revisar el costo final, abre Ver costo final y precios."
+      "Asignar responsable guarda el nombre de quien repondrá cada producto. La asignación permanece al cambiar las existencias y puede cambiarse o quitarse. Para revisar el costo final, abre Ver costo final y precios.",
+      "En la aplicación Android, activa los avisos en Mis pendientes → Notificaciones de la aplicación Android. Permite las notificaciones y comprueba la recepción con Enviar notificación de prueba. Si el servicio todavía se está configurando, consulta Agenda."
     ],
     "example": "Mínimo de tres leches: 3 porciones. Quedan 3; aparece Preparar más. Preparas 12 y queda repuesto.",
     "tip": "Esta pantalla refleja reposición de productos preparados. No registra producción ficticia ni descuenta ingredientes al abrirla."
@@ -225,7 +230,8 @@ const MODULE_GUIDES = {
       "Usa Corregir para ajustar un gasto. Anular gasto pide confirmación y conserva su historial.",
       "Pulsa Descargar finanzas en PDF. El documento contiene el período, resumen y detalle, incluso si necesita varias páginas.",
       "En Caja y rentabilidad consulta cobros reales, saldos, comparación mensual, contribución por producto y valor estimado de materias primas. El resultado de ventas y gastos es distinto del saldo efectivo.",
-      "Si recuperas un formulario con una fecha anterior a hoy, aparece un aviso. Conserva la fecha si corresponde a un registro pasado o pulsa Usar fecha de hoy; no se cambia por ti."
+      "Si recuperas un formulario con una fecha anterior a hoy, aparece un aviso. Conserva la fecha si corresponde a un registro pasado o pulsa Usar fecha de hoy; no se cambia por ti.",
+      "En Android, al exportar un documento se abre el selector del teléfono para guardarlo o compartirlo. Elige un destino privado para los archivos con información de tu negocio."
     ],
     "example": "Ventas por RD$1,000 menos comisiones, producción y gastos registrados dan el resultado del período.",
     "tip": "El resultado depende de datos completos; no equivale al efectivo disponible ni incluye gastos que no hayas registrado. Por canal se incluyen solo sus gastos asignados; los generales aparecen en Todos."
@@ -316,7 +322,8 @@ const MODULE_GUIDES = {
       "Filtra pendientes de hoy y atrasados o próximas fechas. Marca En proceso al comenzar y Terminar preparación cuando realmente hayas producido: esta última acción descuenta ingredientes una sola vez.",
       "Las tareas terminadas desaparecen de Agenda y permanecen en el historial del pedido. Los cobros y la venta están dentro de Pedidos.",
       "El aviso superior muestra las preparaciones pendientes. En Notificaciones en mi teléfono puedes activar un resumen diario de preparaciones y entregas, incluso con la app cerrada. El permiso se concede en cada dispositivo.",
-      "En cada preparación o entrega pulsa Asignar responsable, escribe el nombre del empleado y guarda. Cambiar responsable permite corregirlo; dejarlo vacío retira la asignación. El nombre se conserva al editar el pedido y se incluye en el respaldo."
+      "En cada preparación o entrega pulsa Asignar responsable, escribe el nombre del empleado y guarda. Cambiar responsable permite corregirlo; dejarlo vacío retira la asignación. El nombre se conserva al editar el pedido y se incluye en el respaldo.",
+      "En la aplicación Android, activa los avisos en Mis pendientes → Notificaciones de la aplicación Android. Permite las notificaciones y comprueba la recepción con Enviar notificación de prueba. Si el servicio todavía se está configurando, consulta Agenda."
     ],
     "example": "Una preparación usa media masa y un cuarto de relleno. La lista suma ambas y la confirmación descuenta esos artículos.",
     "tip": "Los anticipos anteriores se conservan, pero no se fabrican movimientos de caja pasados. Los cobros nuevos no se repiten como entrada manual ni como otra venta. Los avisos diarios se envían a la hora elegida en República Dominicana, con hasta 15 minutos de margen. Solo se envían si hay pendientes. La entrega depende de la conexión, los permisos y la configuración del teléfono. En iPhone se requiere iOS 16.4 o posterior y abrir la app instalada desde la pantalla de inicio. Los temporizadores siguen siendo relojes locales; no son alarmas del teléfono."
@@ -329,7 +336,8 @@ const MODULE_GUIDES = {
       "Los cobros nuevos de pedidos y los pagos de compras aparecen automáticamente. Registra las liquidaciones de ventas y pagos de gastos que falten como movimientos reales de caja.",
       "Consulta comparación mensual y productos vendidos. La contribución por producto no reparte gastos generales arbitrariamente.",
       "Descarga Caja y rentabilidad en PDF. El valor de materias primas es una estimación a precio actual, no dinero disponible.",
-      "Compras por pagar muestra el saldo de los lotes comprados. Registra los pagos posteriores desde el lote; no los dupliques manualmente. Para corregir un movimiento manual equivocado, registra su contrapartida con referencia al original para conservar el historial."
+      "Compras por pagar muestra el saldo de los lotes comprados. Registra los pagos posteriores desde el lote; no los dupliques manualmente. Para corregir un movimiento manual equivocado, registra su contrapartida con referencia al original para conservar el historial.",
+      "En Android, al exportar un documento se abre el selector del teléfono para guardarlo o compartirlo. Elige un destino privado para los archivos con información de tu negocio."
     ],
     "example": "Venta RD$100 con costo RD$40 puede dar resultado RD$60 aunque la plataforma todavía no haya depositado el dinero.",
     "tip": "No dupliques pagos ya registrados. Un aporte del propietario aumenta la caja, pero no representa una venta ni ganancia."

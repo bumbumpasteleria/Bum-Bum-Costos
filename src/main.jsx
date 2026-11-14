@@ -122,7 +122,7 @@ const quotePreview=recipe?{date:fechaHoy(),recipeName:recipe.name,qty:Number(qty
 
 useEffect(()=>{if(tab==='Recetas'&&previewRecipeId)document.getElementById('recipe-'+previewRecipeId)?.scrollIntoView({block:'start'});},[tab,previewRecipeId]);
 function abrirRecetario(id){setActiveBookId(id);setRecipeAction('');setRecipesListOpen(true);setCategoryFilter('all');setRecipeSearch('');setPreviewRecipeId(null);setBookManagerOpen(false);}
-useEffect(()=>{if(typeof navigator==='undefined')return;const openAgenda=event=>{if(event.data?.type==='BUM_OPEN_AGENDA')navegar('Agenda y cobros')};navigator.serviceWorker?.addEventListener('message',openAgenda);if(new URLSearchParams(window.location.search).get('abrir')==='agenda')navegar('Agenda y cobros');return()=>navigator.serviceWorker?.removeEventListener('message',openAgenda)},[]);
+useEffect(()=>{if(typeof navigator==='undefined')return;const openAgenda=event=>{if(event.data?.type==='BUM_OPEN_AGENDA')navegar('Agenda y cobros')};navigator.serviceWorker?.addEventListener('message',openAgenda);const nativeAgenda=()=>{sessionStorage.removeItem('bum-native-agenda');navegar('Agenda y cobros')};window.addEventListener('bum-native-agenda',nativeAgenda);if(window.sessionStorage?.getItem('bum-native-agenda'))nativeAgenda();if(new URLSearchParams(window.location.search).get('abrir')==='agenda')navegar('Agenda y cobros');return()=>{navigator.serviceWorker?.removeEventListener('message',openAgenda);window.removeEventListener('bum-native-agenda',nativeAgenda)}},[]);
 useEffect(()=>{if(!window.history?.replaceState)return;if(!window.history.state?.bumModule)window.history.replaceState({...window.history.state,bumModule:tab},'');else if(window.history.state.bumModule!==tab)window.history.pushState({bumModule:tab},'');},[tab]);
 useEffect(()=>{if(!window.history?.replaceState)return;window.history.replaceState({...window.history.state,bumModule:tab},'');const back=e=>{if(e.state?.bumModule&&tabs.includes(e.state.bumModule)){setTab(e.state.bumModule);setMenuAbierto(false);window.scrollTo({top:0,behavior:'auto'})}};window.addEventListener('popstate',back);return()=>window.removeEventListener('popstate',back)},[]);
 function navegar(t,keepBook=false){if(t==='Recetas'&&!keepBook&&!editingRecipeId){setActiveBookId('');setRecipeAction('');setRecipesListOpen(false);setBookManagerOpen(false);}setTab(t);setMenuAbierto(false);window.scrollTo({top:0,behavior:'auto'});}
@@ -205,3 +205,5 @@ createRoot(document.getElementById('root')).render(<AppProtegida />);
 
 
 
+
+if(window.Capacitor?.isNativePlatform?.())void import('./features/native/runtime').then(m=>m.startNativeRuntime()).catch(()=>{});

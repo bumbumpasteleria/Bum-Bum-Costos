@@ -1,0 +1,8 @@
+{
+  "appId": "com.bumbumpasteleria.costos",
+  "appName": "Bum Bum Costos",
+  "webDir": "dist",
+  "server": { "androidScheme": "https" },
+  "android": { "allowMixedContent": false, "backgroundColor": "#fcf8f5" },
+  "plugins": { "SplashScreen": { "backgroundColor": "#8a3450" }, "PushNotifications": { "presentationOptions": [] } }
+}
