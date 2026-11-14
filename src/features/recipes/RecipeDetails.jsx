@@ -15,6 +15,6 @@ export default function RecipeDetails({recipe,ingredients,format,defaultOpen=fal
   {!yieldValid&&<p className="warning">Revisa el rendimiento para calcular el costo por unidad.</p>}
   {!!recipe.stages?.length&&<section><h4>Etapas de esta receta</h4>{recipe.stages.map((stage,index)=><details key={stage.id}><summary>{index+1}. {stage.name}</summary><ul>{(recipe.ownLines||recipe.lines||[]).filter(line=>stage.lineIds?.includes(line.id)).map(line=><li key={line.id}>{ingredients.find(i=>i.id===line.ingredientId)?.name||'Ingrediente no disponible'} · {line.qty} {line.unit}</li>)}</ul><p className="recipe-preparation-text">{stage.preparation||'Sin instrucciones adicionales.'}</p></details>)}</section>}
   <h4>Preparación</h4>{recipe.preparation?.trim()?<p className="recipe-preparation-text">{recipe.preparation}</p>:<p className="recipe-details-note">Aún no has escrito la preparación. Agrégala desde Editar receta.</p>}
-  <p className="recipe-details-note">Costos con los precios actuales del proveedor elegido. Incluyen los ingredientes y materiales registrados en la receta; materiales adicionales, decoraciones y mano de obra se agregan en el Cotizador. Consulta esta ficha sin modificar la receta.</p>
+  <p className="recipe-details-note">Costos con los precios actuales del proveedor elegido. Incluyen los ingredientes y materiales registrados en la receta; la mano de obra y los gastos finales se calculan en Costos de productos. Para un encargo específico utiliza el Cotizador. Consulta esta ficha sin modificar la receta.</p>
  </div></details>;
 }

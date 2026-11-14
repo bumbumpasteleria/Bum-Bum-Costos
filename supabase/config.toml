@@ -1,3 +1,8 @@
 [functions.account-access]
 # Public request submission; administrative actions verify the JWT and admin role in code.
 verify_jwt = false
+
+[functions.task-notifications]
+# Custom authentication and scheduler access explicitly authorized by the operator.
+# User actions also verify the session and account approval inside the function.
+verify_jwt = false

@@ -15,6 +15,7 @@ Tu punto de partida
 7. En ¿Qué vamos a hacer hoy? abre Agenda, Mi nevera, Compras o Caja. Deja tu negocio listo para trabajar reúne perfil, saldo inicial, inventario y productos preparados. No crea existencias de ejemplo.
 8. En Bum Bum Costos en tu teléfono abre las instrucciones para Android o iPhone. Cuando el navegador lo admita aparecerá Instalar aplicación; puedes entrar con tu misma cuenta.
 9. El botón Atrás del navegador recorre los módulos que visitaste. La ayuda y los temporizadores están juntos arriba; abre solo lo que necesites.
+10. En Mis pendientes abre Notificaciones en mi teléfono. Actívalas en cada dispositivo y elige la hora del resumen diario de preparaciones y entregas. Puedes enviar una notificación de prueba.
 
 **Ejemplo:** Puedes tener un recetario «Galletas para apps» y otro «Postres por encargo».
 
@@ -127,6 +128,7 @@ Copia y recupera tus registros
 3. La recuperación añade registros que faltan y conserva los actuales. No reemplaza precios o existencias ya registrados. Las líneas de receta se recuperan junto con una receta ausente completa.
 4. Las copias antiguas se convierten para revisión. Si no guardaban inventario, se señala que las cantidades deben contarse de nuevo; no incluyen módulos creados después de esa copia.
 5. En Versiones de recetas puedes revisar y recuperar una versión anterior. Desde esta actualización, editar o eliminar conserva versiones. Confirma la recuperación solo después de revisarla.
+6. Los responsables se incluyen como registros privados con historial. Las suscripciones y claves de notificaciones no se exportan; cada dispositivo se activa por separado.
 
 **Ejemplo:** Si eliminaste una receta y tienes una copia, puedes recuperarla sin reemplazar tus ventas ni ingredientes actuales.
 
@@ -207,6 +209,7 @@ Qué necesitas reponer
 2. Pulsa Registrar compra en el artículo: se abre Movimientos de inventario con el artículo y su unidad seleccionados. Completa cantidad, precio y pago real.
 3. Una compra aumenta existencias y registra el pago indicado. Cuando la existencia supera el mínimo, el artículo sale de Compras.
 4. Corregir conteo físico se usa para corregir lo que realmente hay, con un motivo; no sustituye el registro de una compra.
+5. Pulsa Asignar responsable en el artículo para indicar qué empleado se encargará de comprarlo. Cambiar responsable permite actualizarlo o dejarlo sin asignar.
 
 **Ejemplo:** Si una caja tiene mínimo 5 y quedan 5 unidades, aparece pendiente; si registras 20, deja de aparecer.
 
@@ -225,6 +228,7 @@ Tus productos listos para vender
 7. Registrar una preparación descuenta ingredientes y materiales del inventario en una sola operación. Las recetas en gramos se convierten con la equivalencia de cada artículo. Si faltan existencias, no se guarda el lote ni se descuenta nada. Repetir el mismo intento no descuenta dos veces. Los lotes anteriores conservan su costo y no se descuentan retroactivamente. Abre Ver ingredientes descontados dentro de un lote nuevo para consultar su consumo.
 8. Mi nevera se dedica a existencias, lotes, producción y precio registrado. La ficha completa con mano de obra y gastos se gestiona en Costos de productos.
 9. Una revisión de calidad Retenido sobre un lote impide venderlo hasta una revisión posterior Conforme. El vencimiento continúa aplicándose. El responsable debe registrar su criterio; la aplicación no decide inocuidad.
+10. Ver costo final y precios abre la ficha de ese producto en Costos de productos. Registrar una producción actualiza también el inventario de ingredientes y materiales.
 
 **Ejemplo:** Una receta completa produce 12 porciones de tres leches: cantidad 12, veces 1. Vendes 3 y quedan 9.
 
@@ -237,6 +241,7 @@ Lo que necesitas volver a preparar
 1. Consulta los productos preparados cuya disponibilidad llegó al mínimo definido en Mi nevera.
 2. Revisa el producto y registra una preparación terminada con su cantidad, receta utilizada y fechas.
 3. Al reponer por encima del mínimo, desaparece de los pendientes. Las ventas y los vencimientos pueden volver a incluirlo.
+4. Asignar responsable guarda el nombre de quien repondrá cada producto. La asignación permanece al cambiar las existencias y puede cambiarse o quitarse. Para revisar el costo final, abre Ver costo final y precios.
 
 **Ejemplo:** Mínimo de tres leches: 3 porciones. Quedan 3; aparece Preparar más. Preparas 12 y queda repuesto.
 
@@ -278,7 +283,7 @@ Organiza tus encargos y entregas
 2. Vincula opcionalmente una receta de Encargos; las recetas exclusivas de Apps no se muestran en esta selección.
 3. Actualiza su estado: Pendiente, En preparación, Listo, Entregado o Cancelado.
 4. Busca por cliente o descripción y filtra la agenda por fecha y estado. Los entregados y cancelados se conservan en Todos.
-5. Puedes elegir un cliente del directorio para reutilizar nombre y contacto. Planifica preparación y fotos de referencia en Agenda y cobros. Después del primer cobro registrado, usa Cobros y devoluciones para cambiar lo recibido; el anticipo ya no se modifica manualmente.
+5. Puedes elegir un cliente del directorio para reutilizar nombre y contacto. Añade preparaciones y fotos de referencia aquí, en Pedidos; la Agenda muestra sus tareas pendientes. Después del primer cobro registrado, usa Cobros y devoluciones para cambiar lo recibido; el anticipo ya no se modifica manualmente.
 6. Añade varias recetas con su proporción y cantidad final, y hasta seis fotos de referencia. Indica cuántos días antes debe prepararse cada receta. Guardar crea o actualiza sus tareas en Agenda; planificar no descuenta inventario. Los cobros, la venta y el historial de preparación se consultan dentro del pedido.
 7. Usar una cotización guardada conserva cliente, contacto, fecha, notas y desglose. Revisa la fecha antes de guardar. No puedes crear dos pedidos activos de la misma cotización.
 8. Primero termina sus preparaciones en Agenda. Al marcar Listo o registrar su venta se descuentan una sola vez los materiales adicionales de la cotización, conservando el desglose aceptado. La venta propone mano de obra y otros gastos del desglose; no repitas los materiales en esos gastos.
@@ -292,11 +297,11 @@ Organiza tus encargos y entregas
 Añade una receta a un recetario
 
 1. Elige el recetario de destino. Escribir nueva receta abre un único formulario; también puedes subir un PDF o una foto y revisar lo que se pudo leer.
-2. Escribe nombre, categoría, rendimiento y tipo de producto. Añade cada ingrediente o material, elige su proveedor e indica la cantidad usada. No se seleccionan artículos ni cantidades por ti.
+2. Escribe nombre, categoría, rendimiento y tipo de producto. Añade cada ingrediente o material, elige su proveedor e indica la cantidad usada. Las cantidades de una línea nueva las indicas tú; las coincidencias únicas con equivalencia pueden vincularse al importar.
 3. Si falta un artículo, pulsa Registrar para esa línea. Puedes registrar el primero sin salir del formulario. Se conserva en tu catálogo aunque canceles la receta.
 4. Preparación general conserva las instrucciones. Organizar en etapas (opcional) permite separar base, relleno y montaje: escribe las instrucciones de cada etapa y asigna sus ingredientes. Una línea se cuenta una sola vez.
 5. Guardar borrador pendiente conserva en la nube una receta incompleta. Puedes continuarla aquí o desde su recetario. Busca por nombre o filtra por categoría; los grupos empiezan cerrados. Qué falta revisar muestra las observaciones del documento. No se usa aún para costos ni producción.
-6. Guardar receta registra la fórmula definitiva cuando estén completos ingredientes, cantidades y unidades. Revisa las equivalencias propias del artículo; se usan las equivalencias guardadas del artículo; las referencias aproximadas se identifican.
+6. Guardar receta registra la fórmula definitiva cuando estén completos ingredientes, cantidades y unidades. Revisa las equivalencias propias del artículo; las referencias aproximadas se identifican.
 7. El trabajo sin guardar se recupera en este dispositivo al volver con la misma cuenta. El archivo PDF original no se conserva como borrador. Si la importación incluye texto de origen, se conserva dentro del borrador. Revisa sus observaciones, completa las líneas y confirma que las resolviste antes de guardar la receta definitiva.
 8. Al elegir un líquido con equivalencia en una línea nueva se propone g. En borradores e importaciones, una coincidencia única de líquido o huevo con equivalencia se vincula automáticamente; si hay varios proveedores debes elegir. Las cantidades escritas se conservan. Para huevos puedes elegir g de clara, g de yema, clara por unidad o yema por unidad.
 
@@ -356,11 +361,12 @@ Tus preparaciones y entregas pendientes
 1. Agenda muestra únicamente preparaciones pendientes o en proceso y entregas pendientes. Crea o edita el encargo desde Pedidos.
 2. Filtra pendientes de hoy y atrasados o próximas fechas. Marca En proceso al comenzar y Terminar preparación cuando realmente hayas producido: esta última acción descuenta ingredientes una sola vez.
 3. Las tareas terminadas desaparecen de Agenda y permanecen en el historial del pedido. Los cobros y la venta están dentro de Pedidos.
-4. El aviso superior muestra preparaciones vencidas o previstas para hoy. Puedes activar avisos del navegador por cuenta y dispositivo; requieren permiso y la aplicación abierta. Al volver se revisan otra vez los pendientes.
+4. El aviso superior muestra las preparaciones pendientes. En Notificaciones en mi teléfono puedes activar un resumen diario de preparaciones y entregas, incluso con la app cerrada. El permiso se concede en cada dispositivo.
+5. En cada preparación o entrega pulsa Asignar responsable, escribe el nombre del empleado y guarda. Cambiar responsable permite corregirlo; dejarlo vacío retira la asignación. El nombre se conserva al editar el pedido y se incluye en el respaldo.
 
 **Ejemplo:** Una preparación usa media masa y un cuarto de relleno. La lista suma ambas y la confirmación descuenta esos artículos.
 
-**Consejo:** Los anticipos anteriores se conservan, pero no se fabrican movimientos de caja pasados. Los cobros nuevos no se repiten como entrada manual ni como otra venta.
+**Consejo:** Los anticipos anteriores se conservan, pero no se fabrican movimientos de caja pasados. Los cobros nuevos no se repiten como entrada manual ni como otra venta. Los avisos diarios se envían a la hora elegida en República Dominicana, con hasta 15 minutos de margen. Solo se envían si hay pendientes. La entrega depende de la conexión, los permisos y la configuración del teléfono. En iPhone se requiere iOS 16.4 o posterior y abrir la app instalada desde la pantalla de inicio. Los temporizadores siguen siendo relojes locales; no son alarmas del teléfono.
 
 ## Caja y rentabilidad
 

@@ -10,7 +10,8 @@ const MODULE_GUIDES = {
       "Abre Finanzas para gastos y reportes; Pedidos para encargos; Respaldo para recuperar registros o versiones de recetas.",
       "En ¿Qué vamos a hacer hoy? abre Agenda, Mi nevera, Compras o Caja. Deja tu negocio listo para trabajar reúne perfil, saldo inicial, inventario y productos preparados. No crea existencias de ejemplo.",
       "En Bum Bum Costos en tu teléfono abre las instrucciones para Android o iPhone. Cuando el navegador lo admita aparecerá Instalar aplicación; puedes entrar con tu misma cuenta.",
-      "El botón Atrás del navegador recorre los módulos que visitaste. La ayuda y los temporizadores están juntos arriba; abre solo lo que necesites."
+      "El botón Atrás del navegador recorre los módulos que visitaste. La ayuda y los temporizadores están juntos arriba; abre solo lo que necesites.",
+      "En Mis pendientes abre Notificaciones en mi teléfono. Actívalas en cada dispositivo y elige la hora del resumen diario de preparaciones y entregas. Puedes enviar una notificación de prueba."
     ],
     "example": "Puedes tener un recetario «Galletas para apps» y otro «Postres por encargo».",
     "tip": "Cada cuenta tiene su propio espacio. Cierra sesión cuando termines en un equipo compartido. El formulario automático se conserva solo en este dispositivo. Las recetas guardadas con Guardar borrador pendiente sí quedan en tu cuenta en la nube. No guardamos contraseñas ni el archivo PDF como borrador. El icono conserva el monograma BB con melocotón. Si el teléfono conserva el anterior, añade el acceso nuevo desde el enlace oficial antes de retirar el antiguo. No borres datos del navegador para actualizar el icono."
@@ -108,7 +109,8 @@ const MODULE_GUIDES = {
       "Para recuperar, selecciona el archivo de esta misma cuenta y revisa las cantidades por colección antes de confirmar.",
       "La recuperación añade registros que faltan y conserva los actuales. No reemplaza precios o existencias ya registrados. Las líneas de receta se recuperan junto con una receta ausente completa.",
       "Las copias antiguas se convierten para revisión. Si no guardaban inventario, se señala que las cantidades deben contarse de nuevo; no incluyen módulos creados después de esa copia.",
-      "En Versiones de recetas puedes revisar y recuperar una versión anterior. Desde esta actualización, editar o eliminar conserva versiones. Confirma la recuperación solo después de revisarla."
+      "En Versiones de recetas puedes revisar y recuperar una versión anterior. Desde esta actualización, editar o eliminar conserva versiones. Confirma la recuperación solo después de revisarla.",
+      "Los responsables se incluyen como registros privados con historial. Las suscripciones y claves de notificaciones no se exportan; cada dispositivo se activa por separado."
     ],
     "example": "Si eliminaste una receta y tienes una copia, puedes recuperarla sin reemplazar tus ventas ni ingredientes actuales.",
     "tip": "Conserva las copias en un lugar privado. Límite por archivo: 25 MB. La restauración es una sola operación: ante un error, no se confirma parcialmente. Para recuperar una versión de receta deben seguir disponibles su recetario e ingredientes."
@@ -180,7 +182,8 @@ const MODULE_GUIDES = {
       "Aquí aparecen los ingredientes y materiales que llegaron a su mínimo, separados por proveedor. Los artículos sin conteo no se presentan como agotados.",
       "Pulsa Registrar compra en el artículo: se abre Movimientos de inventario con el artículo y su unidad seleccionados. Completa cantidad, precio y pago real.",
       "Una compra aumenta existencias y registra el pago indicado. Cuando la existencia supera el mínimo, el artículo sale de Compras.",
-      "Corregir conteo físico se usa para corregir lo que realmente hay, con un motivo; no sustituye el registro de una compra."
+      "Corregir conteo físico se usa para corregir lo que realmente hay, con un motivo; no sustituye el registro de una compra.",
+      "Pulsa Asignar responsable en el artículo para indicar qué empleado se encargará de comprarlo. Cambiar responsable permite actualizarlo o dejarlo sin asignar."
     ],
     "example": "Si una caja tiene mínimo 5 y quedan 5 unidades, aparece pendiente; si registras 20, deja de aparecer.",
     "tip": "Configura un mínimo por artículo en Inventario. La presentación del precio no representa existencias. No registres el mismo pago de compra dos veces."
@@ -196,7 +199,8 @@ const MODULE_GUIDES = {
       "La portada utiliza la foto guardada en la ficha de la receta vinculada. Si no hay foto, verás una imagen de referencia; las cantidades y estados siempre proceden de tus lotes.",
       "Registrar una preparación descuenta ingredientes y materiales del inventario en una sola operación. Las recetas en gramos se convierten con la equivalencia de cada artículo. Si faltan existencias, no se guarda el lote ni se descuenta nada. Repetir el mismo intento no descuenta dos veces. Los lotes anteriores conservan su costo y no se descuentan retroactivamente. Abre Ver ingredientes descontados dentro de un lote nuevo para consultar su consumo.",
       "Mi nevera se dedica a existencias, lotes, producción y precio registrado. La ficha completa con mano de obra y gastos se gestiona en Costos de productos.",
-      "Una revisión de calidad Retenido sobre un lote impide venderlo hasta una revisión posterior Conforme. El vencimiento continúa aplicándose. El responsable debe registrar su criterio; la aplicación no decide inocuidad."
+      "Una revisión de calidad Retenido sobre un lote impide venderlo hasta una revisión posterior Conforme. El vencimiento continúa aplicándose. El responsable debe registrar su criterio; la aplicación no decide inocuidad.",
+      "Ver costo final y precios abre la ficha de ese producto en Costos de productos. Registrar una producción actualiza también el inventario de ingredientes y materiales."
     ],
     "example": "Una receta completa produce 12 porciones de tres leches: cantidad 12, veces 1. Vendes 3 y quedan 9.",
     "tip": "Cada cuenta tiene sus propios productos y lotes en la nube. Las fechas de vencimiento las decides tú. El costo del lote incluye ingredientes y materiales de la receta al producirlo; añade otros gastos de venta aparte. Los lotes conservan su costo aunque luego cambies precios."
@@ -206,7 +210,8 @@ const MODULE_GUIDES = {
     "steps": [
       "Consulta los productos preparados cuya disponibilidad llegó al mínimo definido en Mi nevera.",
       "Revisa el producto y registra una preparación terminada con su cantidad, receta utilizada y fechas.",
-      "Al reponer por encima del mínimo, desaparece de los pendientes. Las ventas y los vencimientos pueden volver a incluirlo."
+      "Al reponer por encima del mínimo, desaparece de los pendientes. Las ventas y los vencimientos pueden volver a incluirlo.",
+      "Asignar responsable guarda el nombre de quien repondrá cada producto. La asignación permanece al cambiar las existencias y puede cambiarse o quitarse. Para revisar el costo final, abre Ver costo final y precios."
     ],
     "example": "Mínimo de tres leches: 3 porciones. Quedan 3; aparece Preparar más. Preparas 12 y queda repuesto.",
     "tip": "Esta pantalla refleja reposición de productos preparados. No registra producción ficticia ni descuenta ingredientes al abrirla."
@@ -242,7 +247,7 @@ const MODULE_GUIDES = {
       "Vincula opcionalmente una receta de Encargos; las recetas exclusivas de Apps no se muestran en esta selección.",
       "Actualiza su estado: Pendiente, En preparación, Listo, Entregado o Cancelado.",
       "Busca por cliente o descripción y filtra la agenda por fecha y estado. Los entregados y cancelados se conservan en Todos.",
-      "Puedes elegir un cliente del directorio para reutilizar nombre y contacto. Planifica preparación y fotos de referencia en Agenda y cobros. Después del primer cobro registrado, usa Cobros y devoluciones para cambiar lo recibido; el anticipo ya no se modifica manualmente.",
+      "Puedes elegir un cliente del directorio para reutilizar nombre y contacto. Añade preparaciones y fotos de referencia aquí, en Pedidos; la Agenda muestra sus tareas pendientes. Después del primer cobro registrado, usa Cobros y devoluciones para cambiar lo recibido; el anticipo ya no se modifica manualmente.",
       "Añade varias recetas con su proporción y cantidad final, y hasta seis fotos de referencia. Indica cuántos días antes debe prepararse cada receta. Guardar crea o actualiza sus tareas en Agenda; planificar no descuenta inventario. Los cobros, la venta y el historial de preparación se consultan dentro del pedido.",
       "Usar una cotización guardada conserva cliente, contacto, fecha, notas y desglose. Revisa la fecha antes de guardar. No puedes crear dos pedidos activos de la misma cotización.",
       "Primero termina sus preparaciones en Agenda. Al marcar Listo o registrar su venta se descuentan una sola vez los materiales adicionales de la cotización, conservando el desglose aceptado. La venta propone mano de obra y otros gastos del desglose; no repitas los materiales en esos gastos."
@@ -254,11 +259,11 @@ const MODULE_GUIDES = {
     "title": "Añade una receta a un recetario",
     "steps": [
       "Elige el recetario de destino. Escribir nueva receta abre un único formulario; también puedes subir un PDF o una foto y revisar lo que se pudo leer.",
-      "Escribe nombre, categoría, rendimiento y tipo de producto. Añade cada ingrediente o material, elige su proveedor e indica la cantidad usada. No se seleccionan artículos ni cantidades por ti.",
+      "Escribe nombre, categoría, rendimiento y tipo de producto. Añade cada ingrediente o material, elige su proveedor e indica la cantidad usada. Las cantidades de una línea nueva las indicas tú; las coincidencias únicas con equivalencia pueden vincularse al importar.",
       "Si falta un artículo, pulsa Registrar para esa línea. Puedes registrar el primero sin salir del formulario. Se conserva en tu catálogo aunque canceles la receta.",
       "Preparación general conserva las instrucciones. Organizar en etapas (opcional) permite separar base, relleno y montaje: escribe las instrucciones de cada etapa y asigna sus ingredientes. Una línea se cuenta una sola vez.",
       "Guardar borrador pendiente conserva en la nube una receta incompleta. Puedes continuarla aquí o desde su recetario. Busca por nombre o filtra por categoría; los grupos empiezan cerrados. Qué falta revisar muestra las observaciones del documento. No se usa aún para costos ni producción.",
-      "Guardar receta registra la fórmula definitiva cuando estén completos ingredientes, cantidades y unidades. Revisa las equivalencias propias del artículo; se usan las equivalencias guardadas del artículo; las referencias aproximadas se identifican.",
+      "Guardar receta registra la fórmula definitiva cuando estén completos ingredientes, cantidades y unidades. Revisa las equivalencias propias del artículo; las referencias aproximadas se identifican.",
       "El trabajo sin guardar se recupera en este dispositivo al volver con la misma cuenta. El archivo PDF original no se conserva como borrador. Si la importación incluye texto de origen, se conserva dentro del borrador. Revisa sus observaciones, completa las líneas y confirma que las resolviste antes de guardar la receta definitiva.",
       "Al elegir un líquido con equivalencia en una línea nueva se propone g. En borradores e importaciones, una coincidencia única de líquido o huevo con equivalencia se vincula automáticamente; si hay varios proveedores debes elegir. Las cantidades escritas se conservan. Para huevos puedes elegir g de clara, g de yema, clara por unidad o yema por unidad."
     ],
@@ -310,10 +315,11 @@ const MODULE_GUIDES = {
       "Agenda muestra únicamente preparaciones pendientes o en proceso y entregas pendientes. Crea o edita el encargo desde Pedidos.",
       "Filtra pendientes de hoy y atrasados o próximas fechas. Marca En proceso al comenzar y Terminar preparación cuando realmente hayas producido: esta última acción descuenta ingredientes una sola vez.",
       "Las tareas terminadas desaparecen de Agenda y permanecen en el historial del pedido. Los cobros y la venta están dentro de Pedidos.",
-      "El aviso superior muestra preparaciones vencidas o previstas para hoy. Puedes activar avisos del navegador por cuenta y dispositivo; requieren permiso y la aplicación abierta. Al volver se revisan otra vez los pendientes."
+      "El aviso superior muestra las preparaciones pendientes. En Notificaciones en mi teléfono puedes activar un resumen diario de preparaciones y entregas, incluso con la app cerrada. El permiso se concede en cada dispositivo.",
+      "En cada preparación o entrega pulsa Asignar responsable, escribe el nombre del empleado y guarda. Cambiar responsable permite corregirlo; dejarlo vacío retira la asignación. El nombre se conserva al editar el pedido y se incluye en el respaldo."
     ],
     "example": "Una preparación usa media masa y un cuarto de relleno. La lista suma ambas y la confirmación descuenta esos artículos.",
-    "tip": "Los anticipos anteriores se conservan, pero no se fabrican movimientos de caja pasados. Los cobros nuevos no se repiten como entrada manual ni como otra venta."
+    "tip": "Los anticipos anteriores se conservan, pero no se fabrican movimientos de caja pasados. Los cobros nuevos no se repiten como entrada manual ni como otra venta. Los avisos diarios se envían a la hora elegida en República Dominicana, con hasta 15 minutos de margen. Solo se envían si hay pendientes. La entrega depende de la conexión, los permisos y la configuración del teléfono. En iPhone se requiere iOS 16.4 o posterior y abrir la app instalada desde la pantalla de inicio. Los temporizadores siguen siendo relojes locales; no son alarmas del teléfono."
   },
   "Caja y rentabilidad": {
     "title": "Separa el dinero recibido del resultado del negocio",
