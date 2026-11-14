@@ -1,3 +1,4 @@
+import {savePdf} from '../native/files.mjs';
 import {money} from './finance.mjs';
 const clean=value=>String(value??'').normalize('NFKC').replace(/[\u0000-\u001f]/g,' ').replace(/[^\x20-\x7e\u00a0-\u00ff]/g,'?');
 export async function createReportPdf(report,business='Mi negocio',salesOnly=false){
@@ -15,4 +16,4 @@ export async function createReportPdf(report,business='Mi negocio',salesOnly=fal
  const pages=doc.getNumberOfPages();for(let i=1;i<=pages;i++){doc.setPage(i);doc.setDrawColor(225,212,212);doc.line(18,278,192,278);doc.setFontSize(8);doc.setFont('helvetica','normal');doc.text(`Bum Bum Costos | ${i} / ${pages}`,18,284);}
  return doc;
 }
-export async function downloadReport(report,business,salesOnly=false){const doc=await createReportPdf(report,business,salesOnly);doc.save(`bum-bum-${salesOnly?'ventas':'finanzas'}-${report.from}-${report.to}.pdf`);}
+export async function downloadReport(report,business,salesOnly=false){const doc=await createReportPdf(report,business,salesOnly);await savePdf(doc,`bum-bum-${salesOnly?'ventas':'finanzas'}-${report.from}-${report.to}.pdf`);}

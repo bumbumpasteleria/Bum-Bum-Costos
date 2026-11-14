@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Bum Bum Costos</string>
+    <string name="title_activity_main">Bum Bum Costos</string>
+    <string name="package_name">com.bumbumpasteleria.costos</string>
+    <string name="custom_url_scheme">com.bumbumpasteleria.costos</string>
+</resources>

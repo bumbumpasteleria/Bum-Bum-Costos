@@ -10,3 +10,7 @@ src/.qa-*
 .env
 .env.*
 !.env.example
+
+android/app/google-services.json
+*.jks
+*.keystore
