@@ -23,7 +23,7 @@ export default function Catalogo({kind,items,onSave,onDelete,busy}) {
     <h2>{material?'Materiales gastables y empaques':'Ingredientes'}</h2>
     <section ref={formRef} className="catalog-form">
       <h3>{original?'Editar '+nombre:'Registrar '+nombre}</h3>
-      <p>Cada proveedor se registra por separado para conservar su precio. {material?'Añade cajas, bases, bolsas y otros consumibles al cotizador.':'Elige el proveedor que usarás al armar la receta.'}</p>
+      <p>Cada proveedor se registra por separado para conservar su precio. {material?'Añade cajas, bases, bolsas y otros consumibles a tus recetas o cotizaciones.':'Elige el proveedor que usarás al armar la receta.'}</p>
       <form onSubmit={guardar}>
         <fieldset disabled={busy||saving} className="app-content">
           <div className="grid">

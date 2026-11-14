@@ -62,4 +62,6 @@ export async function eliminarIngrediente(id,owner){
  return data.id;
 }
 
-export const etiquetaUnidad=u=>u==='g clara'?'g de clara':u==='g yema'?'g de yema':u==='clara'?'clara (unidad)':u==='yema'?'yema (unidad)':u==='kg'?'Kilos (kg)':u==='gal US'?'Galón estadounidense (3.785 L)':u;
+export const etiquetaUnidad=u=>u==='unit'?'unidad':u==='g clara'?'g de clara':u==='g yema'?'g de yema':u==='clara'?'clara (unidad)':u==='yema'?'yema (unidad)':u==='kg'?'Kilos (kg)':u==='gal US'?'Galón estadounidense (3.785 L)':u;
+
+export const etiquetaRendimiento=(unit,quantity)=>Number(quantity)===1?etiquetaUnidad(unit):({unidad:'unidades',unit:'unidades','porción':'porciones','receta completa':'recetas completas',bandeja:'bandejas',caja:'cajas',docena:'docenas',vaso:'vasos'})[unit]||etiquetaUnidad(unit);
