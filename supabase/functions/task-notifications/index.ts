@@ -36,7 +36,7 @@ Deno.serve(async req=>{
   if(body.action==='subscribe'){
    const devices=await query(db.from('push_subscriptions').select('id').eq('owner_id',owner).eq('enabled',true));if(devices.length>=10&&!devices.some((d:any)=>d.id===id))return response({error:'Esta cuenta ya tiene diez dispositivos con avisos activos.'},409);
    const hour=validHour(body.hour??9),same=existing?.owner_id===owner;
-   await query(db.from('push_subscriptions').upsert({id,owner_id:owner,subscription,enabled:true,hour,last_sent_day:same?existing.last_sent_day:null,claimed_until:null,updated_at:new Date().toISOString()}));return response({enabled:true,hour});
+   await query(db.from('push_subscriptions').upsert({id,owner_id:owner,subscription,enabled:true,hour,last_sent_day:same?existing.last_sent_day:null,sent_events:same?existing.sent_events||{}:{},last_checked_at:null,claimed_until:null,updated_at:new Date().toISOString()}));return response({enabled:true,hour});
   }
   if(!existing||existing.owner_id!==owner)return response({enabled:false});
   if(body.action==='status')return response({enabled:existing.enabled,hour:existing.hour});

@@ -26,7 +26,7 @@ export async function nativeAction(db:any,query:any,owner:string,body:any,ready:
   if(!ready||!nativeSettings())throw Error('Estamos terminando de configurar los avisos de Android.');
   if(!Number.isInteger(body.hour)||body.hour<0||body.hour>23)throw Error('Selecciona una hora válida.');
   const devices=await query(db.from('push_subscriptions').select('id').eq('owner_id',owner).eq('enabled',true));if(devices.length>=10&&!devices.some((d:any)=>d.id===identity.id))throw Error('Esta cuenta ya tiene diez dispositivos con avisos activos.');
-  await query(db.from('push_subscriptions').upsert({id:identity.id,owner_id:owner,subscription:{platform:'android',proofHash:identity.proofHash,token:body.subscription.token},enabled:true,hour:body.hour,last_sent_day:existing?.owner_id===owner?existing.last_sent_day:null,claimed_until:null,updated_at:new Date().toISOString()}));return {enabled:true,hour:body.hour};
+  await query(db.from('push_subscriptions').upsert({id:identity.id,owner_id:owner,subscription:{platform:'android',proofHash:identity.proofHash,token:body.subscription.token},enabled:true,hour:body.hour,last_sent_day:existing?.owner_id===owner?existing.last_sent_day:null,sent_events:existing?.owner_id===owner?existing.sent_events||{}:{},last_checked_at:null,claimed_until:null,updated_at:new Date().toISOString()}));return {enabled:true,hour:body.hour};
  }
  if(!existing||existing.owner_id!==owner)return {enabled:false,hour:9};
  if(action==='native_status')return {enabled:existing.enabled,hour:existing.hour};
