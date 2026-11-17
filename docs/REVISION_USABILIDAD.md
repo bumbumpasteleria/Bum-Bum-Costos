@@ -17,8 +17,10 @@
 
 ## Verificación y límites
 
-- Las 211 pruebas automáticas de la aplicación pasaron antes de los últimos ajustes menores. Deben repetirse al cerrar el cambio, junto con compilación web y Android.
+- Las 212 pruebas automáticas finales y la compilación web pasaron. Android se valida también en la integración continua de la propuesta.
 - La prueba SQL usa dos cuentas sintéticas y una transacción revertida. Comprueba retiro de tarea con receta ausente, versión, historial, protección de otra cuenta y bloqueo de producción terminada.
+- La función de retiro ya está habilitada en Supabase; no requiere borrar ni modificar registros reales al publicarse.
+- La distribución se inspeccionó a 390 × 844: resumen del día al principio, navegación inferior y confirmación de retiro en la misma pantalla. La vista de revisión usa únicamente datos sintéticos.
 - No se eliminaron ni modificaron recetas, ingredientes, pedidos, cobros o existencias reales para probar estas mejoras.
 - La revisión de código y las pruebas automatizadas no equivalen a probar cada combinación posible en cada teléfono. El inicio de sesión Google, el gestor de contraseñas, la descarga/instalación y la entrega de notificaciones requieren comprobación en dispositivo real.
 - La versión Android anterior utiliza firma temporal de depuración. La distribución estable y las actualizaciones compatibles requieren una clave de firma permanente y un número de compilación creciente.
