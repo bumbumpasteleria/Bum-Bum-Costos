@@ -29,3 +29,9 @@ Antes de una versión oficial faltan firma de lanzamiento bajo control de la pro
 La versión iPhone es una etapa posterior: requiere proyecto iOS, firma y herramientas de Apple. Esta entrega no crea un instalador para iPhone.
 
 Fuentes: [Capacitor Android](https://capacitorjs.com/docs/android), [notificaciones nativas](https://capacitorjs.com/docs/apis/push-notifications), [requisitos](https://capacitorjs.com/docs/getting-started/environment-setup).
+# Mejoras de acceso y actualizaciones
+
+La app comprueba `/android-version.json` para avisar de una compilación superior. El usuario abre la descarga; no hay instalación automática. Mantener firma estable y aumentar `versionCode` antes de anunciar una actualización. El manifiesto actual no anuncia una versión nueva.
+
+El acceso con Google usa navegador del sistema y retorno PKCE a `com.bumbumpasteleria.costos://auth/callback`. Solo se muestra si el proveedor de Supabase está habilitado; requiere configurar el cliente Google y su secreto fuera del repositorio. El acceso continúa sujeto a aprobación de la cuenta.
+

@@ -11,6 +11,13 @@ import java.util.UUID;
 
 @CapacitorPlugin(name="BumDevice")
 public class BumDevicePlugin extends Plugin {
+    @PluginMethod public void openExternal(PluginCall call) {
+        String raw=call.getString("url","");android.net.Uri u=android.net.Uri.parse(raw);
+        boolean download="github.com".equals(u.getHost())&&u.getPath()!=null&&u.getPath().matches("/bumbumpasteleria/Bum-Bum-Costos/releases/download/[A-Za-z0-9._-]+/[A-Za-z0-9._-]+\\.apk")&&u.getQuery()==null&&u.getFragment()==null;
+        boolean google="exanisbqasrzoerdghmz.supabase.co".equals(u.getHost())&&"/auth/v1/authorize".equals(u.getPath())&&"google".equals(u.getQueryParameter("provider"));
+        if(!"https".equals(u.getScheme())||u.getUserInfo()!=null||u.getPort()!=-1||(!download&&!google)){call.reject("Enlace no permitido");return;}
+        try{getActivity().startActivity(new Intent(Intent.ACTION_VIEW,u));call.resolve();}catch(Exception e){call.reject("No se pudo abrir el enlace");}
+    }
     @PluginMethod public void identity(PluginCall call) {
         SharedPreferences p=getContext().getSharedPreferences("bum-device",0);
         if(!p.contains("deviceId"))p.edit().putString("deviceId",UUID.randomUUID().toString()).putString("proof",UUID.randomUUID().toString()+UUID.randomUUID().toString()).commit();
