@@ -63,13 +63,31 @@ jobs:
           printf '%s' "$GOOGLE_SERVICES_JSON" > android/app/google-services.json
           node scripts/check-android.mjs --release
       - run: npm run android:sync
-      - name: Compilar instalador para prueba interna
+      - name: Preparar firma permanente
+        env:
+          ANDROID_SIGNING_CONFIG: ${{ secrets.ANDROID_SIGNING_CONFIG }}
+        run: python3 scripts/prepare-android-signing.py
+      - name: Compilar instalador firmado
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+          ./gradlew assembleRelease lintRelease --no-daemon
+      - name: Verificar firma e identidad del instalador
+        run: |
+          APK=android/app/build/outputs/apk/release/app-release.apk
+          TOOLS="$ANDROID_HOME/build-tools/36.0.0"
+          "$TOOLS/apksigner" verify --verbose --print-certs "$APK" > "$RUNNER_TEMP/apk-certificate.txt"
+          ACTUAL=$(sed -n 's/^Signer #1 certificate SHA-256 digest: //p' "$RUNNER_TEMP/apk-certificate.txt")
+          test "$ACTUAL" = "$BUM_CERTIFICATE_SHA256"
+          "$TOOLS/aapt" dump badging "$APK" > "$RUNNER_TEMP/apk-badging.txt"
+          grep -q "package: name='com.bumbumpasteleria.costos' versionCode='2' versionName='1.1.0'" "$RUNNER_TEMP/apk-badging.txt"
+          ! grep -q 'application-debuggable' "$RUNNER_TEMP/apk-badging.txt"
+          sha256sum "$APK"
+      - name: Retirar material privado del ejecutor
+        if: always()
+        run: rm -f "$RUNNER_TEMP/bum-release.p12" android/app/google-services.json
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: Bum-Bum-Costos-Android-prueba-interna
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: Bum-Bum-Costos-Android-firmado
+          path: android/app/build/outputs/apk/release/app-release.apk
           retention-days: 7

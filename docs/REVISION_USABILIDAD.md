@@ -32,8 +32,8 @@
 
 El manifiesto público `/android-version.json` contiene el identificador de la app, versión, número de compilación y URL del instalador. Se consulta al abrir Android y, como máximo una vez por hora, al volver a la app. Solo propone compilaciones superiores y descargas HTTPS del repositorio oficial. No descarga ni instala en segundo plano. Cada publicación debe mantener la firma, incrementar el número y verificar el APK antes de actualizar el manifiesto.
 
-## Configuración pendiente de Google
+## Acceso Google verificado
 
-Crear un cliente web OAuth de Google con retorno a `https://exanisbqasrzoerdghmz.supabase.co/auth/v1/callback`, guardar su secreto directamente en el proveedor Google de Supabase y permitir el retorno nativo exacto `com.bumbumpasteleria.costos://auth/callback`. Conservar la URL oficial y los retornos de invitación existentes. No activar registro público, omitir validación de nonce ni solicitar acceso a Gmail/Drive.
+El 17 de noviembre de 2026 se verificó el inicio de sesión real de la administradora con Google y el regreso a su cuenta existente. El cliente web usa el retorno de Supabase y está permitido el retorno nativo exacto `com.bumbumpasteleria.costos://auth/callback`. El secreto se guardó directamente en Supabase. Se conserva el control de aprobación; no se solicitaron permisos de Gmail o Drive. El regreso en Android requiere comprobación en el instalador nuevo.
 
 Referencias oficiales: [Google con Supabase](https://supabase.com/docs/guides/auth/social-login/auth-google), [retorno a aplicaciones móviles](https://supabase.com/docs/guides/auth/native-mobile-deep-linking), [configuración de acceso](https://supabase.com/docs/guides/auth/general-configuration).

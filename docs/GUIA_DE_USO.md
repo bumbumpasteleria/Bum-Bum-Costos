@@ -107,6 +107,7 @@ Calcula un encargo
 5. Abre Logo y presentación de mi negocio, sube tu logo, elige el color y guarda nombre y contacto. Un PNG con transparencia conserva el fondo transparente para integrarlo en la cotización. La cuenta de Bum Bum ya tiene precargados su logo original y la paleta crema, vino y rosa; las demás cuentas conservan su propia identidad. Se conserva en tu cuenta y se aplica a los PDF que generes. Completa cliente, contacto, entrega, validez y notas si los necesitas. Revisa el desglose de artículos y costos y pulsa Guardar cotización. En cotizaciones guardadas, abre Ver cotización completa. PDF para cliente muestra el producto y precio final; PDF interno con costos incluye desglose y ganancia.
 6. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
 7. En Android, al exportar un documento se abre el selector del teléfono para guardarlo o compartirlo. Elige un destino privado para los archivos con información de tu negocio.
+8. Las actualizaciones de Android requieren descargar e instalar una versión nueva. Guarda tus borradores en la nube antes de reemplazar una instalación de prueba; no desinstales hasta tener el nuevo instalador y comprobar tus datos.
 
 **Ejemplo:** Si tu receta rinde 12 galletas y necesitas 24, coloca 2 en Cantidad de rendimientos.
 
