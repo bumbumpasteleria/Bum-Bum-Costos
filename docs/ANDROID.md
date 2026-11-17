@@ -22,7 +22,9 @@ Se necesitan Node 22+, Java 21, Android SDK 36 y las herramientas de compilació
 
 ## Compilaciones
 
-El flujo **Compilación Android** comprueba el proyecto nativo en cada PR, sin distribuir el APK de validación. La ejecución manual genera un APK de **prueba interna** cuando el entorno GitHub `android-interno` contiene las dos variables públicas y el secreto `GOOGLE_SERVICES_JSON`. La configuración se valida antes de compilar. Este APK de depuración no es una publicación oficial y su firma temporal no debe usarse para distribuir versiones permanentes.
+El flujo **Compilación Android** comprueba el proyecto nativo en cada PR, sin distribuir el APK de validación. La ejecución manual genera un APK de lanzamiento cuando el entorno GitHub `android-interno` contiene las dos variables públicas y los secretos `GOOGLE_SERVICES_JSON` y `ANDROID_SIGNING_CONFIG`. Este último contiene el almacén PKCS12 codificado en base64, contraseña, alias y huella SHA-256 del certificado. Nunca se guarda en el repositorio ni en el APK. El flujo comprueba la firma, identidad, versión y ausencia de depuración antes de entregar el artefacto, y retira el material privado del ejecutor.
+
+La versión nativa preparada es 1.1.0 (compilación 2). Conserva una copia privada de la firma permanente: las siguientes actualizaciones deben usarla. El APK de prueba anterior utilizaba una firma temporal distinta; no se debe prometer actualización sobre esa instalación. Antes de reemplazarlo, guarda los borradores en la nube y descarga un respaldo. No desinstales hasta disponer del instalador firmado y haber comprobado tus datos. El manifiesto público se actualiza solo después de verificar y publicar el APK real.
 
 Antes de una versión oficial faltan firma de lanzamiento bajo control de la propietaria, prueba en un Android real (instalación, acceso por cuenta, importación de archivos, exportación, notificación con app cerrada y cambio de cuenta), número de versión y canal de distribución. Las claves de firma deben conservarse de forma segura para permitir actualizaciones.
 
@@ -34,4 +36,3 @@ Fuentes: [Capacitor Android](https://capacitorjs.com/docs/android), [notificacio
 La app comprueba `/android-version.json` para avisar de una compilación superior. El usuario abre la descarga; no hay instalación automática. Mantener firma estable y aumentar `versionCode` antes de anunciar una actualización. El manifiesto actual no anuncia una versión nueva.
 
 El acceso con Google usa navegador del sistema y retorno PKCE a `com.bumbumpasteleria.costos://auth/callback`. Solo se muestra si el proveedor de Supabase está habilitado; requiere configurar el cliente Google y su secreto fuera del repositorio. El acceso continúa sujeto a aprobación de la cuenta.
-
