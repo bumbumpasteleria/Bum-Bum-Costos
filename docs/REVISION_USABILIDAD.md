@@ -6,6 +6,7 @@
 | --- | --- | --- |
 | Inicio | Había accesos, pero faltaba una síntesis del trabajo del día | Tarjetas de preparaciones, entregas y encargos por cobrar, con datos de la cuenta |
 | Navegación móvil | Ventas y Agenda exigían abrir grupos del menú | Accesos inferiores a Inicio, Recetarios, Ventas y Agenda; Más conserva los demás módulos |
+| Buscar un área | Había que recordar el grupo del menú | Buscar sección filtra por área o grupo, admite palabras sin tilde y conserva la visibilidad de administración por cuenta |
 | Guardado | La disponibilidad de red podía confundirse con guardado confirmado | Indicador separado de conexión, carga y guardado; los mensajes de cada formulario siguen confirmando la operación |
 | Pendientes | Solo podían cancelarse algunas preparaciones independientes | Confirmación en la propia tarea y recuperación desde Trabajos retirados, sin borrar el pedido ni tocar inventario |
 | Receta borrada | Un pendiente huérfano podía quedar bloqueado por la validación de su receta | Operación privada para retirar la tarea conservando campos e historial; recuperar exige receta válida |
