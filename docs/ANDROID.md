@@ -33,6 +33,8 @@ La versión iPhone es una etapa posterior: requiere proyecto iOS, firma y herram
 Fuentes: [Capacitor Android](https://capacitorjs.com/docs/android), [notificaciones nativas](https://capacitorjs.com/docs/apis/push-notifications), [requisitos](https://capacitorjs.com/docs/getting-started/environment-setup).
 # Mejoras de acceso y actualizaciones
 
-La app comprueba `/android-version.json` para avisar de una compilación superior. El usuario abre la descarga; no hay instalación automática. Mantener firma estable y aumentar `versionCode` antes de anunciar una actualización. El manifiesto actual no anuncia una versión nueva.
+La app comprueba `/android-version.json` para avisar de una compilación superior. El usuario abre la descarga; no hay instalación automática. Mantener firma estable y aumentar `versionCode` antes de anunciar una actualización. El manifiesto anuncia Android 1.1.0 (compilación 2), publicado en la etiqueta v1.1.0-android tras verificar el APK firmado y la descarga pública. SHA-256 del APK: `dede19a138f578ac201195b868ac375de86b88fc79f4dc00c2e0b68c52cb5007`. La instalación y recepción de avisos en un teléfono real requieren comprobación de la propietaria.
 
 El acceso con Google usa navegador del sistema y retorno PKCE a `com.bumbumpasteleria.costos://auth/callback`. Solo se muestra si el proveedor de Supabase está habilitado; requiere configurar el cliente Google y su secreto fuera del repositorio. El acceso continúa sujeto a aprobación de la cuenta.
+
+
