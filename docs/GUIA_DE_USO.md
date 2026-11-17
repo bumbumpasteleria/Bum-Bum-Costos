@@ -18,6 +18,11 @@ Tu punto de partida
 10. En Mis pendientes abre Notificaciones en mi teléfono. Actívalas en cada dispositivo y elige la hora del resumen diario de preparaciones y entregas. Puedes enviar una notificación de prueba.
 11. La versión Android instalable abre con el icono de Bum Bum Costos y utiliza la misma cuenta. Los borradores locales pertenecen a cada instalación; guarda en la nube antes de cambiar de dispositivo.
 12. En Mis pendientes → Qué avisos quiero recibir elige preparaciones, entregas, compras, reposición de nevera, vencimientos o saldos. Las solicitudes solo están disponibles para administración. Se revisan a partir de la hora configurada y cada tipo se envía como máximo una vez al día por dispositivo. Al tocar un aviso se abre su área. Los vencimientos se avisan desde 3 días antes; los saldos se avisan cuando la entrega es para hoy o está atrasada.
+13. Hoy en tu negocio muestra preparaciones, entregas y encargos por cobrar para hoy o atrasados. Toca una tarjeta para abrir su área; los números se consultan en tu cuenta.
+14. La barra inferior del celular abre Inicio, Recetarios, Ventas, Agenda y Más. Más reúne el resto de los módulos.
+15. Conexión disponible indica el estado de red del dispositivo; no confirma que un formulario esté guardado. Usa Guardar y comprueba el mensaje de éxito de cada formulario.
+16. En Android, cuando haya una versión con número de compilación superior aparecerá Hay una actualización disponible. Guarda tus formularios, descarga el instalador y sigue las instrucciones del teléfono. No instala cambios automáticamente.
+17. El acceso admite el autocompletado del teléfono si su gestor de contraseñas lo permite. Continuar con Google se muestra cuando el proveedor esté configurado; usa el mismo correo de tu cuenta aprobada. La aprobación y la separación entre cuentas se conservan.
 
 **Ejemplo:** Puedes tener un recetario «Galletas para apps» y otro «Postres por encargo».
 
@@ -299,6 +304,7 @@ Organiza tus encargos y entregas
 7. Usar una cotización guardada conserva cliente, contacto, fecha, notas y desglose. Revisa la fecha antes de guardar. No puedes crear dos pedidos activos de la misma cotización.
 8. Primero termina sus preparaciones en Agenda. Al marcar Listo o registrar su venta se descuentan una sola vez los materiales adicionales de la cotización, conservando el desglose aceptado. La venta propone mano de obra y otros gastos del desglose; no repitas los materiales en esos gastos.
 9. En Mis pendientes → Qué avisos quiero recibir elige preparaciones, entregas, compras, reposición de nevera, vencimientos o saldos. Las solicitudes solo están disponibles para administración. Se revisan a partir de la hora configurada y cada tipo se envía como máximo una vez al día por dispositivo. Al tocar un aviso se abre su área. Los vencimientos se avisan desde 3 días antes; los saldos se avisan cuando la entrega es para hoy o está atrasada.
+10. Eliminar pendiente retira únicamente un trabajo sin producción terminada de Agenda y de los avisos. Requiere confirmación dentro de la pantalla; conserva el pedido, cobros e inventario. En Agenda → Trabajos retirados puedes recuperarlo si su pedido no está cancelado y la receta sigue disponible. Los trabajos terminados conservan su historial.
 
 **Ejemplo:** Un encargo de RD$2,000 con anticipo de RD$500 muestra RD$1,500 de saldo.
 
@@ -377,6 +383,7 @@ Tus preparaciones y entregas pendientes
 5. En cada preparación o entrega pulsa Asignar responsable, escribe el nombre del empleado y guarda. Cambiar responsable permite corregirlo; dejarlo vacío retira la asignación. El nombre se conserva al editar el pedido y se incluye en el respaldo.
 6. En la aplicación Android, activa los avisos en Mis pendientes → Notificaciones de la aplicación Android. Permite las notificaciones y comprueba la recepción con Enviar notificación de prueba. Si el servicio todavía se está configurando, consulta Agenda.
 7. En Mis pendientes → Qué avisos quiero recibir elige preparaciones, entregas, compras, reposición de nevera, vencimientos o saldos. Las solicitudes solo están disponibles para administración. Se revisan a partir de la hora configurada y cada tipo se envía como máximo una vez al día por dispositivo. Al tocar un aviso se abre su área. Los vencimientos se avisan desde 3 días antes; los saldos se avisan cuando la entrega es para hoy o está atrasada.
+8. Eliminar pendiente retira únicamente un trabajo sin producción terminada de Agenda y de los avisos. Requiere confirmación dentro de la pantalla; conserva el pedido, cobros e inventario. En Agenda → Trabajos retirados puedes recuperarlo si su pedido no está cancelado y la receta sigue disponible. Los trabajos terminados conservan su historial.
 
 **Ejemplo:** Una preparación usa media masa y un cuarto de relleno. La lista suma ambas y la confirmación descuenta esos artículos.
 

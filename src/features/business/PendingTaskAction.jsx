@@ -1,0 +1,8 @@
+import React,{useRef,useState} from 'react';
+import {supabase} from '../../supabase';
+import {taskTransition} from './pendingTask.mjs';
+export default function PendingTaskAction({row,onRefresh,disabled=false,restore=false}){
+ const [confirm,setConfirm]=useState(false),[busy,setBusy]=useState(false),[message,setMessage]=useState('');const lock=useRef(false);
+ async function apply(){if(lock.current)return;lock.current=true;setBusy(true);setMessage('');try{taskTransition(row,restore);const {error}=await supabase.rpc('bum_retire_work',{p_work:row.id,p_expected:row.version,p_restore:restore});if(error)throw error;setConfirm(false);await onRefresh();window.dispatchEvent(new Event('bum-orders-updated'));}catch(e){setMessage(e.message||'No se pudo actualizar el trabajo.');}finally{lock.current=false;setBusy(false)}}
+ return <div className="pending-task-action">{!confirm?<button type="button" className="ghost" disabled={disabled||busy} onClick={()=>setConfirm(true)}>{restore?'Recuperar trabajo':'Eliminar pendiente'}</button>:<div role="group" aria-label={restore?'Confirmar recuperación del trabajo':'Confirmar eliminación del pendiente'}><p>{restore?'El trabajo volverá a Agenda como pendiente.':'Este trabajo saldrá de Agenda y de los avisos. El pedido, sus cobros y el inventario se conservan. Puedes recuperarlo desde Trabajos retirados.'}</p><div className="actions"><button type="button" disabled={busy||disabled} onClick={apply}>{busy?'Guardando…':restore?'Confirmar recuperación':'Confirmar eliminación'}</button><button type="button" className="secondary" disabled={busy} onClick={()=>setConfirm(false)}>Volver</button></div></div>}{message&&<p role="alert">{message}</p>}</div>;
+}

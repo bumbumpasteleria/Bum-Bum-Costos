@@ -8,4 +8,4 @@ if (!supabaseUrl || !supabaseKey) {
   throw new Error('Falta configurar Supabase en las variables de compilación.');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabase = createClient(supabaseUrl, supabaseKey,{auth:{flowType:'pkce'}});
