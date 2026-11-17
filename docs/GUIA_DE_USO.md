@@ -7,22 +7,23 @@ Abre «¿Cómo se usa?» en cada pantalla. Cada cuenta tiene su propio espacio.
 Tu punto de partida
 
 1. El menú reúne las opciones por actividad. Abre Recetas y precios, Inventario y compras, Producción y pendientes, Encargos y clientes o Ventas y finanzas. En celular pulsa Más para desplegar los grupos en una columna y toca el nombre para abrir sus opciones.
-2. Empieza por Ingredientes y registra tus compras con su precio y unidad.
-3. Pulsa Crear receta para abrir Nueva receta. En Mis recetarios abre el libro que quieras consultar; sus recetas se muestran dentro. Costear un producto abre el área de costos finales.
-4. Usa el Cotizador para encargos y registra tus ventas cuando las realices.
-5. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
-6. Abre Finanzas para gastos y reportes; Pedidos para encargos; Respaldo para recuperar registros o versiones de recetas.
-7. En ¿Qué vamos a hacer hoy? abre Agenda, Mi nevera, Compras o Caja. Deja tu negocio listo para trabajar reúne perfil, saldo inicial, inventario y productos preparados. No crea existencias de ejemplo.
-8. En Bum Bum Costos en tu teléfono abre las instrucciones para Android o iPhone. Cuando el navegador lo admita aparecerá Instalar aplicación; puedes entrar con tu misma cuenta.
-9. El botón Atrás del navegador recorre los módulos que visitaste. La ayuda y los temporizadores están juntos arriba; abre solo lo que necesites.
-10. En Mis pendientes abre Notificaciones en mi teléfono. Actívalas en cada dispositivo y elige la hora del resumen diario de preparaciones y entregas. Puedes enviar una notificación de prueba.
-11. La versión Android instalable abre con el icono de Bum Bum Costos y utiliza la misma cuenta. Los borradores locales pertenecen a cada instalación; guarda en la nube antes de cambiar de dispositivo.
-12. En Mis pendientes → Qué avisos quiero recibir elige preparaciones, entregas, compras, reposición de nevera, vencimientos o saldos. Las solicitudes solo están disponibles para administración. Se revisan a partir de la hora configurada y cada tipo se envía como máximo una vez al día por dispositivo. Al tocar un aviso se abre su área. Los vencimientos se avisan desde 3 días antes; los saldos se avisan cuando la entrega es para hoy o está atrasada.
-13. Hoy en tu negocio muestra preparaciones, entregas y encargos por cobrar para hoy o atrasados. Toca una tarjeta para abrir su área; los números se consultan en tu cuenta.
-14. La barra inferior del celular abre Inicio, Recetarios, Ventas, Agenda y Más. Más reúne el resto de los módulos.
-15. Conexión disponible indica el estado de red del dispositivo; no confirma que un formulario esté guardado. Usa Guardar y comprueba el mensaje de éxito de cada formulario.
-16. En Android, cuando haya una versión con número de compilación superior aparecerá Hay una actualización disponible. Guarda tus formularios, descarga el instalador y sigue las instrucciones del teléfono. No instala cambios automáticamente.
-17. El acceso admite el autocompletado del teléfono si su gestor de contraseñas lo permite. Continuar con Google se muestra cuando el proveedor esté configurado; usa el mismo correo de tu cuenta aprobada. La aprobación y la separación entre cuentas se conservan.
+2. En el menú escribe una palabra en Buscar sección para encontrar Recetarios, Ventas, Compras u otra área. Mostrar todo el menú quita el filtro; al abrir una sección, el filtro se limpia.
+3. Empieza por Ingredientes y registra tus compras con su precio y unidad.
+4. Pulsa Crear receta para abrir Nueva receta. En Mis recetarios abre el libro que quieras consultar; sus recetas se muestran dentro. Costear un producto abre el área de costos finales.
+5. Usa el Cotizador para encargos y registra tus ventas cuando las realices.
+6. El borrador de trabajo se conserva al cambiar de módulo o recargar, en este dispositivo y para esta cuenta. Guardar confirma el registro en la nube; cancelar o limpiar descarta el formulario correspondiente.
+7. Abre Finanzas para gastos y reportes; Pedidos para encargos; Respaldo para recuperar registros o versiones de recetas.
+8. En ¿Qué vamos a hacer hoy? abre Agenda, Mi nevera, Compras o Caja. Deja tu negocio listo para trabajar reúne perfil, saldo inicial, inventario y productos preparados. No crea existencias de ejemplo.
+9. En Bum Bum Costos en tu teléfono abre las instrucciones para Android o iPhone. Cuando el navegador lo admita aparecerá Instalar aplicación; puedes entrar con tu misma cuenta.
+10. El botón Atrás del navegador recorre los módulos que visitaste. La ayuda y los temporizadores están juntos arriba; abre solo lo que necesites.
+11. En Mis pendientes abre Notificaciones en mi teléfono. Actívalas en cada dispositivo y elige la hora del resumen diario de preparaciones y entregas. Puedes enviar una notificación de prueba.
+12. La versión Android instalable abre con el icono de Bum Bum Costos y utiliza la misma cuenta. Los borradores locales pertenecen a cada instalación; guarda en la nube antes de cambiar de dispositivo.
+13. En Mis pendientes → Qué avisos quiero recibir elige preparaciones, entregas, compras, reposición de nevera, vencimientos o saldos. Las solicitudes solo están disponibles para administración. Se revisan a partir de la hora configurada y cada tipo se envía como máximo una vez al día por dispositivo. Al tocar un aviso se abre su área. Los vencimientos se avisan desde 3 días antes; los saldos se avisan cuando la entrega es para hoy o está atrasada.
+14. Hoy en tu negocio muestra preparaciones, entregas y encargos por cobrar para hoy o atrasados. Toca una tarjeta para abrir su área; los números se consultan en tu cuenta.
+15. La barra inferior del celular abre Inicio, Recetarios, Ventas, Agenda y Más. Más reúne el resto de los módulos.
+16. Conexión disponible indica el estado de red del dispositivo; no confirma que un formulario esté guardado. Usa Guardar y comprueba el mensaje de éxito de cada formulario.
+17. En Android, cuando haya una versión con número de compilación superior aparecerá Hay una actualización disponible. Guarda tus formularios, descarga el instalador y sigue las instrucciones del teléfono. No instala cambios automáticamente.
+18. El acceso admite el autocompletado del teléfono si su gestor de contraseñas lo permite. Continuar con Google se muestra cuando el proveedor esté configurado; usa el mismo correo de tu cuenta aprobada. La aprobación y la separación entre cuentas se conservan.
 
 **Ejemplo:** Puedes tener un recetario «Galletas para apps» y otro «Postres por encargo».
 
