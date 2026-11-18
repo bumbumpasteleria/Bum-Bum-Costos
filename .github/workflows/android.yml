@@ -80,7 +80,7 @@ jobs:
           ACTUAL=$(sed -n 's/^Signer #1 certificate SHA-256 digest: //p' "$RUNNER_TEMP/apk-certificate.txt")
           test "$ACTUAL" = "$BUM_CERTIFICATE_SHA256"
           "$TOOLS/aapt" dump badging "$APK" > "$RUNNER_TEMP/apk-badging.txt"
-          grep -q "package: name='com.bumbumpasteleria.costos' versionCode='2' versionName='1.1.0'" "$RUNNER_TEMP/apk-badging.txt"
+          grep -q "package: name='com.bumbumpasteleria.costos' versionCode='3' versionName='1.1.1'" "$RUNNER_TEMP/apk-badging.txt"
           ! grep -q 'application-debuggable' "$RUNNER_TEMP/apk-badging.txt"
           sha256sum "$APK"
       - name: Retirar material privado del ejecutor
