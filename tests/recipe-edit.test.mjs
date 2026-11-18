@@ -12,6 +12,20 @@ const compile=async(file,loader='js')=>(await transformWithEsbuild(await readFil
 const [cloudCode,catalogCode,serviceCode,editorCode]=await Promise.all([compile('cloudService.js'),compile('catalogoService.js'),compile('features/recipes/recipesService.js'),compile('features/recipes/RecipeEditor.jsx','jsx')]);
 function load(code,require,extra={}){const m={exports:{}};vm.runInNewContext(code,{module:m,exports:m.exports,require:path=>path.includes('resolveMeasuredLine')?measuredLines:path.includes('recipeStages')?recipeStages:path.includes('ingredientQuantity')?ingredientQuantity:require(path),...extra});return m.exports;}
 const owner='owner-a';
+test('la copia de edición conserva decimales exactos del servidor sin redondearlos como Number',async()=>{
+ const f=fixture(),exact='242.7184466019417475728155339805825243';
+ f.record.yield_quantity=Number(exact);f.record.yield_exact=exact;
+ f.record.recipe_lines[0].quantity_base=Number(exact);
+ f.record.recipe_lines[0].quantity_base_exact=exact;
+ f.record.recipe_lines[0].measurement_quantity=Number(exact);
+ f.record.recipe_lines[0].measurement_quantity_exact=exact;
+ const loaded=await f.api.obtenerReceta('recipe',owner);
+ assert.notEqual(String(Number(exact)),exact);
+ assert.equal(loaded.editSnapshot.yield_quantity,exact);
+ assert.equal(loaded.editSnapshot.lines[0].quantity_base,exact);
+ assert.equal(loaded.editSnapshot.lines[0].measurement_quantity,exact);
+ assert.equal(loaded.lines[0].qty,Number(exact));
+});
 const raw=()=>({id:'recipe',owner_id:owner,name:'Galletas',recipe_book_id:'book',yield_quantity:12,yield_unit:'unidad',instructions:'{"bumBum":1,"scaling":"scalable","productType":"Galleta","custom":"keep"}',recipe_lines:[{id:'line-1',owner_id:owner,recipe_id:'recipe',ingredient_id:'flour',quantity_base:250,ingredients:{base_unit:'g'}}]});
 function fixture(){let calls=[],response=null,failure=null,readFailure=false;const record=raw();
  const db={from(table){let filters=[],start=0,end=499;const call={table,filters};calls.push(call);const q={select:()=>q,eq(k,v){filters.push([k,v]);return q},order:()=>q,range(a,b){start=a;end=b;call.range=[a,b];return q},single:async()=>({data:record,error:readFailure?{}:null}),then(resolve){const data=record.recipe_lines.slice(start,end+1);return Promise.resolve({data,error:readFailure?{}:null}).then(resolve)}};return q},rpc:async(name,args)=>{calls.push({name,args});return {data:response||record,error:failure}}};

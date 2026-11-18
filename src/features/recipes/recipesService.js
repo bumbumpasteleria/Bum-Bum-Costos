@@ -7,11 +7,11 @@ import {tiposProducto,unidadesRendimiento} from '../../catalogoService';
 
 export async function obtenerReceta(id,owner){
  if(!id||!owner)throw new Error('No se pudo identificar tu receta.');
- const {data,error}=await supabase.from('recipes').select('*').eq('id',id).eq('owner_id',owner).single();
+ const {data,error}=await supabase.from('recipes').select('*,yield_exact:yield_quantity::text').eq('id',id).eq('owner_id',owner).single();
  if(error||!data||data.owner_id!==owner)throw new Error('No se pudo abrir la receta. Actualiza la lista e intenta de nuevo.');
  const lines=[];
  for(let start=0;;start+=500){
-  const result=await supabase.from('recipe_lines').select('*, ingredients(base_unit)').eq('recipe_id',id).eq('owner_id',owner).order('id').range(start,start+499);
+  const result=await supabase.from('recipe_lines').select('*,quantity_base_exact:quantity_base::text,measurement_quantity_exact:measurement_quantity::text,ingredients(base_unit)').eq('recipe_id',id).eq('owner_id',owner).order('id').range(start,start+499);
   if(result.error)throw new Error('No se pudieron cargar los ingredientes de la receta. Intenta de nuevo.');
   lines.push(...result.data);if(result.data.length<500)break;
  }
